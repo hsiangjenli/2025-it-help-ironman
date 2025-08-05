@@ -1,0 +1,6 @@
+pandas
+jinja2
+sphinx-proof
+sphinx-book-theme
+sphinxcontrib-bibtex
+git+https://github.com/victorapostol/sphinxcontrib-pseudocode.git
