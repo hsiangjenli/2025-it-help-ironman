@@ -14,9 +14,9 @@ sys.path.insert(0, os.path.abspath("."))
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "paper-digest"
-html_title = "Paper Digest"
-copyright = "2024, Hsiang-Jen Li"
+project = "2025 iThome 鐵人賽"
+html_title = "2025 iThome 鐵人賽"
+copyright = "2025, Hsiang-Jen Li"
 author = "Hsiang-Jen Li"
 html_favicon = "https://hsiangjenli.github.io/static/image/ico.svg"
 # release = '0.0'
@@ -33,7 +33,7 @@ class TitleRefRole(SphinxRole):
         return [node], []
 
 
-extensions = ["sphinxcontrib.bibtex", "sphinx_add_text", "sphinxcontrib.pseudocode", "sphinx_proof"]
+extensions = ["sphinxcontrib.bibtex", "sphinxcontrib.pseudocode", "sphinx_proof", "myst_parser"]
 bibtex_bibfiles = ["paper.bib"]
 bibtex_default_style = "unsrt"
 
@@ -53,6 +53,10 @@ html_css_files = [
     "css/custom.css",
 ]
 
+source_suffix = {
+    ".rst": "restructuredtext",
+    ".md": "markdown",
+}
 
 def setup(app):
     app.add_role("title-ref", TitleRefRole())

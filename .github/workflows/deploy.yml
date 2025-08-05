@@ -16,25 +16,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           submodules: recursive
 
-      # Transform Markdown to HTML in Target Folder ----------------
-      - name: Transform Several Markdown to HTML
-        uses: addnab/docker-run-action@v3
-        with:
-          image: hsiangjenli/markmap:latest
-          options: --platform linux/amd64 -v ${{ github.workspace }}:/workspace
-          run: |
-            for file in /workspace/source/_static/markmap/*.md; do
-                markmap $file -o ${file%.md}.html --no-open
-            done
-
       # Sphinxdoc Image ----------------
       - name: Use Docker Image
         uses: addnab/docker-run-action@v3
         with:
-          image: hsiangjenli/sphinx-doc:paper-digest-latest
+          image: hsiangjenli/sphinx-doc:paper-digest-2025-it-help-ironman
           options: --platform linux/amd64 -v ${{ github.workspace }}:/docs --user root
-          run: |
-            python source/_static/gen_keyword/script.py && make html
+          run: make html
 
       # Deploy ----------------
       - name: Deploy

@@ -21,9 +21,7 @@ help:
 	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 image:
-	docker buildx build --platform linux/amd64  -t hsiangjenli/sphinx-doc:paper-digest-${DATE} .github
-	docker buildx build --platform linux/amd64  -t hsiangjenli/markmap:latest -f .github/Dockerfile.markmap .
+	docker buildx build --platform linux/amd64  -t hsiangjenli/sphinx-doc:paper-digest-2025-it-help-ironman .github
 
 run:
-	docker run -it --rm -v "$(PWD):/docs" hsiangjenli/sphinx-doc:paper-digest-${DATE} python source/_static/gen_keyword/script.py
-	docker run -it --rm -v "$(PWD):/docs" hsiangjenli/sphinx-doc:paper-digest-${DATE} make html
+	docker run -it --rm -v "$(PWD):/docs" hsiangjenli/sphinx-doc:paper-digest-2025-it-help-ironman make html

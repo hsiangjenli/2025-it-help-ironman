@@ -1,3 +1,4 @@
+myst-parser
 pandas
 jinja2
 sphinx-proof
