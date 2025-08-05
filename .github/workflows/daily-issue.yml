@@ -1,0 +1,25 @@
+name: Daily Issue
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # 每天 UTC 0:00
+  workflow_dispatch:
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: pip install requests python-dateutil
+      - name: Run daily issue script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO_OWNER: hsiangjenli
+          REPO_NAME: 2025-it-help-ironman
+        run: python scripts/daily_issue.py

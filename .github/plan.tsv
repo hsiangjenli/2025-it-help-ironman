@@ -1,0 +1,32 @@
+Day	主題	分類	當日指引
+1	介紹目標	技術	- 閱讀並理解整體 30 天計畫- 訂定個人學習目標與資源清單
+2	AI Agent 介紹	技術	- 了解 AI Agent 定義與主要架構- 找一個簡單範例程式碼閱讀
+3	Context Engineering 介紹	技術, 生產力工具	- 掌握 Context Engineering 概念與流程- 列出應用場景
+4	Context Engineering 工具介紹（10xrules）	技術, 生產力工具	- 安裝並初探 10xrules- 跑過官方範例，理解基本操作
+5	Context Engineering 實作	技術, 生產力工具	- 用 10xrules 自行撰寫一個小範例- 驗證輸出結果是否符合預期
+6	BMAD method 介紹	技術, 生產力工具	- 理解 BMAD（Benchmark-Measure-Analyze-Deploy）方法論各階段- 準備簡要流程圖
+7	BMAD method 實作	技術, 生產力工具	- 按照 BMAD 流程，對一個小專案做簡單 benchmarking- 分析初步結果，寫出觀察報告
+8	Retrieval-Augmented Generation (RAG)	技術	- 了解 RAG 原理與組成- 用 Hugging Face 簡單實作一個 RAG pipeline
+9	GraphRAG	技術	- 建立知識圖譜範例- 整合 RAG 後端服務，檢視問答效果
+10	OWASP Top 10 for LLMs – 1	資安議題	- 閱讀 OWASP Top 10 for LLMs 第一部分- 列出至少 3 項主要風險
+11	OWASP Top 10 for LLMs – 2	資安議題	- 閱讀第二部分防護建議- 撰寫對應的落地建議清單
+12	Ollama 安裝	技術	- 依官方文件安裝 Ollama- 測試啟動並查詢可用模型
+13	Ollama Modefile GGUF	技術	- 了解 GGUF 格式特性- 在 Ollama 中下載並載入至少一個 GGUF 模型
+14	OpenRouter、OpenAI 介紹使用	技術	- 比較兩者 API 差異- 實作範例請求，取得模型回應
+15	GitHub Copilot	生產力工具, 技術	- 啟用 Copilot 插件- 在編輯器中試用自動補全功能
+16	GitHub Copilot + 繪圖（KubeDiagrams）	技術, 生產力工具	- 安裝 KubeDiagrams- 由 Copilot 自動生成 Kubernetes 架構圖範例
+17	open source 的簡報產生器（Presenton）	生產力工具, 文書處理	- 安裝並設定 Presenton- 產生一份範例簡報，體驗模板與內容客製化
+18	文字處理（VLLM + PDF）	文書處理, 生產力工具	- 使用 FluxOCR 或 dot.ocr 擷取 PDF 文字- 以 VLLM 進行簡單摘要
+19	文字處理（langextract，法律）	生產力工具, 文書處理	- 安裝 langextract- 將法律條文（判決書）做結構化抽取
+20	MCP 介紹	技術, 生產力工具	- 理解 Model Context Protocol（MCP）核心概念
+21	MCP 使用別人的 MCP 工具	技術, 生產力工具	- 部署 Medium 範例工具- 完成基本的查詢與測試
+22	MCP 自建（Anthropic）	技術	- 使用 Anthropic SDK 建立自家 MCP Server- 驗證基本請求
+23	MCP 自建（使用 FastMCP + IBM Gateway）	技術	- 用 FastMCP 快速架設 Server- 整合 IBM MCP Gateway，測試 fail-over 機制
+24	A2A 介紹	技術	- 掌握 A2A（Agent-to-Agent）協作原理- 與 ACP 架構做比較
+25	A2A Project 建立 Agent Card	技術	- 實作一個簡單 Agent Card JSON- 用 CLI 上傳並驗證
+26	A2A Project 使用（Registry）	技術	- 註冊 Agent 至 A2A Registry- 查詢已註冊清單
+27	A2A Project 使用（Network）	技術	- 實作多 Agent 通訊範例- 檢視通訊紀錄並分析
+28	MLflow 3.0 的更新	MLOps	- 閱讀 3.0 新功能- 撰寫並執行一個監控範例
+29	LLM Guard – 介紹	資安議題	- 了解 LLM Guard 架構與功能
+30	LLM Guard – 使用	資安議題	- 部署 LLM Guard- 進行攻擊測試並驗證防護效果
+31	完賽心得	心得	- 回顧 30 天成果與挑戰- 制定未來行動計畫並估算總花費
