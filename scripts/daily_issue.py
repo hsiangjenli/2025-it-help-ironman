@@ -52,29 +52,32 @@ def create_issue(day, plan):
     return resp.ok
 
 def main():
-    today_day = get_today_day()
-    plan = read_plan(today_day)
-    if not plan:
-        print(f"No plan for Day {today_day}")
-        return
-    # Day 1 不檢查昨天的 issue
-    if today_day > 1:
-        prev_issue = get_issue_by_day(today_day - 1)
-        if not prev_issue:
-            print("昨天的 issue 不存在")
-            return
-        if prev_issue['state'] != 'closed':
-            print("昨天的 issue 尚未關閉")
-            return
-    # 檢查今天的 issue 是否已存在
-    if get_issue_by_day(today_day):
-        print("今天的 issue 已存在")
-        return
-    # Day 1 直接建立 issue
-    if create_issue(today_day, plan):
-        print("Issue created!")
-    else:
-        print("Issue creation failed.")
+    # 讀取所有計畫 day
+    days = []
+    with open(plan_path, encoding='utf-8') as f:
+        reader = csv.DictReader(f, delimiter='\t')
+        for row in reader:
+            days.append(int(row['Day']))
+
+    for day in days:
+        plan = read_plan(day)
+        if not plan:
+            continue
+        # 檢查上一個 day 是否已完成
+        if day > 1:
+            prev_issue = get_issue_by_day(day - 1)
+            if not prev_issue or prev_issue['state'] != 'closed':
+                print(f"Day {day-1} not finished, skip Day {day}")
+                break
+        # 檢查本 day 是否已存在 issue
+        if get_issue_by_day(day):
+            continue
+        # 建立 issue
+        if create_issue(day, plan):
+            print(f"Issue for Day {day} created!")
+        else:
+            print(f"Issue creation for Day {day} failed.")
+        break
 
 if __name__ == '__main__':
     main()
