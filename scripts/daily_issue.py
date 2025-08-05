@@ -57,7 +57,7 @@ def main():
     if not plan:
         print(f"No plan for Day {today_day}")
         return
-    # 檢查昨天的 issue 狀態
+    # Day 1 不檢查昨天的 issue
     if today_day > 1:
         prev_issue = get_issue_by_day(today_day - 1)
         if not prev_issue:
@@ -70,7 +70,7 @@ def main():
     if get_issue_by_day(today_day):
         print("今天的 issue 已存在")
         return
-    # 開新 issue
+    # Day 1 直接建立 issue
     if create_issue(today_day, plan):
         print("Issue created!")
     else:
