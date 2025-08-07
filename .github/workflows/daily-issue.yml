@@ -16,10 +16,11 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install requests python-dateutil
+        run: pip install requests python-dateutil pandas
       - name: Run daily issue script
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO_OWNER: hsiangjenli
           REPO_NAME: 2025-it-help-ironman
+          GSHEET_ID: ${{ secrets.GSHEET_ID }}
         run: python scripts/daily_issue.py

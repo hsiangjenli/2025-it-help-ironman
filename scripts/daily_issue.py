@@ -1,13 +1,16 @@
 import os
 import requests
 import csv
+import pandas as pd
 from datetime import datetime, timedelta
 from dateutil import tz
 
 github_token = os.environ.get('GITHUB_TOKEN')
 repo_owner = os.environ.get('REPO_OWNER')
 repo_name = os.environ.get('REPO_NAME')
-plan_path = os.path.join('.github', 'plan.tsv')
+sheet_name = 'LLM-IT-HELP'
+spreadsheet_id = os.environ.get('GSHEET_ID')
+plan_path = f"https://docs.google.com/spreadsheets/d/{spreadsheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 headers = {'Authorization': f'token {github_token}'}
 
 def get_today_day():
@@ -15,14 +18,6 @@ def get_today_day():
     tz_tw = tz.gettz('Asia/Taipei')
     today = datetime.now(tz=tz_tw)
     return today.day
-
-def read_plan(day):
-    with open(plan_path, encoding='utf-8') as f:
-        reader = csv.DictReader(f, delimiter='\t')
-        for row in reader:
-            if int(row['Day']) == day:
-                return row
-    return None
 
 def get_issue_by_day(day):
     url = f'https://api.github.com/repos/{repo_owner}/{repo_name}/issues'
@@ -52,15 +47,12 @@ def create_issue(day, plan):
     return resp.ok
 
 def main():
-    # 讀取所有計畫 day
-    days = []
-    with open(plan_path, encoding='utf-8') as f:
-        reader = csv.DictReader(f, delimiter='\t')
-        for row in reader:
-            days.append(int(row['Day']))
+    # 讀取所有計畫 day（用 pandas 直接讀 Excel）
+    df = pd.read_csv(plan_path)
+    days = df['Day'].astype(int).tolist()
 
     for day in days:
-        plan = read_plan(day)
+        plan = df[df['Day'] == day]
         if not plan:
             continue
         # 檢查上一個 day 是否已完成
