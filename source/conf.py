@@ -33,7 +33,12 @@ class TitleRefRole(SphinxRole):
         return [node], []
 
 
-extensions = ["sphinxcontrib.bibtex", "sphinxcontrib.pseudocode", "sphinx_proof", "myst_parser"]
+extensions = [
+    "sphinxcontrib.bibtex",
+    "sphinxcontrib.pseudocode",
+    "sphinx_proof",
+    "myst_parser",
+]
 bibtex_bibfiles = ["paper.bib"]
 bibtex_default_style = "unsrt"
 
@@ -57,6 +62,7 @@ source_suffix = {
     ".rst": "restructuredtext",
     ".md": "markdown",
 }
+
 
 def setup(app):
     app.add_role("title-ref", TitleRefRole())
