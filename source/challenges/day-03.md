@@ -1,8 +1,8 @@
 # 介紹
 
-# 情境工程（Context Engineering）
+如果你什麼資訊都不提供，你怎麼能期待 AI 產出你想要的東西？但，到底要提供什麼資訊同時又要避免爲了提供足夠的資訊反而造成開發上的負擔呢？
 
-> 如果你什麼資訊都不提供，你怎麼能期待 AI 產出你想要的東西？但，到底要提供什麼資訊同時又要避免爲了提供足夠的資訊反而造成開發上的負擔呢？
+# 情境工程（Context Engineering）
 
 提示工程（Prompt Engineering）這個專有名詞的目的在於不修改模型參數的情況下，透過設計合適的提示，引導模型產生更符合預期的結果。
 
@@ -12,6 +12,13 @@
 
 ![](https://www.philschmid.de/static/blog/context-engineering/context.png)
 
+1. **Instructions/System Prompt** - 系統提示
+2. **Long-Term Memory** - 長期記憶
+3. **Short-Term Memory (State/History)** - 短期記憶（狀態/歷史）
+4. **Retrieval Information (RAG)** - 檢索資訊（RAG）
+5. **User Prompt** - 使用者提示
+6. **Available Tools** - 可用工具
+7. **Structured Output** - 結構化輸出
 
 筆者認爲這張圖已經很清楚地說明了情境工程中所包含的元素有哪些，但還可以更進一步地說明這些元素之間的互動關係，因此筆者將上述的元素稍作修改（同類型的元素合併），並且使用循序圖來說明這些元素之間的互動關係，如下圖所示：
 
@@ -46,9 +53,14 @@ sequenceDiagram
 
 # 重點回顧
 
-- Context Engineering 的核心概念？
+1. 瞭解 Prompt Engineering 以及 Context Engineering 的目的
+   - 在「不修改模型參數」的情況下，讓模型能夠產出符合需求的結果
+1. 瞭解 Context Engineering 的核心概念？
    - 透過「系統化」地收集開發所需要知道的資訊
-   - 在有新任務時，能夠「動態組裝」成新的 prompt,讓 AI 能夠精準理解需求
+   - 在有新任務時，能夠「動態組裝」成新的 prompt，讓 AI 能夠精準理解需求
+2. 瞭解 Context Engineering 的 7 個元素以及它們之間的互動關係
+   - 系統提示、長期記憶、短期記憶、檢索資訊、使用者提示、可用工具、結構化輸出
+   - 使用循序圖來說明這些元素之間的互動關係
 
 # 參考資料
 
