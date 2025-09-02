@@ -65,7 +65,7 @@ npm run dev
 >
 > 在操作的過程中，覺得 10xrules 的 UI/UX 設計得很好，也不複雜。但是在新增 Rules 的時候，覺得有點不方便，還需要特定去找 `src/data/rules` 資料夾來新增，若是不熟悉該程式語言的使用者用起來有點繁瑣（美中不足的部分）
 
-# 回顧
+# 重點回顧
 
 1. 實際操作情境工程中的 Global Instruction 元素
 1. 介紹一個 Open Source Solution（10xrules）來協助開發人員管理及產生 Global Instruction
