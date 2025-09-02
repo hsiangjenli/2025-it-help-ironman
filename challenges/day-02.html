@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day02】LLM 專有名詞整理 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=b16f572a" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=9ff32b01" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -50,6 +50,7 @@
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="【Day01】爲自己定一個目標吧！" href="day-01.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -112,8 +113,6 @@
       
       
       
-        
-      
       <div class="bd-sidebar-primary bd-sidebar">
         
 
@@ -155,7 +154,12 @@
  </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
-        
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day02】LLM 專有名詞整理</a></li>
+</ul>
+
     </div>
 </nav></div>
     </div>
@@ -292,7 +296,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>介紹</h1>
+    <h1>【Day02】LLM 專有名詞整理</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -302,18 +306,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">專有名詞大彙整</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模型類型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">智慧代理</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">向量表示與快取</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">架構與規模</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">提示工程</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">專有名詞大彙整</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模型類型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">智慧代理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">向量表示與快取</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">架構與規模</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">提示工程</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -324,15 +327,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
-<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section id="day02llm">
+<h1>【Day02】LLM 專有名詞整理<a class="headerlink" href="#day02llm" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>SLM、LLM、VLM 都是 LLM，它們之間的差異在哪裡？AI Agent、Agentic AI 是不是只是把兩個字交換位置？向量是什麼樣的概念？</p>
 <p>這篇文章的目的在於彙整這些專有名詞，並且提供一些補充說明（更簡單口語化的說明）。雖然鐵人賽的文章在發佈後就不能再修改，但是這篇文章會同步發佈到我的個人 GitHub 上，希望即使是過了鐵人賽，這篇文章也能夠持續更新。</p>
 </section>
 <section id="id2">
-<h1>專有名詞大彙整<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<h2>專有名詞大彙整<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <section id="id3">
-<h2>模型類型<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h3>模型類型<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>小型語言模型（Small Language Model, SLM）</p></li>
 <li><p>大型語言模型（Large Language Model, LLM）</p></li>
@@ -346,14 +351,14 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="id4">
-<h2>智慧代理<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h3>智慧代理<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>AI Agent：使用者會給與一個「明確的目標與步驟」給 AI 去執行</p></li>
 <li><p>Agentic AI：使用者會給與一個「模糊的目標」給 AI 去執行，AI 會自行決定如何達成目標</p></li>
 </ul>
 </section>
 <section id="id5">
-<h2>向量表示與快取<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h3>向量表示與快取<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>詞向量/向量嵌入（Embedding）：將文字、圖片或其他資料轉換成數值</p></li>
 <li><p>檢索增強生成（Retrieval-Augmented Generation, RAG）：將「外部知識檢索」與「生成模型」結合。模型在回答問題時，不只依賴自身的參數，而是另外從外部知識庫中檢索相關資訊，然後將這些資訊與問題一起輸入生成模型，以產生更準確和相關的回答</p></li>
@@ -368,7 +373,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="id6">
-<h2>架構與規模<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h3>架構與規模<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>專家混合架構（Mixture of Experts, MoE）</p></li>
 <li><p>參數量（Model Parameters）</p></li>
@@ -380,7 +385,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="id7">
-<h2>提示工程<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<h3>提示工程<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>提示工程（Prompt Engineering）</p></li>
 <li><p>鏈式思考提示（Chain-of-Thought Prompting, CoT）</p></li>
@@ -388,10 +393,11 @@ document.write(`
 </section>
 </section>
 <section id="id8">
-<h1>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+<h2>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.ibm.com/think/topics/small-language-models">IBM - What are small language models?</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -405,6 +411,15 @@ document.write(`
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="day-01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day01】爲自己定一個目標吧！</p>
+      </div>
+    </a>
 </div>
                 </footer>
               
@@ -421,18 +436,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">專有名詞大彙整</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模型類型</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">智慧代理</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">向量表示與快取</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">架構與規模</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">提示工程</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">專有名詞大彙整</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">模型類型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">智慧代理</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">向量表示與快取</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">架構與規模</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">提示工程</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
