@@ -6,6 +6,6 @@
    :caption: 目錄:
    :maxdepth: 1
 
-   challenges/test
+   challenges/*
 
 
