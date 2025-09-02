@@ -3,6 +3,10 @@ a {
     text-decoration: none!important;
 }
 
+.prev-next-area a p.prev-next-title {
+    text-decoration: none!important;
+}
+
 h1, h2, h3 {
     font-weight: bolder;
 }
