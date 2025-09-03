@@ -1,8 +1,10 @@
-# 介紹
+# 【Day03】情境工程（Context Engineering）
+
+## 介紹
 
 如果你什麼資訊都不提供，你怎麼能期待 AI 產出你想要的東西？但，到底要提供什麼資訊同時又要避免爲了提供足夠的資訊反而造成開發上的負擔呢？
 
-# 情境工程（Context Engineering）
+## 情境工程（Context Engineering）
 
 提示工程（Prompt Engineering）這個專有名詞的目的在於不修改模型參數的情況下，透過設計合適的提示，引導模型產生更符合預期的結果。
 
@@ -51,7 +53,7 @@ sequenceDiagram
 4. **輸出生成**：根據提供的情境以及 Task 產生結構化輸出
 5. **狀態回寫**：最後的輸出也會寫回至 Memory，以便後續任務能持續累積與更新知識
 
-# 重點回顧
+## 重點回顧
 
 1. 瞭解 Prompt Engineering 以及 Context Engineering 的目的
    - 在「不修改模型參數」的情況下，讓模型能夠產出符合需求的結果
@@ -62,6 +64,6 @@ sequenceDiagram
    - 系統提示、長期記憶、短期記憶、檢索資訊、使用者提示、可用工具、結構化輸出
    - 使用循序圖來說明這些元素之間的互動關係
 
-# 參考資料
+## 參考資料
 
 - [The New Skill in AI is Not Prompting, It's Context Engineering](https://www.philschmid.de/context-engineering)
