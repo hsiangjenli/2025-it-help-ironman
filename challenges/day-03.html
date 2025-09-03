@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day01】爲自己定一個目標吧！ &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day03】情境工程（Context Engineering） &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -46,12 +46,11 @@
     <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-01';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-03';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day02】LLM 專有名詞整理" href="day-02.html" />
-    <link rel="prev" title="2025 iThome 鐵人賽" href="../index.html" />
+    <link rel="prev" title="【Day02】LLM 專有名詞整理" href="day-02.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -157,9 +156,9 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day03】情境工程（Context Engineering）</a></li>
 </ul>
 
     </div>
@@ -214,7 +213,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-01.md" target="_blank"
+      <li><a href="../_sources/challenges/day-03.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -298,7 +297,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day01】爲自己定一個目標吧！</h1>
+    <h1>【Day03】情境工程（Context Engineering）</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -309,7 +308,9 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">預期目標</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-engineering">情境工程（Context Engineering）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -321,20 +322,84 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="day01">
-<h1>【Day01】爲自己定一個目標吧！<a class="headerlink" href="#day01" title="Link to this heading">#</a></h1>
+  <section id="day03-context-engineering">
+<h1>【Day03】情境工程（Context Engineering）<a class="headerlink" href="#day03-context-engineering" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>感覺就像是昨天的事，自從 2022 年 OpenAI 發布 ChatGPT 以來，世界開始以極高速的節奏運轉。那時候的我覺得大型語言模型（LLM）離自己非常遙遠，至少對當時還是研究生的我而言，LLM 是一個遙不可及的存在。隨著時間推移，越來越多公司（如 Meta、Qwen、Mistral）推出較小型的模型，讓模型可以在個人電腦上運行。今年更迎來重大轉變，AI 開始跳脫對話框的限制，從單純的 AI Agent 發展成自主性更高的 Agentic AI，LLM 也逐漸融入現實世界，讓我開始深刻感受到自己也該跟上這波轉型的腳步。</p>
+<p>如果你什麼資訊都不提供，你怎麼能期待 AI 產出你想要的東西？但，到底要提供什麼資訊同時又要避免爲了提供足夠的資訊反而造成開發上的負擔呢？</p>
+</section>
+<section id="context-engineering">
+<h2>情境工程（Context Engineering）<a class="headerlink" href="#context-engineering" title="Link to this heading">#</a></h2>
+<p>提示工程（Prompt Engineering）這個專有名詞的目的在於不修改模型參數的情況下，透過設計合適的提示，引導模型產生更符合預期的結果。</p>
+<p>而情境工程（Context Engineering）則是進一步擴展這個概念，Prompt 不單單是文字一串文字，而是包含了更多更複雜的交互資訊，並且這些資訊會隨著時間不斷更新，讓模型能夠隨時取得最新的資訊來產生更符合需求的結果。</p>
+<p>在 Philipp Schmid 的文章 <a class="reference external" href="https://www.philschmid.de/context-engineering">The New Skill in AI is Not Prompting, It’s Context Engineering</a> 中，他使用了下圖來描述情境工程所包含的元素：</p>
+<p><img alt="" src="https://www.philschmid.de/static/blog/context-engineering/context.png" /></p>
+<ol class="arabic simple">
+<li><p><strong>Instructions/System Prompt</strong> - 系統提示</p></li>
+<li><p><strong>Long-Term Memory</strong> - 長期記憶</p></li>
+<li><p><strong>Short-Term Memory (State/History)</strong> - 短期記憶（狀態/歷史）</p></li>
+<li><p><strong>Retrieval Information (RAG)</strong> - 檢索資訊（RAG）</p></li>
+<li><p><strong>User Prompt</strong> - 使用者提示</p></li>
+<li><p><strong>Available Tools</strong> - 可用工具</p></li>
+<li><p><strong>Structured Output</strong> - 結構化輸出</p></li>
+</ol>
+<p>筆者認爲這張圖已經很清楚地說明了情境工程中所包含的元素有哪些，但還可以更進一步地說明這些元素之間的互動關係，因此筆者將上述的元素稍作修改（同類型的元素合併），並且使用循序圖來說明這些元素之間的互動關係，如下圖所示：</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>sequenceDiagram
+    autonumber
+    participant Global
+    participant Memory
+    participant Task
+    participant MCP_Tools as MCP Tools
+    participant Output
+
+    Global-&gt;&gt;Memory: 提供專案目標與撰寫規範
+    Memory-&gt;&gt;Task: 提供短期/長期記憶與 RAG 結果
+    Task-&gt;&gt;MCP_Tools: 呼叫可用工具
+    MCP_Tools--&gt;&gt;Task: 回傳工具執行結果
+    Task-&gt;&gt;Output: 產生結構化輸出
+    Task-&gt;&gt;Memory: 回寫新的狀態/文件
+
+    Note over Global,Task: 提供 Task 明確的「專案目標」和「撰寫規範」
+    Note over Memory,Task: 記憶與任務雙向互動
+</pre></div>
+</div>
+<p>此圖需要從中間的 Task 元素開始看起：</p>
+<ol class="arabic simple">
+<li><p><strong>任務啟動</strong>：當使用者提出新需求時，會被動接收來自 Global 的專案目標與撰寫規範，這些屬於長期不常變動的全域性資訊</p></li>
+<li><p><strong>情境補充</strong>：同時會取得 Memory 中的短期／長期記憶與 RAG 結果（文件檔、範例程式等…），這些資訊會隨時間不斷更新</p></li>
+<li><p><strong>工具調用</strong>：依據任務需求選擇可用的 MCP Tools，以獲取額外的資訊或執行特定操作（執行 CMD）</p></li>
+<li><p><strong>結果整合</strong>：接收 MCP Tools 回傳的執行結果，並將前面接受到的資訊整合，形成完整的情境</p></li>
+<li><p><strong>輸出生成</strong>：根據提供的情境以及 Task 產生結構化輸出</p></li>
+<li><p><strong>狀態回寫</strong>：最後的輸出也會寫回至 Memory，以便後續任務能持續累積與更新知識</p></li>
+</ol>
 </section>
 <section id="id2">
-<h2>預期目標<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>這次的目標有 3 個：</p>
+<h2>重點回顧<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p>讓完全不瞭解 LLM、AI Agent、或 Agentic AI 的人可以慢慢瞭解到該領域背後各種專有名詞的意義</p></li>
-<li><p>整理目前自己所瞭解、開發過、有趣的開源 LLM 專案</p></li>
-<li><p>觸碰到比較冷門的題目，像是 LLM 的資安問題、維運等等…</p></li>
+<li><p>瞭解 Prompt Engineering 以及 Context Engineering 的目的</p>
+<ul class="simple">
+<li><p>在「不修改模型參數」的情況下，讓模型能夠產出符合需求的結果</p></li>
+</ul>
+</li>
+<li><p>瞭解 Context Engineering 的核心概念？</p>
+<ul class="simple">
+<li><p>透過「系統化」地收集開發所需要知道的資訊</p></li>
+<li><p>在有新任務時，能夠「動態組裝」成新的 prompt，讓 AI 能夠精準理解需求</p></li>
+</ul>
+</li>
+<li><p>瞭解 Context Engineering 的 7 個元素以及它們之間的互動關係</p>
+<ul class="simple">
+<li><p>系統提示、長期記憶、短期記憶、檢索資訊、使用者提示、可用工具、結構化輸出</p></li>
+<li><p>使用循序圖來說明這些元素之間的互動關係</p></li>
+</ul>
+</li>
 </ol>
+</section>
+<section id="id3">
+<h2>參考資料<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.philschmid.de/context-engineering">The New Skill in AI is Not Prompting, It’s Context Engineering</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -350,22 +415,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="day-02.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2025 iThome 鐵人賽</p>
-      </div>
-    </a>
-    <a class="right-next"
-       href="day-02.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">【Day02】LLM 專有名詞整理</p>
       </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -384,7 +440,9 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">預期目標</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-engineering">情境工程（Context Engineering）</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">參考資料</a></li>
 </ul>
   </nav></div>
 
