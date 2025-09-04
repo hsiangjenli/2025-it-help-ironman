@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day03】情境工程（Context Engineering） &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day04】情境工程工具（10xrules） &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -46,12 +46,11 @@
     <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-03';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-04';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day04】情境工程工具（10xrules）" href="day-04.html" />
-    <link rel="prev" title="【Day02】LLM 專有名詞整理" href="day-02.html" />
+    <link rel="prev" title="【Day03】情境工程（Context Engineering）" href="day-03.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -159,8 +158,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day03】情境工程（Context Engineering）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day04】情境工程工具（10xrules）</a></li>
 </ul>
 
     </div>
@@ -215,7 +214,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-03.md" target="_blank"
+      <li><a href="../_sources/challenges/day-04.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -299,7 +298,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day03】情境工程（Context Engineering）</h1>
+    <h1>【Day04】情境工程工具（10xrules）</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -310,9 +309,16 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-engineering">情境工程（Context Engineering）</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xrules">10xrules 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本地安裝</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">啓動服務</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">新增新的 Rules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -324,83 +330,81 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="day03-context-engineering">
-<h1>【Day03】情境工程（Context Engineering）<a class="headerlink" href="#day03-context-engineering" title="Link to this heading">#</a></h1>
+  <section id="day04-10xrules">
+<h1>【Day04】情境工程工具（10xrules）<a class="headerlink" href="#day04-10xrules" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>如果你什麼資訊都不提供，你怎麼能期待 AI 產出你想要的東西？但，到底要提供什麼資訊同時又要避免爲了提供足夠的資訊反而造成開發上的負擔呢？</p>
+<p>在前一天的挑戰文章中提到了情境工程（Context Engineering）這個概念。但情境工程這麼複雜，裡面包含了各種元素（Global Instruction、Memory、MCP Tools、Output 等…）。突然要開發人員寫出一份完整的 Global Instruction 是一件很困難的事情（畢竟自己在開發的時候常常也都是想到什麼就寫什麼，很少會很仔細地去規劃整個專案的目標和撰寫規範 😅）。</p>
+<p>因此，今天要介紹一個叫做 <a class="reference external" href="https://10xrules.ai">10xrules</a> 的工具，這個工具可以協助開發人員根據自身需求快速地產生一份 Global Instruction。</p>
 </section>
-<section id="context-engineering">
-<h2>情境工程（Context Engineering）<a class="headerlink" href="#context-engineering" title="Link to this heading">#</a></h2>
-<p>提示工程（Prompt Engineering）這個專有名詞的目的在於不修改模型參數的情況下，透過設計合適的提示，引導模型產生更符合預期的結果。</p>
-<p>而情境工程（Context Engineering）則是進一步擴展這個概念，Prompt 不單單是文字一串文字，而是包含了更多更複雜的交互資訊，並且這些資訊會隨著時間不斷更新，讓模型能夠隨時取得最新的資訊來產生更符合需求的結果。</p>
-<p>在 Philipp Schmid 的文章 <a class="reference external" href="https://www.philschmid.de/context-engineering">The New Skill in AI is Not Prompting, It’s Context Engineering</a> 中，他使用了下圖來描述情境工程所包含的元素：</p>
-<p><img alt="" src="https://www.philschmid.de/static/blog/context-engineering/context.png" /></p>
-<ol class="arabic simple">
-<li><p><strong>Instructions/System Prompt</strong> - 系統提示</p></li>
-<li><p><strong>Long-Term Memory</strong> - 長期記憶</p></li>
-<li><p><strong>Short-Term Memory (State/History)</strong> - 短期記憶（狀態/歷史）</p></li>
-<li><p><strong>Retrieval Information (RAG)</strong> - 檢索資訊（RAG）</p></li>
-<li><p><strong>User Prompt</strong> - 使用者提示</p></li>
-<li><p><strong>Available Tools</strong> - 可用工具</p></li>
-<li><p><strong>Structured Output</strong> - 結構化輸出</p></li>
-</ol>
-<p>筆者認爲這張圖已經很清楚地說明了情境工程中所包含的元素有哪些，但還可以更進一步地說明這些元素之間的互動關係，因此筆者將上述的元素稍作修改（同類型的元素合併），並且使用循序圖來說明這些元素之間的互動關係，如下圖所示：</p>
-<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>sequenceDiagram
-    autonumber
-    participant Global
-    participant Memory
-    participant Task
-    participant MCP_Tools as MCP Tools
-    participant Output
-
-    Global-&gt;&gt;Memory: 提供專案目標與撰寫規範
-    Memory-&gt;&gt;Task: 提供短期/長期記憶與 RAG 結果
-    Task-&gt;&gt;MCP_Tools: 呼叫可用工具
-    MCP_Tools--&gt;&gt;Task: 回傳工具執行結果
-    Task-&gt;&gt;Output: 產生結構化輸出
-    Task-&gt;&gt;Memory: 回寫新的狀態/文件
-
-    Note over Global,Task: 提供 Task 明確的「專案目標」和「撰寫規範」
-    Note over Memory,Task: 記憶與任務雙向互動
+<section id="xrules">
+<h2>10xrules 介紹<a class="headerlink" href="#xrules" title="Link to this heading">#</a></h2>
+<p><img alt="20250902202713" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902202713.png" /></p>
+<p>整個頁面很簡單，左邊可以選擇需要的 Global Instruction，右邊則會顯示相應的範本。在右上角還可以選擇輸出的格式（使用 GitHub Copilot、Claude Code、Codex 等…）</p>
+<section id="id2">
+<h3>本地安裝<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h4>啓動服務<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/przeprogramowani/ai-rules-builder.git
+<span class="nb">cd</span><span class="w"> </span>ai-rules-builder
 </pre></div>
 </div>
-<p>此圖需要從中間的 Task 元素開始看起：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install
+npm<span class="w"> </span>install<span class="w"> </span>supabase<span class="w"> </span>--save-dev
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>supabase<span class="w"> </span>init
+npx<span class="w"> </span>supabase<span class="w"> </span>start
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">npx</span> <span class="pre">supabase</span> <span class="pre">status</span></code> 確認 Supabase 已經順利運作</p></li>
+<li><p>記下 Supabase 提供的 <code class="docutils literal notranslate"><span class="pre">anon</span> <span class="pre">key</span></code> 和 <code class="docutils literal notranslate"><span class="pre">service_role</span> <span class="pre">key</span></code></p></li>
+<li><p>建立 <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> 檔案</p></li>
+</ul>
+<p><img alt="20250902231357" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902231357.png" /></p>
+<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>PUBLIC_ENV_NAME=local
+SUPABASE_URL=http://localhost:54321
+SUPABASE_PUBLIC_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
+
+CF_CAPTCHA_SITE_KEY=1x00000000000000000000AA
+CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span>dev
+</pre></div>
+</div>
+<p>即可到 <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> 開始使用自己的 10xrules 工具</p>
+<blockquote>
+<div><p><strong>補充說明：</strong></p>
+<p>雖然有 Sign up 跟 Sign in 的功能，但是沒看到 Admin 的介面，這部分的設計有點奇怪，提醒一下各位還是要注意一下資安的問題</p>
+</div></blockquote>
+</section>
+</section>
+<section id="rules">
+<h3>新增新的 Rules<a class="headerlink" href="#rules" title="Link to this heading">#</a></h3>
+<p>若是要新增自己的 Rules 可以至 <code class="docutils literal notranslate"><span class="pre">src/data/rules</span></code> 資料夾中新增</p>
+<p><img alt="20250902225343" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902225343.png" /></p>
+<blockquote>
+<div><p><strong>補充說明：</strong></p>
+<p>在操作的過程中，覺得 10xrules 的 UI/UX 設計得很好，也不複雜。但是在新增 Rules 的時候，覺得有點不方便，還需要特定去找 <code class="docutils literal notranslate"><span class="pre">src/data/rules</span></code> 資料夾來新增，若是不熟悉該程式語言的使用者用起來有點繁瑣（美中不足的部分）</p>
+</div></blockquote>
+</section>
+</section>
+<section id="id4">
+<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
-<li><p><strong>任務啟動</strong>：當使用者提出新需求時，會被動接收來自 Global 的專案目標與撰寫規範，這些屬於長期不常變動的全域性資訊</p></li>
-<li><p><strong>情境補充</strong>：同時會取得 Memory 中的短期／長期記憶與 RAG 結果（文件檔、範例程式等…），這些資訊會隨時間不斷更新</p></li>
-<li><p><strong>工具調用</strong>：依據任務需求選擇可用的 MCP Tools，以獲取額外的資訊或執行特定操作（執行 CMD）</p></li>
-<li><p><strong>結果整合</strong>：接收 MCP Tools 回傳的執行結果，並將前面接受到的資訊整合，形成完整的情境</p></li>
-<li><p><strong>輸出生成</strong>：根據提供的情境以及 Task 產生結構化輸出</p></li>
-<li><p><strong>狀態回寫</strong>：最後的輸出也會寫回至 Memory，以便後續任務能持續累積與更新知識</p></li>
+<li><p>實際操作情境工程中的 Global Instruction 元素</p></li>
+<li><p>介紹一個 Open Source Solution（10xrules）來協助開發人員管理及產生 Global Instruction</p></li>
+<li><p>簡單操作如何在本地端啓動 10xrules 服務以及新增自己的 Rules</p></li>
 </ol>
 </section>
-<section id="id2">
-<h2>重點回顧<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>瞭解 Prompt Engineering 以及 Context Engineering 的目的</p>
+<section id="id5">
+<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>在「不修改模型參數」的情況下，讓模型能夠產出符合需求的結果</p></li>
-</ul>
-</li>
-<li><p>瞭解 Context Engineering 的核心概念？</p>
-<ul class="simple">
-<li><p>透過「系統化」地收集開發所需要知道的資訊</p></li>
-<li><p>在有新任務時，能夠「動態組裝」成新的 prompt，讓 AI 能夠精準理解需求</p></li>
-</ul>
-</li>
-<li><p>瞭解 Context Engineering 的 7 個元素以及它們之間的互動關係</p>
-<ul class="simple">
-<li><p>系統提示、長期記憶、短期記憶、檢索資訊、使用者提示、可用工具、結構化輸出</p></li>
-<li><p>使用循序圖來說明這些元素之間的互動關係</p></li>
-</ul>
-</li>
-</ol>
-</section>
-<section id="id3">
-<h2>參考資料<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://www.philschmid.de/context-engineering">The New Skill in AI is Not Prompting, It’s Context Engineering</a></p></li>
+<li><p><a class="reference external" href="https://github.com/przeprogramowani/ai-rules-builder">przeprogramowani/ai-rules-builder</a></p></li>
+<li><p><a class="reference external" href="https://10xrules.ai">10xrules</a></p></li>
 </ul>
 </section>
 </section>
@@ -417,22 +421,13 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-02.html"
+       href="day-03.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day02】LLM 專有名詞整理</p>
+        <p class="prev-next-title">【Day03】情境工程（Context Engineering）</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="day-04.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day04】情境工程工具（10xrules）</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -451,9 +446,16 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-engineering">情境工程（Context Engineering）</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xrules">10xrules 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本地安裝</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">啓動服務</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">新增新的 Rules</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
   </nav></div>
 
