@@ -1,4 +1,3 @@
-
 # 介紹
 
 前一天的鐵人賽挑戰文章介紹的可以協助設定 Global Instruction 的工具 [10xrules](https://10xrules.ai)。但單純使用這個工具來產生 Global Instruction 可能還不夠，因為在真正的開發過程中，每個 Task 都還需要有自己的 Context。
