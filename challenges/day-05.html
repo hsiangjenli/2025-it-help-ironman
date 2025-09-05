@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day04】情境工程工具（10xrules） &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day05】情境工程工具（coleam00/context-engineering-intro） &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -46,12 +46,11 @@
     <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-04';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-05';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day05】情境工程工具（coleam00/context-engineering-intro）" href="day-05.html" />
-    <link rel="prev" title="【Day03】情境工程（Context Engineering）" href="day-03.html" />
+    <link rel="prev" title="【Day04】情境工程工具（10xrules）" href="day-04.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -160,8 +159,8 @@
 <li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day04】情境工程工具（10xrules）</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
 </ul>
 
     </div>
@@ -216,7 +215,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-04.md" target="_blank"
+      <li><a href="../_sources/challenges/day-05.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -300,7 +299,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day04】情境工程工具（10xrules）</h1>
+    <h1>【Day05】情境工程工具（coleam00/context-engineering-intro）</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -311,12 +310,12 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xrules">10xrules 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本地安裝</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">啓動服務</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coleam00-context-engineering-intro"><code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">專案結構</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">需要修改的檔案有：</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prp">產生 PRP 的流程</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">新增新的 Rules</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
@@ -332,81 +331,93 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="day04-10xrules">
-<h1>【Day04】情境工程工具（10xrules）<a class="headerlink" href="#day04-10xrules" title="Link to this heading">#</a></h1>
+  <section id="day05-coleam00-context-engineering-intro">
+<h1>【Day05】情境工程工具（coleam00/context-engineering-intro）<a class="headerlink" href="#day05-coleam00-context-engineering-intro" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>在前一天的挑戰文章中提到了情境工程（Context Engineering）這個概念。但情境工程這麼複雜，裡面包含了各種元素（Global Instruction、Memory、MCP Tools、Output 等…）。突然要開發人員寫出一份完整的 Global Instruction 是一件很困難的事情（畢竟自己在開發的時候常常也都是想到什麼就寫什麼，很少會很仔細地去規劃整個專案的目標和撰寫規範 😅）。</p>
-<p>因此，今天要介紹一個叫做 <a class="reference external" href="https://10xrules.ai">10xrules</a> 的工具，這個工具可以協助開發人員根據自身需求快速地產生一份 Global Instruction。</p>
+<p>前一天的鐵人賽挑戰文章介紹的可以協助設定 Global Instruction 的工具 <a class="reference external" href="https://10xrules.ai">10xrules</a>。但單純使用這個工具來產生 Global Instruction 可能還不夠，因為在真正的開發過程中，每個 Task 都還需要有自己的 Context。</p>
+<p>這個 Context 可能是過去的對話紀錄、相關文件、程式碼片段等…。但要突然要開發人員「無中生有」這些 Context 也是一件很困難的事情，這篇文章要介紹一個叫做 <code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 的專案，這個專案提供了一個簡單的範例，讓開發人員可以藉由實際操作來了解如何在開發過程中會有哪些 Context 需要被提供給 LLM。</p>
 </section>
-<section id="xrules">
-<h2>10xrules 介紹<a class="headerlink" href="#xrules" title="Link to this heading">#</a></h2>
-<p><img alt="20250902202713" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902202713.png" /></p>
-<p>整個頁面很簡單，左邊可以選擇需要的 Global Instruction，右邊則會顯示相應的範本。在右上角還可以選擇輸出的格式（使用 GitHub Copilot、Claude Code、Codex 等…）</p>
+<section id="coleam00-context-engineering-intro">
+<h2><code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 介紹<a class="headerlink" href="#coleam00-context-engineering-intro" title="Link to this heading">#</a></h2>
+<p><img alt="20250904212022" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250904212022.png" /></p>
+<p>這個 <a class="reference external" href="https://github.com/coleam00/context-engineering-intro">Repo</a> 的主要 2 大功能：</p>
+<ol class="arabic simple">
+<li><p>透過 LLM 產生產品需求提示（Product Requirement Prompt，PRP）</p></li>
+<li><p>藉由前面產生的 PRP 來進行程式開發</p></li>
+</ol>
 <section id="id2">
-<h3>本地安裝<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3>專案結構<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>首先，這份專案是設計給 Claude Code 使用的，但是也是可以透過其它 AI Code Assistant（GitHub Copilot）工具來使用的。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>.
+├──<span class="w"> </span>.claude
+│<span class="w">   </span>├──<span class="w"> </span>commands
+│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>execute-prp.md<span class="w"> </span><span class="c1">## ⭐ 執行 PRP 的提示</span>
+│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>generate-prp.md<span class="w"> </span><span class="c1">## ⭐ 產生 PRP 的提示</span>
+│<span class="w">   </span>└──<span class="w"> </span>settings.local.json
+├──<span class="w"> </span>claude-code-full-guide<span class="w"> </span><span class="c1">## 暫時略過</span>
+├──<span class="w"> </span>CLAUDE.md<span class="w"> </span><span class="c1">## ⭐ Global Instruction 設定</span>
+├──<span class="w"> </span>examples
+├──<span class="w"> </span>.gitattributes
+├──<span class="w"> </span>.gitignore
+├──<span class="w"> </span>INITIAL_EXAMPLE.md
+├──<span class="w"> </span>INITIAL.md<span class="w"> </span><span class="c1">## ⭐ 任務說明（簡單提供，後續會使用 /generate-prp 產出更完善的 PRP）</span>
+├──<span class="w"> </span>LICENSE
+├──<span class="w"> </span>PRPs
+│<span class="w">   </span>├──<span class="w"> </span>EXAMPLE_multi_agent_prp.md
+│<span class="w">   </span>└──<span class="w"> </span>templates
+│<span class="w">       </span>└──<span class="w"> </span>prp_base.md<span class="w"> </span><span class="c1">## ⭐ PRP 基本模版</span>
+├──<span class="w"> </span>README.md
+└──<span class="w"> </span>use-cases<span class="w"> </span><span class="c1">## 暫時略過</span>
+</pre></div>
+</div>
+<p>這份專案經過時間的演進，裡面的架構比當初使用時更複雜了，不過主要可以聚焦在上面標記 ⭐ 的檔案。各位只需要針對這些檔案進行修改就可以了。</p>
 <section id="id3">
-<h4>啓動服務<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/przeprogramowani/ai-rules-builder.git
-<span class="nb">cd</span><span class="w"> </span>ai-rules-builder
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install
-npm<span class="w"> </span>install<span class="w"> </span>supabase<span class="w"> </span>--save-dev
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>supabase<span class="w"> </span>init
-npx<span class="w"> </span>supabase<span class="w"> </span>start
-</pre></div>
-</div>
+<h4>需要修改的檔案有：<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>使用 <code class="docutils literal notranslate"><span class="pre">npx</span> <span class="pre">supabase</span> <span class="pre">status</span></code> 確認 Supabase 已經順利運作</p></li>
-<li><p>記下 Supabase 提供的 <code class="docutils literal notranslate"><span class="pre">anon</span> <span class="pre">key</span></code> 和 <code class="docutils literal notranslate"><span class="pre">service_role</span> <span class="pre">key</span></code></p></li>
-<li><p>建立 <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> 檔案</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">INITIAL.md</span></code>：提供任務的基本說明</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code>：負責整個專案的 Global Instruction 設定（Optional）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRPs/templates/prp_base.md</span></code>：PRP 的基本模版（Optional）</p></li>
 </ul>
-<p><img alt="20250902231357" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902231357.png" /></p>
-<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>PUBLIC_ENV_NAME=local
-SUPABASE_URL=http://localhost:54321
-SUPABASE_PUBLIC_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-
-CF_CAPTCHA_SITE_KEY=1x00000000000000000000AA
-CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span>dev
-</pre></div>
-</div>
-<p>即可到 <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> 開始使用自己的 10xrules 工具</p>
 <blockquote>
-<div><p><strong>補充說明：</strong></p>
-<p>雖然有 Sign up 跟 Sign in 的功能，但是沒看到 Admin 的介面，這部分的設計有點奇怪，提醒一下各位還是要注意一下資安的問題</p>
+<div><p><strong>補充說明</strong></p>
+<p>上面寫著 Optional 是因為這些檔案在原本的 Repo 裡面已經有預設的內容了，可以先嘗試使用預設內容來進行開發，等到熟悉流程之後再根據自己的需求來進行修改。</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>補充說明</strong></p>
+<p>目前的 <code class="docutils literal notranslate"><span class="pre">CLAUDE.md</span></code> 對應的是 <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code>。<a class="reference external" href="https://agents.md/"><code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code></a> 是目前多家廠商的共識，就像過去開發人員都會把程式的基本介紹寫在 <code class="docutils literal notranslate"><span class="pre">README.md</span></code> 一樣，<code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> 是專門提供給 LLM 的開發指引。截至目前，已經有 Codex、Cursor、Gemini CLI、GitHub Copilot 加入這個供應商中立的標準協議（但 Claude Code 還沒）。若是想看其它開發人員的 <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code> 可以到 <a class="reference external" href="https://github.com/search?q=path%3AAGENTS.md&amp;amp;type=code">GitHub Search</a> 查看。</p>
 </div></blockquote>
 </section>
-</section>
-<section id="rules">
-<h3>新增新的 Rules<a class="headerlink" href="#rules" title="Link to this heading">#</a></h3>
-<p>若是要新增自己的 Rules 可以至 <code class="docutils literal notranslate"><span class="pre">src/data/rules</span></code> 資料夾中新增</p>
-<p><img alt="20250902225343" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902225343.png" /></p>
+<section id="prp">
+<h4>產生 PRP 的流程<a class="headerlink" href="#prp" title="Link to this heading">#</a></h4>
+<ol class="arabic simple">
+<li><p>首先，打開 <code class="docutils literal notranslate"><span class="pre">INITIAL.md</span></code>，根據自己的需求來修改任務說明</p></li>
+<li><p>接著，使用 <code class="docutils literal notranslate"><span class="pre">/generate-prp</span> <span class="pre">INITIAL.md</span></code> 讓 LLM 可以根據 <code class="docutils literal notranslate"><span class="pre">INITIAL.md</span></code> 的內容來產生 PRP</p></li>
+<li><p>最後，使用 <code class="docutils literal notranslate"><span class="pre">/execute-prp</span> <span class="pre">PRPs/example_prp.md</span></code> 來讓 LLM 根據 PRP 的內容來進行程式開發</p></li>
+</ol>
 <blockquote>
-<div><p><strong>補充說明：</strong></p>
-<p>在操作的過程中，覺得 10xrules 的 UI/UX 設計得很好，也不複雜。但是在新增 Rules 的時候，覺得有點不方便，還需要特定去找 <code class="docutils literal notranslate"><span class="pre">src/data/rules</span></code> 資料夾來新增，若是不熟悉該程式語言的使用者用起來有點繁瑣（美中不足的部分）</p>
+<div><p><strong>補充說明</strong></p>
+<p>在實際操作的過程中，筆者主要是使用 GitHub Copilot 來進行開發，所以嘗試過使用不同的 AI Model 來產出 PRP。根據筆者的經驗，Claude Sonnet 對比 GPT、Gemini 或是其它開源權重的模型，能夠產出更符合需求的 PRP。</p>
+<p>另外，還有一點貼心建議，在請 AI Model 產出 PRP 的時候可以請它根據需求來按照開發步驟來產出「多個」PRP，這樣會比一次產出「一個」PRP 的內容更加詳細，後續在開發的時候一步一步跟著步驟走，確認每個步驟都符合需求也沒有錯誤的時後再進行下一步。</p>
 </div></blockquote>
+</section>
 </section>
 </section>
 <section id="id4">
 <h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>實際操作情境工程中的 Global Instruction 元素</p></li>
-<li><p>介紹一個 Open Source Solution（10xrules）來協助開發人員管理及產生 Global Instruction</p></li>
-<li><p>簡單操作如何在本地端啓動 10xrules 服務以及新增自己的 Rules</p></li>
-</ol>
+<ul class="simple">
+<li><p>使用 <code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 來進行 Context Engineering 實戰</p></li>
+<li><p>快速從 <code class="docutils literal notranslate"><span class="pre">INITIAL.md</span></code> + <code class="docutils literal notranslate"><span class="pre">/generate-prp</span> <span class="pre">INITIAL.md</span></code> 產出 PRP</p></li>
+<li><p>提供產出優質 PRP 的小技巧（使用 Claude Sonnet + 拆解任務成小步驟）</p></li>
+<li><p>補充目前 Global Instruction 的標準格式是使用 <code class="docutils literal notranslate"><span class="pre">AGENTS.md</span></code></p></li>
+</ul>
 </section>
 <section id="id5">
 <h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/przeprogramowani/ai-rules-builder">przeprogramowani/ai-rules-builder</a></p></li>
-<li><p><a class="reference external" href="https://10xrules.ai">10xrules</a></p></li>
+<li><p><a class="reference external" href="https://github.com/coleam00/context-engineering-intro">coleam00/context-engineering-intro</a></p></li>
+<li><p><a class="reference external" href="https://agents.md/">AGENTS.md</a></p></li>
+<li><p><a class="reference external" href="https://github.com/search?q=path%3AAGENTS.md&amp;amp;type=code">GitHub Search: AGENTS.md</a></p></li>
 </ul>
 </section>
 </section>
@@ -423,22 +434,13 @@ CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-03.html"
+       href="day-04.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day03】情境工程（Context Engineering）</p>
+        <p class="prev-next-title">【Day04】情境工程工具（10xrules）</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="day-05.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day05】情境工程工具（coleam00/context-engineering-intro）</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -457,12 +459,12 @@ CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xrules">10xrules 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本地安裝</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">啓動服務</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coleam00-context-engineering-intro"><code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">專案結構</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">需要修改的檔案有：</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prp">產生 PRP 的流程</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">新增新的 Rules</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
