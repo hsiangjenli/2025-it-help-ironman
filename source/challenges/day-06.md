@@ -1,8 +1,10 @@
-# 介紹
+# 【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）
+
+## 介紹
 
 昨天介紹了如何使用 `coleam00/context-engineering-intro` 來進行 Context Engineering 的實戰，今天要來介紹另一個專案 `bmad-code-org/BMAD-METHOD`。這個專案遠比 `coleam00/context-engineering-intro` 更加完整，因爲它不僅包含了 PRP 的產生與執行，還針對開發流程中的各個專業人員角色（PM、UI/UX、Dev、QA、Scrum Master）提供了更細緻的角色分工與提示。
 
-# `bmad-code-org/BMAD-METHOD` 介紹
+## `bmad-code-org/BMAD-METHOD` 介紹
 
 ![20250904222010](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250904222010.png)
 
@@ -11,7 +13,7 @@
 1. **Agentic Planning**：針對開發流程中的各個專業人員角色設置專屬的提示，這些 Agent 會根據自己的提示要求與開發人員進行互動（自己），並且產出詳細的 PRD（Product Requirement Document，產品需求文檔）
 2. **Context-Engineered Development**：Scrum Master 角色會把這些資訊轉換成 Story File，這個檔案會包含所有開發人員需要的 Context
 
-## 安裝
+### 安裝
 
 ```shell
 npx bmad-method install
@@ -22,14 +24,14 @@ npx bmad-method install
 ![20250904224534](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250904224534.png)
 
 
-## Agent 角色提示
+### Agent 角色提示
 
 筆者覺得這份專案最勵害的地方在於它針對開發流程中的各個專業人員角色設置了專屬的提示超級無敵詳細，像是下面這個 Dev Agent 的提示：
 
 - 固定設定（每個角色都相同）：`IDE-FILE-RESOLUTION`、`REQUEST-RESOLUTION`、`activation-instructions`
 - 角色設定：`agent`、`persona`、`core_principles`、`commands`、`dependencies`
 
-### 角色設定底下每個區塊的說明
+#### 角色設定底下每個區塊的說明
 
 - `agent`：定義 AI Agent 的基本資訊
 - `persona`：定義 AI Agent 的角色特徵，包括風格、身份、專注點
@@ -40,13 +42,13 @@ npx bmad-method install
 ```yaml
 <!-- Powered by BMAD™ Core -->
 
-# dev
+## dev
 
 ACTIVATION-NOTICE: 本檔案包含完整的代理人操作指南。**請勿載入任何外部代理檔案**，因為完整的配置已包含在下方的 YAML 區塊中。
 
 重要：請閱讀本檔案後續的完整 **YAML 區塊**，理解操作參數，並嚴格依照「啟動指令（activation-instructions）」改變你的行為狀態，在接到退出指令前，請持續維持該狀態。
 
-## 完整代理人定義如下 - 不需要任何外部檔案
+### 完整代理人定義如下 - 不需要任何外部檔案
 
 ```yaml
 IDE-FILE-RESOLUTION:
@@ -94,7 +96,7 @@ core_principles:
   - 關鍵：執行 *develop-story 命令時，必須遵守該指令流程
   - 當呈現選項給使用者時，務必使用**編號清單**
 
-# 所有命令都必須加 * 前綴（例如 *help）
+## 所有命令都必須加 * 前綴（例如 *help）
 commands:
   - help: 顯示以下命令的編號清單，供使用者選擇
   - develop-story:
@@ -124,13 +126,13 @@ dependencies:
 > 
 > 以上內容爲求方便好懂，預先使用 ChatGPT 將原始的英文檔案翻譯成中文
 
-# 重點回顧
+## 重點回顧
 
 - 介紹了一個超狂的專案 `bmad-code-org/BMAD-METHOD`，裡面包含了針對各個專業人員角色的詳細提示
 - 這個專案的主要 2 大功能：Agentic Planning、Context-Engineered Development
 - 簡單介紹要怎麼安裝這個專案 + 使用 Dev Agent 的提示當作範例，解釋每個區塊的內容以及其意義（角色設定、行為規範、可用命令、依賴關係）
 
-# 參考資料
+## 參考資料
 
 - [bmad-code-org/BMAD-METHOD](https://github.com/bmad-code-org/BMAD-METHOD)
 - [🚀彻底颠覆传统开发！Claude Code再添利器！BMad-Method多智能体协作框架轻松打造敏捷AI驱动开发工作流！自动生成PRD文档、架构设计！支持Cursor、Cline、windsurf等](https://youtu.be/ak9kOecZGRc)
