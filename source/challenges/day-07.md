@@ -95,4 +95,4 @@ Environment Variables:
 
 # 參考資料
 
-- [](https://github.com/ollama/ollama/blob/main/docs/docker.md)
+- [Ollama Docker image](https://github.com/ollama/ollama/blob/main/docs/docker.md)
