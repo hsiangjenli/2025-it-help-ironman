@@ -1,0 +1,1678 @@
+[
+  {
+    "eng": "timer file descriptor HOWTO",
+    "zh-tw": "計時器檔案描述器 (timerfd) 指南"
+  },
+  {
+    "eng": "This HOWTO discusses Python's support for the linux timer file descriptor.",
+    "zh-tw": "此篇指南探討 Python 對 Linux 計時器檔案描述器的支援。"
+  },
+  {
+    "eng": "The following example shows how to use a timer file descriptor to execute a function twice a second:",
+    "zh-tw": "以下範例顯示如何使用計時器檔案描述器來每秒執行函式兩次："
+  },
+  {
+    "eng": "This example shows how :func:`~select.epoll` can be used with timer file descriptors to wait until the file descriptor is ready for reading:",
+    "zh-tw": "此範例展示如何將 :func:`~select.epoll` 與計時器檔案描述器一起使用，用於等待檔案描述器直到它準備好讀取："
+  },
+  {
+    "eng": "This example shows how :func:`~select.select` can be used with timer file descriptors to wait until the file descriptor is ready for reading:",
+    "zh-tw": "此範例展示如何將 :func:`~select.select` 與計時器檔案描述器一起使用，用於等待檔案描述器直到它準備好讀取："
+  },
+  {
+    "eng": "Migrating ``optparse`` code to ``argparse``",
+    "zh-tw": "將 ``optparse`` 程式碼遷移到 ``argparse``"
+  },
+  {
+    "eng": "The :mod:`argparse` module offers several higher level features not natively provided by the :mod:`optparse` module, including:",
+    "zh-tw": ":mod:`argparse` 模組提供了一些高階功能，這些功能在 :mod:`optparse` 模組中並未原生提供，包括："
+  },
+  {
+    "eng": "Handling positional arguments.",
+    "zh-tw": "處理位置引數。"
+  },
+  {
+    "eng": "Supporting subcommands.",
+    "zh-tw": "支援子命令。"
+  },
+  {
+    "eng": "Allowing alternative option prefixes like ``+`` and ``/``.",
+    "zh-tw": "允許替代選項前綴，如 ``+`` 和 ``/``。"
+  },
+  {
+    "eng": "Handling zero-or-more and one-or-more style arguments.",
+    "zh-tw": "處理零或多個 (zero-or-more) 和一個或多個 (and one-or-more) 樣式的引數。"
+  },
+  {
+    "eng": "Producing more informative usage messages.",
+    "zh-tw": "產生更多資訊的使用訊息。"
+  },
+  {
+    "eng": "As described in :ref:`choosing-an-argument-parser`, applications that are currently using :mod:`optparse` and are happy with the way it works can just continue to use ``optparse``.",
+    "zh-tw": "如 :ref:`choosing-an-argument-parser` 中所述，目前使用 :mod:`optparse` 並對其運作方式滿意的應用程式可以繼續使用 ``optparse``。"
+  },
+  {
+    "eng": "Application developers that are considering migrating should also review the list of intrinsic behavioural differences described in that section before deciding whether or not migration is desirable.",
+    "zh-tw": "在決定是否遷移之前，應用程式開發人員應該先檢閱該段落中描述的內在行為差異清單，來決定是否值得遷移。"
+  },
+  {
+    "eng": "For applications that do choose to migrate from :mod:`optparse` to :mod:`argparse`, the following suggestions should be helpful:",
+    "zh-tw": "對於選擇從 :mod:`optparse` 遷移到 :mod:`argparse` 的應用程式，以下建議應會有所幫助："
+  },
+  {
+    "eng": "Replace all :meth:`optparse.OptionParser.add_option` calls with :meth:`ArgumentParser.add_argument` calls.",
+    "zh-tw": "將所有 :meth:`optparse.OptionParser.add_option` 呼叫替換為 :meth:`ArgumentParser.add_argument` 呼叫。"
+  },
+  {
+    "eng": "Replace :meth:`optparse.OptionParser.disable_interspersed_args` by using :meth:`~ArgumentParser.parse_intermixed_args` instead of :meth:`~ArgumentParser.parse_args`.",
+    "zh-tw": "使用 :meth:`~ArgumentParser.parse_intermixed_args` 來替換掉 :meth:`optparse.OptionParser.disable_interspersed_args`，而不是使用 :meth:`~ArgumentParser.parse_args`。"
+  },
+  {
+    "eng": "Replace callback actions and the ``callback_*`` keyword arguments with ``type`` or ``action`` arguments.",
+    "zh-tw": "將回呼動作和 ``callback_*`` 關鍵字引數替換為 ``type`` 或 ``action`` 引數。"
+  },
+  {
+    "eng": "Replace :class:`optparse.Values` with :class:`Namespace` and :exc:`optparse.OptionError` and :exc:`optparse.OptionValueError` with :exc:`ArgumentError`.",
+    "zh-tw": "將 :class:`optparse.Values` 替換為 :class:`Namespace`，並將 :exc:`optparse.OptionError` 和 :exc:`optparse.OptionValueError` 替換為 :exc:`ArgumentError`。"
+  },
+  {
+    "eng": "Python experimental support for free threading",
+    "zh-tw": "Python 自由執行緒的實驗性支援"
+  },
+  {
+    "eng": "Thread safety",
+    "zh-tw": "執行緒安全"
+  },
+  {
+    "eng": "Known limitations",
+    "zh-tw": "已知限制"
+  },
+  {
+    "eng": ":ref:`function <user-defined-funcs>` objects declared at the module level",
+    "zh-tw": "在模組層級宣告的\\\\ :ref:`函式 <user-defined-funcs>`\\\\ 物件"
+  },
+  {
+    "eng": ":ref:`method <instance-methods>` descriptors",
+    "zh-tw": ":ref:`方法 <instance-methods>`\\\\ 描述器"
+  },
+  {
+    "eng": ":ref:`code <code-objects>` objects",
+    "zh-tw": ":ref:`程式碼 <code-objects>`\\\\ 物件"
+  },
+  {
+    "eng": ":term:`module` objects and their dictionaries",
+    "zh-tw": ":term:`模組 <module>`\\\\ 物件及其字典"
+  },
+  {
+    "eng": ":ref:`classes <classes>` (type objects)",
+    "zh-tw": ":ref:`類別 <classes>`\\\\ （型別物件）"
+  },
+  {
+    "eng": "Single-threaded performance",
+    "zh-tw": "單執行緒效能"
+  },
+  {
+    "eng": "Logging HOWTO",
+    "zh-tw": "如何使用 Logging 模組"
+  },
+  {
+    "eng": "Basic Logging Tutorial",
+    "zh-tw": "基礎 Logging 指南"
+  },
+  {
+    "eng": "When to use logging",
+    "zh-tw": "什麼時候使用 logging"
+  },
+  {
+    "eng": "A simple example",
+    "zh-tw": "一個簡單範例"
+  },
+  {
+    "eng": "A very simple example is::",
+    "zh-tw": "一個非常簡單的例子是： ::"
+  },
+  {
+    "eng": "Added the ``style`` parameter.",
+    "zh-tw": "新增 ``style`` 參數。"
+  },
+  {
+    "eng": "Set ``logging.logThreads`` to ``False``.",
+    "zh-tw": "將 ``logging.logThreads`` 設為 ``False``。"
+  },
+  {
+    "eng": "Current process ID (:func:`os.getpid`)",
+    "zh-tw": "目前的行程 ID (:func:`os.getpid`)"
+  },
+  {
+    "eng": "Set ``logging.logProcesses`` to ``False``.",
+    "zh-tw": "將 ``logging.logProcesses`` 設為 ``False``。"
+  },
+  {
+    "eng": "Set ``logging.logMultiprocessing`` to ``False``.",
+    "zh-tw": "將 ``logging.logMultiprocessing`` 設為 ``False``。"
+  },
+  {
+    "eng": "Set ``logging.logAsyncioTasks`` to ``False``.",
+    "zh-tw": "將 ``logging.logAsyncioTasks`` 設為 ``False``。"
+  },
+  {
+    "eng": "Other resources",
+    "zh-tw": "其他資源"
+  },
+  {
+    "eng": "Module :mod:`logging`",
+    "zh-tw": ":mod:`logging` 模組"
+  },
+  {
+    "eng": "Module :mod:`logging.config`",
+    "zh-tw": ":mod:`logging.config` 模組"
+  },
+  {
+    "eng": "Module :mod:`logging.handlers`",
+    "zh-tw": ":mod:`logging.handlers` 模組"
+  },
+  {
+    "eng": "The documentation for the :mod:`unicodedata` module.",
+    "zh-tw": ":mod:`unicodedata` 模組的文件。"
+  },
+  {
+    "eng": "The documentation for the :mod:`codecs` module.",
+    "zh-tw": ":mod:`codecs` 模組的文件。"
+  },
+  {
+    "eng": "Then::",
+    "zh-tw": "然後： ::"
+  },
+  {
+    "eng": "But this is allowed::",
+    "zh-tw": "但這是允許的："
+  },
+  {
+    "eng": ":class:`IntFlag` members can also be iterated over::",
+    "zh-tw": ":class:`IntFlag` 成員也可以被疊代："
+  },
+  {
+    "eng": ":class:`Flag` members can also be iterated over::",
+    "zh-tw": ":class:`Flag` 成員也可以被疊代："
+  },
+  {
+    "eng": "Some rules:",
+    "zh-tw": "一些規則："
+  },
+  {
+    "eng": "Supported ``__dunder__`` names",
+    "zh-tw": "有支援的 ``__dunder__`` 名稱"
+  },
+  {
+    "eng": "Supported ``_sunder_`` names",
+    "zh-tw": "有支援的 ``_sunder_`` 名稱"
+  },
+  {
+    "eng": ":attr:`~Enum._name_` -- name of the member",
+    "zh-tw": ":attr:`~Enum._name_` -- 成員的名稱"
+  },
+  {
+    "eng": "Combining members of ``Flag``",
+    "zh-tw": "``Flag`` 的成員組合"
+  },
+  {
+    "eng": ">>> Color.RED | Color.BLUE\\n<Color.PURPLE: 5>\\n\\n>>> Color(7) # or Color(-1)\\n<Color.WHITE: 7>\\n\\n>>> Color(0)\\n<Color.BLACK: 0>",
+    "zh-tw": ">>> Color.RED | Color.BLUE\\n<Color.PURPLE: 5>\\n\\n>>> Color(7) # 或 Color(-1)\\n<Color.WHITE: 7>\\n\\n>>> Color(0)\\n<Color.BLACK: 0>"
+  },
+  {
+    "eng": "STRICT --> raises an exception when presented with invalid values",
+    "zh-tw": "STRICT --> 當遇到無效值時引發例外"
+  },
+  {
+    "eng": "CONFORM --> discards any invalid bits",
+    "zh-tw": "CONFORM --> 捨棄任何無效位元"
+  },
+  {
+    "eng": "EJECT --> lose Flag status and become a normal int with the given value",
+    "zh-tw": "EJECT --> 失去 Flag 狀態並成為具有給定值的普通 int"
+  },
+  {
+    "eng": "KEEP --> keep the extra bits",
+    "zh-tw": "KEEP --> 保留額外位元"
+  },
+  {
+    "eng": "keeps Flag status and extra bits",
+    "zh-tw": "保留 Flag 狀態和額外位元"
+  },
+  {
+    "eng": "How are Enums and Flags different?",
+    "zh-tw": "Enums 和 Flags 有何不同？"
+  },
+  {
+    "eng": "Enum Classes",
+    "zh-tw": "Enum 類別"
+  },
+  {
+    "eng": "Flag Classes",
+    "zh-tw": "Flag 類別"
+  },
+  {
+    "eng": "Flag Members",
+    "zh-tw": "Flag 成員"
+  },
+  {
+    "eng": "Omitting values",
+    "zh-tw": "省略值"
+  },
+  {
+    "eng": "Using :class:`auto`",
+    "zh-tw": "使用 :class:`auto`"
+  },
+  {
+    "eng": "Using :class:`auto` would look like::",
+    "zh-tw": "使用 :class:`auto` 會像這樣： ::"
+  },
+  {
+    "eng": "Using :class:`object`",
+    "zh-tw": "使用 :class:`object`"
+  },
+  {
+    "eng": "Using :class:`object` would look like::",
+    "zh-tw": "使用 :class:`object` 會像這樣： ::"
+  },
+  {
+    "eng": "Using a custom :meth:`~object.__new__`",
+    "zh-tw": "使用自訂的 :meth:`~object.__new__`"
+  },
+  {
+    "eng": "Subclassing EnumType",
+    "zh-tw": "子類別化 EnumType"
+  },
+  {
+    "eng": "Regular Expression HOWTO",
+    "zh-tw": "如何使用正規表示式"
+  },
+  {
+    "eng": "This document is an introductory tutorial to using regular expressions in Python with the :mod:`re` module. It provides a gentler introduction than the corresponding section in the Library Reference.",
+    "zh-tw": "此文件為如何在 Python 中使用 :mod:`re` 模組來撰寫正規表示式的入門指導。進階使用及參考文件請見函式庫參考一章。"
+  },
+  {
+    "eng": "Method/Attribute",
+    "zh-tw": "方法/屬性"
+  },
+  {
+    "eng": "Module-Level Functions",
+    "zh-tw": "模組層級函式"
+  },
+  {
+    "eng": "Socket Programming HOWTO",
+    "zh-tw": "Socket 程式設計指南"
+  },
+  {
+    "eng": "Sockets are used nearly everywhere, but are one of the most severely misunderstood technologies around. This is a 10,000 foot overview of sockets. It's not really a tutorial - you'll still have work to do in getting things operational. It doesn't cover the fine points (and there are a lot of them), but I hope it will give you enough background to begin using them decently.",
+    "zh-tw": "Sockets 在各處都被廣泛使用，但卻是一項被誤解最嚴重的技術之一。這是一篇對 sockets 的概論介紹。這並不是一個完整的教學指南 - 你還需要做許多準備才能讓 sockets 正常運作。這篇文章也沒有包含細節（其中有非常多的細節），但我希望這篇文章能夠讓你有足夠的背景知識，以便開始正確的使用 sockets 程式設計。"
+  },
+  {
+    "eng": "They were invented in Berkeley as part of the BSD flavor of Unix. They spread like wildfire with the internet. With good reason --- the combination of sockets with INET makes talking to arbitrary machines around the world unbelievably easy (at least compared to other schemes).",
+    "zh-tw": "Sockets 作為 Unix 的 BSD 分支的一部分在 Berkeley 被發明出來。它們隨著網際網路的普及而迅速蔓延開來。這是有很好的理由 — sockets 和 INET 的結合讓世界各地任何的機器之間的通訊變得非常簡單（至少與其它方案相比是如此）。"
+  },
+  {
+    "eng": "Creating a Socket",
+    "zh-tw": "建立一個 Socket"
+  },
+  {
+    "eng": "Roughly speaking, when you clicked on the link that brought you to this page, your browser did something like the following::",
+    "zh-tw": "大致上來說，當你點擊了帶你來到這個頁面的連結時，你的瀏覽器做了以下的操作： ::"
+  },
+  {
+    "eng": "What happens in the web server is a bit more complex. First, the web server creates a \\\"server socket\\\"::",
+    "zh-tw": "網路伺服器 (web server) 的運作就稍微複雜一點。首先，網路伺服器會建立一個「伺服器端 socket」： ::"
+  },
+  {
+    "eng": "Now that we have a \\\"server\\\" socket, listening on port 80, we can enter the mainloop of the web server::",
+    "zh-tw": "現在我們有一個監聽 80 連接埠的「伺服器端」socket 了，我們可以進入網路伺服器的主迴圈了： ::"
+  },
+  {
+    "eng": "If you need fast IPC between two processes on one machine, you should look into pipes or shared memory. If you do decide to use AF_INET sockets, bind the \\\"server\\\" socket to ``'localhost'``. On most platforms, this will take a shortcut around a couple of layers of network code and be quite a bit faster.",
+    "zh-tw": "如果你需要在一台機器上的兩個行程間進行快速的行程間通訊 (IPC)，你應該考慮使用管道 (pipes) 或共享記憶體 (shared memory)。如果你確定要使用 AF_INET sockets，請將「伺服器端」socket 綁定到 ``'localhost'``。在大多數平台上，這樣將會繞過幾個網路程式碼層，並且速度會更快一些。"
+  },
+  {
+    "eng": "The :mod:`multiprocessing` integrates cross-platform IPC into a higher-level API.",
+    "zh-tw": ":mod:`multiprocessing` 將跨平台行程間通訊整合到更高層的 API 中。"
+  },
+  {
+    "eng": "Using a Socket",
+    "zh-tw": "使用一個 Socket"
+  },
+  {
+    "eng": "A protocol like HTTP uses a socket for only one transfer. The client sends a request, then reads a reply. That's it. The socket is discarded. This means that a client can detect the end of the reply by receiving 0 bytes.",
+    "zh-tw": "像 HTTP 這樣的協定只使用一個 socket 進行一次傳輸，用戶端發送一個請求，然後讀取一個回覆。就這樣，然後這個 socket 就會被銷毀。這表示者用戶端可以通過接收「零位元組」來檢測回覆的結束。"
+  },
+  {
+    "eng": "Assuming you don't want to end the connection, the simplest solution is a fixed length message::",
+    "zh-tw": "假設你不想結束連線，最簡單的方式就是使用固定長度的訊息： ::"
+  },
+  {
+    "eng": "Binary Data",
+    "zh-tw": "二進位資料"
+  },
+  {
+    "eng": "When Sockets Die",
+    "zh-tw": "Sockets 何時銷毀"
+  },
+  {
+    "eng": "Non-blocking Sockets",
+    "zh-tw": "非阻塞的 Sockets"
+  },
+  {
+    "eng": "If you've understood the preceding, you already know most of what you need to know about the mechanics of using sockets. You'll still use the same calls, in much the same ways. It's just that, if you do it right, your app will be almost inside-out.",
+    "zh-tw": "如果你已經理解了前面的內容，你已經知道了大部分關於使用 sockets 的機制的所需知識，你仍然會以非常相似的方式使用相同的函式。就這樣而已，如果你做的對，你的程式就會是近乎完美的。"
+  },
+  {
+    "eng": "Use ``select``.",
+    "zh-tw": "使用 ``select``。"
+  },
+  {
+    "eng": "Annotations Best Practices",
+    "zh-tw": "註釋 (annotation) 最佳實踐"
+  },
+  {
+    "eng": "Accessing The Annotations Dict Of An Object In Python 3.10 And Newer",
+    "zh-tw": "在 Python 3.10 及更高版本中存取物件的註釋字典"
+  },
+  {
+    "eng": "Python 3.10 adds a new function to the standard library: :func:`inspect.get_annotations`. In Python versions 3.10 and newer, calling this function is the best practice for accessing the annotations dict of any object that supports annotations. This function can also \\\"un-stringize\\\" stringized annotations for you.",
+    "zh-tw": "Python 3.10 在標準函式庫中新增了一個新函式：:func:`inspect.get_annotations`。在 Python 3.10 及更高版本中，呼叫此函式是存取任何支援註釋的物件的註釋字典的最佳實踐。此函式也可以為你「取消字串化 (un-stringize)」字串化註釋。"
+  },
+  {
+    "eng": "Accessing The Annotations Dict Of An Object In Python 3.9 And Older",
+    "zh-tw": "在 Python 3.9 及更早版本中存取物件的註釋字典"
+  },
+  {
+    "eng": "In Python 3.9 and older, accessing the annotations dict of an object is much more complicated than in newer versions. The problem is a design flaw in these older versions of Python, specifically to do with class annotations.",
+    "zh-tw": "在 Python 3.9 及更早版本中，存取物件的註釋字典比新版本複雜得多。問題出在於這些舊版 Python 中有設計缺陷，特別是與類別註釋有關的設計缺陷。"
+  },
+  {
+    "eng": "To put it all together, here is some sample code that safely accesses the ``__annotations__`` attribute on an arbitrary object in Python 3.9 and before::",
+    "zh-tw": "總而言之，以下是一些範例程式碼，可以安全地存取 Python 3.9 及先前版本中任意物件上的 ``__annotations__`` 屬性："
+  },
+  {
+    "eng": "After running this code, ``ann`` should be either a dictionary or ``None``. You're encouraged to double-check the type of ``ann`` using :func:`isinstance` before further examination.",
+    "zh-tw": "運行此程式碼後，``ann`` 應該是字典或 ``None``。我們鼓勵你在進一步檢查之前使用 :func:`isinstance` 仔細檢查 ``ann`` 的型別。"
+  },
+  {
+    "eng": "Note that some exotic or malformed type objects may not have a :attr:`~type.__dict__` attribute, so for extra safety you may also wish to use :func:`getattr` to access :attr:`!__dict__`.",
+    "zh-tw": "請注意，某些外來 (exotic) 或格式錯誤 (malform) 的型別物件可能沒有 :attr:`~type.__dict__` 屬性，因此為了額外的安全，你可能還希望使用 :func:`getattr` 來存取 :attr:`!__dict__`。"
+  },
+  {
+    "eng": "Manually Un-Stringizing Stringized Annotations",
+    "zh-tw": "手動取消字串化註釋"
+  },
+  {
+    "eng": "In situations where some annotations may be \\\"stringized\\\", and you wish to evaluate those strings to produce the Python values they represent, it really is best to call :func:`inspect.get_annotations` to do this work for you.",
+    "zh-tw": "在某些註釋可能被「字串化」的情況下，並且你希望評估這些字串以產生它們表示的 Python 值，最好呼叫 :func:`inspect.get_annotations` 來為你完成這項工作。"
+  },
+  {
+    "eng": "If you're using Python 3.9 or older, or if for some reason you can't use :func:`inspect.get_annotations`, you'll need to duplicate its logic. You're encouraged to examine the implementation of :func:`inspect.get_annotations` in the current Python version and follow a similar approach.",
+    "zh-tw": "如果你使用的是 Python 3.9 或更早版本，或者由於某種原因你無法使用 :func:`inspect.get_annotations`，則需要複製其邏輯。我們鼓勵你檢查目前 Python 版本中 :func:`inspect.get_annotations` 的實作並遵循類似的方法。"
+  },
+  {
+    "eng": "If ``o`` is a module, use ``o.__dict__`` as the ``globals`` when calling :func:`eval`.",
+    "zh-tw": "如果 ``o`` 是一個模組，則在呼叫 :func:`eval` 時使用 ``o.__dict__`` 作為\\\\ ``全域變數``。"
+  },
+  {
+    "eng": "If ``o`` is a wrapped callable using :func:`functools.update_wrapper`, :func:`functools.wraps`, or :func:`functools.partial`, iteratively unwrap it by accessing either ``o.__wrapped__`` or ``o.func`` as appropriate, until you have found the root unwrapped function.",
+    "zh-tw": "如果 ``o`` 是使用 :func:`functools.update_wrapper`、:func:`functools.wraps` 或 :func:`functools.partial` 包裝的 callable ，請依據需求，透過存取 ``o.__wrapped__`` 或 ``o.func`` 來疊代解開它，直到找到根解包函式。"
+  },
+  {
+    "eng": "However, not all string values used as annotations can be successfully turned into Python values by :func:`eval`. String values could theoretically contain any valid string, and in practice there are valid use cases for type hints that require annotating with string values that specifically *can't* be evaluated. For example:",
+    "zh-tw": "然而，並非所有用作註釋的字串值都可以透過 :func:`eval` 成功轉換為 Python 值。理論上，字串值可以包含任何有效的字串，並且在實踐中，型別提示存在有效的用例，需要使用特定「無法」評估的字串值進行註釋。例如： ::"
+  },
+  {
+    "eng": "Definitions that aren't needed at runtime, only imported when :const:`typing.TYPE_CHECKING` is true.",
+    "zh-tw": "Runtime 中不需要的定義，僅在 :const:`typing.TYPE_CHECKING` 為 true 時匯入。"
+  },
+  {
+    "eng": "If :func:`eval` attempts to evaluate such values, it will fail and raise an exception. So, when designing a library API that works with annotations, it's recommended to only attempt to evaluate string values when explicitly requested to by the caller.",
+    "zh-tw": "如果 :func:`eval` 嘗試計算這類型的值，它將失敗並引發例外。因此，在設計使用註釋的函式庫 API 時，建議僅在呼叫者 (caller) 明確請求時嘗試評估字串值。"
+  },
+  {
+    "eng": "Best Practices For ``__annotations__`` In Any Python Version",
+    "zh-tw": "任何 Python 版本中 ``__annotations__`` 的最佳實踐"
+  },
+  {
+    "eng": "You should avoid assigning to the ``__annotations__`` member of objects directly. Let Python manage setting ``__annotations__``.",
+    "zh-tw": "你應該避免直接指派給物件的 ``__annotations__`` 成員。讓 Python 管理設定 ``__annotations__``。"
+  },
+  {
+    "eng": "If you do assign directly to the ``__annotations__`` member of an object, you should always set it to a ``dict`` object.",
+    "zh-tw": "如果你直接指派給物件的 ``__annotations__`` 成員，則應始終將其設為 ``dict`` 物件。"
+  },
+  {
+    "eng": "If you directly access the ``__annotations__`` member of an object, you should ensure that it's a dictionary before attempting to examine its contents.",
+    "zh-tw": "如果直接存取物件的 ``__annotations__`` 成員，則應在嘗試檢查其內容之前確保它是字典。"
+  },
+  {
+    "eng": "You should avoid modifying ``__annotations__`` dicts.",
+    "zh-tw": "你應該避免修改 ``__annotations__`` 字典。"
+  },
+  {
+    "eng": "You should avoid deleting the ``__annotations__`` attribute of an object.",
+    "zh-tw": "你應該避免刪除物件的 ``__annotations__`` 屬性。"
+  },
+  {
+    "eng": "``__annotations__`` Quirks",
+    "zh-tw": "``__annotations__`` 奇異之處"
+  },
+  {
+    "eng": "Everything in the above paragraph also applies to class and module objects in Python 3.10 and newer.",
+    "zh-tw": "上一段的所有內容也適用於 Python 3.10 及更高版本中的類別和模組物件。"
+  },
+  {
+    "eng": "In all versions of Python 3, you can set ``__annotations__`` on a function object to ``None``. However, subsequently accessing the annotations on that object using ``fn.__annotations__`` will lazy-create an empty dictionary as per the first paragraph of this section. This is *not* true of modules and classes, in any Python version; those objects permit setting ``__annotations__`` to any Python value, and will retain whatever value is set.",
+    "zh-tw": "在 Python 3 的所有版本中，你可以將函式物件上的 ``__annotations__`` 設定為 ``None``。但是，隨後使用 ``fn.__annotations__`` 存取該物件上的註釋將根據本節第一段的內容延遲建立一個空字典。對於任何 Python 版本中的模組和類別來說，情況\\\\ *並非如此*\\\\；這些物件允許將 ``__annotations__`` 設定為任何 Python 值，並且將保留設定的任何值。"
+  },
+  {
+    "eng": "Argument Clinic How-To",
+    "zh-tw": "Argument Clinic 指南"
+  },
+  {
+    "eng": "The Argument Clinic How-TO has been moved to the `Python Developer's Guide <https://devguide.python.org/development-tools/clinic/>`__.",
+    "zh-tw": "Argument Clinic 操作方法已移至「`Python 開發人員指南 <https://devguide.python.org/development-tools/clinic/>`__」。"
+  },
+  {
+    "eng": "Acknowledgments:",
+    "zh-tw": "致謝"
+  },
+  {
+    "eng": "Using concurrent.futures.ProcessPoolExecutor",
+    "zh-tw": "使用 concurrent.futures.ProcessPoolExecutor"
+  },
+  {
+    "eng": "Other resources",
+    "zh-tw": "其他資源"
+  },
+  {
+    "eng": "Module :mod:`logging`",
+    "zh-tw": ":mod:`logging` 模組"
+  },
+  {
+    "eng": "Module :mod:`logging.config`",
+    "zh-tw": ":mod:`logging.config` 模組"
+  },
+  {
+    "eng": "Module :mod:`logging.handlers`",
+    "zh-tw": ":mod:`logging.handlers` 模組"
+  },
+  {
+    "eng": ":ref:`Basic Tutorial <logging-basic-tutorial>`",
+    "zh-tw": ":ref:`基礎教學 <logging-basic-tutorial>`"
+  },
+  {
+    "eng": ":ref:`Advanced Tutorial <logging-advanced-tutorial>`",
+    "zh-tw": ":ref:`進階教學 <logging-advanced-tutorial>`"
+  },
+  {
+    "eng": "How to port Python 2 Code to Python 3",
+    "zh-tw": "如何將 Python 2 的程式碼移植到 Python 3"
+  },
+  {
+    "eng": "Debugging C API extensions and CPython Internals with GDB",
+    "zh-tw": "使用 GDB 來為 C API 擴充功能和 CPython 內部偵錯"
+  },
+  {
+    "eng": "This document explains how the Python GDB extension, ``python-gdb.py``, can be used with the GDB debugger to debug CPython extensions and the CPython interpreter itself.",
+    "zh-tw": "本文件解釋如何將 Python GDB 擴充功能 ``python-gdb.py`` 與 GDB 偵錯器一起使用來為 CPython 擴充功能和 CPython 直譯器本身偵錯。"
+  },
+  {
+    "eng": "When debugging low-level problems such as crashes or deadlocks, a low-level debugger, such as GDB, is useful to diagnose and correct the issue. By default, GDB (or any of its front-ends) doesn't support high-level information specific to the CPython interpreter.",
+    "zh-tw": "在為崩潰或死鎖等低階問題幀錯時，低階偵錯器（例如 GDB）對於診斷和修正問題非常有用。預設情況下，GDB（或其任何前端）不支援特定於 CPython 直譯器的高階資訊。"
+  },
+  {
+    "eng": "The ``python-gdb.py`` extension adds CPython interpreter information to GDB. The extension helps introspect the stack of currently executing Python functions. Given a Python object represented by a :c:expr:`PyObject *` pointer, the extension surfaces the type and value of the object.",
+    "zh-tw": "``python-gdb.py`` 擴充功能將 CPython 直譯器資訊新增至 GDB。此擴充有助於內省 (introspect) 目前執行的 Python 函式的堆疊。給定一個由 :c:expr:`PyObject *` 指標表示的 Python 物件，擴充功能會顯示該物件的型別和值。"
+  },
+  {
+    "eng": "Developers who are working on CPython extensions or tinkering with parts of CPython that are written in C can use this document to learn how to use the ``python-gdb.py`` extension with GDB.",
+    "zh-tw": "正在開發 CPython 擴充功能或修補用 C 編寫之 CPython 部分的開發人員可以使用本文件來學習如何將 ``python-gdb.py`` 擴充功能與 GDB 一起使用。"
+  },
+  {
+    "eng": "This document assumes that you are familiar with the basics of GDB and the CPython C API. It consolidates guidance from the `devguide <https://devguide.python.org>`_ and the `Python wiki <https://wiki.python.org/moin/DebuggingWithGdb>`_.",
+    "zh-tw": "本文件假設你熟悉 GDB 和 CPython C API 的基礎知識。它整合了 `devguide <https://devguide.python.org>`_ 和 `Python wiki <https://wiki.python.org/moin/DebuggingWithGdb>`_ 的指引。"
+  },
+  {
+    "eng": "You need to have:",
+    "zh-tw": "你需要有："
+  },
+  {
+    "eng": "GDB-compatible debugging information for Python and any extension you are debugging.",
+    "zh-tw": "對 Python 和你在偵錯的任何擴充功能來說的與 GDB 相容的偵錯資訊。"
+  },
+  {
+    "eng": "The ``python-gdb.py`` extension.",
+    "zh-tw": "``python-gdb.py`` 擴充。"
+  },
+  {
+    "eng": "The extension is built with Python, but might be distributed separately or not at all. Below, we include tips for a few common systems as examples. Note that even if the instructions match your system, they might be outdated.",
+    "zh-tw": "該擴充功能是用 Python 建置的，但可能會單獨發布或根本不發布。以下我們將一些常見系統的提示作為範例。請注意，即使說明與你的系統匹配，它們也可能已過時。"
+  },
+  {
+    "eng": "Setup with Python built from source",
+    "zh-tw": "使用從原始碼建置的 Python 進行設定"
+  },
+  {
+    "eng": "To activate support, you must add the directory containing ``python-gdb.py`` to GDB's \\\"auto-load-safe-path\\\". If you haven't done this, recent versions of GDB will print out a warning with instructions on how to do this.",
+    "zh-tw": "若要啟用支援，你必須將包含 ``python-gdb.py`` 的目錄新增至 GDB 的 \\\"auto-load-safe-path\\\"。如果你還沒有這樣做，最新版本的 GDB 將列印警告，其中包含有關如何執行此操作的說明。"
+  },
+  {
+    "eng": "You can also add multiple paths, separated by ``:``.",
+    "zh-tw": "你也可以新增多個路徑，要以 ``:`` 分隔。"
+  },
+  {
+    "eng": "Setup for Python from a Linux distro",
+    "zh-tw": "從 Linux 發行版設定 Python"
+  },
+  {
+    "eng": "On several recent Linux systems, GDB can download debugging symbols automatically using *debuginfod*. However, this will not install the ``python-gdb.py`` extension; you generally do need to install the debug info package separately.",
+    "zh-tw": "在最近的幾個 Linux 系統上，GDB 可以使用 *debuginfod* 自動下載偵錯符號。但是這不會安裝 ``python-gdb.py`` 擴充功能；你通常需要另外安裝偵錯資訊套件。"
+  },
+  {
+    "eng": "Using the Debug build and Development mode",
+    "zh-tw": "使用偵錯建置與使用開發模式"
+  },
+  {
+    "eng": "For easier debugging, you might want to:",
+    "zh-tw": "為了更輕鬆地進行偵錯，你可能需要："
+  },
+  {
+    "eng": "Both enable extra assertions and disable some optimizations. Sometimes this hides the bug you are trying to find, but in most cases they make the process easier.",
+    "zh-tw": "兩者都啟用額外的斷言 (assertion) 並停用一些最佳化。有時這會隱藏你試圖想尋找的錯誤，但在大多數情況下，它們會使過程變得更容易。"
+  },
+  {
+    "eng": "Using the ``python-gdb`` extension",
+    "zh-tw": "使用 ``python-gdb`` 擴充功能"
+  },
+  {
+    "eng": "When the extension is loaded, it provides two main features: pretty printers for Python values, and additional commands.",
+    "zh-tw": "載入擴充功能後，它提供兩個主要功能：Python 值的漂亮列印器和附加命令。"
+  },
+  {
+    "eng": "Pretty-printers",
+    "zh-tw": "漂亮列印器"
+  },
+  {
+    "eng": "This is what a GDB backtrace looks like (truncated) when this extension is enabled::",
+    "zh-tw": "這是啟用此擴充功能時 GDB 回溯 (backtrace) 的樣子（有被截斷）："
+  },
+  {
+    "eng": "The internal structure can be revealed with a cast to :c:expr:`PyLongObject *`::",
+    "zh-tw": "可以透過轉換 (cast) 為 :c:expr:`PyLongObject *` 來揭示內部結構： ::"
+  },
+  {
+    "eng": "Again, the implementation details can be revealed with a cast to :c:expr:`PyUnicodeObject *`::",
+    "zh-tw": "同樣，可以透過轉換為 :c:expr:`PyUnicodeObject *` 來揭示實作細節： ::"
+  },
+  {
+    "eng": "Use ``py-list START`` to list at a different line number within the Python source, and ``py-list START,END`` to list a specific range of lines within the Python source.",
+    "zh-tw": "使用 ``py-list START`` 列出 Python 原始碼中不同的列號，使用 ``py-list START,END`` 列出 Python 原始碼中特定範圍的列。"
+  },
+  {
+    "eng": "``py-up`` and ``py-down``",
+    "zh-tw": "``py-up`` 和 ``py-down``"
+  },
+  {
+    "eng": "They emit the frame number (at the C level) within the thread.",
+    "zh-tw": "它們在執行緒內發出（於 C 層級的）frame 編號。"
+  },
+  {
+    "eng": "For example::",
+    "zh-tw": "例如： ::"
+  },
+  {
+    "eng": "so we're at the top of the Python stack.",
+    "zh-tw": "所以現在我們處於 Python 堆疊的頂端。"
+  },
+  {
+    "eng": "The frame numbers correspond to those displayed by GDB's standard ``backtrace`` command. The command skips C frames which are not executing Python code.",
+    "zh-tw": "frame 編號與 GDB 標準 ``backtrace`` 指令顯示的 frame 編號相對應。此指令會跳過不執行 Python 程式碼的 C frame。"
+  },
+  {
+    "eng": "Going back down::",
+    "zh-tw": "回到下面： ::"
+  },
+  {
+    "eng": "and we're at the bottom of the Python stack.",
+    "zh-tw": "我們現在處於 Python 堆疊的底部。"
+  },
+  {
+    "eng": "The ``py-bt`` command attempts to display a Python-level backtrace of the current thread.",
+    "zh-tw": "``py-bt`` 指令嘗試顯示目前執行緒的 Python 層級回溯。"
+  },
+  {
+    "eng": "The frame numbers correspond to those displayed by GDB's standard ``backtrace`` command.",
+    "zh-tw": "frame 編號與 GDB 標準 ``backtrace`` 指令顯示的 frame 編號相對應。"
+  },
+  {
+    "eng": "The ``py-print`` command looks up a Python name and tries to print it. It looks in locals within the current thread, then globals, then finally builtins::",
+    "zh-tw": "``py-print`` 命令查找 Python 名稱並嘗試列印它。它在目前執行緒中尋找局部變數，然後是全域變數，最後是內建變數： ::"
+  },
+  {
+    "eng": "If the current C frame corresponds to multiple Python frames, ``py-print`` only considers the first one.",
+    "zh-tw": "如果目前 C frame 對應多個 Python frame，則 ``py-print`` 僅考慮第一個。"
+  },
+  {
+    "eng": "The ``py-locals`` command looks up all Python locals within the current Python frame in the selected thread, and prints their representations::",
+    "zh-tw": "``py-locals`` 命令尋找所選執行緒中目前 Python frame 內的所有 Python 局部變數，並列印它們的表示： ::"
+  },
+  {
+    "eng": "If the current C frame corresponds to multiple Python frames, locals from all of them will be shown::",
+    "zh-tw": "如果目前 C frame 對應於多個 Python frame，則會顯示所有這些 frame 的局部變數："
+  },
+  {
+    "eng": "Use with GDB commands",
+    "zh-tw": "與 GDB 指令一起使用"
+  },
+  {
+    "eng": "The extension commands complement GDB's built-in commands. For example, you can use a frame numbers shown by ``py-bt`` with the ``frame`` command to go a specific frame within the selected thread, like this::",
+    "zh-tw": "擴充命令補充了 GDB 的內建命令。例如，你可以將 ``py-bt`` 顯示的 frame 編號與 ``frame`` 命令一同使用來跳到所選執行緒中的特定 frame，如下所示： ::"
+  },
+  {
+    "eng": "The ``info threads`` command will give you a list of the threads within the process, and you can use the ``thread`` command to select a different one::",
+    "zh-tw": "``info threads`` 命令將為你提供行程內的執行緒串列，你可以使用 ``thread`` 命令選擇不同的執行緒： ::"
+  },
+  {
+    "eng": "Python HOWTOs",
+    "zh-tw": "Python 如何達成任務"
+  },
+  {
+    "eng": "Python HOWTOs are documents that cover a specific topic in-depth. Modeled on the Linux Documentation Project's HOWTO collection, this collection is an effort to foster documentation that's more detailed than the Python Library Reference.",
+    "zh-tw": "「Python 如何達成任務 (HOWTOs)」是一系列的說明文件，其內容會深度地涵蓋某些特定的主題。以 Linux 說明文件專案的 HOWTO 系列為模範，本系列的目標是提供比 Python 函式庫參考手冊更實用的說明文件。"
+  },
+  {
+    "eng": "Instrumenting CPython with DTrace and SystemTap",
+    "zh-tw": "使用 DTrace 和 SystemTap 檢測 CPython"
+  },
+  {
+    "eng": "DTrace and SystemTap are monitoring tools, each providing a way to inspect what the processes on a computer system are doing. They both use domain-specific languages allowing a user to write scripts which:",
+    "zh-tw": "DTrace 和 SystemTap 都是監測工具，各自都提供了一種檢查電腦系統之行程 (process) 正在執行什麼操作的方法。它們都使用了領域限定 (domain-specific) 的語言，允許使用者編寫以下腳本："
+  },
+  {
+    "eng": "filter which processes are to be observed",
+    "zh-tw": "過濾要觀察的行程"
+  },
+  {
+    "eng": "gather data from the processes of interest",
+    "zh-tw": "收集來自感興趣之行程的資料"
+  },
+  {
+    "eng": "generate reports on the data",
+    "zh-tw": "以這些資料產生報告"
+  },
+  {
+    "eng": "As of Python 3.6, CPython can be built with embedded \\\"markers\\\", also known as \\\"probes\\\", that can be observed by a DTrace or SystemTap script, making it easier to monitor what the CPython processes on a system are doing.",
+    "zh-tw": "從 Python 3.6 開始，CPython 可以使用嵌入式「標記 (marker)」（也稱為「探針 (probe)」）建置，可以透過 DTrace 或 SystemTap 腳本進行觀察，從而更輕鬆地監視系統之 CPython 行程正在執行的操作。"
+  },
+  {
+    "eng": "DTrace markers are implementation details of the CPython interpreter. No guarantees are made about probe compatibility between versions of CPython. DTrace scripts can stop working or work incorrectly without warning when changing CPython versions.",
+    "zh-tw": "DTrace 標記是 CPython 直譯器的實作細節。不保證 CPython 版本之間的探針相容性。更改 CPython 版本時，DTrace 腳本可能會停止運作或錯誤地運作，而不會發出警告。"
+  },
+  {
+    "eng": "Enabling the static markers",
+    "zh-tw": "啟用靜態標記"
+  },
+  {
+    "eng": "macOS comes with built-in support for DTrace. On Linux, in order to build CPython with the embedded markers for SystemTap, the SystemTap development tools must be installed.",
+    "zh-tw": "macOS 內建了對 DTrace 的支援。在 Linux 上，為了建置帶有 SystemTap 嵌入標記的 CPython，必須安裝 SystemTap 開發工具。"
+  },
+  {
+    "eng": "On a Linux machine, this can be done via::",
+    "zh-tw": "在 Linux 機器上，這可以透過以下方式完成： ::"
+  },
+  {
+    "eng": "or::",
+    "zh-tw": "或是： ::"
+  },
+  {
+    "eng": "CPython must then be :option:`configured with the --with-dtrace option <--with-dtrace>`:",
+    "zh-tw": "然後 CPython 必須使用\\\\ :option:`配置 --with-dtrace 選項 <--with-dtrace>`："
+  },
+  {
+    "eng": "On macOS, you can list available DTrace probes by running a Python process in the background and listing all probes made available by the Python provider::",
+    "zh-tw": "在 macOS 上，你可以透過在後台運行 Python 行程並列出 Python 發布者 (provider) 所提供的所有可用探針，以列出可用的 DTrace 探針： ::"
+  },
+  {
+    "eng": "$ python3.6 -q &\\n$ sudo dtrace -l -P python$! # or: dtrace -l -m python3.6\\n\\n ID PROVIDER MODULE FUNCTION NAME\\n29564 python18035 python3.6 _PyEval_EvalFrameDefault function-entry\\n29565 python18035 python3.6 dtrace_function_entry function-entry\\n29566 python18035 python3.6 _PyEval_EvalFrameDefault function-return\\n29567 python18035 python3.6 dtrace_function_return function-return\\n29568 python18035 python3.6 collect gc-done\\n29569 python18035 python3.6 collect gc-start\\n29570 python18035 python3.6 _PyEval_EvalFrameDefault line\\n29571 python18035 python3.6 maybe_dtrace_line line",
+    "zh-tw": "$ python3.6 -q &\\n$ sudo dtrace -l -P python$! # 或 dtrace -l -m python3.6\\n\\n ID PROVIDER MODULE FUNCTION NAME\\n29564 python18035 python3.6 _PyEval_EvalFrameDefault function-entry\\n29565 python18035 python3.6 dtrace_function_entry function-entry\\n29566 python18035 python3.6 _PyEval_EvalFrameDefault function-return\\n29567 python18035 python3.6 dtrace_function_return function-return\\n29568 python18035 python3.6 collect gc-done\\n29569 python18035 python3.6 collect gc-start\\n29570 python18035 python3.6 _PyEval_EvalFrameDefault line\\n29571 python18035 python3.6 maybe_dtrace_line line"
+  },
+  {
+    "eng": "On Linux, you can verify if the SystemTap static markers are present in the built binary by seeing if it contains a \\\".note.stapsdt\\\" section.",
+    "zh-tw": "在 Linux 上，你可以透過查看二進位建置檔案中是否包含 \\\".note.stapsdt\\\" 部分來驗證 SystemTap 靜態標記是否存在。"
+  },
+  {
+    "eng": "If you've built Python as a shared library (with the :option:`--enable-shared` configure option), you need to look instead within the shared library. For example::",
+    "zh-tw": "如果你已將 Python 建置為共享函式庫（使用 :option:`--enable-shared` 配置選項），則需要在共享函式庫中查找。例如： ::"
+  },
+  {
+    "eng": "Sufficiently modern readelf can print the metadata::",
+    "zh-tw": "足夠現代化的 readelf 可以印出元資料 (metadata)： ::"
+  },
+  {
+    "eng": "The above metadata contains information for SystemTap describing how it can patch strategically placed machine code instructions to enable the tracing hooks used by a SystemTap script.",
+    "zh-tw": "上述元資料包含 SystemTap 的資訊，描述了它如何修補策略性放置的機器碼指令以啟用 SystemTap 腳本使用的追蹤 hook。"
+  },
+  {
+    "eng": "Static DTrace probes",
+    "zh-tw": "靜態 DTrace 探針"
+  },
+  {
+    "eng": "The following example DTrace script can be used to show the call/return hierarchy of a Python script, only tracing within the invocation of a function called \\\"start\\\". In other words, import-time function invocations are not going to be listed:",
+    "zh-tw": "以下範例示範 DTrace 腳本可用於顯示 Python 腳本的呼叫/回傳階層結構，僅在名為 \\\"start\\\" 的函式的呼叫內進行追蹤。換句話說，引入時的函式呼叫不會被列出："
+  },
+  {
+    "eng": "It can be invoked like this::",
+    "zh-tw": "可以這樣呼叫： ::"
+  },
+  {
+    "eng": "The output looks like this:",
+    "zh-tw": "輸出如下所示："
+  },
+  {
+    "eng": "Static SystemTap markers",
+    "zh-tw": "靜態 SystemTap 標記"
+  },
+  {
+    "eng": "The low-level way to use the SystemTap integration is to use the static markers directly. This requires you to explicitly state the binary file containing them.",
+    "zh-tw": "使用 SystemTap 整合的低階方法是直接使用靜態標記。這會需要你明確聲明包含它們的二進位檔案。"
+  },
+  {
+    "eng": "For example, this SystemTap script can be used to show the call/return hierarchy of a Python script:",
+    "zh-tw": "例如，此 SystemTap 腳本可用於顯示 Python 腳本的呼叫/回傳階層結構："
+  },
+  {
+    "eng": "where the columns are:",
+    "zh-tw": "其中的行 (column) 是："
+  },
+  {
+    "eng": "time in microseconds since start of script",
+    "zh-tw": "自腳本開始以來的時間（以微秒為單位）"
+  },
+  {
+    "eng": "name of executable",
+    "zh-tw": "可執行檔案的名稱"
+  },
+  {
+    "eng": "PID of process",
+    "zh-tw": "行程的 PID"
+  },
+  {
+    "eng": "and the remainder indicates the call/return hierarchy as the script executes.",
+    "zh-tw": "其餘部分表示腳本執行時的呼叫/回傳階層結構。"
+  },
+  {
+    "eng": "For a :option:`--enable-shared` build of CPython, the markers are contained within the libpython shared library, and the probe's dotted path needs to reflect this. For example, this line from the above example:",
+    "zh-tw": "對於以 :option:`--enable-shared` 建置的 CPython，標記被包含在 libpython 共享函式庫中，並且探針的帶點路徑 (dotted path) 需要反映這一點。例如，上面範例中的這一列："
+  },
+  {
+    "eng": "should instead read:",
+    "zh-tw": "應該改為讀取："
+  },
+  {
+    "eng": "(assuming a :ref:`debug build <debug-build>` of CPython 3.6)",
+    "zh-tw": "（假設 CPython 3.6 的\\\\ :ref:`除錯建置版本 <debug-build>`）"
+  },
+  {
+    "eng": "Available static markers",
+    "zh-tw": "可用的靜態標記"
+  },
+  {
+    "eng": "The filename, function name, and line number are provided back to the tracing script as positional arguments, which must be accessed using ``$arg1``, ``$arg2``, ``$arg3``:",
+    "zh-tw": "檔案名稱、函式名稱和列號作為位置引數提供給追蹤腳本，必須使用 ``$arg1``、``$arg2``、``$arg3`` 來存取："
+  },
+  {
+    "eng": "``$arg3`` : ``int`` line number",
+    "zh-tw": "``$arg3`` : ``int`` 列號"
+  },
+  {
+    "eng": "The arguments are the same as for :c:func:`!function__entry`",
+    "zh-tw": "引數與 :c:func:`!function__entry` 相同"
+  },
+  {
+    "eng": "This marker indicates a Python line is about to be executed. It is the equivalent of line-by-line tracing with a Python profiler. It is not triggered within C functions.",
+    "zh-tw": "該標記表示一列 Python 即將被執行。它相當於使用 Python 分析器來逐行追蹤。它不在 C 函式內觸發。"
+  },
+  {
+    "eng": "The arguments are the same as for :c:func:`!function__entry`.",
+    "zh-tw": "引數與 :c:func:`!function__entry` 相同。"
+  },
+  {
+    "eng": "Fires when the Python interpreter starts a garbage collection cycle. ``arg0`` is the generation to scan, like :func:`gc.collect`.",
+    "zh-tw": "當 Python 直譯器開始垃圾回收 (garbage collection) 週期時觸發。``arg0`` 是要掃描的一代 (generation)，如 :func:`gc.collect`。"
+  },
+  {
+    "eng": "Fires when the Python interpreter finishes a garbage collection cycle. ``arg0`` is the number of collected objects.",
+    "zh-tw": "當 Python 直譯器完成垃圾回收週期時觸發。``arg0`` 是收集到的物件數量。"
+  },
+  {
+    "eng": "Fires before :mod:`importlib` attempts to find and load the module. ``arg0`` is the module name.",
+    "zh-tw": "在 :mod:`importlib` 嘗試查找並載入模組之前觸發。``arg0`` 是模組名稱。"
+  },
+  {
+    "eng": "Fires when :func:`sys.audit` or :c:func:`PySys_Audit` is called. ``arg0`` is the event name as C string, ``arg1`` is a :c:type:`PyObject` pointer to a tuple object.",
+    "zh-tw": "當呼叫 :func:`sys.audit` 或 :c:func:`PySys_Audit` 時觸發。``arg0`` 是 C 字串形式的事件名稱，``arg1`` 是指向元組 (tuple) 物件的 :c:type:`PyObject` 指標。"
+  },
+  {
+    "eng": "The higher-level way to use the SystemTap integration is to use a \\\"tapset\\\": SystemTap's equivalent of a library, which hides some of the lower-level details of the static markers.",
+    "zh-tw": "使用 SystemTap 整合的高階方法是使用 \\\"tapset\\\"：SystemTap 相當於一個函式庫，它隱藏了靜態標記的一些低階詳細資訊。"
+  },
+  {
+    "eng": "Here is a tapset file, based on a non-shared build of CPython:",
+    "zh-tw": "這是一個 tapset 檔案，是基於 CPython 的非共享建置版本："
+  },
+  {
+    "eng": "This SystemTap script uses the tapset above to more cleanly implement the example given above of tracing the Python function-call hierarchy, without needing to directly name the static markers:",
+    "zh-tw": "此 SystemTap 腳本使用上面的 tapset 來更清晰地實作上面給出的追蹤 Python 函式呼叫階層結構的範例，而無需直接命名靜態標記："
+  },
+  {
+    "eng": "The following script uses the tapset above to provide a top-like view of all running CPython code, showing the top 20 most frequently entered bytecode frames, each second, across the whole system:",
+    "zh-tw": "以下腳本使用上面的 tapset 來提供所有正在運行之 CPython 程式碼的近乎最高層視角，顯示整個系統中每秒最常被進入的 20 個位元組碼幀 (bytecode frame)："
+  },
+  {
+    "eng": "Argparse Tutorial",
+    "zh-tw": "Argparse 教學"
+  },
+  {
+    "eng": "This tutorial is intended to be a gentle introduction to :mod:`argparse`, the recommended command-line parsing module in the Python standard library.",
+    "zh-tw": "本教學旨在簡要介紹 :mod:`argparse` 這個 Python 標準函式庫中推薦的命令列剖析模組。"
+  },
+  {
+    "eng": "Let's show the sort of functionality that we are going to explore in this introductory tutorial by making use of the :command:`ls` command:",
+    "zh-tw": "讓我們透過使用 :command:`ls` 指令來展示我們將在本介紹教學中探索的功能類型："
+  },
+  {
+    "eng": "A few concepts we can learn from the four commands:",
+    "zh-tw": "我們可以從這四個命令中學到一些概念："
+  },
+  {
+    "eng": "The :command:`ls` command is useful when run without any options at all. It defaults to displaying the contents of the current directory.",
+    "zh-tw": ":command:`ls` 命令即便在沒有任何選項的情況下執行仍非常有用。它預設顯示目前目錄的內容。"
+  },
+  {
+    "eng": "If we want beyond what it provides by default, we tell it a bit more. In this case, we want it to display a different directory, ``pypy``. What we did is specify what is known as a positional argument. It's named so because the program should know what to do with the value, solely based on where it appears on the command line. This concept is more relevant to a command like :command:`cp`, whose most basic usage is ``cp SRC DEST``. The first position is *what you want copied,* and the second position is *where you want it copied to*.",
+    "zh-tw": "如果我們想要看到比它預設提供更多的內容，我們也需要多告訴它一點。在本例中，我們希望它顯示不同的目錄 ``pypy``，我們做的是指定所謂的位置引數。之所以如此命名是因為程式應該只根據該值在命令列中出現的位置來知道如何處理該值。這個概念與 :command:`cp` 這樣的指令更相關，其最基本的用法是 ``cp SRC DEST``。第一個是\\\\ *你想要複製的位置*，第二個是\\\\ *你想要複製過去的位置*。"
+  },
+  {
+    "eng": "That's a snippet of the help text. It's very useful in that you can come across a program you have never used before, and can figure out how it works simply by reading its help text.",
+    "zh-tw": "這是幫助文字的片段。它非常有用，因為當你遇到以前從未使用過的程式時，只需閱讀其幫助文字即可了解它的工作原理。"
+  },
+  {
+    "eng": "The basics",
+    "zh-tw": "基本用法"
+  },
+  {
+    "eng": "Let us start with a very simple example which does (almost) nothing::",
+    "zh-tw": "讓我們從一個非常簡單的例子開始，它（幾乎）什麼都不做： ::"
+  },
+  {
+    "eng": "Following is a result of running the code:",
+    "zh-tw": "程式碼執行結果如下："
+  },
+  {
+    "eng": "Here is what is happening:",
+    "zh-tw": "這是發生的事情："
+  },
+  {
+    "eng": "Running the script without any options results in nothing displayed to stdout. Not so useful.",
+    "zh-tw": "執行不帶任何選項的腳本不會在標準輸出中顯示任何內容。不太有用。"
+  },
+  {
+    "eng": "The second one starts to display the usefulness of the :mod:`argparse` module. We have done almost nothing, but already we get a nice help message.",
+    "zh-tw": "第二個開始能夠顯現 :mod:`argparse` 模組的有用之處。我們幾乎什麼也沒做，但我們已經收到了一個很好的幫助訊息。"
+  },
+  {
+    "eng": "Introducing Positional arguments",
+    "zh-tw": "位置引數的介紹"
+  },
+  {
+    "eng": "An example::",
+    "zh-tw": "例如： ::"
+  },
+  {
+    "eng": "And running the code:",
+    "zh-tw": "執行這段程式碼："
+  },
+  {
+    "eng": "Here is what's happening:",
+    "zh-tw": "這是會發生的事情："
+  },
+  {
+    "eng": "We've added the :meth:`~ArgumentParser.add_argument` method, which is what we use to specify which command-line options the program is willing to accept. In this case, I've named it ``echo`` so that it's in line with its function.",
+    "zh-tw": "我們新增了 :meth:`~ArgumentParser.add_argument` 方法，我們用它來指定程式願意接受哪些命令列選項。在本例中，我將其命名為 ``echo``，以便與其功能一致。"
+  },
+  {
+    "eng": "Calling our program now requires us to specify an option.",
+    "zh-tw": "現在呼叫我們的程式時需要指定一個選項。"
+  },
+  {
+    "eng": "Note however that, although the help display looks nice and all, it currently is not as helpful as it can be. For example we see that we got ``echo`` as a positional argument, but we don't know what it does, other than by guessing or by reading the source code. So, let's make it a bit more useful::",
+    "zh-tw": "但請注意，儘管幫助顯示看起來不錯，但它目前還沒有發揮出應有的用處。例如，我們看到 ``echo`` 作為位置引數，但除了猜測或閱讀原始程式碼之外，我們不知道它的作用。那麼，我們來讓它變得更有用一點： ::"
+  },
+  {
+    "eng": "And we get:",
+    "zh-tw": "然後我們得到："
+  },
+  {
+    "eng": "Now, how about doing something even more useful::",
+    "zh-tw": "現在來做一些更有用處的事情： ::"
+  },
+  {
+    "eng": "That didn't go so well. That's because :mod:`argparse` treats the options we give it as strings, unless we tell it otherwise. So, let's tell :mod:`argparse` to treat that input as an integer::",
+    "zh-tw": "進展不太順利。這是因為，除非我們另有說明，:mod:`argparse` 會將我們給它的選項視為字串。因此，讓我們告訴 :mod:`argparse` 將該輸入視為整數： ::"
+  },
+  {
+    "eng": "That went well. The program now even helpfully quits on bad illegal input before proceeding.",
+    "zh-tw": "順利進展。現在該程式甚至可以在繼續操作之前因錯誤的非法輸入而退出。"
+  },
+  {
+    "eng": "Introducing Optional arguments",
+    "zh-tw": "可選引數的介紹"
+  },
+  {
+    "eng": "So far we have been playing with positional arguments. Let us have a look on how to add optional ones::",
+    "zh-tw": "到目前為止，我們一直在討論位置引數。我們來看看如何新增可選引數： ::"
+  },
+  {
+    "eng": "And the output:",
+    "zh-tw": "接者是結果："
+  },
+  {
+    "eng": "The program is written so as to display something when ``--verbosity`` is specified and display nothing when not.",
+    "zh-tw": "程式被編寫為在指定 ``--verbosity`` 時顯示一些內容，並在未指定時不顯示任何內容。"
+  },
+  {
+    "eng": "The help message is a bit different.",
+    "zh-tw": "幫助訊息有點不同。"
+  },
+  {
+    "eng": "When using the ``--verbosity`` option, one must also specify some value, any value.",
+    "zh-tw": "當使用 ``--verbosity`` 選項時必須要指定一些值，任何值都可以。"
+  },
+  {
+    "eng": "It complains when you specify a value, in true spirit of what flags actually are.",
+    "zh-tw": "當你指定一個值時，它會本著旗標的實際精神來抱怨。"
+  },
+  {
+    "eng": "Notice the different help text.",
+    "zh-tw": "請注意不同的幫助文字。"
+  },
+  {
+    "eng": "Short options",
+    "zh-tw": "短選項"
+  },
+  {
+    "eng": "If you are familiar with command line usage, you will notice that I haven't yet touched on the topic of short versions of the options. It's quite simple::",
+    "zh-tw": "如果你熟悉命令列用法，你會注意到我尚未提及選項的簡短版本。這很簡單： ::"
+  },
+  {
+    "eng": "And here goes:",
+    "zh-tw": "而這為："
+  },
+  {
+    "eng": "Note that the new ability is also reflected in the help text.",
+    "zh-tw": "請注意，新功能也反映在幫助文字中。"
+  },
+  {
+    "eng": "Combining Positional and Optional arguments",
+    "zh-tw": "組合位置引數和可選引數"
+  },
+  {
+    "eng": "Our program keeps growing in complexity::",
+    "zh-tw": "我們的程式的複雜性不斷增加： ::"
+  },
+  {
+    "eng": "And now the output:",
+    "zh-tw": "然後現在的輸出結果："
+  },
+  {
+    "eng": "We've brought back a positional argument, hence the complaint.",
+    "zh-tw": "我們帶回了位置引數，因而被抱怨。"
+  },
+  {
+    "eng": "Note that the order does not matter.",
+    "zh-tw": "請注意，順序並不重要。"
+  },
+  {
+    "eng": "How about we give this program of ours back the ability to have multiple verbosity values, and actually get to use them::",
+    "zh-tw": "我們讓這個程式擁有多個訊息詳細級別 (verbosity) 之值的能力，並實際使用它們： ::"
+  },
+  {
+    "eng": "Note that the change also reflects both in the error message as well as the help string.",
+    "zh-tw": "請注意，更改也會反映在錯誤訊息和幫助字串中。"
+  },
+  {
+    "eng": "We have introduced another action, \\\"count\\\", to count the number of occurrences of specific options.",
+    "zh-tw": "我們已經介紹過另一個操作 \\\"count\\\" 用來計算指定的選項出現的次數。"
+  },
+  {
+    "eng": "It also behaves similar to \\\"store_true\\\" action.",
+    "zh-tw": "它的行為也類似 \\\"store_true\\\" 操作。"
+  },
+  {
+    "eng": "Now here's a demonstration of what the \\\"count\\\" action gives. You've probably seen this sort of usage before.",
+    "zh-tw": "現在這裡示範了 \\\"count\\\" 動作的作用。你可能以前見過這種用法。"
+  },
+  {
+    "eng": "As should be expected, specifying the long form of the flag, we should get the same output.",
+    "zh-tw": "正如預期的那樣，指定長形式旗標，我們應該得到相同的輸出。"
+  },
+  {
+    "eng": "That last output exposes a bug in our program.",
+    "zh-tw": "最後的輸出透露了我們程式中的一個錯誤。"
+  },
+  {
+    "eng": "Let's fix::",
+    "zh-tw": "讓我們來解決問題： ::"
+  },
+  {
+    "eng": "And this is what it gives:",
+    "zh-tw": "這就是它給出的："
+  },
+  {
+    "eng": "First output went well, and fixes the bug we had before. That is, we want any value >= 2 to be as verbose as possible.",
+    "zh-tw": "第一次輸出順利進行，並修復了我們之前遇到的錯誤。也就是說，我們希望任何 >= 2 的值都盡可能詳細。"
+  },
+  {
+    "eng": "Third output not so good.",
+    "zh-tw": "第三個輸出不太好。"
+  },
+  {
+    "eng": "Let's fix that bug::",
+    "zh-tw": "我們來修復這個錯誤： ::"
+  },
+  {
+    "eng": "And:",
+    "zh-tw": "而且："
+  },
+  {
+    "eng": "You can go quite far just with what we've learned so far, and we have only scratched the surface. The :mod:`argparse` module is very powerful, and we'll explore a bit more of it before we end this tutorial.",
+    "zh-tw": "僅憑我們迄今為止所學到的知識就可以做到很多事情了，不過其實這樣只有學到一點皮毛而已。:mod:`argparse` 模組非常強大，在結束本教學之前我們會對它進行更多探索。"
+  },
+  {
+    "eng": "Getting a little more advanced",
+    "zh-tw": "更進階一點"
+  },
+  {
+    "eng": "What if we wanted to expand our tiny program to perform other powers, not just squares::",
+    "zh-tw": "如果我們想擴充我們的小程式來執行其他次方的運算，而不僅是平方： ::"
+  },
+  {
+    "eng": "Output:",
+    "zh-tw": "結果："
+  },
+  {
+    "eng": "Notice that so far we've been using verbosity level to *change* the text that gets displayed. The following example instead uses verbosity level to display *more* text instead::",
+    "zh-tw": "請注意，到目前為止，我們一直在使用詳細級別來\\\\ *更改*\\\\ 顯示的文字。以下範例使用詳細級別來顯示\\\\ *更多*\\\\ 文字： ::"
+  },
+  {
+    "eng": "Specifying ambiguous arguments",
+    "zh-tw": "指定不明確的引數"
+  },
+  {
+    "eng": "Conflicting options",
+    "zh-tw": "相互衝突的選項"
+  },
+  {
+    "eng": "Our program is now simpler, and we've lost some functionality for the sake of demonstration. Anyways, here's the output:",
+    "zh-tw": "我們的程式現在更簡單了，我們因為功能展示失去了一些功能，但無論如何，以下這是輸出："
+  },
+  {
+    "eng": "That should be easy to follow. I've added that last output so you can see the sort of flexibility you get, i.e. mixing long form options with short form ones.",
+    "zh-tw": "這應該很容易理解。我新增了最後一個輸出，以便看到所獲得的靈活性，即可以混合長形式與短形式選項。"
+  },
+  {
+    "eng": "Before we conclude, you probably want to tell your users the main purpose of your program, just in case they don't know::",
+    "zh-tw": "在我們結束之前，你可能想告訴使用者你的程式的主要目的，以防他們不知道： ::"
+  },
+  {
+    "eng": "How to translate the argparse output",
+    "zh-tw": "如何翻譯 argparse 輸出"
+  },
+  {
+    "eng": "The output of the :mod:`argparse` module such as its help text and error messages are all made translatable using the :mod:`gettext` module. This allows applications to easily localize messages produced by :mod:`argparse`. See also :ref:`i18n-howto`.",
+    "zh-tw": ":mod:`argparse` 模組的輸出，例如幫助文字和錯誤訊息，都可以透過使用 :mod:`gettext` 模組進行翻譯。這允許應用程式能輕鬆本地化 :mod:`argparse` 生成的訊息。另請參閱 :ref:`i18n-howto`。"
+  },
+  {
+    "eng": "For instance, in this :mod:`argparse` output:",
+    "zh-tw": "例如，在此 :mod:`argparse` 輸出中："
+  },
+  {
+    "eng": "The strings ``usage:``, ``positional arguments:``, ``options:`` and ``show this help message and exit`` are all translatable.",
+    "zh-tw": "字串 ``usage:``、``positional arguments:``、``options:`` 和 ``show this help message and exit`` 都是可被翻譯的。"
+  },
+  {
+    "eng": "In order to translate these strings, they must first be extracted into a ``.po`` file. For example, using `Babel <https://babel.pocoo.org/>`__, run this command:",
+    "zh-tw": "為了翻譯這些字串，必須先將它們提取到 ``.po`` 檔案中。例如，使用 `Babel <https://babel.pocoo.org/>`__ 並執行下列命令："
+  },
+  {
+    "eng": "You can find out the location of the :mod:`argparse` module on your system using this script::",
+    "zh-tw": "你可以使用以下腳本找到 :mod:`argparse` 模組在系統上的位置： ::"
+  },
+  {
+    "eng": "Once the messages in the ``.po`` file are translated and the translations are installed using :mod:`gettext`, :mod:`argparse` will be able to display the translated messages.",
+    "zh-tw": "一旦翻譯了 ``.po`` 檔案中的訊息並使用 :mod:`gettext` 安裝了翻譯，:mod:`argparse` 將能夠顯示翻譯後的訊息。"
+  },
+  {
+    "eng": "To translate your own strings in the :mod:`argparse` output, use :mod:`gettext`.",
+    "zh-tw": "若要在 :mod:`argparse` 輸出中翻譯你自己的字串，請使用 :mod:`gettext`。"
+  },
+  {
+    "eng": "Custom type converters",
+    "zh-tw": "自定義型別轉換器"
+  },
+  {
+    "eng": "In this example, we:",
+    "zh-tw": "在這個範例當中，我們："
+  },
+  {
+    "eng": "The :mod:`argparse` module offers a lot more than shown here. Its docs are quite detailed and thorough, and full of examples. Having gone through this tutorial, you should easily digest them without feeling overwhelmed.",
+    "zh-tw": ":mod:`argparse` 模組提供的功能比此篇內容的要多得多。它的文件非常詳細與透徹並有很多範例。讀完本教學後，你應該可以輕鬆消化它們，而不會感到不知所措。"
+  },
+  {
+    "eng": "The Python curses module",
+    "zh-tw": "Python curses 模組"
+  },
+  {
+    "eng": "User Input",
+    "zh-tw": "使用者輸入"
+  },
+  {
+    "eng": "`The ncurses man page <https://linux.die.net/man/3/ncurses>`_",
+    "zh-tw": "`ncurses 使用者手冊 <https://linux.die.net/man/3/ncurses>`_"
+  },
+  {
+    "eng": "`The ncurses FAQ <https://invisible-island.net/ncurses/ncurses.faq.html>`_",
+    "zh-tw": "`ncurses 問答集 <https://invisible-island.net/ncurses/ncurses.faq.html>`_"
+  },
+  {
+    "eng": "An introduction to the ipaddress module",
+    "zh-tw": "ipaddress 模組介紹"
+  },
+  {
+    "eng": "This document aims to provide a gentle introduction to the :mod:`ipaddress` module. It is aimed primarily at users that aren't already familiar with IP networking terminology, but may also be useful to network engineers wanting an overview of how :mod:`ipaddress` represents IP network addressing concepts.",
+    "zh-tw": "這份文件旨在為 :mod:`ipaddress` 模組提供一個初步介紹。文件主要針對那些不熟悉 IP 網路術語的使用者，但對想要了解 :mod:`ipaddress` 模組如何表示 IP 網址概念的網路工程師也可能有用。"
+  },
+  {
+    "eng": "Creating Address/Network/Interface objects",
+    "zh-tw": "建立 Address/Network/Interface 物件"
+  },
+  {
+    "eng": "Defining Networks",
+    "zh-tw": "定義網路"
+  },
+  {
+    "eng": "Inspecting Address/Network/Interface Objects",
+    "zh-tw": "檢視 Address/Network/Interface 物件"
+  },
+  {
+    "eng": "if address in network:\\n # do something",
+    "zh-tw": "if address in network:\\n # 做某些事情"
+  },
+  {
+    "eng": "Porting Extension Modules to Python 3",
+    "zh-tw": "遷移延伸模組到 Python 3"
+  },
+  {
+    "eng": "Sorting Techniques",
+    "zh-tw": "排序技法"
+  },
+  {
+    "eng": "Andrew Dalke and Raymond Hettinger",
+    "zh-tw": "Andrew Dalke 和 Raymond Hettinger"
+  },
+  {
+    "eng": "Python lists have a built-in :meth:`list.sort` method that modifies the list in-place. There is also a :func:`sorted` built-in function that builds a new sorted list from an iterable.",
+    "zh-tw": "Python 的串列有一個內建的 :meth:`list.sort` 方法可以原地 (in-place) 排序該串列，也有一個內建的 :func:`sorted` 函式可以排序可疊代物件 (iterable) 並建立一個新的排序好的串列。"
+  },
+  {
+    "eng": "In this document, we explore the various techniques for sorting data using Python.",
+    "zh-tw": "在這份文件裡，我們探索使用 Python 排序資料的各種方法。"
+  },
+  {
+    "eng": "Sorting Basics",
+    "zh-tw": "基礎排序"
+  },
+  {
+    "eng": "A simple ascending sort is very easy: just call the :func:`sorted` function. It returns a new sorted list:",
+    "zh-tw": "單純的升冪排序很容易做到：只要呼叫 :func:`sorted` 函式，它會回傳一個新的串列："
+  },
+  {
+    "eng": "Another difference is that the :meth:`list.sort` method is only defined for lists. In contrast, the :func:`sorted` function accepts any iterable.",
+    "zh-tw": "另一個差異是 :meth:`list.sort` 方法只有定義在串列上，而 :func:`sorted` 函式可以接受任何可疊代物件。"
+  },
+  {
+    "eng": "Key Functions",
+    "zh-tw": "鍵函式 (key functions)"
+  },
+  {
+    "eng": "Both :meth:`list.sort` and :func:`sorted` have a *key* parameter to specify a function (or other callable) to be called on each list element prior to making comparisons.",
+    "zh-tw": ":meth:`list.sort` 和 :func:`sorted` 都有一個參數 *key* 可以指定一個函式（或其它可呼叫物件 (callable)），這個函式會在每個串列元素做比較前被呼叫。"
+  },
+  {
+    "eng": "For example, here's a case-insensitive string comparison:",
+    "zh-tw": "例如這裡有一個不區分大小寫的字串比對："
+  },
+  {
+    "eng": "A common pattern is to sort complex objects using some of the object's indices as keys. For example:",
+    "zh-tw": "一個常見的模式是在排序複雜物件的時候使用一部分物件的索引值當作鍵，例如："
+  },
+  {
+    "eng": "The same technique works for objects with named attributes. For example:",
+    "zh-tw": "相同的做法也適用在有命名屬性的物件，例如："
+  },
+  {
+    "eng": "Objects with named attributes can be made by a regular class as shown above, or they can be instances of :class:`~dataclasses.dataclass` or a :term:`named tuple`.",
+    "zh-tw": "具有命名屬性的物件可以如上方的方式使用一個常規的類別建立，或是他們可以是 :class:`~dataclasses.dataclass` 的實例或是一個 :term:`named tuple`。"
+  },
+  {
+    "eng": "Operator Module Functions and Partial Function Evaluation",
+    "zh-tw": "Operator 模組函式以及部份函式 (partial function) 評估"
+  },
+  {
+    "eng": "The :term:`key function` patterns shown above are very common, so Python provides convenience functions to make accessor functions easier and faster. The :mod:`operator` module has :func:`~operator.itemgetter`, :func:`~operator.attrgetter`, and a :func:`~operator.methodcaller` function.",
+    "zh-tw": "上述的\\\\ :term:`鍵函式 <key function>`\\\\ 模式非常常見，所以 Python 提供了方便的函式讓物件存取更簡單且快速。:mod:`operator` 模組裡有 :func:`~operator.itemgetter`、:func:`~operator.attrgetter` 及 :func:`~operator.methodcaller` 函式可以使用。"
+  },
+  {
+    "eng": "Using those functions, the above examples become simpler and faster:",
+    "zh-tw": "使用這些函式讓上面的範例變得更簡單且快速："
+  },
+  {
+    "eng": "The operator module functions allow multiple levels of sorting. For example, to sort by *grade* then by *age*:",
+    "zh-tw": "operator 模組的函式允許多層的排序，例如先用 *grade* 排序再用 *age* 排序："
+  },
+  {
+    "eng": "The :mod:`functools` module provides another helpful tool for making key-functions. The :func:`~functools.partial` function can reduce the `arity <https://en.wikipedia.org/wiki/Arity>`_ of a multi-argument function making it suitable for use as a key-function.",
+    "zh-tw": "模組 :mod:`functools` 提供了另一個製作鍵函式的好用工具。:func:`~functools.partial` 函式可以減少多引數函式的\\\\ `引數數目 <https://en.wikipedia.org/wiki/Arity>`_，使其更適合作為鍵函式使用。"
+  },
+  {
+    "eng": "Ascending and Descending",
+    "zh-tw": "升冪與降冪"
+  },
+  {
+    "eng": "Both :meth:`list.sort` and :func:`sorted` accept a *reverse* parameter with a boolean value. This is used to flag descending sorts. For example, to get the student data in reverse *age* order:",
+    "zh-tw": ":meth:`list.sort` 和 :func:`sorted` 都有一個 boolean 參數 *reverse* 用來表示是否要降冪排序。例如將學生資料依據 *age* 做降冪排序："
+  },
+  {
+    "eng": "Sort Stability and Complex Sorts",
+    "zh-tw": "排序穩定性與複合排序"
+  },
+  {
+    "eng": "Sorts are guaranteed to be `stable <https://en.wikipedia.org/wiki/Sorting_algorithm#Stability>`_\\\\. That means that when multiple records have the same key, their original order is preserved.",
+    "zh-tw": "排序保證是\\\\ `穩定的 <https://en.wikipedia.org/wiki/Sorting_algorithm#Stability>`_，意思是當有多筆資料有相同的鍵，它們會維持原來的順序。"
+  },
+  {
+    "eng": "This wonderful property lets you build complex sorts in a series of sorting steps. For example, to sort the student data by descending *grade* and then ascending *age*, do the *age* sort first and then sort again using *grade*:",
+    "zh-tw": "這個美妙的特性讓你可以用一連串的排序來作出複合排序。例如對學生資料用 *grade* 做降冪排序再用 *age* 做升冪排序，你可以先用 *age* 排序一遍再用 *grade* 排序一遍："
+  },
+  {
+    "eng": "This can be abstracted out into a wrapper function that can take a list and tuples of field and order to sort them on multiple passes.",
+    "zh-tw": "這可以抽出一個包裝函式 (wrapper function)，接受一個串列及多個欄位及升降冪的元組為引數，來對這個串列排序多遍。"
+  },
+  {
+    "eng": "The `Timsort <https://en.wikipedia.org/wiki/Timsort>`_ algorithm used in Python does multiple sorts efficiently because it can take advantage of any ordering already present in a dataset.",
+    "zh-tw": "Python 裡使用的 `Timsort <https://en.wikipedia.org/wiki/Timsort>`_ 演算法，因為能利用資料集裡已經有的順序，可以有效率地做多次排序。"
+  },
+  {
+    "eng": "Decorate-Sort-Undecorate",
+    "zh-tw": "裝飾-排序-移除裝飾 (decorate-sort-undecorate)"
+  },
+  {
+    "eng": "This idiom is called Decorate-Sort-Undecorate after its three steps:",
+    "zh-tw": "這個用語的來源是因為它做了以下三件事情："
+  },
+  {
+    "eng": "First, the initial list is decorated with new values that control the sort order.",
+    "zh-tw": "首先，原始串列會裝飾 (decorated) 上新的值用來控制排序的順序。"
+  },
+  {
+    "eng": "Second, the decorated list is sorted.",
+    "zh-tw": "接下來，排序裝飾過的串列。"
+  },
+  {
+    "eng": "Finally, the decorations are removed, creating a list that contains only the initial values in the new order.",
+    "zh-tw": "最後，裝飾會被移除，並以新的順序產生一個只包含原始值的串列。"
+  },
+  {
+    "eng": "For example, to sort the student data by *grade* using the DSU approach:",
+    "zh-tw": "例如用上面說的方式來以 *grade* 排序學生資料："
+  },
+  {
+    "eng": "This idiom works because tuples are compared lexicographically; the first items are compared; if they are the same then the second items are compared, and so on.",
+    "zh-tw": "這個方式會有效是因為元組是依照字典順序 (lexicographically) 來比較，先比較第一個項目，如果一樣再比較第二個項目，並依此類推。"
+  },
+  {
+    "eng": "It is not strictly necessary in all cases to include the index *i* in the decorated list, but including it gives two benefits:",
+    "zh-tw": "在所有情況下都把索引 *i* 加入已裝飾的串列並不是絕對需要的，但這樣做會有兩個好處："
+  },
+  {
+    "eng": "The sort is stable -- if two items have the same key, their order will be preserved in the sorted list.",
+    "zh-tw": "排序會是穩定的 -- 如果兩個項目有相同的鍵，它們在排序好的串列中會保持原來的順序。"
+  },
+  {
+    "eng": "The original items do not have to be comparable because the ordering of the decorated tuples will be determined by at most the first two items. So for example the original list could contain complex numbers which cannot be sorted directly.",
+    "zh-tw": "原始項目不需要是可以比較的，因為最多只會用到前兩個項目就能決定裝飾過的元組的順序。例如原始串列可以包含不能直接用來排序的複數。"
+  },
+  {
+    "eng": "Another name for this idiom is `Schwartzian transform <https://en.wikipedia.org/wiki/Schwartzian_transform>`_\\\\, after Randal L. Schwartz, who popularized it among Perl programmers.",
+    "zh-tw": "這個用語的另一個名字是 `Schwartzian transform <https://en.wikipedia.org/wiki/Schwartzian_transform>`_，是由於 Randal L. Schwartz 讓這個方法在 Perl 程式設計師間普及。"
+  },
+  {
+    "eng": "Now that Python sorting provides key-functions, this technique is not often needed.",
+    "zh-tw": "而因為 Python 的排序提供了鍵函式，已經不太需要用到這個方法了。"
+  },
+  {
+    "eng": "Comparison Functions",
+    "zh-tw": "比較函式 (comparison functions)"
+  },
+  {
+    "eng": "Unlike key functions that return an absolute value for sorting, a comparison function computes the relative ordering for two inputs.",
+    "zh-tw": "不像鍵函式回傳一個用來排序的值，比較函式計算兩個輸入間的相對順序。"
+  },
+  {
+    "eng": "It is common to encounter comparison functions when translating algorithms from other languages. Also, some libraries provide comparison functions as part of their API. For example, :func:`locale.strcoll` is a comparison function.",
+    "zh-tw": "當從其它語言翻譯演算法的時候常看到比較函式。有些函式庫也會提供比較函式作為其 API 的一部份，例如 :func:`locale.strcoll` 就是一個比較函式。"
+  },
+  {
+    "eng": "To accommodate those situations, Python provides :class:`functools.cmp_to_key` to wrap the comparison function to make it usable as a key function::",
+    "zh-tw": "為了滿足這些情境，Python 提供 :class:`functools.cmp_to_key` 來包裝比較函式，讓其可以當作鍵函式來使用： ::"
+  },
+  {
+    "eng": "Odds and Ends",
+    "zh-tw": "雜項說明"
+  },
+  {
+    "eng": "For locale aware sorting, use :func:`locale.strxfrm` for a key function or :func:`locale.strcoll` for a comparison function. This is necessary because \\\"alphabetical\\\" sort orderings can vary across cultures even if the underlying alphabet is the same.",
+    "zh-tw": "要處理能理解本地語系 (locale aware) 的排序可以使用 :func:`locale.strxfrm` 當作鍵函式，或 :func:`locale.strcoll` 當作比較函式。這樣做是必要的，因為在不同文化中就算是相同的字母，按「字母順序」排序的結果也各不相同。"
+  },
+  {
+    "eng": "The *reverse* parameter still maintains sort stability (so that records with equal keys retain the original order). Interestingly, that effect can be simulated without the parameter by using the builtin :func:`reversed` function twice:",
+    "zh-tw": "*reverse* 參數依然會維持排序穩定性（即有相同鍵的資料會保持原來順序）。有趣的是，不加這個參數也可以模擬這個效果，只要使用內建的 :func:`reversed` 函式兩次："
+  },
+  {
+    "eng": "Key functions need not depend directly on the objects being sorted. A key function can also access external resources. For instance, if the student grades are stored in a dictionary, they can be used to sort a separate list of student names:",
+    "zh-tw": "鍵函式不需要直接依賴用來排序的物件。鍵函式也可以存取外部資源，例如如果學生成績儲存在字典裡，它可以用來排序一個單獨的學生姓名串列："
+  },
+  {
+    "eng": "Partial Sorts",
+    "zh-tw": "部份排序"
+  },
+  {
+    "eng": "Some applications require only some of the data to be ordered. The standard library provides several tools that do less work than a full sort:",
+    "zh-tw": "有些應用程式只需要排序部份的資料。基礎函式庫提供相較做完整排序更為輕鬆的多項工具："
+  },
+  {
+    "eng": ":func:`min` and :func:`max` return the smallest and largest values, respectively. These functions make a single pass over the input data and require almost no auxiliary memory.",
+    "zh-tw": ":func:`min` 以及 :func:`max` 會分別回傳最小值及最大值。這些函式會將輸入資料進行一次傳遞且幾乎無須輔助記憶體。"
+  },
+  {
+    "eng": ":func:`heapq.nsmallest` and :func:`heapq.nlargest` return the *n* smallest and largest values, respectively. These functions make a single pass over the data keeping only *n* elements in memory at a time. For values of *n* that are small relative to the number of inputs, these functions make far fewer comparisons than a full sort.",
+    "zh-tw": ":func:`heapq.nsmallest` 以及 :func:`heapq.nlargest` 會分別回傳 *n* 個最小值及最大值。這些函式會將資料進行一次傳遞且一次只會保留 *n* 個元素在記憶體中。對於相對於輸入數量較小的 *n* 個值，這些函式進行的比較比完整排序要少得多。"
+  },
+  {
+    "eng": "HOWTO Fetch Internet Resources Using The urllib Package",
+    "zh-tw": "如何使用 urllib 套件取得網路資源"
+  },
+  {
+    "eng": "You may also find useful the following article on fetching web resources with Python:",
+    "zh-tw": "以下這些與 Python 有關的文章說不定能幫到你::"
+  },
+  {
+    "eng": "A tutorial on *Basic Authentication*, with examples in Python.",
+    "zh-tw": "以 Python 為例的 *Basic Authentication* 教學。"
+  },
+  {
+    "eng": "For straightforward situations *urlopen* is very easy to use. But as soon as you encounter errors or non-trivial cases when opening HTTP URLs, you will need some understanding of the HyperText Transfer Protocol. The most comprehensive and authoritative reference to HTTP is :rfc:`2616`. This is a technical document and not intended to be easy to read. This HOWTO aims to illustrate using *urllib*, with enough detail about HTTP to help you through. It is not intended to replace the :mod:`urllib.request` docs, but is supplementary to them.",
+    "zh-tw": "一般情形下 *urlopen* 是非常容易使用的，但當你遇到錯誤或者較複雜的情況下，你可能需要對超文本協定 (HyperText Transfer Protocol) 有一定的了解。最完整且具參考價值的是 :rfc:`2616`，不過它是一份技術文件並不容易閱讀，以下的教學會提供足夠的 HTTP 知識來幫助你使用 *urllib*。這份教學並非要取代 :mod:`urllib.request` 這份文件，你還是會需要它。"
+  },
+  {
+    "eng": "Fetching URLs",
+    "zh-tw": "從 URL 取得資源"
+  },
+  {
+    "eng": "The simplest way to use urllib.request is as follows::",
+    "zh-tw": "以下是使用 urllib.request 最簡單的方法::"
+  },
+  {
+    "eng": "e.g. ::",
+    "zh-tw": "例如： ::"
+  },
+  {
+    "eng": "`The Linux perf profiler <https://perf.wiki.kernel.org>`_ is a very powerful tool that allows you to profile and obtain information about the performance of your application. ``perf`` also has a very vibrant ecosystem of tools that aid with the analysis of the data that it produces.",
+    "zh-tw": "`Linux 性能分析器 (Linux perf profiler) <https://perf.wiki.kernel.org>`_ 是一個非常強大的工具，可讓你分析並取得有關應用程式的性能資訊。``perf`` 還擁有一個非常活躍的工具生態系統，有助於分析其生成的資料。"
+  },
+  {
+    "eng": "The main problem with using the ``perf`` profiler with Python applications is that ``perf`` only gets information about native symbols, that is, the names of functions and procedures written in C. This means that the names and file names of Python functions in your code will not appear in the output of ``perf``.",
+    "zh-tw": "在 Python 應用程式中使用 ``perf`` 分析器的主要問題是 ``perf`` 僅取得有關原生符號的資訊，即用 C 編寫的函式和程式的名稱。這表示程式碼中的 Python 函式名稱和檔案名稱不會出現在 ``perf`` 的輸出中。"
+  },
+  {
+    "eng": "Since Python 3.12, the interpreter can run in a special mode that allows Python functions to appear in the output of the ``perf`` profiler. When this mode is enabled, the interpreter will interpose a small piece of code compiled on the fly before the execution of every Python function and it will teach ``perf`` the relationship between this piece of code and the associated Python function using :doc:`perf map files <../c-api/perfmaps>`.",
+    "zh-tw": "從 Python 3.12 開始，直譯器可以在特殊模式下執行，該模式允許 Python 函式出現在 ``perf`` 分析器的輸出中。啟用此模式後，直譯器將在執行每個 Python 函式之前插入 (interpose) 一小段動態編譯的程式碼，並使用 :doc:`perf map 檔案 <../c-api/perfmaps>`\\\\ 來告訴 ``perf`` 這段程式碼與相關聯的 Python 函式間的關係。"
+  },
+  {
+    "eng": "For example, consider the following script:",
+    "zh-tw": "例如，參考以下腳本："
+  },
+  {
+    "eng": "We can run ``perf`` to sample CPU stack traces at 9999 hertz::",
+    "zh-tw": "我們可以執行 ``perf`` 以 9999 赫茲取樣 CPU 堆疊追蹤 (stack trace)： ::"
+  },
+  {
+    "eng": "Then we can use ``perf report`` to analyze the data:",
+    "zh-tw": "然後我們可以使用 ``perf report`` 來分析資料："
+  },
+  {
+    "eng": "How to enable ``perf`` profiling support",
+    "zh-tw": "如何啟用 ``perf`` 分析支援"
+  },
+  {
+    "eng": "The :mod:`!sys` functions take precedence over the :option:`!-X` option, the :option:`!-X` option takes precedence over the environment variable.",
+    "zh-tw": ":mod:`!sys` 函式優先於 :option:`!-X` 選項、:option:`!-X` 選項優先於環境變數。"
+  },
+  {
+    "eng": "Example, using the environment variable::",
+    "zh-tw": "例如，使用環境變數： ::"
+  },
+  {
+    "eng": "Example, using the :option:`!-X` option::",
+    "zh-tw": "例如，使用 :option:`!-X` 選項： ::"
+  },
+  {
+    "eng": "Example, using the :mod:`sys` APIs in file :file:`example.py`:",
+    "zh-tw": "例如，在 :file:`example.py` 檔案中使用 :mod:`sys` API："
+  },
+  {
+    "eng": "...then::",
+    "zh-tw": "...然後： ::"
+  },
+  {
+    "eng": "How to obtain the best results",
+    "zh-tw": "如何獲得最佳結果"
+  },
+  {
+    "eng": "For best results, Python should be compiled with ``CFLAGS=\\\"-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer\\\"`` as this allows profilers to unwind using only the frame pointer and not on DWARF debug information. This is because as the code that is interposed to allow ``perf`` support is dynamically generated it doesn't have any DWARF debugging information available.",
+    "zh-tw": "為了獲得最佳結果，應使用 ``CFLAGS=\\\"-fno-omit-frame-pointer -mno-omit-leaf-frame-pointer\\\"`` 來進行 Python 編譯，因為這能允許分析器僅使用 frame 指標而不是 DWARF 除錯資訊來解析 (unwind)。這是因為，由於插入以允許 ``perf`` 支援的程式碼是動態生成的，因此它沒有任何可用的 DWARF 除錯資訊。"
+  },
+  {
+    "eng": "You can check if your system has been compiled with this flag by running::",
+    "zh-tw": "你可以透過執行以下指令來檢查你的系統是否已使用此旗標進行編譯： ::"
+  },
+  {
+    "eng": "If you don't see any output it means that your interpreter has not been compiled with frame pointers and therefore it may not be able to show Python functions in the output of ``perf``.",
+    "zh-tw": "如果你沒有看到任何輸出，則表示你的直譯器尚未使用 frame 指標進行編譯，因此它可能無法在 ``perf`` 的輸出中顯示 Python 函式。"
+  },
+  {
+    "eng": "or using the environment variable::",
+    "zh-tw": "或使用環境變數： ::"
+  },
+  {
+    "eng": "Descriptor Guide",
+    "zh-tw": "描述器 (Descriptor) 指南"
+  },
+  {
+    "eng": ":term:`Descriptors <descriptor>` let objects customize attribute lookup, storage, and deletion.",
+    "zh-tw": ":term:`描述器 <descriptor>`\\\\ 讓物件自訂屬性能夠被查找、儲存和刪除。"
+  },
+  {
+    "eng": "This guide has four major sections:",
+    "zh-tw": "此指南有四個主要章節："
+  },
+  {
+    "eng": "Descriptor protocol",
+    "zh-tw": "描述器協定"
+  },
+  {
+    "eng": "The important points to remember are:",
+    "zh-tw": "要記住的重點是："
+  },
+  {
+    "eng": "ORM example",
+    "zh-tw": "ORM 範例"
+  },
+  {
+    "eng": "C API Extension Support for Free Threading",
+    "zh-tw": "支援自由執行緒的 C API 擴充"
+  },
+  {
+    "eng": "Module Initialization",
+    "zh-tw": "模組初始化"
+  },
+  {
+    "eng": "Single-Phase Initialization",
+    "zh-tw": "單一階段初始化 (Single-Phase Initialization)"
+  },
+  {
+    "eng": "Container Thread Safety",
+    "zh-tw": "容器執行緒安全性"
+  },
+  {
+    "eng": "Borrowed References",
+    "zh-tw": "借用參照"
+  },
+  {
+    "eng": "Borrowed reference API",
+    "zh-tw": "借用參照 API"
+  },
+  {
+    "eng": "Strong reference API",
+    "zh-tw": "強參照 API"
+  },
+  {
+    "eng": ":c:func:`PyGILState_Ensure` and :c:func:`PyGILState_Release`",
+    "zh-tw": ":c:func:`PyGILState_Ensure` 和 :c:func:`PyGILState_Release`"
+  },
+  {
+    "eng": ":c:func:`PyEval_SaveThread` and :c:func:`PyEval_RestoreThread`",
+    "zh-tw": ":c:func:`PyEval_SaveThread` 和 :c:func:`PyEval_RestoreThread`"
+  },
+  {
+    "eng": ":c:macro:`Py_BEGIN_ALLOW_THREADS` and :c:macro:`Py_END_ALLOW_THREADS`",
+    "zh-tw": ":c:macro:`Py_BEGIN_ALLOW_THREADS` 和 :c:macro:`Py_END_ALLOW_THREADS`"
+  },
+  {
+    "eng": "Functional Programming HOWTO",
+    "zh-tw": "函式程式設計 HOWTO"
+  },
+  {
+    "eng": "Formal provability.",
+    "zh-tw": "形式可證明性 (Formal provability)。"
+  },
+  {
+    "eng": "Modularity.",
+    "zh-tw": "模組化 (Modularity)。"
+  },
+  {
+    "eng": "Composability.",
+    "zh-tw": "可組合性 (Composability)。"
+  },
+  {
+    "eng": "Ease of debugging and testing.",
+    "zh-tw": "容易除錯與測試。"
+  },
+  {
+    "eng": "Formal provability",
+    "zh-tw": "形式可證明性"
+  },
+  {
+    "eng": "Ease of debugging and testing",
+    "zh-tw": "容易除錯與測試"
+  },
+  {
+    "eng": "Generator expressions and list comprehensions",
+    "zh-tw": "產生器運算式與串列綜合運算式"
+  },
+  {
+    "eng": "Here's the simplest example of a generator function:",
+    "zh-tw": "以下是最簡單的產生器函式範例："
+  },
+  {
+    "eng": "Built-in functions",
+    "zh-tw": "內建函式"
+  },
+  {
+    "eng": ":func:`map(f, iterA, iterB, ...) <map>` returns an iterator over the sequence",
+    "zh-tw": ":func:`map(f, iterA, iterB, ...) <map>` 回傳一個元素為序列的疊代器"
+  },
+  {
+    "eng": "The itertools module",
+    "zh-tw": "itertools 模組"
+  },
+  {
+    "eng": "Creating new iterators",
+    "zh-tw": "建立新的疊代器"
+  },
+  {
+    "eng": "The functools module",
+    "zh-tw": "functools 模組"
+  },
+  {
+    "eng": "Here's a small but realistic example::",
+    "zh-tw": "以下是個很小但實際的範例： ::"
+  },
+  {
+    "eng": "The operator module",
+    "zh-tw": "operator 模組"
+  },
+  {
+    "eng": "https://en.wikipedia.org/wiki/Coroutine: Entry for coroutines.",
+    "zh-tw": "https://en.wikipedia.org/wiki/Coroutine: 協程 (coroutines) 的條目。"
+  },
+  {
+    "eng": "https://en.wikipedia.org/wiki/Partial_application: Entry for the concept of partial function application.",
+    "zh-tw": "https://en.wikipedia.org/wiki/Partial_application: 偏函式 (partial application) 概念的條目。"
+  },
+  {
+    "eng": "https://en.wikipedia.org/wiki/Currying: Entry for the concept of currying.",
+    "zh-tw": "https://en.wikipedia.org/wiki/Currying: currying 概念的條目。"
+  },
+  {
+    "eng": "Python-specific",
+    "zh-tw": "Python 特有的"
+  },
+  {
+    "eng": "Python documentation",
+    "zh-tw": "Python 說明文件"
+  },
+  {
+    "eng": "Documentation for the :mod:`itertools` module.",
+    "zh-tw": ":mod:`itertools` 模組的說明文件。"
+  },
+  {
+    "eng": "Documentation for the :mod:`functools` module.",
+    "zh-tw": ":mod:`functools` 模組的說明文件。"
+  },
+  {
+    "eng": "Documentation for the :mod:`operator` module.",
+    "zh-tw": ":mod:`operator` 模組的說明文件。"
+  },
+  {
+    "eng": ":pep:`289`: \\\"Generator Expressions\\",
+    "zh-tw": ":pep:`289`：「產生器運算式 (Generator Expressions)」"
+  },
+  {
+    "eng": "Isolating Extension Modules",
+    "zh-tw": "隔離擴充模組"
+  }
+]
