@@ -1,14 +1,14 @@
 # 介紹
 
+<!-- ![20250905224555](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905224555.png) -->
+
 正式將 LLM 平民化的工具 Ollama，在 2023 年的 7 月開始進行測試，在 9 月的時候已經可以在 Linux、WSL 上運作，同時支援 CPU 以及 GPU。一直到 2025 年都還是大部分的開發者在使用的工具，不論是簡單的聊天對話或是使用 AI Agent 做 Coding，幾乎在所有應用上都能看到 Ollama 的身影。
 
 今天會簡單的安裝 Ollama（其實網路上已經一堆教學，但還是形式上走一遍）+ 操作基本的指令，實際運作幾個常見 LLM Model，順便在 Mac 跟只有純 CPU 的筆電上試試看效能如何。
 
-![20250905224555](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905224555.png)
-
 # Ollama 工具
 
-![](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905223721.png)
+<!-- ![](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905223721.png) -->
 
 使用 MacOS 或是 Windows 的話，可以直接到官網下載安裝檔，安裝完之後就可以直接使用（右上角會出現可愛的 Ollama 圖案就代表正常運作）。目前在 MacOS 和 Windows 的版本都支援簡易的 GUI 聊天界面。筆者開發主要是使用 Ubuntu，所以只能使用 CLI 的方式來操作。
 
@@ -101,11 +101,13 @@ Environment Variables:
 
 ### 模型輸出速度
 
-| 模型          | MacOS - M2（24GB RAM） | Ubuntu 24.04 - Intel core i5 (40GB RAM) |
-|:--------------|:-----------------------|:----------------------------------------|
-| `llama3.1:8b` | 36.71/token/s          | 0.89 token/s                            |
-| `llama3.2:3b` | 17.97 token/s          | 2.02 token/s                            |
-| `gpt-oss:20b` | 15.00 token/s          |                                         |
+| 模型          | MacOS - M2（24GB RAM） | Ubuntu 24.04 - Intel® Core™ i5-13500H (40GB RAM) |
+|:--------------|:-----------------------|:---------------------------------------------------|
+| `llama3.1:8b` | 36.71/token/s          | 0.89 token/s                                       |
+| `llama3.2:3b` | 17.97 token/s          | 2.02 token/s                                       |
+| `gpt-oss:20b` | 15.00 token/s          | 1.87 token/s                                       |
+
+> 令人意外，`gpt-oss:20b` 的速度竟然與 `llama3.1:8b` 差不多
 
 <details>
 
@@ -118,6 +120,8 @@ Environment Variables:
 ![20250906222523](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222523.png)
 
 ![20250906222739](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222739.png)
+
+![20250906224141](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906224141.png)
 
 </details>
 
