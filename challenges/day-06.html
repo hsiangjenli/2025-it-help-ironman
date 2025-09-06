@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>【Day06】情境工程工具（bmad-code-org/BMAD-METHOD） &#8212; 2025 iThome 鐵人賽</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=9ff32b01" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-06';</script>
+    <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="【Day05】情境工程工具（coleam00/context-engineering-intro）" href="day-05.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">2025 iThome 鐵人賽</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/challenges/day-06.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bmad-code-org-bmad-method"><code class="docutils literal notranslate"><span class="pre">bmad-code-org/BMAD-METHOD</span></code> 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">安裝</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent">Agent 角色提示</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">角色設定底下每個區塊的說明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="day06-bmad-code-org-bmad-method">
+<h1>【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）<a class="headerlink" href="#day06-bmad-code-org-bmad-method" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>昨天介紹了如何使用 <code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 來進行 Context Engineering 的實戰，今天要來介紹另一個專案 <code class="docutils literal notranslate"><span class="pre">bmad-code-org/BMAD-METHOD</span></code>。這個專案遠比 <code class="docutils literal notranslate"><span class="pre">coleam00/context-engineering-intro</span></code> 更加完整，因爲它不僅包含了 PRP 的產生與執行，還針對開發流程中的各個專業人員角色（PM、UI/UX、Dev、QA、Scrum Master）提供了更細緻的角色分工與提示。</p>
+</section>
+<section id="bmad-code-org-bmad-method">
+<h2><code class="docutils literal notranslate"><span class="pre">bmad-code-org/BMAD-METHOD</span></code> 介紹<a class="headerlink" href="#bmad-code-org-bmad-method" title="Link to this heading">#</a></h2>
+<p><img alt="20250904222010" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250904222010.png" /></p>
+<p>這個 <a class="reference external" href="https://github.com/bmad-code-org/BMAD-METHOD">Repo</a> 的主要 2 大功能：</p>
+<ol class="arabic simple">
+<li><p><strong>Agentic Planning</strong>：針對開發流程中的各個專業人員角色設置專屬的提示，這些 Agent 會根據自己的提示要求與開發人員進行互動（自己），並且產出詳細的 PRD（Product Requirement Document，產品需求文檔）</p></li>
+<li><p><strong>Context-Engineered Development</strong>：Scrum Master 角色會把這些資訊轉換成 Story File，這個檔案會包含所有開發人員需要的 Context</p></li>
+</ol>
+<section id="id2">
+<h3>安裝<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>bmad-method<span class="w"> </span>install
+</pre></div>
+</div>
+<p>接著會開始安裝核心框架（工具、模版..）、文件結構設定和使用的 IDE 等，像是下面這樣（除了 IDE 之外，都是使用 Default 設定）：</p>
+<p><img alt="20250904224534" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250904224534.png" /></p>
+</section>
+<section id="agent">
+<h3>Agent 角色提示<a class="headerlink" href="#agent" title="Link to this heading">#</a></h3>
+<p>筆者覺得這份專案最勵害的地方在於它針對開發流程中的各個專業人員角色設置了專屬的提示超級無敵詳細，像是下面這個 Dev Agent 的提示：</p>
+<ul class="simple">
+<li><p>固定設定（每個角色都相同）：<code class="docutils literal notranslate"><span class="pre">IDE-FILE-RESOLUTION</span></code>、<code class="docutils literal notranslate"><span class="pre">REQUEST-RESOLUTION</span></code>、<code class="docutils literal notranslate"><span class="pre">activation-instructions</span></code></p></li>
+<li><p>角色設定：<code class="docutils literal notranslate"><span class="pre">agent</span></code>、<code class="docutils literal notranslate"><span class="pre">persona</span></code>、<code class="docutils literal notranslate"><span class="pre">core_principles</span></code>、<code class="docutils literal notranslate"><span class="pre">commands</span></code>、<code class="docutils literal notranslate"><span class="pre">dependencies</span></code></p></li>
+</ul>
+<section id="id3">
+<h4>角色設定底下每個區塊的說明<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">agent</span></code>：定義 AI Agent 的基本資訊</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">persona</span></code>：定義 AI Agent 的角色特徵，包括風格、身份、專注點</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">core_principles</span></code>：定義 AI Agent 的基本原則（可以做哪些事情、禁止 AI Agent 擅自修改程式）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">commands</span></code>：定義 AI Agent 可用的命令列表，像是 <code class="docutils literal notranslate"><span class="pre">*explain</span></code> 可以讓 AI Agent 解釋剛剛的動作與原因，或是 <code class="docutils literal notranslate"><span class="pre">*review-qa</span></code> 讓 AI Agent 根據 QA 的結果進行修正（修正的步驟在 <code class="docutils literal notranslate"><span class="pre">apply-qa-fixes.md</span></code> 中）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dependencies</span></code>：定義 AI Agent 所需的外部資源和依賴，像是 <code class="docutils literal notranslate"><span class="pre">checklists</span></code>、<code class="docutils literal notranslate"><span class="pre">tasks</span></code> 提示詞，提供 AI Agent 在執行特定指令時所需的工作流程和步驟</p></li>
+</ul>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="l l-Scalar l-Scalar-Plain">&lt;!-- Powered by BMAD™ Core --&gt;</span>
+
+<span class="l l-Scalar l-Scalar-Plain">## dev</span>
+
+<span class="l l-Scalar l-Scalar-Plain">ACTIVATION-NOTICE</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">本檔案包含完整的代理人操作指南。**請勿載入任何外部代理檔案**，因為完整的配置已包含在下方的 YAML 區塊中。</span>
+
+<span class="l l-Scalar l-Scalar-Plain">重要：請閱讀本檔案後續的完整 **YAML 區塊**，理解操作參數，並嚴格依照「啟動指令（activation-instructions）」改變你的行為狀態，在接到退出指令前，請持續維持該狀態。</span>
+
+<span class="c1">### 完整代理人定義如下 - 不需要任何外部檔案</span>
+
+<span class="err">```</span><span class="l l-Scalar l-Scalar-Plain">yaml</span>
+<span class="nt">IDE-FILE-RESOLUTION</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">僅供後續使用，不用於啟動；執行依賴檔案時才會使用</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">依賴檔案對應 {root}/{type}/{name}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">type=資料夾 (tasks|templates|checklists|data|utils|etc...)，name=檔案名稱</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">範例：create-doc.md → {root}/tasks/create-doc.md</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">重要：僅在使用者要求執行特定命令時才載入這些檔案</span>
+<span class="nt">REQUEST-RESOLUTION</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">彈性比對使用者需求與你的命令/依賴檔案（例如 &quot;draft story&quot;→*create→create-next-story 任務；&quot;make a new prd&quot;→tasks-&gt;create-doc + templates-&gt;prd-tmpl.md），如無明確對應，請務必先確認。</span>
+<span class="nt">activation-instructions</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">步驟 1：閱讀**整份檔案**──此檔案包含完整的人設定義</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">步驟 2：採用下方 `agent` 與 `persona` 區段定義的角色</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">步驟 3：在任何問候前，先載入並閱讀 `bmad-core/core-config.yaml`（專案配置）</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">步驟 4：以名稱/角色問候使用者，並立即執行 `*help` 顯示可用命令</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">禁止：啟動時載入其他代理檔案</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">僅在使用者選擇或要求時，才載入依賴檔案</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="err">`</span><span class="l l-Scalar l-Scalar-Plain">agent.customization` 欄位的內容永遠優先於任何衝突的指令</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵流程規則：執行依賴檔案中的任務時，必須**完全依照工作流指令**操作，不能當參考資料隨意處理</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">互動任務（elicit=true）必須照指定格式進行互動，**不可為了效率跳過**</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">規則：執行正式工作流時，依賴檔案的任務指令優先於基礎行為規範。若任務 elicit=true，必須互動，不能省略</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">當列出任務/範本或呈現選項時，**務必使用編號清單**，讓使用者能輸入數字來選擇或執行</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">保持角色狀態！</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：啟動時必須閱讀 {root}/core-config.yaml 裡的 devLoadAlwaysFiles 清單</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：啟動時除了指定的 story 和 devLoadAlwaysFiles，不得載入其他檔案，除非使用者要求或規則有衝突</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：**在 story 還在草稿模式時不可開始開發**，必須等待指令</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">啟動時：僅能問候 → 自動執行 `*help` → 停止，等待使用者下一步。唯一例外是啟動指令本身有包含命令。</span>
+<span class="nt">agent</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">James</span>
+<span class="w">  </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dev</span>
+<span class="w">  </span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">全端開發者</span>
+<span class="w">  </span><span class="nt">icon</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">💻</span>
+<span class="w">  </span><span class="nt">whenToUse</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;用於程式實作、除錯、重構與開發最佳實務&#39;</span>
+<span class="w">  </span><span class="nt">customization</span><span class="p">:</span>
+
+<span class="nt">persona</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">role</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">資深軟體工程師與實作專家</span>
+<span class="w">  </span><span class="nt">style</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">極度簡潔、務實、注重細節、以解決方案為導向</span>
+<span class="w">  </span><span class="nt">identity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">專家，會依需求逐步執行任務，進行完整測試</span>
+<span class="w">  </span><span class="nt">focus</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">精確執行 story 任務，只更新 Dev Agent Record 區段，盡量降低額外上下文負擔</span>
+
+<span class="nt">core_principles</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：Story 已包含所有必要資訊，除非 story 註記或使用者命令，否則**絕不載入 PRD/架構/其他文件**</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：在開始執行 story 任務前，務必檢查目前資料夾結構。若已有專案資料夾，請勿再建立新的；僅在確定是新專案時才建立</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：僅能更新 story 檔案中的 Dev Agent Record 區段（checkboxes/Debug Log/Completion Notes/Change Log）</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：執行 *develop-story 命令時，必須遵守該指令流程</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">當呈現選項給使用者時，務必使用**編號清單**</span>
+
+<span class="c1">## 所有命令都必須加 * 前綴（例如 *help）</span>
+<span class="nt">commands</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">help</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">顯示以下命令的編號清單，供使用者選擇</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">develop-story</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">執行順序</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;閱讀（第一個或下一個）任務</span><span class="nv"> </span><span class="s">→</span><span class="nv"> </span><span class="s">實作任務與子任務</span><span class="nv"> </span><span class="s">→</span><span class="nv"> </span><span class="s">撰寫測試</span><span class="nv"> </span><span class="s">→</span><span class="nv"> </span><span class="s">執行驗證</span><span class="nv"> </span><span class="s">→</span><span class="nv"> </span><span class="s">僅在全部通過後，將任務</span><span class="nv"> </span><span class="s">checkbox</span><span class="nv"> </span><span class="s">標記為</span><span class="nv"> </span><span class="s">[x]</span><span class="nv"> </span><span class="s">→</span><span class="nv"> </span><span class="s">更新</span><span class="nv"> </span><span class="s">story</span><span class="nv"> </span><span class="s">檔案中的檔案清單（File</span><span class="nv"> </span><span class="s">List），確保列出所有新增/修改/刪除的檔案</span><span class="nv"> </span><span class="s">→</span><span class="nv"> </span><span class="s">重複此流程直到完成&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">story-file-updates-ONLY</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">關鍵：僅能更新 story 檔案中的以下區段。**禁止修改其他區段**</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">允許更新的區段：Tasks / Subtasks Checkboxes、Dev Agent Record 及其子區段、Agent Model Used、Debug Log References、Completion Notes List、File List、Change Log、Status</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">禁止修改的區段：Status、Story、Acceptance Criteria、Dev Notes、Testing 或其他未列出的部分</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">blocking</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;遇到以下狀況必須停止並確認：需要未核准依賴、story</span><span class="nv"> </span><span class="s">有歧義、同一問題嘗試失敗</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">次、缺少設定、回歸測試失敗&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ready-for-review</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;程式符合需求、所有驗證通過、遵循標準、File</span><span class="nv"> </span><span class="s">List</span><span class="nv"> </span><span class="s">完整&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">completion</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;所有任務/子任務標記為</span><span class="nv"> </span><span class="s">[x]，並有測試→驗證與回歸測試全部通過（不可偷懶，必須執行所有測試並確認）→File</span><span class="nv"> </span><span class="s">List</span><span class="nv"> </span><span class="s">完整→執行</span><span class="nv"> </span><span class="s">checklist：story-dod-checklist→將</span><span class="nv"> </span><span class="s">story</span><span class="nv"> </span><span class="s">狀態設為</span><span class="nv"> </span><span class="s">&#39;Ready</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">Review&#39;→停止&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">explain</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">詳細解釋剛剛的動作與原因，就像在訓練初階工程師一樣</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">review-qa</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">執行 `apply-qa-fixes.md` 任務</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run-tests</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">執行 lint 與測試</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">exit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">以 Developer 身份說再見，並結束當前 persona 狀態</span>
+
+<span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">checklists</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">story-dod-checklist.md</span>
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apply-qa-fixes.md</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">execute-checklist.md</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">validate-next-story.md</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p><strong>補充說明</strong></p>
+<p>以上內容爲求方便好懂，預先使用 ChatGPT 將原始的英文檔案翻譯成中文</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="id4">
+<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>介紹了一個超狂的專案 <code class="docutils literal notranslate"><span class="pre">bmad-code-org/BMAD-METHOD</span></code>，裡面包含了針對各個專業人員角色的詳細提示</p></li>
+<li><p>這個專案的主要 2 大功能：Agentic Planning、Context-Engineered Development</p></li>
+<li><p>簡單介紹要怎麼安裝這個專案 + 使用 Dev Agent 的提示當作範例，解釋每個區塊的內容以及其意義（角色設定、行為規範、可用命令、依賴關係）</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/bmad-code-org/BMAD-METHOD">bmad-code-org/BMAD-METHOD</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/ak9kOecZGRc">🚀彻底颠覆传统开发！Claude Code再添利器！BMad-Method多智能体协作框架轻松打造敏捷AI驱动开发工作流！自动生成PRD文档、架构设计！支持Cursor、Cline、windsurf等</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="day-05.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day05】情境工程工具（coleam00/context-engineering-intro）</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bmad-code-org-bmad-method"><code class="docutils literal notranslate"><span class="pre">bmad-code-org/BMAD-METHOD</span></code> 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">安裝</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#agent">Agent 角色提示</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">角色設定底下每個區塊的說明</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hsiang-Jen Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Hsiang-Jen Li.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
