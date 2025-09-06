@@ -58,6 +58,20 @@ Use "ollama [command] --help" for more information about a command.
 
 ## 開始聊天
 
+### 使用 ollama run 運行模型
+
+```shell
+ollama run llama3.2:3b
+>>> hi
+How can I assist you today?
+```
+
+### 使用 `/bye` 結束對話
+
+```
+>>> /bye
+```
+
 ## 聊天參數
 
 ```shell
@@ -81,11 +95,31 @@ Environment Variables:
 
 ## Token 速度實測
 
+- load duration： 模型載入時間
+- prompt eval rate： 輸入 prompt 的 token 速度
+- eval rate： 模型回應的 token 速度
+
+### 模型輸出速度
+
 | 模型          | MacOS - M2（24GB RAM） | Ubuntu 24.04 - Intel core i5 (40GB RAM) |
 |:--------------|:-----------------------|:----------------------------------------|
-| `llama3.1:8b` |                        |                                         |
-| `llama3.2:3b` |                        |                                         |
-| `gpt-oss:20b` |                        |                                         |
+| `llama3.1:8b` | 36.71/token/s          | 0.89 token/s                            |
+| `llama3.2:3b` | 17.97 token/s          | 2.02 token/s                            |
+| `gpt-oss:20b` | 15.00 token/s          |                                         |
+
+<details>
+
+![20250906222411](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222411.png)
+
+![20250906222427](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222427.png)
+
+![20250906222450](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222450.png)
+
+![20250906222523](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222523.png)
+
+![20250906222739](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222739.png)
+
+</details>
 
 # 重點回顧
 
@@ -96,3 +130,4 @@ Environment Variables:
 # 參考資料
 
 - [Ollama Docker image](https://github.com/ollama/ollama/blob/main/docs/docker.md)
+- [All about Timing: A quick look at metrics for LLM serving](https://isaac-chung.github.io/blog/llm-serving)
