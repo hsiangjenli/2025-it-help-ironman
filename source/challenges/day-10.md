@@ -26,18 +26,33 @@
 
 ## 微調開始
 
-- 模型：llama3.2:3b + QLoRA
+- 模型：llama3.2:3b
 - 微調方法：QLoRA（爲求快速，使用 4-bit 精度可以減少記憶體使用，但也會影響到模型的表現）
 - 資料集：[python-docs-zh-tw](https://github.com/python/python-docs-zh-tw)
 
 ### 資料集準備
 
+- [`data.json`](https://hsiangjenli.github.io/2025-it-help-ironman/_static/data/data.json) 已上傳至 GitHub可直接下載
 ![20250907002650](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250907002650.png)
 
 ### 操作畫面截圖
   
 
 ## 將訓練完的模型轉換成 GGUF 可用的格式
+
+不知道為什麼 Unsloth 的 llama.cpp 轉換成 GGUF 時會出現問題，要先自己手動 clone llama.cpp 在本機編譯後才能成功轉換，而且不知道為什麼 `convert_hf_to_gguf.py` 的格式會跑掉，所以只好自己手動下載最新的 `convert_hf_to_gguf.py` 來使用。
+
+```shell
+!git clone --recursive https://github.com/ggerganov/llama.cpp
+!(cd llama.cpp; cmake -B build;cmake --build build --config Release)
+```
+
+```shell
+!wget https://raw.githubusercontent.com/ggml-org/llama.cpp/refs/heads/master/convert_hf_to_gguf.py -O llama.cpp/convert_hf_to_gguf.py
+if True: model.save_pretrained_gguf("/content/drive/MyDrive/lora_model/q4_k_m", tokenizer, quantization_method = "q4_k_m")
+```
+
+![20250908001335](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250908001335.png)
 
 # 重點回顧
 
@@ -47,3 +62,4 @@
 # 參考資料
 
 - [unslothai/notebooks](https://github.com/unslothai/notebooks)
+- [How to convert my fine-tuned model to .gguf ?](https://www.reddit.com/r/LocalLLaMA/comments/1amjx77/how_to_convert_my_finetuned_model_to_gguf/)
