@@ -1,4 +1,6 @@
-# 介紹
+# 【Day07】Ollama 介紹
+
+## 介紹
 
 <!-- ![20250905224555](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905224555.png) -->
 
@@ -6,13 +8,13 @@
 
 今天會簡單的安裝 Ollama（其實網路上已經一堆教學，但還是形式上走一遍）+ 操作基本的指令，實際運作幾個常見 LLM Model，順便在 Mac 跟只有純 CPU 的筆電上試試看效能如何。
 
-# Ollama 工具
+## Ollama 工具
 
 <!-- ![](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905223721.png) -->
 
 使用 MacOS 或是 Windows 的話，可以直接到官網下載安裝檔，安裝完之後就可以直接使用（右上角會出現可愛的 Ollama 圖案就代表正常運作）。目前在 MacOS 和 Windows 的版本都支援簡易的 GUI 聊天界面。筆者開發主要是使用 Ubuntu，所以只能使用 CLI 的方式來操作。
 
-## 使用 Docker 安裝
+### 使用 Docker 安裝
 
 ```shell
 docker run --rm -it -p 11434:11434 ollama/ollama:0.11.6
@@ -21,7 +23,7 @@ docker run --rm -it -p 11434:11434 ollama/ollama:0.11.6
 成功跑起來後到 http://localhost:11434 如果有看到 `Ollama is running` 的就代表成功了。
 
 
-## 基本指令
+### 基本指令
 
 ```shell
 Usage:
@@ -56,9 +58,9 @@ Use "ollama [command] --help" for more information about a command.
 - `list`：列出所有可用的模型
 - `rm`：刪除模型
 
-## 開始聊天
+### 開始聊天
 
-### 使用 ollama run 運行模型
+#### 使用 ollama run 運行模型
 
 ```shell
 ollama run llama3.2:3b
@@ -66,13 +68,13 @@ ollama run llama3.2:3b
 How can I assist you today?
 ```
 
-### 使用 `/bye` 結束對話
+#### 使用 `/bye` 結束對話
 
 ```
 >>> /bye
 ```
 
-## 聊天參數
+### 聊天參數
 
 ```shell
 Usage:
@@ -93,13 +95,13 @@ Environment Variables:
       OLLAMA_NOHISTORY           Do not preserve readline history
 ```
 
-## Token 速度實測
+### Token 速度實測
 
 - load duration： 模型載入時間
 - prompt eval rate： 輸入 prompt 的 token 速度
 - eval rate： 模型回應的 token 速度
 
-### 模型輸出速度
+#### 模型輸出速度
 
 | 模型          | MacOS - M2（24GB RAM） | Ubuntu 24.04 - Intel® Core™ i5-13500H (40GB RAM) |
 |:--------------|:-----------------------|:---------------------------------------------------|
@@ -125,13 +127,13 @@ Environment Variables:
 
 </details>
 
-# 重點回顧
+## 重點回顧
 
 - 透過 Docker 起 Ollama 服務
 - 實際在地端運行 LLM，並進行簡單對話
 - 實測在只有 CPU 的環境下運作（M2、Intel Core i5） LLM 的 token 速
 
-# 參考資料
+## 參考資料
 
 - [Ollama Docker image](https://github.com/ollama/ollama/blob/main/docs/docker.md)
 - [All about Timing: A quick look at metrics for LLM serving](https://isaac-chung.github.io/blog/llm-serving)
