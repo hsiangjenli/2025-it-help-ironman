@@ -1,6 +1,7 @@
 myst-parser
 pandas
 jinja2
+nbsphinx
 sphinx-proof
 sphinx-book-theme
 sphinxcontrib-bibtex
