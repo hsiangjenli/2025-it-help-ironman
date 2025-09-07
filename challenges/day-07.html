@@ -1,0 +1,606 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>【Day07】Ollama 介紹 &#8212; 2025 iThome 鐵人賽</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=9ff32b01" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-07';</script>
+    <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）" href="day-06.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">2025 iThome 鐵人賽</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day07】Ollama 介紹</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/challenges/day-07.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>【Day07】Ollama 介紹</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama">Ollama 工具</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">使用 Docker 安裝</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本指令</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">開始聊天</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-run">使用 ollama run 運行模型</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bye">使用 <code class="docutils literal notranslate"><span class="pre">/bye</span></code> 結束對話</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">聊天參數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token">Token 速度實測</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">模型輸出速度</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="day07ollama">
+<h1>【Day07】Ollama 介紹<a class="headerlink" href="#day07ollama" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<!-- ![20250905224555](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905224555.png) -->
+<p>正式將 LLM 平民化的工具 Ollama，在 2023 年的 7 月開始進行測試，在 9 月的時候已經可以在 Linux、WSL 上運作，同時支援 CPU 以及 GPU。一直到 2025 年都還是大部分的開發者在使用的工具，不論是簡單的聊天對話或是使用 AI Agent 做 Coding，幾乎在所有應用上都能看到 Ollama 的身影。</p>
+<p>今天會簡單的安裝 Ollama（其實網路上已經一堆教學，但還是形式上走一遍）+ 操作基本的指令，實際運作幾個常見 LLM Model，順便在 Mac 跟只有純 CPU 的筆電上試試看效能如何。</p>
+</section>
+<section id="ollama">
+<h2>Ollama 工具<a class="headerlink" href="#ollama" title="Link to this heading">#</a></h2>
+<!-- ![](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250905223721.png) -->
+<p>使用 MacOS 或是 Windows 的話，可以直接到官網下載安裝檔，安裝完之後就可以直接使用（右上角會出現可愛的 Ollama 圖案就代表正常運作）。目前在 MacOS 和 Windows 的版本都支援簡易的 GUI 聊天界面。筆者開發主要是使用 Ubuntu，所以只能使用 CLI 的方式來操作。</p>
+<section id="docker">
+<h3>使用 Docker 安裝<a class="headerlink" href="#docker" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-it<span class="w"> </span>-p<span class="w"> </span><span class="m">11434</span>:11434<span class="w"> </span>ollama/ollama:0.11.6
+</pre></div>
+</div>
+<p>成功跑起來後到 http://localhost:11434 如果有看到 <code class="docutils literal notranslate"><span class="pre">Ollama</span> <span class="pre">is</span> <span class="pre">running</span></code> 的就代表成功了。</p>
+</section>
+<section id="id2">
+<h3>基本指令<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Usage:
+<span class="w">  </span>ollama<span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+<span class="w">  </span>ollama<span class="w"> </span><span class="o">[</span>command<span class="o">]</span>
+
+Available<span class="w"> </span>Commands:
+<span class="w">  </span>serve<span class="w">       </span>Start<span class="w"> </span>ollama
+<span class="w">  </span>create<span class="w">      </span>Create<span class="w"> </span>a<span class="w"> </span>model
+<span class="w">  </span>show<span class="w">        </span>Show<span class="w"> </span>information<span class="w"> </span><span class="k">for</span><span class="w"> </span>a<span class="w"> </span>model
+<span class="w">  </span>run<span class="w">         </span>Run<span class="w"> </span>a<span class="w"> </span>model
+<span class="w">  </span>stop<span class="w">        </span>Stop<span class="w"> </span>a<span class="w"> </span>running<span class="w"> </span>model
+<span class="w">  </span>pull<span class="w">        </span>Pull<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>from<span class="w"> </span>a<span class="w"> </span>registry
+<span class="w">  </span>push<span class="w">        </span>Push<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>to<span class="w"> </span>a<span class="w"> </span>registry
+<span class="w">  </span>list<span class="w">        </span>List<span class="w"> </span>models
+<span class="w">  </span>ps<span class="w">          </span>List<span class="w"> </span>running<span class="w"> </span>models
+<span class="w">  </span>cp<span class="w">          </span>Copy<span class="w"> </span>a<span class="w"> </span>model
+<span class="w">  </span>rm<span class="w">          </span>Remove<span class="w"> </span>a<span class="w"> </span>model
+<span class="w">  </span><span class="nb">help</span><span class="w">        </span>Help<span class="w"> </span>about<span class="w"> </span>any<span class="w"> </span><span class="nb">command</span>
+
+Flags:
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">      </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>ollama
+<span class="w">  </span>-v,<span class="w"> </span>--version<span class="w">   </span>Show<span class="w"> </span>version<span class="w"> </span>information
+
+Use<span class="w"> </span><span class="s2">&quot;ollama [command] --help&quot;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information<span class="w"> </span>about<span class="w"> </span>a<span class="w"> </span>command.
+</pre></div>
+</div>
+<p>筆者目前經常使用的指令有：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pull</span></code>：下載模型</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code>：運行模型</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>：列出所有可用的模型</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rm</span></code>：刪除模型</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>開始聊天<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="ollama-run">
+<h4>使用 ollama run 運行模型<a class="headerlink" href="#ollama-run" title="Link to this heading">#</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>run<span class="w"> </span>llama3.2:3b
+&gt;&gt;&gt;<span class="w"> </span>hi
+How<span class="w"> </span>can<span class="w"> </span>I<span class="w"> </span>assist<span class="w"> </span>you<span class="w"> </span>today?
+</pre></div>
+</div>
+</section>
+<section id="bye">
+<h4>使用 <code class="docutils literal notranslate"><span class="pre">/bye</span></code> 結束對話<a class="headerlink" href="#bye" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="o">/</span><span class="n">bye</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id4">
+<h3>聊天參數<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Usage:
+<span class="w">  </span>ollama<span class="w"> </span>run<span class="w"> </span>MODEL<span class="w"> </span><span class="o">[</span>PROMPT<span class="o">]</span><span class="w"> </span><span class="o">[</span>flags<span class="o">]</span>
+
+Flags:
+<span class="w">      </span>--format<span class="w"> </span>string<span class="w">           </span>Response<span class="w"> </span>format<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>json<span class="o">)</span>
+<span class="w">  </span>-h,<span class="w"> </span>--help<span class="w">                    </span><span class="nb">help</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>run
+<span class="w">      </span>--hidethinking<span class="w">            </span>Hide<span class="w"> </span>thinking<span class="w"> </span>output<span class="w"> </span><span class="o">(</span><span class="k">if</span><span class="w"> </span>provided<span class="o">)</span>
+<span class="w">      </span>--insecure<span class="w">                </span>Use<span class="w"> </span>an<span class="w"> </span>insecure<span class="w"> </span>registry
+<span class="w">      </span>--keepalive<span class="w"> </span>string<span class="w">        </span>Duration<span class="w"> </span>to<span class="w"> </span>keep<span class="w"> </span>a<span class="w"> </span>model<span class="w"> </span>loaded<span class="w"> </span><span class="o">(</span>e.g.<span class="w"> </span>5m<span class="o">)</span>
+<span class="w">      </span>--nowordwrap<span class="w">              </span>Don<span class="err">&#39;</span>t<span class="w"> </span>wrap<span class="w"> </span>words<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>next<span class="w"> </span>line<span class="w"> </span>automatically
+<span class="w">      </span>--think<span class="w"> </span>string<span class="o">[=</span><span class="s2">&quot;true&quot;</span><span class="o">]</span><span class="w">   </span>Enable<span class="w"> </span>thinking<span class="w"> </span>mode:<span class="w"> </span>true/false<span class="w"> </span>or<span class="w"> </span>high/medium/low<span class="w"> </span><span class="k">for</span><span class="w"> </span>supported<span class="w"> </span>models
+<span class="w">      </span>--verbose<span class="w">                 </span>Show<span class="w"> </span>timings<span class="w"> </span><span class="k">for</span><span class="w"> </span>response
+
+Environment<span class="w"> </span>Variables:
+<span class="w">      </span>OLLAMA_HOST<span class="w">                </span>IP<span class="w"> </span>Address<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>ollama<span class="w"> </span>server<span class="w"> </span><span class="o">(</span>default<span class="w"> </span><span class="m">127</span>.0.0.1:11434<span class="o">)</span>
+<span class="w">      </span>OLLAMA_NOHISTORY<span class="w">           </span>Do<span class="w"> </span>not<span class="w"> </span>preserve<span class="w"> </span>readline<span class="w"> </span><span class="nb">history</span>
+</pre></div>
+</div>
+</section>
+<section id="token">
+<h3>Token 速度實測<a class="headerlink" href="#token" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>load duration： 模型載入時間</p></li>
+<li><p>prompt eval rate： 輸入 prompt 的 token 速度</p></li>
+<li><p>eval rate： 模型回應的 token 速度</p></li>
+</ul>
+<section id="id5">
+<h4>模型輸出速度<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>模型</p></th>
+<th class="head text-left"><p>MacOS - M2（24GB RAM）</p></th>
+<th class="head text-left"><p>Ubuntu 24.04 - Intel® Core™ i5-13500H (40GB RAM)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">llama3.1:8b</span></code></p></td>
+<td class="text-left"><p>36.71/token/s</p></td>
+<td class="text-left"><p>0.89 token/s</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">llama3.2:3b</span></code></p></td>
+<td class="text-left"><p>17.97 token/s</p></td>
+<td class="text-left"><p>2.02 token/s</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">gpt-oss:20b</span></code></p></td>
+<td class="text-left"><p>15.00 token/s</p></td>
+<td class="text-left"><p>1.87 token/s</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>令人意外，<code class="docutils literal notranslate"><span class="pre">gpt-oss:20b</span></code> 的速度竟然與 <code class="docutils literal notranslate"><span class="pre">llama3.1:8b</span></code> 差不多</p>
+</div></blockquote>
+<details>
+<p><img alt="20250906222411" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222411.png" /></p>
+<p><img alt="20250906222427" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222427.png" /></p>
+<p><img alt="20250906222450" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222450.png" /></p>
+<p><img alt="20250906222523" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222523.png" /></p>
+<p><img alt="20250906222739" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906222739.png" /></p>
+<p><img alt="20250906224141" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906224141.png" /></p>
+</details>
+</section>
+</section>
+</section>
+<section id="id6">
+<h2>重點回顧<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>透過 Docker 起 Ollama 服務</p></li>
+<li><p>實際在地端運行 LLM，並進行簡單對話</p></li>
+<li><p>實測在只有 CPU 的環境下運作（M2、Intel Core i5） LLM 的 token 速</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>參考資料<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ollama/ollama/blob/main/docs/docker.md">Ollama Docker image</a></p></li>
+<li><p><a class="reference external" href="https://isaac-chung.github.io/blog/llm-serving">All about Timing: A quick look at metrics for LLM serving</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="day-06.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama">Ollama 工具</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker">使用 Docker 安裝</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本指令</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">開始聊天</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-run">使用 ollama run 運行模型</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bye">使用 <code class="docutils literal notranslate"><span class="pre">/bye</span></code> 結束對話</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">聊天參數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#token">Token 速度實測</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">模型輸出速度</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hsiang-Jen Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Hsiang-Jen Li.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
