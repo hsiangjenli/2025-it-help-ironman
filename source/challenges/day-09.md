@@ -98,44 +98,14 @@ W' =
 \right)
 $
 
-## 實際透過 Unsloth 進行微調
-
-這部分打算透過 Unsloth 提供的 Colab 模版來進行模型微調的體驗
-
-### 微調究竟需要多少的記憶體？
-
-| Model parameters | QLoRA (4-bit) VRAM | LoRA (16-bit) VRAM |
-| ---------------- | ------------------ | ------------------ |
-| 3B               | 3.5 GB             | 8 GB               |
-| 7B               | 5 GB               | 19 GB              |
-| 8B               | 6 GB               | 22 GB              |
-| 9B               | 6.5 GB             | 24 GB              |
-| 11B              | 7.5 GB             | 29 GB              |
-| 14B              | 8.5 GB             | 33 GB              |
-| 27B              | 22GB               | 64GB               |
-| 32B              | 26 GB              | 76 GB              |
-| 40B              | 30GB               | 96GB               |
-| 70B              | 41 GB              | 164 GB             |
-| 81B              | 48GB               | 192GB              |
-| 90B              | 53GB               | 212GB              |
-| 405B             | 237 GB             | 950 GB             |
-
-> **表格來源**： [Unsloth 官網提供](https://docs.unsloth.ai/get-started/beginner-start-here/unsloth-requirements)
-
-### 微調開始
-
-- 模型：llama3.2:3b + QLoRA
-- 微調方法：QLoRA（爲求快速，使用 4-bit 精度可以減少記憶體使用，但也會影響到模型的表現）
-- 資料集：[python-docs-zh-tw](https://github.com/python/python-docs-zh-tw)
-
 # 重點回顧
 
+- 介紹關於不調整模型權重以及調整模型權重的微調方法
 - 介紹 Unsloth 這個工具可以快速對 LLM 模型進行微調的方法及優缺點（LoRA 和 QLoRA）
-- 了解不同模型大小做微調所需要的記憶體（[Unsloth 官網提供](https://docs.unsloth.ai/get-started/beginner-start-here/unsloth-requirements)） 
+- 簡單視覺化 LoRA 的矩陣計算
 
 # 參考資料
 
 - [What is LoRA (low-rank adaption)?](https://www.ibm.com/think/topics/lora)
 - [Are You Still Using LoRA to Fine-Tune Your LLM?](https://onmine.io/are-you-still-using-lora-to-fine-tune-your-llm/)
-- [unslothai/notebooks](https://github.com/unslothai/notebooks)
 - [【LLM專欄】All about Lora](https://axk51013.medium.com/llm%E5%B0%88%E6%AC%84-all-about-lora-5bc7e447c234)

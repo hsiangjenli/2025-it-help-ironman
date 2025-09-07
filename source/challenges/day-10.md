@@ -4,22 +4,46 @@
 
 # 操作
 
-## 如何透過 Unsloth 來對 llama3.2:3b 進行微調
+## 微調究竟需要多少的記憶體？
+
+| Model parameters | QLoRA (4-bit) VRAM | LoRA (16-bit) VRAM |
+| ---------------- | ------------------ | ------------------ |
+| 3B               | 3.5 GB             | 8 GB               |
+| 7B               | 5 GB               | 19 GB              |
+| 8B               | 6 GB               | 22 GB              |
+| 9B               | 6.5 GB             | 24 GB              |
+| 11B              | 7.5 GB             | 29 GB              |
+| 14B              | 8.5 GB             | 33 GB              |
+| 27B              | 22GB               | 64GB               |
+| 32B              | 26 GB              | 76 GB              |
+| 40B              | 30GB               | 96GB               |
+| 70B              | 41 GB              | 164 GB             |
+| 81B              | 48GB               | 192GB              |
+| 90B              | 53GB               | 212GB              |
+| 405B             | 237 GB             | 950 GB             |
+
+> **表格來源**： [Unsloth 官網提供](https://docs.unsloth.ai/get-started/beginner-start-here/unsloth-requirements)
+
+## 微調開始
+
+- 模型：llama3.2:3b + QLoRA
+- 微調方法：QLoRA（爲求快速，使用 4-bit 精度可以減少記憶體使用，但也會影響到模型的表現）
+- 資料集：[python-docs-zh-tw](https://github.com/python/python-docs-zh-tw)
 
 ### 資料集準備
 
 ![20250907002650](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250907002650.png)
 
-## 透過 Colab 進行訓練
-
-- 需要多少記憶體？  
+### 操作畫面截圖
   
 
-## 將訓練完的模型轉換成 Ollama 可用的格式
+## 將訓練完的模型轉換成 GGUF 可用的格式
 
 # 重點回顧
 
 - 準備一份簡單的資料集來對 llama3.2:3b 進行微調
-- 將訓練完的模型轉換成 Ollama 可用的格式並且在本機運行
+- 將訓練完的模型轉換成 GGUF 可用的格式並且在本機運行
 
 # 參考資料
+
+- [unslothai/notebooks](https://github.com/unslothai/notebooks)
