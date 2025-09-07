@@ -37,6 +37,7 @@ extensions = [
     "sphinxcontrib.bibtex",
     "sphinxcontrib.pseudocode",
     "sphinx_proof",
+    "nbsphinx",
     "myst_parser",
 ]
 bibtex_bibfiles = ["paper.bib"]
