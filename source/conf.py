@@ -33,9 +33,6 @@ class TitleRefRole(SphinxRole):
         return [node], []
 
 
-<<<<<<< HEAD
-extensions = ["sphinxcontrib.bibtex", "sphinxcontrib.pseudocode", "sphinx_proof", "myst_parser"]
-=======
 extensions = [
     "sphinxcontrib.bibtex",
     "sphinxcontrib.pseudocode",
@@ -43,7 +40,6 @@ extensions = [
     "nbsphinx",
     "myst_parser",
 ]
->>>>>>> bbc1f63 (feat: update Dockerfile and requirements.txt to include pandoc and nbsphinx; modify Makefile to push Docker image)
 bibtex_bibfiles = ["paper.bib"]
 bibtex_default_style = "unsrt"
 
