@@ -100,6 +100,8 @@ $
 
 ## 實際透過 Unsloth 進行微調
 
+這部分打算透過 Unsloth 提供的 Colab 模版來進行模型微調的體驗
+
 ### 微調究竟需要多少的記憶體？
 
 | Model parameters | QLoRA (4-bit) VRAM | LoRA (16-bit) VRAM |
@@ -122,12 +124,9 @@ $
 
 ### 微調開始
 
-本次爲求方便選用 llama3.2:3b + QLoRA 進行微調
-
-#### 資料集
-
-本次操作的目的是希望可以簡單的操作 LoRA，資料集選擇簡單易點，使用 [python-docs-zh-tw](https://github.com/python/python-docs-zh-tw)，因爲資料結構很簡單，po 檔案的 `msgid` 是英文句子，`msgstr` 是對應的中文翻譯。
-
+- 模型：llama3.2:3b + QLoRA
+- 微調方法：QLoRA（爲求快速，使用 4-bit 精度可以減少記憶體使用，但也會影響到模型的表現）
+- 資料集：[python-docs-zh-tw](https://github.com/python/python-docs-zh-tw)
 
 # 重點回顧
 
