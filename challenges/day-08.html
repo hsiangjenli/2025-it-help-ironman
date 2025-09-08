@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day08】客製化 Ollama 模型 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -165,10 +165,7 @@
 <li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day08】客製化 Ollama 模型</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -311,7 +308,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>介紹</h1>
+    <h1>【Day08】客製化 Ollama 模型</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -321,31 +318,30 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -356,17 +352,19 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
-<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section id="day08-ollama">
+<h1>【Day08】客製化 Ollama 模型<a class="headerlink" href="#day08-ollama" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>前面已經簡單介紹如何使用 Ollama 指令來下載與運行模型。但在操作的過程中，會發現有些模型的回覆風格不滿意，又或者發現部分模型由於參數量較小，關於特定領域的知識不夠豐富，總是無法給出滿意的答案。在 Hugging Face 上有專門的團隊，例如臺大的 <a class="reference external" href="https://github.com/MiuLab/Taiwan-LLM">MiuLab 團隊</a>，針對 llama3 進行微調訓練，讓模型能夠回答臺灣的問題，又或者是臺灣自發性的本土團隊 <a class="reference external" href="https://huggingface.co/twinkle-ai">Twinkle AI</a> 訓練出來具有 Reasoning 的小模型。</p>
 <p>這篇會更詳細介紹如何使用 Modelfile 來客製化模型以及如何將 Hugging Face 的模型轉換為 Ollama 可用的格式，並在本機運行這些模型。</p>
 </section>
 <section id="id2">
-<h1>實際操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<h2>實際操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <section id="ollama-modelfile">
-<h2>讓 Ollama 模型變成你想要的形狀 - Modelfile<a class="headerlink" href="#ollama-modelfile" title="Link to this heading">#</a></h2>
+<h3>讓 Ollama 模型變成你想要的形狀 - Modelfile<a class="headerlink" href="#ollama-modelfile" title="Link to this heading">#</a></h3>
 <section id="id3">
-<h3>常用參數<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h4>常用參數<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-left"><p>指令</p></th>
@@ -400,7 +398,7 @@ document.write(`
 </div>
 </section>
 <section id="ollama-model-modelfile">
-<h3>查看當前 Ollama Model 的 Modelfile<a class="headerlink" href="#ollama-model-modelfile" title="Link to this heading">#</a></h3>
+<h4>查看當前 Ollama Model 的 Modelfile<a class="headerlink" href="#ollama-model-modelfile" title="Link to this heading">#</a></h4>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>show<span class="w"> </span>--modelfile<span class="w"> </span>gpt-oss:20b
 </pre></div>
 </div>
@@ -421,14 +419,14 @@ document.write(`
 <p><img alt="20250906225218" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906225218.png" /></p>
 </section>
 <section id="modelfile">
-<h3>自定義一個 Modelfile 吧！！！<a class="headerlink" href="#modelfile" title="Link to this heading">#</a></h3>
+<h4>自定義一個 Modelfile 吧！！！<a class="headerlink" href="#modelfile" title="Link to this heading">#</a></h4>
 <div class="highlight-modelfile notranslate"><div class="highlight"><pre><span></span>FROM llama3.2:3b
 
 PARAMETER temperature 0.7
 PARAMETER top_p 0.9
 PARAMETER num_ctx 4096
 
-# 貓設
+## 貓設
 SYSTEM &quot;&quot;&quot;
 你是一隻聰明、好奇、全身烏黑發亮的貓咪助手「黑色貓貓」
 說話風格：機車
@@ -437,7 +435,7 @@ SYSTEM &quot;&quot;&quot;
 原則：準確、不要捏造
 &quot;&quot;&quot;
 
-# 簡單對話模板（讓回覆以「黑色貓貓：」開頭）
+## 簡單對話模板（讓回覆以「黑色貓貓：」開頭）
 TEMPLATE &quot;&quot;&quot;
 {{ if .System }}{{ .System }}{{ end }}
 使用者：{{ .Prompt }}
@@ -453,7 +451,7 @@ TEMPLATE &quot;&quot;&quot;
 <p>確認成功建立！！！</p>
 <p><img alt="20250906230903" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906230903.png" /></p>
 <section id="id4">
-<h4>實測黑色貓貓對話<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<h5>實測黑色貓貓對話<a class="headerlink" href="#id4" title="Link to this heading">#</a></h5>
 <p><img alt="20250906231114" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906231114.png" /></p>
 <blockquote>
 <div><p>痾… 好像改壞了 😂</p>
@@ -462,15 +460,15 @@ TEMPLATE &quot;&quot;&quot;
 </section>
 </section>
 <section id="hugging-face-gguf-ollama">
-<h2>介紹 Hugging Face GGUF 模型轉換成 Ollama 模型<a class="headerlink" href="#hugging-face-gguf-ollama" title="Link to this heading">#</a></h2>
+<h3>介紹 Hugging Face GGUF 模型轉換成 Ollama 模型<a class="headerlink" href="#hugging-face-gguf-ollama" title="Link to this heading">#</a></h3>
 <p>什麼情況下會需要將 Hugging Face 的 GGUF 模型轉換成 Ollama 模型呢？因爲 Ollama 官方目前只支援部分模型，但是 Hugging Face 上有很多別人根據不同需求微調過的模型（像是專門使用臺灣資料進行微調訓練），這些模型可能更適合你的需求。</p>
 <section id="hugging-face-gguf">
-<h3>從 Hugging Face 下載 GGUF 模型<a class="headerlink" href="#hugging-face-gguf" title="Link to this heading">#</a></h3>
+<h4>從 Hugging Face 下載 GGUF 模型<a class="headerlink" href="#hugging-face-gguf" title="Link to this heading">#</a></h4>
 <p>本次使用 <code class="docutils literal notranslate"><span class="pre">twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF</span></code> 的模型進行示範，這個模型是基於 llama3.2 以及臺灣的資料進行微調訓練的，這個 repo 裡面有很多種版本的模型，主要是精度不同，本次爲求方便，直接下載 <code class="docutils literal notranslate"><span class="pre">Llama-3.2-3B-F1-Reasoning-Instruct-Q2_K.gguf</span></code> 這個檔案（僅 1.49 GB）。</p>
 <p><img alt="20250906232458" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906232458.png" /></p>
 </section>
 <section id="id5">
-<h3>建立 Ollama Modelfile<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<h4>建立 Ollama Modelfile<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p><img alt="20250907000154" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250907000154.png" /></p>
 <p>爲避免麻煩，筆者直接使用 <code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">show</span> <span class="pre">--modelfile</span> <span class="pre">llama3.2:3b</span></code> 抓官方的 Modelfile，然後把 <code class="docutils literal notranslate"><span class="pre">FROM</span></code> 的部分改成剛剛下載的 GGUF 模型路徑。</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>create<span class="w"> </span>twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF<span class="w"> </span>-f<span class="w"> </span>Modelfile
@@ -478,7 +476,7 @@ TEMPLATE &quot;&quot;&quot;
 </div>
 <p><img alt="20250906234029" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906234029.png" /></p>
 <section id="id6">
-<h4>實測臺灣問題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<h5>實測臺灣問題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h5>
 <p><img alt="20250906234936" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906234936.png" /></p>
 <blockquote>
 <div><p>Twinkle AI 的模型具有 Reasoning 能力</p>
@@ -495,7 +493,7 @@ TEMPLATE &quot;&quot;&quot;
 </section>
 </section>
 <section id="id7">
-<h1>重點回顧<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<h2>重點回顧<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>如何客製化自己的 Ollama 模型的兩種方式</p>
 <ul>
@@ -509,13 +507,14 @@ TEMPLATE &quot;&quot;&quot;
 </ul>
 </section>
 <section id="id8">
-<h1>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+<h2>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md">Ollama Model File</a></p></li>
 <li><p><a class="reference external" href="https://okhand.org/zh-tw/posts/ollama-modefile/">Ollama Modelfile 可調參數紀錄</a></p></li>
 <li><p><a class="reference external" href="https://huggingface.co/twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF">twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF</a></p></li>
 <li><p><a class="reference external" href="https://ywctech.net/ml-ai/ollama-import-custom-gguf/">抓別人的 GGUF 模型，用 Ollama 在本機執行！</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -554,31 +553,30 @@ TEMPLATE &quot;&quot;&quot;
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
