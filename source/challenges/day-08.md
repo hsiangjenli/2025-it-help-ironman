@@ -121,7 +121,7 @@ ollama create twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF -f Modelfile
 - 如何客製化自己的 Ollama 模型的兩種方式
   - Modelfile：在不改變模型權重的情況下，改變模型的行爲與回覆風格
   - Hugging Face：已經訓練好/微調好的 GGUF 模型，轉換成 Ollama 可用的格式
-- 透過 Modefile 客製化一個身份認同是一隻貓貓的 LLM 模型
+- 透過 Modelfile 客製化一個身份認同是一隻貓貓的 LLM 模型
 - 將 Hugging Face 上的 GGUF 模型轉換成 Ollama 可用的模型
 - 簡單提到 F16、BF16、Q8、Q6、Q5、Q4、Q3、Q2 品質與速度的差異
 
