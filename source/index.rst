@@ -9,3 +9,9 @@
    challenges/*
 
 
+.. toctree::
+   :glob:
+   :caption: Jupyter Notebook
+   :maxdepth: 1
+
+   challenges/Llama3_2_(3B)_Unsloth.ipynb
