@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=d35f5538" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-08';</script>
+    <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="【Day07】Ollama 介紹" href="day-07.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">2025 iThome 鐵人賽</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Llama3_2_%283B%29_Unsloth.html">Unsloth + Llama3.2:3b 微調測試</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
+
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Llama3_2_%283B%29_Unsloth.html">Unsloth + Llama3.2:3b 微調測試</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/challenges/day-08.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>介紹</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="id1">
+<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>前面已經簡單介紹如何使用 Ollama 指令來下載與運行模型。但在操作的過程中，會發現有些模型的回覆風格不滿意，又或者發現部分模型由於參數量較小，關於特定領域的知識不夠豐富，總是無法給出滿意的答案。在 Hugging Face 上有專門的團隊，例如臺大的 <a class="reference external" href="https://github.com/MiuLab/Taiwan-LLM">MiuLab 團隊</a>，針對 llama3 進行微調訓練，讓模型能夠回答臺灣的問題，又或者是臺灣自發性的本土團隊 <a class="reference external" href="https://huggingface.co/twinkle-ai">Twinkle AI</a> 訓練出來具有 Reasoning 的小模型。</p>
+<p>這篇會更詳細介紹如何使用 Modelfile 來客製化模型以及如何將 Hugging Face 的模型轉換為 Ollama 可用的格式，並在本機運行這些模型。</p>
+</section>
+<section id="id2">
+<h1>實際操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<section id="ollama-modelfile">
+<h2>讓 Ollama 模型變成你想要的形狀 - Modelfile<a class="headerlink" href="#ollama-modelfile" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h3>常用參數<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>指令</p></th>
+<th class="head text-left"><p>說明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>FROM（必填）</p></td>
+<td class="text-left"><p>定義要使用的基礎模型</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>PARAMETER</p></td>
+<td class="text-left"><p>設定 Ollama 執行模型時的參數</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>TEMPLATE</p></td>
+<td class="text-left"><p>要傳送給模型的完整 Prompt 範本</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>SYSTEM</p></td>
+<td class="text-left"><p>指定會放入範本中的系統訊息</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>ADAPTER</p></td>
+<td class="text-left"><p>定義要套用到模型的 (Q)LoRA adapter</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>LICENSE</p></td>
+<td class="text-left"><p>指定法律授權協議</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>MESSAGE</p></td>
+<td class="text-left"><p>指定訊息歷史（例如對話紀錄）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="ollama-model-modelfile">
+<h3>查看當前 Ollama Model 的 Modelfile<a class="headerlink" href="#ollama-model-modelfile" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>show<span class="w"> </span>--modelfile<span class="w"> </span>gpt-oss:20b
+</pre></div>
+</div>
+<p>這個 Modelfile 定義很多東西簡單列幾個重點：</p>
+<ul class="simple">
+<li><p>FROM：模型來源（blob 檔）</p></li>
+<li><p>TEMPLATE：定義 Prompt 格式</p>
+<ul>
+<li><p>SYSTEM：系統訊息、身份（ChatGPT，由 OpenAI 訓練出來）</p></li>
+<li><p>Knowledge cutoff：知識截止日期</p></li>
+<li><p>Current date：當前日期</p></li>
+<li><p>Reasoning：推理能力</p></li>
+<li><p>$hasXXXX：工具檢查與啟用</p></li>
+<li><p>…. 太多了 &#64;&#64;</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="20250906225218" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906225218.png" /></p>
+</section>
+<section id="modelfile">
+<h3>自定義一個 Modelfile 吧！！！<a class="headerlink" href="#modelfile" title="Link to this heading">#</a></h3>
+<div class="highlight-modelfile notranslate"><div class="highlight"><pre><span></span>FROM llama3.2:3b
+
+PARAMETER temperature 0.7
+PARAMETER top_p 0.9
+PARAMETER num_ctx 4096
+
+# 貓設
+SYSTEM &quot;&quot;&quot;
+你是一隻聰明、好奇、全身烏黑發亮的貓咪助手「黑色貓貓」
+說話風格：機車
+口頭禪：適度使用「喵～」但不要太多
+回覆語言：繁體中文（台灣）
+原則：準確、不要捏造
+&quot;&quot;&quot;
+
+# 簡單對話模板（讓回覆以「黑色貓貓：」開頭）
+TEMPLATE &quot;&quot;&quot;
+{{ if .System }}{{ .System }}{{ end }}
+使用者：{{ .Prompt }}
+黑色貓貓：&quot;&quot;&quot;
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>create<span class="w"> </span>black-cat<span class="w"> </span>-f<span class="w"> </span>Modelfile
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>run<span class="w"> </span>black-cat
+</pre></div>
+</div>
+<p>確認成功建立！！！</p>
+<p><img alt="20250906230903" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906230903.png" /></p>
+<section id="id4">
+<h4>實測黑色貓貓對話<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p><img alt="20250906231114" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906231114.png" /></p>
+<blockquote>
+<div><p>痾… 好像改壞了 😂</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="hugging-face-gguf-ollama">
+<h2>介紹 Hugging Face GGUF 模型轉換成 Ollama 模型<a class="headerlink" href="#hugging-face-gguf-ollama" title="Link to this heading">#</a></h2>
+<p>什麼情況下會需要將 Hugging Face 的 GGUF 模型轉換成 Ollama 模型呢？因爲 Ollama 官方目前只支援部分模型，但是 Hugging Face 上有很多別人根據不同需求微調過的模型（像是專門使用臺灣資料進行微調訓練），這些模型可能更適合你的需求。</p>
+<section id="hugging-face-gguf">
+<h3>從 Hugging Face 下載 GGUF 模型<a class="headerlink" href="#hugging-face-gguf" title="Link to this heading">#</a></h3>
+<p>本次使用 <code class="docutils literal notranslate"><span class="pre">twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF</span></code> 的模型進行示範，這個模型是基於 llama3.2 以及臺灣的資料進行微調訓練的，這個 repo 裡面有很多種版本的模型，主要是精度不同，本次爲求方便，直接下載 <code class="docutils literal notranslate"><span class="pre">Llama-3.2-3B-F1-Reasoning-Instruct-Q2_K.gguf</span></code> 這個檔案（僅 1.49 GB）。</p>
+<p><img alt="20250906232458" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906232458.png" /></p>
+</section>
+<section id="id5">
+<h3>建立 Ollama Modelfile<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><img alt="20250907000154" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250907000154.png" /></p>
+<p>爲避免麻煩，筆者直接使用 <code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">show</span> <span class="pre">--modelfile</span> <span class="pre">llama3.2:3b</span></code> 抓官方的 Modelfile，然後把 <code class="docutils literal notranslate"><span class="pre">FROM</span></code> 的部分改成剛剛下載的 GGUF 模型路徑。</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>create<span class="w"> </span>twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF<span class="w"> </span>-f<span class="w"> </span>Modelfile
+</pre></div>
+</div>
+<p><img alt="20250906234029" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906234029.png" /></p>
+<section id="id6">
+<h4>實測臺灣問題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p><img alt="20250906234936" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906234936.png" /></p>
+<blockquote>
+<div><p>Twinkle AI 的模型具有 Reasoning 能力</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>補充說明</strong></p>
+<ul class="simple">
+<li><p>品質好：<code class="docutils literal notranslate"><span class="pre">F16</span></code>（VRAM）、<code class="docutils literal notranslate"><span class="pre">BF16</span></code>（RAM）</p></li>
+<li><p>速度（慢 -&gt; 快）：<code class="docutils literal notranslate"><span class="pre">Q8</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q6</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q5</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q4</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q3</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q2</span></code></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+</section>
+</section>
+<section id="id7">
+<h1>重點回顧<a class="headerlink" href="#id7" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>如何客製化自己的 Ollama 模型的兩種方式</p>
+<ul>
+<li><p>Modelfile：在不改變模型權重的情況下，改變模型的行爲與回覆風格</p></li>
+<li><p>Hugging Face：已經訓練好/微調好的 GGUF 模型，轉換成 Ollama 可用的格式</p></li>
+</ul>
+</li>
+<li><p>透過 Modelfile 客製化一個身份認同是一隻貓貓的 LLM 模型</p></li>
+<li><p>將 Hugging Face 上的 GGUF 模型轉換成 Ollama 可用的模型</p></li>
+<li><p>簡單提到 F16、BF16、Q8、Q6、Q5、Q4、Q3、Q2 品質與速度的差異</p></li>
+</ul>
+</section>
+<section id="id8">
+<h1>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md">Ollama Model File</a></p></li>
+<li><p><a class="reference external" href="https://okhand.org/zh-tw/posts/ollama-modefile/">Ollama Modelfile 可調參數紀錄</a></p></li>
+<li><p><a class="reference external" href="https://huggingface.co/twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF">twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF</a></p></li>
+<li><p><a class="reference external" href="https://ywctech.net/ml-ai/ollama-import-custom-gguf/">抓別人的 GGUF 模型，用 Ollama 在本機執行！</a></p></li>
+</ul>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="day-07.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day07】Ollama 介紹</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+</ul>
+
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hsiang-Jen Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Hsiang-Jen Li.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
