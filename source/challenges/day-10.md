@@ -4,6 +4,8 @@
 
 # 操作
 
+[![](https://colab.research.google.com/assets/colab-badge.svg)](https://hsiangjenli.github.io/2025-it-help-ironman/challenges/Llama3_2_%283B%29_Unsloth.html)
+
 ## 微調究竟需要多少的記憶體？
 
 | Model parameters | QLoRA (4-bit) VRAM | LoRA (16-bit) VRAM |
