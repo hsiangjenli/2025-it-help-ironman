@@ -45,6 +45,14 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'search';</script>
   <script src="_static/searchtools.js"></script>
   <script src="_static/language_data.js"></script>
@@ -159,7 +167,6 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="challenges/Llama3_2_%283B%29_Unsloth.html">Unsloth + Llama3.2:3b 微調測試</a></li>
 <li class="toctree-l1"><a class="reference internal" href="challenges/day-01.html">【Day01】爲自己定一個目標吧！</a></li>
 <li class="toctree-l1"><a class="reference internal" href="challenges/day-02.html">【Day02】LLM 專有名詞整理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="challenges/day-03.html">【Day03】情境工程（Context Engineering）</a></li>
@@ -168,10 +175,7 @@
 <li class="toctree-l1"><a class="reference internal" href="challenges/day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="challenges/day-07.html">【Day07】Ollama 介紹</a></li>
 <li class="toctree-l1"><a class="reference internal" href="challenges/day-08.html">【Day08】客製化 Ollama 模型</a></li>
-<li class="toctree-l1"><a class="reference internal" href="challenges/day-09.html">介紹</a></li>
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="challenges/day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">

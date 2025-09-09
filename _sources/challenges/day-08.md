@@ -43,7 +43,7 @@ ollama show --modelfile gpt-oss:20b
 
 #### 自定義一個 Modelfile 吧！！！
 
-```modelfile
+```dockerfile
 FROM llama3.2:3b
 
 PARAMETER temperature 0.7
