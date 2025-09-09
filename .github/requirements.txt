@@ -1,8 +1,9 @@
-myst-parser
 pandas
 jinja2
 nbsphinx
+myst-parser[linkify]
 sphinx-proof
 sphinx-book-theme
 sphinxcontrib-bibtex
+sphinxcontrib-mermaid
 git+https://github.com/victorapostol/sphinxcontrib-pseudocode.git

@@ -39,6 +39,8 @@ extensions = [
     "sphinx_proof",
     "nbsphinx",
     "myst_parser",
+    "sphinx.ext.mathjax",
+    "sphinxcontrib.mermaid",
 ]
 bibtex_bibfiles = ["paper.bib"]
 bibtex_default_style = "unsrt"
@@ -66,3 +68,22 @@ source_suffix = {
 
 def setup(app):
     app.add_role("title-ref", TitleRefRole())
+
+myst_enable_extensions = [
+    "dollarmath",   # 支援 $...$（行內）與 $$...$$（區塊）
+    "amsmath",      # 支援 \begin{equation} 等 AMS 環境
+    "colon_fence",  # 支援 ::: 指令圍欄（常用）
+    "deflist",
+    "linkify"
+]
+
+myst_fence_as_directive = ["mermaid"]
+
+mathjax3_config = {
+    "tex": {
+        "inlineMath": [["$", "$"], ["\\(", "\\)"]],
+        "displayMath": [["$$", "$$"], ["\\[", "\\]"]],
+    }
+}
+nbsphinx_codecell_lexer = "ipython3"
+
