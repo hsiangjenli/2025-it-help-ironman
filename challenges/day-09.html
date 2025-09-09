@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day04】情境工程工具（10xrules） &#8212; 2025 iThome 鐵人賽</title>
+    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,12 +47,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-04';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-09';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day05】情境工程工具（coleam00/context-engineering-intro）" href="day-05.html" />
-    <link rel="prev" title="【Day03】情境工程（Context Engineering）" href="day-03.html" />
+    <link rel="prev" title="【Day08】客製化 Ollama 模型" href="day-08.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -162,12 +161,12 @@
 <li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-09.html">介紹</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
 
 
 
@@ -229,7 +228,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-04.md" target="_blank"
+      <li><a href="../_sources/challenges/day-09.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -313,7 +312,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day04】情境工程工具（10xrules）</h1>
+    <h1>介紹</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -323,18 +322,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xrules">10xrules 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本地安裝</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">啓動服務</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unsloth">Unsloth 介紹</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型微調的方法介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-unsloth">PEFT @ Unsloth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lora">LoRA 基本原理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#w">原始矩陣 $W$</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-w-ab">低秩分解 $\Delta W = AB$</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#w-w-delta-w">更新後的權重矩陣 $W’ = W + \Delta W$</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">新增新的 Rules</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -345,83 +350,143 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="day04-10xrules">
-<h1>【Day04】情境工程工具（10xrules）<a class="headerlink" href="#day04-10xrules" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>在前一天的挑戰文章中提到了情境工程（Context Engineering）這個概念。但情境工程這麼複雜，裡面包含了各種元素（Global Instruction、Memory、MCP Tools、Output 等…）。突然要開發人員寫出一份完整的 Global Instruction 是一件很困難的事情（畢竟自己在開發的時候常常也都是想到什麼就寫什麼，很少會很仔細地去規劃整個專案的目標和撰寫規範 😅）。</p>
-<p>因此，今天要介紹一個叫做 <a class="reference external" href="https://10xrules.ai">10xrules</a> 的工具，這個工具可以協助開發人員根據自身需求快速地產生一份 Global Instruction。</p>
+  <section id="id1">
+<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>今天主要介紹的主題是關於 LLM 的微調（Fine-tuning），會簡單帶過微調的基本概念，然後介紹可以快速對 LLM 模型進行微調的工具 Unsloth，讓各位稍爲瞭解微調模型的基本資訊後，可以自己動手試試看。</p>
 </section>
-<section id="xrules">
-<h2>10xrules 介紹<a class="headerlink" href="#xrules" title="Link to this heading">#</a></h2>
-<p><img alt="20250902202713" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902202713.png" /></p>
-<p>整個頁面很簡單，左邊可以選擇需要的 Global Instruction，右邊則會顯示相應的範本。在右上角還可以選擇輸出的格式（使用 GitHub Copilot、Claude Code、Codex 等…）</p>
+<section id="unsloth">
+<h1>Unsloth 介紹<a class="headerlink" href="#unsloth" title="Link to this heading">#</a></h1>
+<p>Unsloth 是一款讓 LLM fine-tuning 變地更快、更省記憶體的開源工具，在 <a class="reference external" href="https://github.com/unslothai/notebooks">GitHub</a> 上提供了很多 Colab 模版，提供給使用者可以直接在 Colab 上進行微調訓練。</p>
 <section id="id2">
-<h3>本地安裝<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<section id="id3">
-<h4>啓動服務<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/przeprogramowani/ai-rules-builder.git
-<span class="nb">cd</span><span class="w"> </span>ai-rules-builder
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install
-npm<span class="w"> </span>install<span class="w"> </span>supabase<span class="w"> </span>--save-dev
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npx<span class="w"> </span>supabase<span class="w"> </span>init
-npx<span class="w"> </span>supabase<span class="w"> </span>start
-</pre></div>
+<h2>模型微調的方法介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>因爲微調的範圍很廣，不是三言兩語可以說清楚的。這邊先做簡單的微調假設：（1）希望微調後的模型能夠在某個特定任務上表現更好；（2）沒有要壓縮模型大小（如：蒸餾、剪枝等）。基於以上假設，常見的微調方法有三種：</p>
+<ol class="arabic simple">
+<li><p>全模型微調（Full-model Tuning）：模型的所有權重都會被更新</p></li>
+<li><p>參數高效微調（Parameter-Efficient Fine-Tuning，PEFT）：凍結大部分的權重，只調整少量或特定的參數</p></li>
+<li><p>提示微調（Prompt Tuning/Soft Prompting）：不改變模型權重，只是調整輸入的提示詞</p></li>
+</ol>
+<section id="peft-unsloth">
+<h3>PEFT &#64; Unsloth<a class="headerlink" href="#peft-unsloth" title="Link to this heading">#</a></h3>
+<p>在 Unsloth 裡面，主要是使用 PEFT 的方法來進行微調，主要是因爲使用全模型微調的話，對於記憶體的需求會非常高，同時全模型微調不一定會帶來更好的效果。Unsloth 目前支援兩種 PEFT 的方法：</p>
+<ul class="simple">
+<li><p>LoRA（Low-Rank Adaptation）：保持原始模型權重，只訓練少量低秩矩陣，透過在原有權重旁加上調整項 $\Delta W$ 進行微調，可以減少記憶體的使用量</p></li>
+<li><p>QLoRA（Quantized LoRA）：在 LoRA 的基礎上，進一步將模型量化到 4-bit，可以降低記憶體的使用量</p></li>
+</ul>
+</section>
+<section id="lora">
+<h3>LoRA 基本原理<a class="headerlink" href="#lora" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>數學符號</p></th>
+<th class="head text-left"><p>解釋</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>$W’$</p></td>
+<td class="text-left"><p>更新後的權重矩陣</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>$W$</p></td>
+<td class="text-left"><p>原始權重矩陣</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>$\Delta W$</p></td>
+<td class="text-left"><p>調整項（由 LoRA 訓練得到）</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>$A, B$</p></td>
+<td class="text-left"><p>低秩分解出的可訓練的矩陣</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <ul class="simple">
-<li><p>使用 <code class="docutils literal notranslate"><span class="pre">npx</span> <span class="pre">supabase</span> <span class="pre">status</span></code> 確認 Supabase 已經順利運作</p></li>
-<li><p>記下 Supabase 提供的 <code class="docutils literal notranslate"><span class="pre">anon</span> <span class="pre">key</span></code> 和 <code class="docutils literal notranslate"><span class="pre">service_role</span> <span class="pre">key</span></code></p></li>
-<li><p>建立 <code class="docutils literal notranslate"><span class="pre">.env.local</span></code> 檔案</p></li>
+<li><p>$W’ = W + \Delta{W}$</p></li>
+<li><p>$\Delta{W} = A \times B$</p></li>
 </ul>
-<p><img alt="20250902231357" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902231357.png" /></p>
-<div class="highlight-txt notranslate"><div class="highlight"><pre><span></span>PUBLIC_ENV_NAME=local
-SUPABASE_URL=http://localhost:54321
-SUPABASE_PUBLIC_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
-
-CF_CAPTCHA_SITE_KEY=1x00000000000000000000AA
-CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>run<span class="w"> </span>dev
-</pre></div>
-</div>
-<p>即可到 <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> 開始使用自己的 10xrules 工具</p>
-<blockquote>
-<div><p><strong>補充說明：</strong></p>
-<p>雖然有 Sign up 跟 Sign in 的功能，但是沒看到 Admin 的介面，這部分的設計有點奇怪，提醒一下各位還是要注意一下資安的問題</p>
-</div></blockquote>
+<section id="w">
+<h4>原始矩陣 $W$<a class="headerlink" href="#w" title="Link to this heading">#</a></h4>
+<p>$
+W =
+\underbrace{\left[\begin{array}{ccccccc}
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\end{array}\right]}_{n\times n}
+$</p>
+</section>
+<section id="delta-w-ab">
+<h4>低秩分解 $\Delta W = AB$<a class="headerlink" href="#delta-w-ab" title="Link to this heading">#</a></h4>
+<p>$
+\Delta W =
+\underbrace{\left[\begin{array}{c}
+\square \
+\square \
+\square \
+\square \
+\square \
+\square \
+\square \
+\end{array}\right]}<em>{n\times r}
+\times
+\underbrace{\left[\begin{array}{ccccccc}
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\end{array}\right]}</em>{r\times n}
+= \underbrace{\left[\begin{array}{ccccccc}
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\end{array}\right]}_{n\times n}
+$</p>
+</section>
+<section id="w-w-delta-w">
+<h4>更新後的權重矩陣 $W’ = W + \Delta W$<a class="headerlink" href="#w-w-delta-w" title="Link to this heading">#</a></h4>
+<p>$
+W’ =
+\underbrace{\left[\begin{array}{ccccccc}
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \
+\end{array}\right]}<em>{n\times n}
+;+;
+\left(
+\underbrace{\left[\begin{array}{c}
+\square \ \square \ \square \ \square \ \square \ \square \ \square
+\end{array}\right]}</em>{n\times r}
+;\times;
+\underbrace{\left[\begin{array}{ccccccc}
+\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square
+\end{array}\right]}_{r\times n}
+\right)
+$</p>
 </section>
 </section>
-<section id="rules">
-<h3>新增新的 Rules<a class="headerlink" href="#rules" title="Link to this heading">#</a></h3>
-<p>若是要新增自己的 Rules 可以至 <code class="docutils literal notranslate"><span class="pre">src/data/rules</span></code> 資料夾中新增</p>
-<p><img alt="20250902225343" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250902225343.png" /></p>
-<blockquote>
-<div><p><strong>補充說明：</strong></p>
-<p>在操作的過程中，覺得 10xrules 的 UI/UX 設計得很好，也不複雜。但是在新增 Rules 的時候，覺得有點不方便，還需要特定去找 <code class="docutils literal notranslate"><span class="pre">src/data/rules</span></code> 資料夾來新增，若是不熟悉該程式語言的使用者用起來有點繁瑣（美中不足的部分）</p>
-</div></blockquote>
 </section>
+</section>
+<section id="id3">
+<h1>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<ul class="simple">
+<li><p>介紹關於不調整模型權重以及調整模型權重的微調方法</p></li>
+<li><p>介紹 Unsloth 這個工具可以快速對 LLM 模型進行微調的方法及優缺點（LoRA 和 QLoRA）</p></li>
+<li><p>簡單視覺化 LoRA 的矩陣計算</p></li>
+</ul>
 </section>
 <section id="id4">
-<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p>實際操作情境工程中的 Global Instruction 元素</p></li>
-<li><p>介紹一個 Open Source Solution（10xrules）來協助開發人員管理及產生 Global Instruction</p></li>
-<li><p>簡單操作如何在本地端啓動 10xrules 服務以及新增自己的 Rules</p></li>
-</ol>
-</section>
-<section id="id5">
-<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h1>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/przeprogramowani/ai-rules-builder">przeprogramowani/ai-rules-builder</a></p></li>
-<li><p><a class="reference external" href="https://10xrules.ai">10xrules</a></p></li>
+<li><p><a class="reference external" href="https://www.ibm.com/think/topics/lora">What is LoRA (low-rank adaption)?</a></p></li>
+<li><p><a class="reference external" href="https://onmine.io/are-you-still-using-lora-to-fine-tune-your-llm/">Are You Still Using LoRA to Fine-Tune Your LLM?</a></p></li>
+<li><p><a class="reference external" href="https://axk51013.medium.com/llm%E5%B0%88%E6%AC%84-all-about-lora-5bc7e447c234">【LLM專欄】All about Lora</a></p></li>
 </ul>
-</section>
 </section>
 
 
@@ -436,22 +501,13 @@ CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-03.html"
+       href="day-08.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day03】情境工程（Context Engineering）</p>
+        <p class="prev-next-title">【Day08】客製化 Ollama 模型</p>
       </div>
-    </a>
-    <a class="right-next"
-       href="day-05.html"
-       title="next page">
-      <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day05】情境工程工具（coleam00/context-engineering-intro）</p>
-      </div>
-      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
                 </footer>
@@ -469,18 +525,24 @@ CF_CAPTCHA_SECRET_KEY=1x0000000000000000000000000000000AA
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#xrules">10xrules 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">本地安裝</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">啓動服務</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#unsloth">Unsloth 介紹</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型微調的方法介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-unsloth">PEFT @ Unsloth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lora">LoRA 基本原理</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#w">原始矩陣 $W$</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-w-ab">低秩分解 $\Delta W = AB$</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#w-w-delta-w">更新後的權重矩陣 $W’ = W + \Delta W$</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rules">新增新的 Rules</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
