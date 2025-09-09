@@ -1,0 +1,16 @@
+{
+  "servers": {
+    "demo-my-mcp": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--with", "fastapi",
+        "fastmcp", "run",
+        "mcp_tools/main.py"
+      ],
+      "cwd": "${workspaceFolder}/python-mcp-template"
+    }
+  },
+  "inputs": []
+}
