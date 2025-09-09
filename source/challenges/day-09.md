@@ -1,5 +1,7 @@
 # 介紹
 
+今天主要介紹的主題是關於 LLM 的微調（Fine-tuning），會簡單帶過微調的基本概念，然後介紹可以快速對 LLM 模型進行微調的工具 Unsloth，讓各位稍爲瞭解微調模型的基本資訊後，可以自己動手試試看。
+
 # Unsloth 介紹
 
 Unsloth 是一款讓 LLM fine-tuning 變地更快、更省記憶體的開源工具，在 [GitHub](https://github.com/unslothai/notebooks) 上提供了很多 Colab 模版，提供給使用者可以直接在 Colab 上進行微調訓練。
