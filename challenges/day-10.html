@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day10】實際使用 Unsloth 來對模型微調 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -167,10 +167,7 @@
 <li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day10】實際使用 Unsloth 來對模型微調</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -313,7 +310,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>介紹</h1>
+    <h1>【Day10】實際使用 Unsloth 來對模型微調</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -323,27 +320,26 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">微調究竟需要多少的記憶體？</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">微調開始</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">資料集準備</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">部分程式碼</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">載入模型</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-lora">設定 PEFT（LoRA）的參數</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">資料集格式</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">訓練參數設定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">微調究竟需要多少的記憶體？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">微調開始</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">資料集準備</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">部分程式碼</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">載入模型</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-lora">設定 PEFT（LoRA）的參數</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">資料集格式</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">訓練參數設定</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gguf">將訓練完的模型轉換成 GGUF 可用的格式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gguf">將訓練完的模型轉換成 GGUF 可用的格式</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">參考資料</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -354,15 +350,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day10-unsloth">
+<h1>【Day10】實際使用 Unsloth 來對模型微調<a class="headerlink" href="#day10-unsloth" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>前一天介紹了 Unsloth 這個工具可以快速對 LLM 模型進行微調的方法及優缺點（LoRA 和 QLoRA）。今天要實際操作看看如何準備一份簡單的資料集來對 llama3.2:3b 進行微調，並且將訓練完的模型轉換成 Ollama 可用的格式並且在本機運行。</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1>操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <p><a class="reference external" href="https://hsiangjenli.github.io/2025-it-help-ironman/challenges/Llama3_2_%283B%29_Unsloth.html"><img alt="" src="https://colab.research.google.com/assets/colab-badge.svg" /></a></p>
 <section id="id3">
-<h2>微調究竟需要多少的記憶體？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h3>微調究竟需要多少的記憶體？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Model parameters</p></th>
@@ -431,52 +429,52 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="id4">
-<h2>微調開始<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h3>微調開始<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>模型：llama3.2:3b</p></li>
 <li><p>微調方法：QLoRA（爲求快速，使用 4-bit 精度可以減少記憶體使用，但也會影響到模型的表現）</p></li>
 <li><p>資料集：<a class="reference external" href="https://github.com/python/python-docs-zh-tw">python-docs-zh-tw</a></p></li>
 </ul>
 <section id="id5">
-<h3>資料集準備<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<h4>資料集準備<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><a class="reference external" href="https://hsiangjenli.github.io/2025-it-help-ironman/_static/data/data.json"><code class="docutils literal notranslate"><span class="pre">data.json</span></code></a> 已上傳至 GitHub可直接下載
 <img alt="20250907002650" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250907002650.png" /></p></li>
 </ul>
 </section>
 <section id="id6">
-<h3>部分程式碼<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<h4>部分程式碼<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <section id="id7">
-<h4>載入模型<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<h5>載入模型<a class="headerlink" href="#id7" title="Link to this heading">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">unsloth</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastLanguageModel</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="n">max_seq_length</span> <span class="o">=</span> <span class="mi">2048</span> <span class="c1"># Choose any! We auto support RoPE Scaling internally!</span>
-<span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for Ampere+</span>
-<span class="n">load_in_4bit</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1"># Use 4bit quantization to reduce memory usage. Can be False.</span>
+<span class="n">max_seq_length</span> <span class="o">=</span> <span class="mi">2048</span> <span class="c1">## Choose any! We auto support RoPE Scaling internally!</span>
+<span class="n">dtype</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">## None for auto detection. Float16 for Tesla T4, V100, Bfloat16 for Ampere+</span>
+<span class="n">load_in_4bit</span> <span class="o">=</span> <span class="kc">True</span> <span class="c1">## Use 4bit quantization to reduce memory usage. Can be False.</span>
 
-<span class="c1"># 4bit pre quantized models we support for 4x faster downloading + no OOMs.</span>
+<span class="c1">## 4bit pre quantized models we support for 4x faster downloading + no OOMs.</span>
 <span class="n">fourbit_models</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s2">&quot;unsloth/Meta-Llama-3.1-8B-bnb-4bit&quot;</span><span class="p">,</span>      <span class="c1"># Llama-3.1 2x faster</span>
+    <span class="s2">&quot;unsloth/Meta-Llama-3.1-8B-bnb-4bit&quot;</span><span class="p">,</span>      <span class="c1">## Llama-3.1 2x faster</span>
     <span class="s2">&quot;unsloth/Meta-Llama-3.1-8B-Instruct-bnb-4bit&quot;</span><span class="p">,</span>
     <span class="s2">&quot;unsloth/Meta-Llama-3.1-70B-bnb-4bit&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;unsloth/Meta-Llama-3.1-405B-bnb-4bit&quot;</span><span class="p">,</span>    <span class="c1"># 4bit for 405b!</span>
-    <span class="s2">&quot;unsloth/Mistral-Small-Instruct-2409&quot;</span><span class="p">,</span>     <span class="c1"># Mistral 22b 2x faster!</span>
+    <span class="s2">&quot;unsloth/Meta-Llama-3.1-405B-bnb-4bit&quot;</span><span class="p">,</span>    <span class="c1">## 4bit for 405b!</span>
+    <span class="s2">&quot;unsloth/Mistral-Small-Instruct-2409&quot;</span><span class="p">,</span>     <span class="c1">## Mistral 22b 2x faster!</span>
     <span class="s2">&quot;unsloth/mistral-7b-instruct-v0.3-bnb-4bit&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;unsloth/Phi-3.5-mini-instruct&quot;</span><span class="p">,</span>           <span class="c1"># Phi-3.5 2x faster!</span>
+    <span class="s2">&quot;unsloth/Phi-3.5-mini-instruct&quot;</span><span class="p">,</span>           <span class="c1">## Phi-3.5 2x faster!</span>
     <span class="s2">&quot;unsloth/Phi-3-medium-4k-instruct&quot;</span><span class="p">,</span>
     <span class="s2">&quot;unsloth/gemma-2-9b-bnb-4bit&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;unsloth/gemma-2-27b-bnb-4bit&quot;</span><span class="p">,</span>            <span class="c1"># Gemma 2x faster!</span>
+    <span class="s2">&quot;unsloth/gemma-2-27b-bnb-4bit&quot;</span><span class="p">,</span>            <span class="c1">## Gemma 2x faster!</span>
 
-    <span class="s2">&quot;unsloth/Llama-3.2-1B-bnb-4bit&quot;</span><span class="p">,</span>           <span class="c1"># NEW! Llama 3.2 models</span>
+    <span class="s2">&quot;unsloth/Llama-3.2-1B-bnb-4bit&quot;</span><span class="p">,</span>           <span class="c1">## NEW! Llama 3.2 models</span>
     <span class="s2">&quot;unsloth/Llama-3.2-1B-Instruct-bnb-4bit&quot;</span><span class="p">,</span>
     <span class="s2">&quot;unsloth/Llama-3.2-3B-bnb-4bit&quot;</span><span class="p">,</span>
     <span class="s2">&quot;unsloth/Llama-3.2-3B-Instruct-bnb-4bit&quot;</span><span class="p">,</span>
 
-    <span class="s2">&quot;unsloth/Llama-3.3-70B-Instruct-bnb-4bit&quot;</span> <span class="c1"># NEW! Llama 3.3 70B!</span>
-<span class="p">]</span> <span class="c1"># More models at https://huggingface.co/unsloth</span>
+    <span class="s2">&quot;unsloth/Llama-3.3-70B-Instruct-bnb-4bit&quot;</span> <span class="c1">## NEW! Llama 3.3 70B!</span>
+<span class="p">]</span> <span class="c1">## More models at https://huggingface.co/unsloth</span>
 
 <span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;unsloth/Llama-3.2-3B-Instruct&quot;</span><span class="p">,</span> <span class="c1"># or choose &quot;unsloth/Llama-3.2-1B-Instruct&quot;</span>
+    <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;unsloth/Llama-3.2-3B-Instruct&quot;</span><span class="p">,</span> <span class="c1">## or choose &quot;unsloth/Llama-3.2-1B-Instruct&quot;</span>
     <span class="n">max_seq_length</span> <span class="o">=</span> <span class="n">max_seq_length</span><span class="p">,</span>
     <span class="n">dtype</span> <span class="o">=</span> <span class="n">dtype</span><span class="p">,</span>
     <span class="n">load_in_4bit</span> <span class="o">=</span> <span class="n">load_in_4bit</span><span class="p">,</span>
@@ -488,19 +486,19 @@ document.write(`
 </ul>
 </section>
 <section id="peft-lora">
-<h4>設定 PEFT（LoRA）的參數<a class="headerlink" href="#peft-lora" title="Link to this heading">#</a></h4>
+<h5>設定 PEFT（LoRA）的參數<a class="headerlink" href="#peft-lora" title="Link to this heading">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">FastLanguageModel</span><span class="o">.</span><span class="n">get_peft_model</span><span class="p">(</span>
     <span class="n">model</span><span class="p">,</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="c1"># Choose any number &gt; 0 ! Suggested 8, 16, 32, 64, 128</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span> <span class="c1">## Choose any number &gt; 0 ! Suggested 8, 16, 32, 64, 128</span>
     <span class="n">target_modules</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;k_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;v_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;o_proj&quot;</span><span class="p">,</span>
                       <span class="s2">&quot;gate_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;up_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;down_proj&quot;</span><span class="p">,],</span>
     <span class="n">lora_alpha</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
-    <span class="n">lora_dropout</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1"># Supports any, but = 0 is optimized</span>
-    <span class="n">bias</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>    <span class="c1"># Supports any, but = &quot;none&quot; is optimized</span>
-    <span class="n">use_gradient_checkpointing</span> <span class="o">=</span> <span class="s2">&quot;unsloth&quot;</span><span class="p">,</span> <span class="c1"># True or &quot;unsloth&quot; for very long context</span>
+    <span class="n">lora_dropout</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="c1">## Supports any, but = 0 is optimized</span>
+    <span class="n">bias</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span>    <span class="c1">## Supports any, but = &quot;none&quot; is optimized</span>
+    <span class="n">use_gradient_checkpointing</span> <span class="o">=</span> <span class="s2">&quot;unsloth&quot;</span><span class="p">,</span> <span class="c1">## True or &quot;unsloth&quot; for very long context</span>
     <span class="n">random_state</span> <span class="o">=</span> <span class="mi">3407</span><span class="p">,</span>
-    <span class="n">use_rslora</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1"># We support rank stabilized LoRA</span>
-    <span class="n">loftq_config</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="c1"># And LoftQ</span>
+    <span class="n">use_rslora</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>  <span class="c1">## We support rank stabilized LoRA</span>
+    <span class="n">loftq_config</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="c1">## And LoftQ</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -510,7 +508,7 @@ document.write(`
 </ul>
 </section>
 <section id="id8">
-<h4>資料集格式<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<h5>資料集格式<a class="headerlink" href="#id8" title="Link to this heading">#</a></h5>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>&lt;<span class="p">|</span>begin_of_text<span class="p">|</span>&gt;&lt;<span class="p">|</span>start_header_id<span class="p">|</span>&gt;system&lt;<span class="p">|</span>end_header_id<span class="p">|</span>&gt;
 
 Cutting<span class="w"> </span>Knowledge<span class="w"> </span>Date:<span class="w"> </span>December<span class="w"> </span><span class="m">2023</span>
@@ -525,7 +523,7 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
 </div>
 </section>
 <section id="id9">
-<h4>訓練參數設定<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<h5>訓練參數設定<a class="headerlink" href="#id9" title="Link to this heading">#</a></h5>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">trl</span><span class="w"> </span><span class="kn">import</span> <span class="n">SFTConfig</span><span class="p">,</span> <span class="n">SFTTrainer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataCollatorForSeq2Seq</span>
 <span class="n">trainer</span> <span class="o">=</span> <span class="n">SFTTrainer</span><span class="p">(</span>
@@ -535,12 +533,12 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
     <span class="n">dataset_text_field</span> <span class="o">=</span> <span class="s2">&quot;text&quot;</span><span class="p">,</span>
     <span class="n">max_seq_length</span> <span class="o">=</span> <span class="n">max_seq_length</span><span class="p">,</span>
     <span class="n">data_collator</span> <span class="o">=</span> <span class="n">DataCollatorForSeq2Seq</span><span class="p">(</span><span class="n">tokenizer</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">),</span>
-    <span class="n">packing</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="c1"># Can make training 5x faster for short sequences.</span>
+    <span class="n">packing</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="c1">## Can make training 5x faster for short sequences.</span>
     <span class="n">args</span> <span class="o">=</span> <span class="n">SFTConfig</span><span class="p">(</span>
         <span class="n">per_device_train_batch_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">gradient_accumulation_steps</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">warmup_steps</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="c1"># num_train_epochs = 1, # Set this for 1 full training run.</span>
+        <span class="c1">## num_train_epochs = 1, ## Set this for 1 full training run.</span>
         <span class="n">max_steps</span> <span class="o">=</span> <span class="mi">60</span><span class="p">,</span>
         <span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">2e-4</span><span class="p">,</span>
         <span class="n">logging_steps</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
@@ -549,7 +547,7 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
         <span class="n">lr_scheduler_type</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span><span class="p">,</span>
         <span class="n">seed</span> <span class="o">=</span> <span class="mi">3407</span><span class="p">,</span>
         <span class="n">output_dir</span> <span class="o">=</span> <span class="s2">&quot;outputs&quot;</span><span class="p">,</span>
-        <span class="n">report_to</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="c1"># Use this for WandB etc</span>
+        <span class="n">report_to</span> <span class="o">=</span> <span class="s2">&quot;none&quot;</span><span class="p">,</span> <span class="c1">## Use this for WandB etc</span>
     <span class="p">),</span>
 <span class="p">)</span>
 </pre></div>
@@ -559,7 +557,7 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
 </section>
 </section>
 <section id="gguf">
-<h2>將訓練完的模型轉換成 GGUF 可用的格式<a class="headerlink" href="#gguf" title="Link to this heading">#</a></h2>
+<h3>將訓練完的模型轉換成 GGUF 可用的格式<a class="headerlink" href="#gguf" title="Link to this heading">#</a></h3>
 <p>不知道為什麼 Unsloth 的 llama.cpp 轉換成 GGUF 時會出現問題，要先自己手動 clone llama.cpp 在本機編譯後才能成功轉換，而且不知道為什麼 <code class="docutils literal notranslate"><span class="pre">convert_hf_to_gguf.py</span></code> 的格式會跑掉，所以只好自己手動下載最新的 <code class="docutils literal notranslate"><span class="pre">convert_hf_to_gguf.py</span></code> 來使用。</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>!git<span class="w"> </span>clone<span class="w"> </span>--recursive<span class="w"> </span>https://github.com/ggerganov/llama.cpp
 !<span class="o">(</span><span class="nb">cd</span><span class="w"> </span>llama.cpp<span class="p">;</span><span class="w"> </span>cmake<span class="w"> </span>-B<span class="w"> </span>build<span class="p">;</span>cmake<span class="w"> </span>--build<span class="w"> </span>build<span class="w"> </span>--config<span class="w"> </span>Release<span class="o">)</span>
@@ -572,8 +570,8 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
 <p><img alt="20250908001335" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250908001335.png" /></p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id10">
-<h1>重點回顧<a class="headerlink" href="#id10" title="Link to this heading">#</a></h1>
+<section id="id10">
+<h2>重點回顧<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>瞭解使用 Unsloth 來對 LLM 模型進行微調所需要的記憶體需求</p></li>
 <li><p>準備一份簡單的資料集來對 llama3.2:3b 進行微調</p></li>
@@ -581,12 +579,13 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
 <li><p>處理 Unsloth 微調後的模型轉換成 GGUF 的方法（手動編譯 llama.cpp）</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id11">
-<h1>參考資料<a class="headerlink" href="#id11" title="Link to this heading">#</a></h1>
+<section id="id11">
+<h2>參考資料<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/unslothai/notebooks">unslothai/notebooks</a></p></li>
 <li><p><a class="reference external" href="https://www.reddit.com/r/LocalLLaMA/comments/1amjx77/how_to_convert_my_finetuned_model_to_gguf/">How to convert my fine-tuned model to .gguf ?</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -634,27 +633,26 @@ Today<span class="w"> </span>Date:<span class="w"> </span><span class="m">26</sp
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">微調究竟需要多少的記憶體？</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">微調開始</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">資料集準備</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">部分程式碼</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">載入模型</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-lora">設定 PEFT（LoRA）的參數</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">資料集格式</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">訓練參數設定</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">微調究竟需要多少的記憶體？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">微調開始</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">資料集準備</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">部分程式碼</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">載入模型</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-lora">設定 PEFT（LoRA）的參數</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">資料集格式</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">訓練參數設定</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gguf">將訓練完的模型轉換成 GGUF 可用的格式</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gguf">將訓練完的模型轉換成 GGUF 可用的格式</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">參考資料</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
