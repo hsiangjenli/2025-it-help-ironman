@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day11】介紹 llms.txt &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -168,10 +168,7 @@
 <li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
-
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day11】介紹 llms.txt</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -314,7 +311,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>介紹</h1>
+    <h1>【Day11】介紹 llms.txt</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -324,15 +321,14 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -343,13 +339,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day11-llms-txt">
+<h1>【Day11】介紹 llms.txt<a class="headerlink" href="#day11-llms-txt" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>聽過 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 嗎？這是一個放在網站根目錄的檔案，用來告訴搜尋引擎哪些頁面可以被爬取，哪些則應該避免。在傳統搜尋引擎的運作模式裡，<code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 幾乎是網站的標配。然而，隨著 LLM 越來越普及，單靠 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 已經不完全符合需求。</p>
 <p>新的標準 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 就是為了這個目的而提出的。它的作用不是限制，而是明確告訴 LLM 網站底下哪些路徑對應到什麼類型的內容。相比單純阻止 AI 爬蟲，更有效率的方式是直接提供內容的結構化描述。這樣一來，模型能更快、更準確地找到需要的資訊，而網站也能清楚表達哪些內容希望被模型理解和使用。</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id2">
-<h1>格式介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>格式介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>檔案存放位置：根目錄下的 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code></p></li>
 <li><p>格式：Markdown</p></li>
@@ -382,13 +380,13 @@ document.write(`
 </pre></div>
 </div>
 <section id="llms-txt">
-<h2>其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例<a class="headerlink" href="#llms-txt" title="Link to this heading">#</a></h2>
+<h3>其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例<a class="headerlink" href="#llms-txt" title="Link to this heading">#</a></h3>
 <p><img alt="20250908215800" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250908215800.png" /></p>
 <p>在 <a class="reference external" href="https://llmstxthub.com/">llms.txthub</a> 收集了很多網站的 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code>，可以看看其它網站是怎麼寫的。</p>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id3">
-<h1>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<section id="id3">
+<h2>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 與 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 的差異</p>
 <ul>
@@ -400,13 +398,14 @@ document.write(`
 <li><p>提供一個收錄多個網站 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 的網站</p></li>
 </ul>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="id4">
-<h1>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<section id="id4">
+<h2>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://pagerank.ing/what-is-llms-txt/">LLMs.txt 是什麼？</a></p></li>
 <li><p><a class="reference external" href="https://llmstxt.org/">The /llms.txt file</a></p></li>
 <li><p><a class="reference external" href="https://www.sonar-inc.com/what-is-llms-txt/">LLMs.txt 是什麼：AI 時代網站內容保護新規範</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -454,15 +453,14 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

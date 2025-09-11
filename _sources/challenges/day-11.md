@@ -1,10 +1,12 @@
-# 介紹
+# 【Day11】介紹 llms.txt
+
+## 介紹
 
 聽過 `robots.txt` 嗎？這是一個放在網站根目錄的檔案，用來告訴搜尋引擎哪些頁面可以被爬取，哪些則應該避免。在傳統搜尋引擎的運作模式裡，`robots.txt` 幾乎是網站的標配。然而，隨著 LLM 越來越普及，單靠 `robots.txt` 已經不完全符合需求。
 
 新的標準 `llms.txt` 就是為了這個目的而提出的。它的作用不是限制，而是明確告訴 LLM 網站底下哪些路徑對應到什麼類型的內容。相比單純阻止 AI 爬蟲，更有效率的方式是直接提供內容的結構化描述。這樣一來，模型能更快、更準確地找到需要的資訊，而網站也能清楚表達哪些內容希望被模型理解和使用。
 
-# 格式介紹
+## 格式介紹
 
 - 檔案存放位置：根目錄下的 `llms.txt`
 - 格式：Markdown
@@ -29,13 +31,13 @@
 - [單純連結](https://example.com/docs/installation)
 ```
 
-## 其它 `llms.txt` 範例
+### 其它 `llms.txt` 範例
 
 ![20250908215800](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250908215800.png)
 
 在 [llms.txthub](https://llmstxthub.com/) 收集了很多網站的 `llms.txt`，可以看看其它網站是怎麼寫的。
 
-# 重點回顧
+## 重點回顧
 
 - `llms.txt` 與 `robots.txt` 的差異
   - `llms.txt` 著重於理解網頁重點內容
@@ -44,7 +46,7 @@
 - 提供一個收錄多個網站 `llms.txt` 的網站
 
 
-# 參考資料
+## 參考資料
 
 - [LLMs.txt 是什麼？](https://pagerank.ing/what-is-llms-txt/)
 - [The /llms.txt file](https://llmstxt.org/)
