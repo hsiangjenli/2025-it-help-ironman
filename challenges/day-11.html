@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day09】Unsloth 模型微調方法 &#8212; 2025 iThome 鐵人賽</title>
+    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,14 +47,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-09';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-11';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day10】實際使用 Unsloth 來對模型微調" href="day-10.html" />
-    <link rel="prev" title="【Day08】客製化 Ollama 模型" href="day-08.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day10】實際使用 Unsloth 來對模型微調" href="day-10.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,9 +166,9 @@
 <li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day09】Unsloth 模型微調方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-11.html">介紹</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
 
 
 
@@ -232,7 +230,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-09.md" target="_blank"
+      <li><a href="../_sources/challenges/day-11.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -316,7 +314,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day09】Unsloth 模型微調方法</h1>
+    <h1>介紹</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,23 +324,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsloth">Unsloth 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型微調的方法介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-unsloth">PEFT @ Unsloth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lora">LoRA 基本原理</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w">原始矩陣 <span class="math notranslate nohighlight">\(W\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-w-ab">低秩分解 <span class="math notranslate nohighlight">\(\Delta W = AB\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w-w-delta-w">更新後的權重矩陣 <span class="math notranslate nohighlight">\(W' = W + \Delta W\)</span></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
-</ul>
+
             </nav>
         </div>
     </div>
@@ -353,146 +343,70 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day09unsloth">
-<h1>【Day09】Unsloth 模型微調方法<a class="headerlink" href="#day09unsloth" title="Link to this heading">#</a></h1>
-<section id="id1">
-<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>今天主要介紹的主題是關於 LLM 的微調（Fine-tuning），會簡單帶過微調的基本概念，然後介紹可以快速對 LLM 模型進行微調的工具 Unsloth，讓各位稍爲瞭解微調模型的基本資訊後，可以自己動手試試看。</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<p>聽過 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 嗎？這是一個放在網站根目錄的檔案，用來告訴搜尋引擎哪些頁面可以被爬取，哪些則應該避免。在傳統搜尋引擎的運作模式裡，<code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 幾乎是網站的標配。然而，隨著 LLM 越來越普及，單靠 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 已經不完全符合需求。</p>
+<p>新的標準 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 就是為了這個目的而提出的。它的作用不是限制，而是明確告訴 LLM 網站底下哪些路徑對應到什麼類型的內容。相比單純阻止 AI 爬蟲，更有效率的方式是直接提供內容的結構化描述。這樣一來，模型能更快、更準確地找到需要的資訊，而網站也能清楚表達哪些內容希望被模型理解和使用。</p>
 </section>
-<section id="unsloth">
-<h2>Unsloth 介紹<a class="headerlink" href="#unsloth" title="Link to this heading">#</a></h2>
-<p>Unsloth 是一款讓 LLM fine-tuning 變地更快、更省記憶體的開源工具，在 <a class="reference external" href="https://github.com/unslothai/notebooks">GitHub</a> 上提供了很多 Colab 模版，提供給使用者可以直接在 Colab 上進行微調訓練。</p>
-<section id="id2">
-<h3>模型微調的方法介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>因爲微調的範圍很廣，不是三言兩語可以說清楚的。這邊先做簡單的微調假設：（1）希望微調後的模型能夠在某個特定任務上表現更好；（2）沒有要壓縮模型大小（如：蒸餾、剪枝等）。基於以上假設，常見的微調方法有三種：</p>
-<ol class="arabic simple">
-<li><p>全模型微調（Full-model Tuning）：模型的所有權重都會被更新</p></li>
-<li><p>參數高效微調（Parameter-Efficient Fine-Tuning，PEFT）：凍結大部分的權重，只調整少量或特定的參數</p></li>
-<li><p>提示微調（Prompt Tuning/Soft Prompting）：不改變模型權重，只是調整輸入的提示詞</p></li>
-</ol>
-<section id="peft-unsloth">
-<h4>PEFT &#64; Unsloth<a class="headerlink" href="#peft-unsloth" title="Link to this heading">#</a></h4>
-<p>在 Unsloth 裡面，主要是使用 PEFT 的方法來進行微調，主要是因爲使用全模型微調的話，對於記憶體的需求會非常高，同時全模型微調不一定會帶來更好的效果。Unsloth 目前支援兩種 PEFT 的方法：</p>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>格式介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p>LoRA（Low-Rank Adaptation）：保持原始模型權重，只訓練少量低秩矩陣，透過在原有權重旁加上調整項 <span class="math notranslate nohighlight">\(\Delta W\)</span> 進行微調，可以減少記憶體的使用量</p></li>
-<li><p>QLoRA（Quantized LoRA）：在 LoRA 的基礎上，進一步將模型量化到 4-bit，可以降低記憶體的使用量</p></li>
+<li><p>檔案存放位置：根目錄下的 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code></p></li>
+<li><p>格式：Markdown</p></li>
+<li><p>內容格式：</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">H1</span> <span class="pre">標題（必要）</span></code>：網站或專案名稱</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">描述（選填）</span></code>：網站或專案的簡短描述</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">補充說明（選填）</span></code>：可以包含任何補充說明</p></li>
 </ul>
-</section>
-<section id="lora">
-<h4>LoRA 基本原理<a class="headerlink" href="#lora" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>數學符號</p></th>
-<th class="head text-left"><p>解釋</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(W'\)</span></p></td>
-<td class="text-left"><p>更新後的權重矩陣</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(W\)</span></p></td>
-<td class="text-left"><p>原始權重矩陣</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\Delta W\)</span></p></td>
-<td class="text-left"><p>調整項（由 LoRA 訓練得到）</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A, B\)</span></p></td>
-<td class="text-left"><p>低秩分解出的可訓練的矩陣</p></td>
-</tr>
-</tbody>
-</table>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">H2</span> <span class="pre">分類</span></code>：像是 <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Docs</span></code>、<code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Examples</span></code> 等等…</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">[連結名稱](網址):</span> <span class="pre">選填描述</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>像是下面這樣：</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># 示範網頁</span>
+
+<span class="k">&gt; </span><span class="ge">簡單的網站來示範 llms.txt 格式</span>
+
+這是一些補充說明，可以包含任何你想要的內容
+
+<span class="gu">## Docs</span>
+<span class="k">-</span><span class="w"> </span>[<span class="nt">有額外描述</span>](<span class="na">https://example.com/docs/getting-started</span>): 提供額外的文字描述
+<span class="k">-</span><span class="w"> </span>[<span class="nt">單純連結</span>](<span class="na">https://example.com/docs/installation</span>)
+</pre></div>
 </div>
+<section id="llms-txt">
+<h2>其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例<a class="headerlink" href="#llms-txt" title="Link to this heading">#</a></h2>
+<p><img alt="20250908215800" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250908215800.png" /></p>
+<p>在 <a class="reference external" href="https://llmstxthub.com/">llms.txthub</a> 收集了很多網站的 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code>，可以看看其它網站是怎麼寫的。</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id3">
+<h1>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(W' = W + \Delta{W}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\Delta{W} = A \times B\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 與 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 的差異</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 著重於理解網頁重點內容</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 著重於爬取規則</p></li>
 </ul>
-<section id="w">
-<h5>原始矩陣 <span class="math notranslate nohighlight">\(W\)</span><a class="headerlink" href="#w" title="Link to this heading">#</a></h5>
-<p><span class="math notranslate nohighlight">\(
-W =
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{n\times n}
-\)</span></p>
-</section>
-<section id="delta-w-ab">
-<h5>低秩分解 <span class="math notranslate nohighlight">\(\Delta W = AB\)</span><a class="headerlink" href="#delta-w-ab" title="Link to this heading">#</a></h5>
-<p><span class="math notranslate nohighlight">\(
-\Delta W = 
-\underbrace{\left[\begin{array}{c}
-\square \\
-\square \\
-\square \\
-\square \\
-\square \\
-\square \\
-\square \\
-\end{array}\right]}_{n\times r}
-\times
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{r\times n}
-= \underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{n\times n}
-\)</span></p>
-</section>
-<section id="w-w-delta-w">
-<h5>更新後的權重矩陣 <span class="math notranslate nohighlight">\(W' = W + \Delta W\)</span><a class="headerlink" href="#w-w-delta-w" title="Link to this heading">#</a></h5>
-<p><span class="math notranslate nohighlight">\(
-W' =
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{n\times n}
-\;+\;
-\left(
-\underbrace{\left[\begin{array}{c}
-\square \\ \square \\ \square \\ \square \\ \square \\ \square \\ \square
-\end{array}\right]}_{n\times r}
-\;\times\;
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square
-\end{array}\right]}_{r\times n}
-\right)
-\)</span></p>
-</section>
-</section>
-</section>
-</section>
-<section id="id3">
-<h2>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>介紹關於不調整模型權重以及調整模型權重的微調方法</p></li>
-<li><p>介紹 Unsloth 這個工具可以快速對 LLM 模型進行微調的方法及優缺點（LoRA 和 QLoRA）</p></li>
-<li><p>簡單視覺化 LoRA 的矩陣計算</p></li>
+</li>
+<li><p>介紹 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 的格式與範例</p></li>
+<li><p>提供一個收錄多個網站 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 的網站</p></li>
 </ul>
 </section>
-<section id="id4">
-<h2>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="id4">
+<h1>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.ibm.com/think/topics/lora">What is LoRA (low-rank adaption)?</a></p></li>
-<li><p><a class="reference external" href="https://onmine.io/are-you-still-using-lora-to-fine-tune-your-llm/">Are You Still Using LoRA to Fine-Tune Your LLM?</a></p></li>
-<li><p><a class="reference external" href="https://axk51013.medium.com/llm%E5%B0%88%E6%AC%84-all-about-lora-5bc7e447c234">【LLM專欄】All about Lora</a></p></li>
+<li><p><a class="reference external" href="https://pagerank.ing/what-is-llms-txt/">LLMs.txt 是什麼？</a></p></li>
+<li><p><a class="reference external" href="https://llmstxt.org/">The /llms.txt file</a></p></li>
+<li><p><a class="reference external" href="https://www.sonar-inc.com/what-is-llms-txt/">LLMs.txt 是什麼：AI 時代網站內容保護新規範</a></p></li>
 </ul>
-</section>
 </section>
 
 
@@ -507,20 +421,20 @@ W' =
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-08.html"
+       href="day-10.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day08】客製化 Ollama 模型</p>
+        <p class="prev-next-title">【Day10】實際使用 Unsloth 來對模型微調</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-10.html"
+       href="Llama3_2_%283B%29_Unsloth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day10】實際使用 Unsloth 來對模型微調</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -540,23 +454,15 @@ W' =
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsloth">Unsloth 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型微調的方法介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-unsloth">PEFT @ Unsloth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lora">LoRA 基本原理</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w">原始矩陣 <span class="math notranslate nohighlight">\(W\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-w-ab">低秩分解 <span class="math notranslate nohighlight">\(\Delta W = AB\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w-w-delta-w">更新後的權重矩陣 <span class="math notranslate nohighlight">\(W' = W + \Delta W\)</span></a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
 </ul>
 </li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
 </ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
-</ul>
+
   </nav></div>
 
 </div></div>
