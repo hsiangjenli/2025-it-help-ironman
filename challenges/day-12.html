@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day01】爲自己定一個目標吧！ &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day12】介紹 MCP &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,12 +47,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-01';</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-12';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day02】LLM 專有名詞整理" href="day-02.html" />
-    <link rel="prev" title="2025 iThome 鐵人賽" href="../index.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day11】介紹 llms.txt" href="day-11.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -158,7 +166,7 @@
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
@@ -169,7 +177,7 @@
 <li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day12】介紹 MCP</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -228,7 +236,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-01.md" target="_blank"
+      <li><a href="../_sources/challenges/day-12.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -312,7 +320,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day01】爲自己定一個目標吧！</h1>
+    <h1>【Day12】介紹 MCP</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -323,7 +331,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">預期目標</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcp">MCP 基本概念</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本架構</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">傳輸方式</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -335,20 +349,60 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day01">
-<h1>【Day01】爲自己定一個目標吧！<a class="headerlink" href="#day01" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day12-mcp">
+<h1>【Day12】介紹 MCP<a class="headerlink" href="#day12-mcp" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>感覺就像是昨天的事，自從 2022 年 OpenAI 發布 ChatGPT 以來，世界開始以極高速的節奏運轉。那時候的我覺得大型語言模型（LLM）離自己非常遙遠，至少對當時還是研究生的我而言，LLM 是一個遙不可及的存在。隨著時間推移，越來越多公司（如 Meta、Qwen、Mistral）推出較小型的模型，讓模型可以在個人電腦上運行。今年更迎來重大轉變，AI 開始跳脫對話框的限制，從單純的 AI Agent 發展成自主性更高的 Agentic AI，LLM 也逐漸融入現實世界，讓我開始深刻感受到自己也該跟上這波轉型的腳步。</p>
+<p>聽過 <a class="reference external" href="https://openai.com/index/function-calling-and-other-api-updates">Function Calling</a> 嗎？這個名詞是 OpenAI 在 2023 年 6 月提出的新概念，主要是讓 LLM 可以呼叫外部的 function 來取得資料或執行動作。不過這個概念並不是 OpenAI 獨有，其他的 LLM Provider 或是 AI Framework 也都有類似的功能，只是各自的實現方式不同。這也導致開發者在使用不同 LLM 或框架時，需要重新設計 Function Calling 的邏輯。因此，Antropic 就提出了一個新的標準出現，叫做 <a class="reference external" href="https://modelcontextprotocol.io/">Model Context Protocol（MCP）</a>，故名思義，MCP 的目標是要讓 LLM 可以透過一套統一的方式來呼叫外部工具，以獲取更多的上下文。</p>
+<blockquote>
+<div><p><strong>補充說明</strong></p>
+<p>在其它領域也有類似 MCP 的概念，如區塊鏈的「預言機」，目的是讓區塊鏈可以與真實世界互動（歷史總是驚人的相似）。</p>
+</div></blockquote>
 </section>
+<section id="mcp">
+<h2>MCP 基本概念<a class="headerlink" href="#mcp" title="Link to this heading">#</a></h2>
+<p>模型上下文協定（Model Context Protocol，MCP）是一種標準化的格式，用於描述 LLM 可以透過一套統一的方式來呼叫外部的 function 並取得資料或執行動作。</p>
 <section id="id2">
-<h2>預期目標<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<p>這次的目標有 3 個：</p>
-<ol class="arabic simple">
-<li><p>讓完全不瞭解 LLM、AI Agent、或 Agentic AI 的人可以慢慢瞭解到該領域背後各種專有名詞的意義</p></li>
-<li><p>整理目前自己所瞭解、開發過、有趣的開源 LLM 專案</p></li>
-<li><p>觸碰到比較冷門的題目，像是 LLM 的資安問題、維運等等…</p></li>
-</ol>
+<h3>基本架構<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<pre  class="mermaid">
+        flowchart TB
+    subgraph Host[&quot;MCP Host&quot;]
+        C1[&quot;MCP Client &quot;]
+    end
+
+    User --&gt; Host
+    C1 --&gt; S1[&quot;MCP Server 1&quot;]
+    C1 --&gt; S2[&quot;MCP Server 2&quot;]
+    C1 --&gt; S3[&quot;MCP Server 3&quot;]
+    </pre><ul class="simple">
+<li><p>MCP Host：AI 的應用程式，像是 GitHub Copilot、Claude 等等</p></li>
+<li><p>MCP Client：負責調解 MCP Host 與 MCP Server 之間的溝通</p></li>
+<li><p>MCP Server：提供上下文給 MCP Client 的程式</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>傳輸方式<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>STDIO：透過 standard input/output 來傳輸資料，適合在本機或容器中運行</p></li>
+<li><p>HTTP/SSE：透過 HTTP 或 Server-Sent Events 來傳輸資料，適合在網路環境中運行（支援常見的 HTTP 驗證，包括 Bearer Token、API Key 跟自訂 Header）</p></li>
+</ul>
+</section>
+</section>
+<section id="id4">
+<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>介紹 MCP 短暫的歷史背景</p></li>
+<li><p>理解 MCP 所要解決的問題（透過與外部互動，獲取更多的上下文給 LLM）</p></li>
+<li><p>熟悉 MCP 的基本架構與傳輸方式</p></li>
+</ul>
+</section>
+<section id="id5">
+<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://openai.com/index/function-calling-and-other-api-updates">Open AI - Function Calling</a></p></li>
+<li><p><a class="reference external" href="https://modelcontextprotocol.io/docs/learn/architecture">MCP - Architecture overview</a></p></li>
+<li><p><a class="reference external" href="https://academy.binance.com/zh-TC/articles/blockchain-oracles-explained">區塊鏈預言機介紹</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -364,20 +418,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../index.html"
+       href="day-11.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">2025 iThome 鐵人賽</p>
+        <p class="prev-next-title">【Day11】介紹 llms.txt</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-02.html"
+       href="Llama3_2_%283B%29_Unsloth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day02】LLM 專有名詞整理</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -398,7 +452,13 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">預期目標</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcp">MCP 基本概念</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本架構</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">傳輸方式</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
   </nav></div>
 
