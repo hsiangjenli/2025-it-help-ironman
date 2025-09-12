@@ -1,6 +1,10 @@
 # 介紹
 
-聽過 [Function Calling](https://openai.com/index/function-calling-and-other-api-updates) 嗎？這個名詞是 OpenAI 在 2023 年 6 月提出的新概念，主要是讓 LLM 可以呼叫外部的 function 來取得資料或執行動作。不過這個概念並不是 OpenAI 獨有，其他的 LLM 供應商與 AI 框架也都有類似的功能，只是各自的實作方式不盡相同。這也導致開發者在使用不同 LLM 或框架時，往往需要重新設計 Function Calling 的邏輯。後來，就有一個新的標準出現，叫做 [Model Context Protocol（MCP）](https://modelcontextprotocol.io/)，由 Anthropic 所提出。
+聽過 [Function Calling](https://openai.com/index/function-calling-and-other-api-updates) 嗎？這個名詞是 OpenAI 在 2023 年 6 月提出的新概念，主要是讓 LLM 可以呼叫外部的 function 來取得資料或執行動作。不過這個概念並不是 OpenAI 獨有，其他的 LLM Provider 或是 AI Framework 也都有類似的功能，只是各自的實現方式不同。這也導致開發者在使用不同 LLM 或框架時，需要重新設計 Function Calling 的邏輯。因此，Antropic 就提出了一個新的標準出現，叫做 [Model Context Protocol（MCP）](https://modelcontextprotocol.io/)，故名思義，MCP 的目標是要讓 LLM 可以透過一套統一的方式來呼叫外部工具，以獲取更多的上下文。
+
+> **補充說明**
+>
+> 在其它領域也有類似 MCP 的概念，如區塊鏈的「預言機」，目的是讓區塊鏈可以與真實世界互動（歷史總是驚人的相似）。
 
 # MCP 基本概念
 
@@ -39,3 +43,4 @@ flowchart TB
 
 - [Open AI - Function Calling](https://openai.com/index/function-calling-and-other-api-updates)
 - [MCP - Architecture overview](https://modelcontextprotocol.io/docs/learn/architecture)
+- [區塊鏈預言機介紹](https://academy.binance.com/zh-TC/articles/blockchain-oracles-explained)
