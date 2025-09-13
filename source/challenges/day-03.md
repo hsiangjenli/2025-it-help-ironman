@@ -33,7 +33,7 @@ sequenceDiagram
     participant MCP_Tools as MCP Tools
     participant Output
 
-    Global->>Memory: 提供專案目標與撰寫規範
+    Global->>Task: 提供專案目標與撰寫規範
     Memory->>Task: 提供短期/長期記憶與 RAG 結果
     Task->>MCP_Tools: 呼叫可用工具
     MCP_Tools-->>Task: 回傳工具執行結果
