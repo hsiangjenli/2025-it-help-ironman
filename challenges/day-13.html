@@ -1,0 +1,681 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖 &#8212; 2025 iThome 鐵人賽</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=d35f5538" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-13';</script>
+    <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day12】介紹 MCP" href="day-12.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">2025 iThome 鐵人賽</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Llama3_2_%283B%29_Unsloth.html">Unsloth + Llama3.2:3b 微調測試</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/challenges/day-13.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mcp-server">如何執行 MCP Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">開發的語言</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">執行的指令與平常開發有何不同</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">MCP Server 的設定檔</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#github-copilot">GitHub Copilot</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#claude-code">Claude Code</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codex">Codex</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-diagram-mcp-server">實際使用 AWS Diagram MCP Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">Prompt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實際產出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day13-mcp-server-github-copilot">
+<h1>【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖<a class="headerlink" href="#day13-mcp-server-github-copilot" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>既然已經簡單介紹了 MCP 的基本概念，接下來就是實際操作了，先從最簡單的開始，今天要介紹如何讓自己的 AI Agent 可以使用現成的 MCP Server。</p>
+</section>
+<section id="id2">
+<h2>操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="mcp-server">
+<h3>如何執行 MCP Server<a class="headerlink" href="#mcp-server" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h4>開發的語言<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>目前的 MCP Server 都是由 JavaScript、Node.js 或是 Python 來進行開發，另外也有使用 Docker 來封裝 MCP Server，這樣的好處是可以避免環境不相容的問題。</p>
+</section>
+<section id="id4">
+<h4>執行的指令與平常開發有何不同<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>因爲 MCP Server 跟一般的開發不太一樣，像是 Node.js 可能會比較習慣使用 <code class="docutils literal notranslate"><span class="pre">npm</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">nvm</span></code> 等指令來管理套件或是版本，但是 MCP Server 是一個獨立的應用程式，而且是希望可以直接執行的，所以大部份使用 Node.js 開發的 MCP Server 都會使用 <code class="docutils literal notranslate"><span class="pre">npx</span></code> 來執行。使用 <code class="docutils literal notranslate"><span class="pre">npx</span></code> 的好處是可以直接執行套件（執行完之後不會安裝在系統中），可以減少污染的問題。至於 Python 的部分，則是使用 <code class="docutils literal notranslate"><span class="pre">uv</span></code> 或是 <code class="docutils literal notranslate"><span class="pre">uvx</span></code> 都有，<code class="docutils literal notranslate"><span class="pre">uv</span></code> 主要是用來管理 Python 的虛擬環境，但是可以藉由 <code class="docutils literal notranslate"><span class="pre">--with</span> <span class="pre">{package_name}</span></code>，讓程式執行的時候立刻安裝套件（一次性），避免污染系統。</p>
+</section>
+<section id="id5">
+<h4>MCP Server 的設定檔<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>基本上 MCP Server 的設定檔都包含以下幾個部分：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">command</span></code>：執行的指令（<code class="docutils literal notranslate"><span class="pre">npx</span></code>、<code class="docutils literal notranslate"><span class="pre">uv</span></code>、<code class="docutils literal notranslate"><span class="pre">uvx</span></code>、<code class="docutils literal notranslate"><span class="pre">docker</span></code>）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">args</span></code>：執行的參數</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">env</span></code>：環境變數</p></li>
+</ul>
+<section id="github-copilot">
+<h5>GitHub Copilot<a class="headerlink" href="#github-copilot" title="Link to this heading">#</a></h5>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;github&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;docker&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;-i&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;--rm&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;-e&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;GITHUB_PERSONAL_ACCESS_TOKEN&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;ghcr.io/github/github-mcp-server&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;GITHUB_PERSONAL_ACCESS_TOKEN&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${input:github_token}&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="claude-code">
+<h5>Claude Code<a class="headerlink" href="#claude-code" title="Link to this heading">#</a></h5>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;mcpServers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;server-name&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/path/to/server&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span>
+<span class="w">      </span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="codex">
+<h5>Codex<a class="headerlink" href="#codex" title="Link to this heading">#</a></h5>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[mcp_servers.server-name]</span>
+<span class="n">command</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;npx&quot;</span>
+<span class="n">args</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;-y&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mcp-server&quot;</span><span class="p">]</span>
+<span class="n">env</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;API_KEY&quot;</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="w"> </span><span class="p">}</span>
+<span class="c1"># Optional: override the default 10s startup timeout</span>
+<span class="n">startup_timeout_ms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20_000</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="aws-diagram-mcp-server">
+<h3>實際使用 AWS Diagram MCP Server<a class="headerlink" href="#aws-diagram-mcp-server" title="Link to this heading">#</a></h3>
+<p>接下來我們就以 <a class="reference external" href="https://awslabs.github.io/mcp/servers/aws-diagram-mcp-server/">AWS Diagram MCP Server</a> 來進行示範，這個 MCP Server 是讓 AI Agent 可以使用 <a class="reference external" href="https://github.com/mingrammer/diagrams"><code class="docutils literal notranslate"><span class="pre">diagrams</span></code></a> 這個工具來繪製 AWS 架構圖。</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">	</span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">		</span><span class="nt">&quot;aws-diagram&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">			</span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stdio&quot;</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uvx&quot;</span><span class="p">,</span>
+<span class="w">			</span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">				</span><span class="s2">&quot;awslabs.aws-diagram-mcp-server&quot;</span>
+<span class="w">			</span><span class="p">],</span>
+<span class="w">			</span><span class="nt">&quot;env&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span>
+<span class="w">			</span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}&quot;</span>
+<span class="w">		</span><span class="p">}</span>
+<span class="w">	</span><span class="p">},</span>
+<span class="w">	</span><span class="nt">&quot;inputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="prompt">
+<h4>Prompt<a class="headerlink" href="#prompt" title="Link to this heading">#</a></h4>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>幫我繪製一個 AWS 架構圖
+
+目的：在蒐集足夠訓練資料後，自動重新根據資料來調整/訓練模型
+
+主要功能：
+<span class="k">1.</span> 使用 S3 來存放訓練資料（人體辨識）
+<span class="k">2.</span> 每當資料蒐集滿 1000 張，自動觸發訓練的 pipeline
+<span class="k">3.</span> 訓練完後，將模型權重存起來
+
+目前我還不知道 AWS 哪些服務可以達成，請根據我的需求幫我完成整個架構設計，並告訴我每個服務的用處
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h4>實際產出<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>讓我重新為你繪製人體辨識 ML Training Pipeline 的 AWS 架構圖： 太好了！我成功為你生成了完整的 AWS 機器學習 pipeline 架構圖。圖表已保存在 ml_training_pipeline.png。
+
+<span class="gu">## 🏗️ **AWS 架構設計說明**</span>
+
+<span class="gu">### 📊 **各 AWS 服務的用途與功能**</span>
+
+<span class="gu">#### **1. 資料收集與儲存層**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon S3 (原始訓練資料)**</span>: 儲存人體辨識的原始圖片，具有高可用性和無限擴展性
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon S3 (預處理後資料)**</span>: 儲存經過標準化處理的訓練資料
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon S3 (模型權重儲存)**</span>: 儲存訓練完成的模型權重和相關檔案
+
+<span class="gu">#### **2. 自動化觸發系統**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon CloudWatch Events**</span>: 監控 S3 事件，當檔案上傳時觸發
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon EventBridge**</span>: 事件路由服務，協調不同服務間的通訊
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon SQS**</span>: 訊息佇列，確保訓練任務的可靠執行和錯誤處理
+
+<span class="gu">#### **3. 資料預處理層**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**AWS Lambda (檔案計數器)**</span>: 
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>追蹤 S3 中的檔案數量
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>當達到 1000 張圖片時觸發訓練流程
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>成本效益高，無需維護伺服器
+<span class="k">-</span><span class="w"> </span><span class="gs">**AWS Lambda (資料預處理)**</span>: 
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>執行影像標準化（調整大小、格式轉換等）
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>資料清理和品質檢查
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon DynamoDB**</span>: 
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>追蹤訓練狀態和進度
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>儲存檔案計數和訓練歷史
+
+<span class="gu">#### **4. 機器學習訓練層**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon SageMaker**</span>: 
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>完全託管的機器學習平台
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>自動擴展運算資源
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>支援多種深度學習框架（TensorFlow、PyTorch 等）
+<span class="k">-</span><span class="w"> </span><span class="gs">**SageMaker Training Job**</span>: 
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>執行人體辨識模型訓練
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>支援分散式訓練和 GPU 加速
+<span class="k">-</span><span class="w"> </span><span class="gs">**SageMaker Model Registry**</span>: 
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>模型版本管理
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>模型部署和回滾功能
+
+<span class="gu">#### **5. 監控與通知層**</span>
+<span class="k">-</span><span class="w"> </span><span class="gs">**CloudWatch Logs**</span>: 記錄訓練過程中的所有日誌
+<span class="k">-</span><span class="w"> </span><span class="gs">**Amazon SNS**</span>: 訓練完成後發送通知給研究人員
+
+<span class="gu">## 🔄 **工作流程說明**</span>
+
+<span class="k">1.</span> <span class="gs">**資料上傳**</span>: 研究人員將人體辨識圖片上傳到 S3
+<span class="k">2.</span> <span class="gs">**自動計數**</span>: Lambda 函數自動計算檔案數量並更新 DynamoDB
+<span class="k">3.</span> <span class="gs">**觸發條件**</span>: 當達到 1000 張圖片時，CloudWatch Events 觸發 EventBridge
+<span class="k">4.</span> <span class="gs">**佇列處理**</span>: 訓練任務被加入 SQS 佇列，確保可靠執行
+<span class="k">5.</span> <span class="gs">**資料預處理**</span>: Lambda 函數執行影像預處理並儲存到專用 S3 bucket
+<span class="k">6.</span> <span class="gs">**模型訓練**</span>: SageMaker 自動啟動訓練任務
+<span class="k">7.</span> <span class="gs">**模型儲存**</span>: 訓練完成的模型權重儲存到 S3 和 Model Registry
+<span class="k">8.</span> <span class="gs">**通知完成**</span>: 透過 SNS 通知研究人員訓練完成
+
+<span class="gu">## 💰 **成本優化特點**</span>
+
+<span class="k">-</span><span class="w"> </span><span class="gs">**無伺服器架構**</span>: Lambda 和 SageMaker 按使用量計費
+<span class="k">-</span><span class="w"> </span><span class="gs">**自動擴展**</span>: 根據需求動態調整資源
+<span class="k">-</span><span class="w"> </span><span class="gs">**儲存分層**</span>: 使用 S3 的不同儲存類別優化成本
+
+這個架構提供了完整的自動化 ML pipeline，能夠滿足你的所有需求！
+</pre></div>
+</div>
+<p><img alt="ml_training_pipeline" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/ml_training_pipeline.png" /></p>
+<blockquote>
+<div><p><strong>補充說明</strong>：</p>
+<p>雖然最後面 AI Agent 成功產出架構圖，但是筆者總共試了 2 種執行 MCP Server 的方法（<code class="docutils literal notranslate"><span class="pre">uvx</span></code> 以及 <code class="docutils literal notranslate"><span class="pre">docker</span></code>），使用體驗不是特別好（總步數 20 多步才出繪製成功）。在使用 Docker 的時候，中間卡在 mcp server 是在 docker 裏面執行，雖然有把當前的工作目錄掛載進去，但是 AI Agent 最後在存檔的時候還是不停搞錯路徑（要把 docker 內的圖片 cp 出來，但是 cp 的指令是在容器外執行，就是頗麻煩，還要去確認容器的工作目錄）。最後是透過在本機端強制安裝套件，再把檔案匯出成 png 檔案，才成功的把圖片存下來。</p>
+</div></blockquote>
+</section>
+</section>
+</section>
+<section id="id7">
+<h2>重點回顧<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>介紹 GitHub Copilot、Claude Code、Codex 三個 MCP Server 的設定方式（2 個 Json、1 個 toml）</p></li>
+<li><p>實際操作 AWS Diagram MCP Server，讓 AI Agent 可以繪製 AWS 架構圖（發現一些存取路徑的問題）</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp/use-the-github-mcp-server#local-mcp-server-setup">Local MCP server setup</a></p></li>
+<li><p><a class="reference external" href="https://docs.anthropic.com/en/docs/claude-code/mcp#project-scope">Claude Code MCP</a></p></li>
+<li><p><a class="reference external" href="https://github.com/openai/codex/blob/main/docs/config.md#mcp_servers">Codex MCP</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="day-12.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day12】介紹 MCP</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Llama3_2_%283B%29_Unsloth.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mcp-server">如何執行 MCP Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">開發的語言</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">執行的指令與平常開發有何不同</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">MCP Server 的設定檔</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#github-copilot">GitHub Copilot</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#claude-code">Claude Code</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#codex">Codex</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aws-diagram-mcp-server">實際使用 AWS Diagram MCP Server</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">Prompt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實際產出</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hsiang-Jen Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Hsiang-Jen Li.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
