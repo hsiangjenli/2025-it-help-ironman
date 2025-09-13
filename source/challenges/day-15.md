@@ -8,7 +8,7 @@
 
 > **補充說明**
 >
-> 筆者認爲 MCP 目前還在發展階段，因此本次的介紹並不一定是最好的解決方案，主要著重的點在於提供各位一些 mindset，讓各位可以知道在企業環境中，如何去管理 MCP Server 以及 MCP Server 的一些注意事項。
+> 筆者認爲 MCP 目前還在發展階段，因此本次的介紹並不一定是最好的解決方案，主要著重的點在於提供各位一些 mindset，讓各位可以知道在企業環境中，可能可以怎麼管理 MCP Server 以及 MCP Server 的一些注意事項。
 
 # 介紹 `IBM/mcp-context-forge`
 
@@ -21,6 +21,7 @@
 
 - 使用 local network
 - Admin UI：http://localhost:4444/admin
+- Docs Swagger：http://localhost:4444/docs
 - user：`admin`
 - pass：`changeme`
 
