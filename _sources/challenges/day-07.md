@@ -105,11 +105,11 @@ Environment Variables:
 
 | 模型          | MacOS - M2（24GB RAM） | Ubuntu 24.04 - Intel® Core™ i5-13500H (40GB RAM) |
 |:--------------|:-----------------------|:---------------------------------------------------|
-| `llama3.1:8b` | 36.71/token/s          | 0.89 token/s                                       |
-| `llama3.2:3b` | 17.97 token/s          | 2.02 token/s                                       |
+| `llama3.1:8b` | 17.97 token/s          | 0.89 token/s                                       |
+| `llama3.2:3b` | 36.71 token/s          | 2.02 token/s                                       |
 | `gpt-oss:20b` | 15.00 token/s          | 1.87 token/s                                       |
 
-> 令人意外，`gpt-oss:20b` 的速度竟然與 `llama3.1:8b` 差不多
+> 令人意外，`gpt-oss:20b` 的速度竟然這麼快
 
 <details>
 
