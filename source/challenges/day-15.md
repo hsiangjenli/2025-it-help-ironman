@@ -12,10 +12,25 @@
 
 # 介紹 `IBM/mcp-context-forge`
 
+## 目標
+
+提供一個「集中管理」 MCP Gateway，可以讓多個 MCP Server 與 RESTful API 使用一個單一端點
+
 ## 要解決的問題
 
-## 
+1. **多傳輸/協定不一致**：目前 MCP Server 支援多種通訊方式（HTTP / SSE / WebSocket / stdio / streamable-HTTP 等），同時不同的 LLM Provider 的設定檔格式也不太一樣（JSON、TOML 等）
+1. **分散管理**：目前 MCP Server 都是分散在開發者的電腦上，無法集中管理以及版本控制
+1. **授權機制**：目前沒有統一的授權機制
+1. **缺乏 Observability**：目前沒有辦法 observe MCP Server 的使用狀況（呼叫、延遲、錯誤率等）
 
+## 特色
+
+1. **統一 Gateway**：單一個端點來管理多個 MCP Server 以及 RESTful API
+1. **虛擬 MCP Server**：可以把多個相關的 MCP Server 打包成一個虛擬的 MCP Server，讓使用者只需要配置一個 MCP Server
+1. **API 轉換**：可以把 RESTful API 轉換成 MCP Server，省去重新開發 MCP Server 的麻煩，直接使用現有的 RESTful API
+1. **管理員界面**：提供一個 Admin UI 來管理 MCP Server
+1. **認證機制**：支援多種認證機制（JWT、SSO 等等）
+1. **Observability**：搭配 OpenTelemetry 來觀察 MCP Server 的使用狀況
 
 # 實際操作
 
