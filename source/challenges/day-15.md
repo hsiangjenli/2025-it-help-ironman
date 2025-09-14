@@ -61,6 +61,24 @@ docker run -d --name mcpgateway \
   ghcr.io/ibm/mcp-context-forge:0.6.0
 ```
 
+## 使用 Admin UI 界面
+
+![20250914123133](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914123133.png)
+
+本次文章比較著重跟 MCP 管理以及監測的功能分別在 NavBar 的：
+
+1. **Virtual Servers Catalog**：把多個工具打包成一台對外的 MCP Server
+1. **Gateways / MCP Servers**：把需要管理的 MCP Server 加進去管理的 Registry 頁面
+1. **Metrics**：觀察 MCP Server 的使用狀況
+1. **Logs**：查看 MCP Server 的日誌
+
 # 重點回顧
 
+- 簡單介紹 MCP 的 Enterprise-Level 管理解決方案 [`IBM/mcp-context-forge`](https://github.com/IBM/mcp-context-forge)
+- 列出目前在使用 MCP Server 時，可能會遇到的問題（多傳輸/協定不一致、分散管理、授權機制、缺乏 Observability）
+- 透過 Docker 快速安裝 MCP Gateway
+- 筆者認爲 MCP 目前還在發展階段，多多觀察爲妥
+
 # 參考資料
+
+- [IBM/mcp-context-forge](https://github.com/IBM/mcp-context-forge)
