@@ -1,6 +1,6 @@
 # 介紹
 
-昨天已經介紹了 MCP 這個協定，今天不免俗的要來實做一下，網路上有很多 MCP Library 可以協助開發人員快速的開發 MCP 工具，像是 Antropic 的 [`modelcontextprotocol/python-sdk`](https://github.com/modelcontextprotocol/python-sdk)，但是對於開發者來說，爲了 LLM 還要額外去開發 MCP 相關的程式碼其實跟當初 MCP 出現的初衷背道而馳（目的就是要統一不同 LLM 的 Function Calling 機制），所以今天要介紹一個更簡單的工具 [`fastmcp`](https://github.com/jlowin/fastmcp)，這個工具可以直接把原本的 OpenAPI（或是 FastAPI）轉換成 MCP 的介面，讓開發者可以只需要專注在 API 的開發上。
+昨天已經實際操作過 MCP Server，今天不免俗的要來實做一下，網路上有很多 MCP Library 可以協助開發人員快速的開發 MCP 工具，像是 Antropic 的 [`modelcontextprotocol/python-sdk`](https://github.com/modelcontextprotocol/python-sdk)，但是對於開發者來說，爲了 LLM 還要額外去開發 MCP 相關的程式碼其實跟當初 MCP 出現的初衷背道而馳（目的就是要統一不同 LLM 的 Function Calling 機制），所以今天要介紹一個更簡單的工具 [`fastmcp`](https://github.com/jlowin/fastmcp)，這個工具可以直接把原本的 OpenAPI（或是 FastAPI）轉換成 MCP 的介面，讓開發者可以只需要專注在 API 的開發上。
 
 # 實際使用 fastmcp 進行 MCP 開發
 
