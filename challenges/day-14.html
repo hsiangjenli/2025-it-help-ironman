@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day11】介紹 llms.txt &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day14】使用 fastmcp 進行 MCP 開發 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,12 +47,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-11';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-14';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day12】介紹 MCP" href="day-12.html" />
-    <link rel="prev" title="【Day10】實際使用 Unsloth 來對模型微調" href="day-10.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖" href="day-13.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,10 +168,10 @@
 <li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day11】介紹 llms.txt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -230,7 +230,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-11.md" target="_blank"
+      <li><a href="../_sources/challenges/day-14.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -314,7 +314,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day11】介紹 llms.txt</h1>
+    <h1>【Day14】使用 fastmcp 進行 MCP 開發</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -325,8 +325,15 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fastmcp-mcp">實際使用 fastmcp 進行 MCP 開發</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repo">實際拉 Repo 下來</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python">配置 python 虛擬環境</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi-mcp">建立 FastAPI 以及轉換成 MCP 格式的程式碼</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">在本地運行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vscode-mcp">在 VSCode 中配置 MCP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#github-copilot">透過 GitHub Copilot 確認是否可以使用</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
@@ -342,71 +349,128 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day11-llms-txt">
-<h1>【Day11】介紹 llms.txt<a class="headerlink" href="#day11-llms-txt" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day14-fastmcp-mcp">
+<h1>【Day14】使用 fastmcp 進行 MCP 開發<a class="headerlink" href="#day14-fastmcp-mcp" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>聽過 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 嗎？這是一個放在網站根目錄的檔案，用來告訴搜尋引擎哪些頁面可以被爬取，哪些則應該避免。在傳統搜尋引擎的運作模式裡，<code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 幾乎是網站的標配。然而，隨著 LLM 越來越普及，單靠 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 已經不完全符合需求。</p>
-<p>新的標準 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 就是為了這個目的而提出的。它的作用不是限制，而是明確告訴 LLM 網站底下哪些路徑對應到什麼類型的內容。相比單純阻止 AI 爬蟲，更有效率的方式是直接提供內容的結構化描述。這樣一來，模型能更快、更準確地找到需要的資訊，而網站也能清楚表達哪些內容希望被模型理解和使用。</p>
+<p>昨天已經實際操作過 MCP Server，今天不免俗的要來實做一下，網路上有很多 MCP Library 可以協助開發人員快速的開發 MCP 工具，像是 Antropic 的 <a class="reference external" href="https://github.com/modelcontextprotocol/python-sdk"><code class="docutils literal notranslate"><span class="pre">modelcontextprotocol/python-sdk</span></code></a>，但是對於開發者來說，爲了 LLM 還要額外去開發 MCP 相關的程式碼其實跟當初 MCP 出現的初衷背道而馳（目的就是要統一不同 LLM 的 Function Calling 機制），所以今天要介紹一個更簡單的工具 <a class="reference external" href="https://github.com/jlowin/fastmcp"><code class="docutils literal notranslate"><span class="pre">fastmcp</span></code></a>，這個工具可以直接把原本的 OpenAPI（或是 FastAPI）轉換成 MCP 的介面，讓開發者可以只需要專注在 API 的開發上。</p>
 </section>
-<section id="id2">
-<h2>格式介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>檔案存放位置：根目錄下的 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code></p></li>
-<li><p>格式：Markdown</p></li>
-<li><p>內容格式：</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">H1</span> <span class="pre">標題（必要）</span></code>：網站或專案名稱</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">描述（選填）</span></code>：網站或專案的簡短描述</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">補充說明（選填）</span></code>：可以包含任何補充說明</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">H2</span> <span class="pre">分類</span></code>：像是 <code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Docs</span></code>、<code class="docutils literal notranslate"><span class="pre">##</span> <span class="pre">Examples</span></code> 等等…</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">[連結名稱](網址):</span> <span class="pre">選填描述</span></code></p></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>像是下面這樣：</p>
-<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># 示範網頁</span>
-
-<span class="k">&gt; </span><span class="ge">簡單的網站來示範 llms.txt 格式</span>
-
-這是一些補充說明，可以包含任何你想要的內容
-
-<span class="gu">## Docs</span>
-<span class="k">-</span><span class="w"> </span>[<span class="nt">有額外描述</span>](<span class="na">https://example.com/docs/getting-started</span>): 提供額外的文字描述
-<span class="k">-</span><span class="w"> </span>[<span class="nt">單純連結</span>](<span class="na">https://example.com/docs/installation</span>)
+<section id="fastmcp-mcp">
+<h2>實際使用 fastmcp 進行 MCP 開發<a class="headerlink" href="#fastmcp-mcp" title="Link to this heading">#</a></h2>
+<p><img alt="20250909215700" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250909215700.png" /></p>
+<p>詳細程式碼請參考 <a class="reference external" href="https://github.com/hsiangjenli/python-mcp-template"><code class="docutils literal notranslate"><span class="pre">hsiangjenli/python-mcp-template</span></code></a>，裡面包含了如何從 FastAPI 轉換成 MCP 以及將 MCP 容器化成 Docker Image。</p>
+<section id="repo">
+<h3>實際拉 Repo 下來<a class="headerlink" href="#repo" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hsiangjenli/python-mcp-template
+<span class="nb">cd</span><span class="w"> </span>python-mcp-template
 </pre></div>
 </div>
-<section id="llms-txt">
-<h3>其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例<a class="headerlink" href="#llms-txt" title="Link to this heading">#</a></h3>
-<p><img alt="20250908215800" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250908215800.png" /></p>
-<p>在 <a class="reference external" href="https://llmstxthub.com/">llms.txthub</a> 收集了很多網站的 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code>，可以看看其它網站是怎麼寫的。</p>
+<section id="python">
+<h4>配置 python 虛擬環境<a class="headerlink" href="#python" title="Link to this heading">#</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>sync
+</pre></div>
+</div>
+</section>
+<section id="fastapi-mcp">
+<h4>建立 FastAPI 以及轉換成 MCP 格式的程式碼<a class="headerlink" href="#fastapi-mcp" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># main.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastapi</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastAPI</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">fastmcp</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastMCP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mcp_tools.schemas</span><span class="w"> </span><span class="kn">import</span> <span class="n">NewEndpointRequest</span><span class="p">,</span> <span class="n">NewEndpointResponse</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">FastAPI</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Python MCP Template&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A template for creating MCP-compliant FastAPI services.&quot;</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">&quot;0.1.0&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+    <span class="s2">&quot;/new/endpoint/&quot;</span><span class="p">,</span> <span class="n">operation_id</span><span class="o">=</span><span class="s2">&quot;new_endpoint&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">NewEndpointResponse</span>
+<span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">new_endpoint</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">NewEndpointRequest</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;message&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">!&quot;</span><span class="p">}</span>
+
+
+<span class="n">mcp</span> <span class="o">=</span> <span class="n">FastMCP</span><span class="o">.</span><span class="n">from_fastapi</span><span class="p">(</span><span class="n">app</span><span class="o">=</span><span class="n">app</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">mcp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">## schemas.py</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Field</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NewEndpointResponse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">message</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span><span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;A welcome message.&quot;</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NewEndpointRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Field</span><span class="p">(</span>
+        <span class="o">...</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s2">&quot;The name to include in the message.&quot;</span><span class="p">,</span> <span class="n">example</span><span class="o">=</span><span class="s2">&quot;developer&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>在本地運行<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>run<span class="w"> </span>--with<span class="w"> </span>fastmcp<span class="w"> </span>fastmcp<span class="w"> </span>run<span class="w"> </span>mcp_tools/main.py
+</pre></div>
+</div>
+<p>看到下面的畫面代表成功運行～</p>
+<p><img alt="20250909220540" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250909220540.png" /></p>
+</section>
+<section id="vscode-mcp">
+<h4>在 VSCode 中配置 MCP<a class="headerlink" href="#vscode-mcp" title="Link to this heading">#</a></h4>
+<p><img alt="20250909221218" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250909221218.png" /></p>
+<p>因爲我們設定是使用 STDIO，所以設定 MCP Server 的 json 檔案會長像下面這樣：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">run</span></code> 是 uv 底下的指令，意思是讓程式在 uv 的虛擬環境中執行</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--with</span> <span class="pre">fastmcp</span></code> 是 uv 的參數，意思是讓 uv 在執行程式前額外載入 fastmcp</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fastmcp</span> <span class="pre">run</span> <span class="pre">mcp_tools/main.py</span></code> 是實際啓動 MCP 的指令</p></li>
+</ul>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;servers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;demo-my-mcp&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;stdio&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;uv&quot;</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;args&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;--with&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fastapi&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;fastmcp&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;run&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="s2">&quot;mcp_tools/main.py&quot;</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nt">&quot;cwd&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;${workspaceFolder}/python-mcp-template&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;inputs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>在 VSCode 會看到 MCP Running 的提示</p></li>
+</ul>
+</section>
+<section id="github-copilot">
+<h4>透過 GitHub Copilot 確認是否可以使用<a class="headerlink" href="#github-copilot" title="Link to this heading">#</a></h4>
+<p><img alt="20250909223719" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250909223719.png" /></p>
+</section>
 </section>
 </section>
 <section id="id3">
 <h2>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 與 <code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 的差異</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 著重於理解網頁重點內容</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">robots.txt</span></code> 著重於爬取規則</p></li>
-</ul>
-</li>
-<li><p>介紹 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 的格式與範例</p></li>
-<li><p>提供一個收錄多個網站 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 的網站</p></li>
+<li><p>透過 <code class="docutils literal notranslate"><span class="pre">fastmcp</span></code> 可以快速的將 FastAPI 轉換成 MCP 的介面</p></li>
+<li><p>介紹了如何在 VSCode 中配置 MCP，以及啓動 MCP Server 的參數所代表的意義</p></li>
+<li><p>使用 GitHub Copilot 來測試 MCP 是否可以正常運作</p></li>
 </ul>
 </section>
 <section id="id4">
 <h2>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://pagerank.ing/what-is-llms-txt/">LLMs.txt 是什麼？</a></p></li>
-<li><p><a class="reference external" href="https://llmstxt.org/">The /llms.txt file</a></p></li>
-<li><p><a class="reference external" href="https://www.sonar-inc.com/what-is-llms-txt/">LLMs.txt 是什麼：AI 時代網站內容保護新規範</a></p></li>
+<li><p><a class="reference external" href="https://gofastmcp.com/integrations/fastapi">FastAPI 🤝 FastMCP</a></p></li>
+<li><p><a class="reference external" href="https://github.com/hsiangjenli/python-mcp-template">hsiangjenli/python-mcp-template</a></p></li>
 </ul>
 </section>
 </section>
@@ -423,20 +487,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-10.html"
+       href="day-13.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day10】實際使用 Unsloth 來對模型微調</p>
+        <p class="prev-next-title">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-12.html"
+       href="Llama3_2_%283B%29_Unsloth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day12】介紹 MCP</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -457,8 +521,15 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">格式介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llms-txt">其它 <code class="docutils literal notranslate"><span class="pre">llms.txt</span></code> 範例</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fastmcp-mcp">實際使用 fastmcp 進行 MCP 開發</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#repo">實際拉 Repo 下來</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#python">配置 python 虛擬環境</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#fastapi-mcp">建立 FastAPI 以及轉換成 MCP 格式的程式碼</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">在本地運行</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vscode-mcp">在 VSCode 中配置 MCP</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#github-copilot">透過 GitHub Copilot 確認是否可以使用</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
