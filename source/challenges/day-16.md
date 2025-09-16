@@ -40,8 +40,6 @@ flowchart TB
     T3 --> Fusion[整合成 LLM 輸入]
     V5 --> Fusion
     Fusion --> Output[LLM 處理後輸出]
-
-   
 ```
 
 1. **文字部分**：文字先經過處理，把輸入句子拆成一串 tokens。然後這些 tokens 被 embed 成為文字向量（text embeddings）
@@ -83,3 +81,4 @@ flowchart TB
 - [What Are Vision Language Models? How AI Sees & Understands Images](https://youtu.be/lOD_EE96jhM)
 - [dots.ocr](https://dots-ocr.rednote-hilab.com/)
 - [FastVLM: Efficient Vision Encoding for Vision Language Models](https://machinelearning.apple.com/research/fast-vision-language-models)
+- [🚀重磅开源！本地部署1.7B参数超强OCR大模型dots.ocr！超越GPT-4o和olmOCR！结构化精准提取复杂PDF扫描件！完美识别中英文文档、模糊扫描件与复杂表格！文档解析准确率接近100%！](https://zhuanlan.zhihu.com/p/1935120171573413613)
