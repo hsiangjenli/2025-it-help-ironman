@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day09】Unsloth 模型微調方法 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day16】簡單介紹視覺語言模型（VLM） &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,14 +47,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-09';</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-16';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day10】實際使用 Unsloth 來對模型微調" href="day-10.html" />
-    <link rel="prev" title="【Day08】客製化 Ollama 模型" href="day-08.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day15】介紹 MCP Gateway" href="day-15.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -168,14 +174,14 @@
 <li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day09】Unsloth 模型微調方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-15.html">【Day15】介紹 MCP Gateway</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-16.html">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -234,7 +240,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-09.md" target="_blank"
+      <li><a href="../_sources/challenges/day-16.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -318,7 +324,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day09】Unsloth 模型微調方法</h1>
+    <h1>【Day16】簡單介紹視覺語言模型（VLM）</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -329,21 +335,18 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsloth">Unsloth 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型微調的方法介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-unsloth">PEFT @ Unsloth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lora">LoRA 基本原理</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w">原始矩陣 <span class="math notranslate nohighlight">\(W\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-w-ab">低秩分解 <span class="math notranslate nohighlight">\(\Delta W = AB\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w-w-delta-w">更新後的權重矩陣 <span class="math notranslate nohighlight">\(W' = W + \Delta W\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlm">VLM 基礎概念</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">VLM 可以用在哪些場景？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">怎麼運作的？</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">簡單操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dots-ocr">實際操作 dots.ocr</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">其它相關的工具</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -355,144 +358,98 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day09unsloth">
-<h1>【Day09】Unsloth 模型微調方法<a class="headerlink" href="#day09unsloth" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day16-vlm">
+<h1>【Day16】簡單介紹視覺語言模型（VLM）<a class="headerlink" href="#day16-vlm" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>今天主要介紹的主題是關於 LLM 的微調（Fine-tuning），會簡單帶過微調的基本概念，然後介紹可以快速對 LLM 模型進行微調的工具 Unsloth，讓各位稍爲瞭解微調模型的基本資訊後，可以自己動手試試看。</p>
+<p>今天要介紹的是透過 VLM 把 PDF 裡面的文字辨識出來後轉換成 Markdown 格式。這次使用的工具是 <a class="reference external" href="https://github.com/rednote-hilab/dots.ocr">dots.ocr</a>，是由中國的小紅書團隊開發的模型。</p>
+<blockquote>
+<div><p><strong>補充說明</strong></p>
+<p>部分公司或組織可能會禁止使用中國開發的軟體，請自行評估風險</p>
+</div></blockquote>
 </section>
-<section id="unsloth">
-<h2>Unsloth 介紹<a class="headerlink" href="#unsloth" title="Link to this heading">#</a></h2>
-<p>Unsloth 是一款讓 LLM fine-tuning 變地更快、更省記憶體的開源工具，在 <a class="reference external" href="https://github.com/unslothai/notebooks">GitHub</a> 上提供了很多 Colab 模版，提供給使用者可以直接在 Colab 上進行微調訓練。</p>
+<section id="vlm">
+<h2>VLM 基礎概念<a class="headerlink" href="#vlm" title="Link to this heading">#</a></h2>
 <section id="id2">
-<h3>模型微調的方法介紹<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>因爲微調的範圍很廣，不是三言兩語可以說清楚的。這邊先做簡單的微調假設：（1）希望微調後的模型能夠在某個特定任務上表現更好；（2）沒有要壓縮模型大小（如：蒸餾、剪枝等）。基於以上假設，常見的微調方法有三種：</p>
-<ol class="arabic simple">
-<li><p>全模型微調（Full-model Tuning）：模型的所有權重都會被更新</p></li>
-<li><p>參數高效微調（Parameter-Efficient Fine-Tuning，PEFT）：凍結大部分的權重，只調整少量或特定的參數</p></li>
-<li><p>提示微調（Prompt Tuning/Soft Prompting）：不改變模型權重，只是調整輸入的提示詞</p></li>
-</ol>
-<section id="peft-unsloth">
-<h4>PEFT &#64; Unsloth<a class="headerlink" href="#peft-unsloth" title="Link to this heading">#</a></h4>
-<p>在 Unsloth 裡面，主要是使用 PEFT 的方法來進行微調，主要是因爲使用全模型微調的話，對於記憶體的需求會非常高，同時全模型微調不一定會帶來更好的效果。Unsloth 目前支援兩種 PEFT 的方法：</p>
+<h3>VLM 可以用在哪些場景？<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>LoRA（Low-Rank Adaptation）：保持原始模型權重，只訓練少量低秩矩陣，透過在原有權重旁加上調整項 <span class="math notranslate nohighlight">\(\Delta W\)</span> 進行微調，可以減少記憶體的使用量</p></li>
-<li><p>QLoRA（Quantized LoRA）：在 LoRA 的基礎上，進一步將模型量化到 4-bit，可以降低記憶體的使用量</p></li>
+<li><p><strong>影像問答（Visual Question Answering，VQA）</strong>：給 VLM 一張圖片 + 一個問題，讓模型分析圖片內容後回答問題。例如「這張照片裡有幾隻貓？」</p></li>
+<li><p><strong>圖片描述（Captions）</strong>：自動生成圖片的文字描述，例如「這是一張有兩隻貓在草地上玩耍的照片」</p></li>
+<li><p><strong>文件理解（Document Understanding）</strong>：分析和理解文件內容（不僅是文字，還包括 Layout、標題、圖表等），並回答相關問題</p></li>
+<li><p><strong>圖形理解（Graph Understanding）</strong>：理解圖形結構（統計圖表）和內容</p></li>
 </ul>
-</section>
-<section id="lora">
-<h4>LoRA 基本原理<a class="headerlink" href="#lora" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>數學符號</p></th>
-<th class="head text-left"><p>解釋</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(W'\)</span></p></td>
-<td class="text-left"><p>更新後的權重矩陣</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(W\)</span></p></td>
-<td class="text-left"><p>原始權重矩陣</p></td>
-</tr>
-<tr class="row-even"><td class="text-center"><p><span class="math notranslate nohighlight">\(\Delta W\)</span></p></td>
-<td class="text-left"><p>調整項（由 LoRA 訓練得到）</p></td>
-</tr>
-<tr class="row-odd"><td class="text-center"><p><span class="math notranslate nohighlight">\(A, B\)</span></p></td>
-<td class="text-left"><p>低秩分解出的可訓練的矩陣</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\(W' = W + \Delta{W}\)</span></p></li>
-<li><p><span class="math notranslate nohighlight">\(\Delta{W} = A \times B\)</span></p></li>
-</ul>
-<section id="w">
-<h5>原始矩陣 <span class="math notranslate nohighlight">\(W\)</span><a class="headerlink" href="#w" title="Link to this heading">#</a></h5>
-<p><span class="math notranslate nohighlight">\(
-W =
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{n\times n}
-\)</span></p>
-</section>
-<section id="delta-w-ab">
-<h5>低秩分解 <span class="math notranslate nohighlight">\(\Delta W = AB\)</span><a class="headerlink" href="#delta-w-ab" title="Link to this heading">#</a></h5>
-<p><span class="math notranslate nohighlight">\(
-\Delta W = 
-\underbrace{\left[\begin{array}{c}
-\square \\
-\square \\
-\square \\
-\square \\
-\square \\
-\square \\
-\square \\
-\end{array}\right]}_{n\times r}
-\times
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{r\times n}
-= \underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{n\times n}
-\)</span></p>
-</section>
-<section id="w-w-delta-w">
-<h5>更新後的權重矩陣 <span class="math notranslate nohighlight">\(W' = W + \Delta W\)</span><a class="headerlink" href="#w-w-delta-w" title="Link to this heading">#</a></h5>
-<p><span class="math notranslate nohighlight">\(
-W' =
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square \\
-\end{array}\right]}_{n\times n}
-\;+\;
-\left(
-\underbrace{\left[\begin{array}{c}
-\square \\ \square \\ \square \\ \square \\ \square \\ \square \\ \square
-\end{array}\right]}_{n\times r}
-\;\times\;
-\underbrace{\left[\begin{array}{ccccccc}
-\square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square &amp; \square
-\end{array}\right]}_{r\times n}
-\right)
-\)</span></p>
-</section>
-</section>
-</section>
 </section>
 <section id="id3">
-<h2>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>介紹關於不調整模型權重以及調整模型權重的微調方法</p></li>
-<li><p>介紹 Unsloth 這個工具可以快速對 LLM 模型進行微調的方法及優缺點（LoRA 和 QLoRA）</p></li>
-<li><p>簡單視覺化 LoRA 的矩陣計算</p></li>
-</ul>
+<h3>怎麼運作的？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><img alt="20250914170816" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914170816.png" /></p>
+<pre  class="mermaid">
+        flowchart TB
+    %% 文字部分流程
+    subgraph TextPart[&quot;文字部分&quot;]
+        direction TB
+        T1[文字輸入 TextInput] --&gt; T2[Tokenizer]
+        T2 --&gt; T3[文字 Token Embedding]
+    end
+
+    %% 影像部分流程
+    subgraph VisionPart[&quot;影像部分&quot;]
+        direction TB
+        V1[Raw Image] --&gt; V2[Vision Encoder]
+        V2 --&gt; V3[Feature Vectors]
+        V3 --&gt; V4[Projector]
+        V4 --&gt; V5[視覺 Token Embedding]
+    end
+
+    T3 --&gt; Fusion[整合成 LLM 輸入]
+    V5 --&gt; Fusion
+    Fusion --&gt; Output[LLM 處理後輸出]
+    </pre><ol class="arabic simple">
+<li><p><strong>文字部分</strong>：文字先經過處理，把輸入句子拆成一串 tokens。然後這些 tokens 被 embed 成為文字向量（text embeddings）</p></li>
+<li><p><strong>影像部分</strong>：原始影像會先進入 vision encoder 提取 feature vectors，接著通過 projector 將這些特徵轉換成視覺 token 或向量</p></li>
+<li><p><strong>整合輸入</strong>：將文字向量和視覺向量整合成一個序列，作為大型語言模型（LLM）的輸入</p></li>
+<li><p><strong>輸出</strong>：LLM 處理後的輸出會包含文字和影像的相關資訊</p></li>
+</ol>
+</section>
 </section>
 <section id="id4">
-<h2>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>簡單操作<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<blockquote>
+<div><p>筆電沒有 GPU，使用線上版操作就好 🤐</p>
+</div></blockquote>
+<section id="dots-ocr">
+<h3>實際操作 dots.ocr<a class="headerlink" href="#dots-ocr" title="Link to this heading">#</a></h3>
+<p>使用線上版的 <a class="reference external" href="https://dots-ocr.rednote-hilab.com/">dots.ocr</a> 來進行 PDF 轉換</p>
+<p><img alt="20250914162155" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914162155.png" /></p>
+<p><img alt="20250914165559" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914165559.png" /></p>
+</section>
+</section>
+<section id="id5">
+<h2>其它相關的工具<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.ibm.com/think/topics/lora">What is LoRA (low-rank adaption)?</a></p></li>
-<li><p><a class="reference external" href="https://onmine.io/are-you-still-using-lora-to-fine-tune-your-llm/">Are You Still Using LoRA to Fine-Tune Your LLM?</a></p></li>
-<li><p><a class="reference external" href="https://axk51013.medium.com/llm%E5%B0%88%E6%AC%84-all-about-lora-5bc7e447c234">【LLM專欄】All about Lora</a></p></li>
+<li><p><a class="reference external" href="https://github.com/opendatalab/MinerU"><code class="docutils literal notranslate"><span class="pre">opendatalab/MinerU</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/opendatalab/DocLayout-YOLO"><code class="docutils literal notranslate"><span class="pre">opendatalab/DocLayout-YOLO</span></code></a></p></li>
+<li><p><a class="reference external" href="https://github.com/pymupdf/PyMuPDF"><code class="docutils literal notranslate"><span class="pre">PyMuPDF</span></code></a></p></li>
+</ul>
+<blockquote>
+<div><p><strong>補充說明</strong></p>
+<p>雖然使用 dots.ocr 或是其他 pdf 轉換工具看起來轉換影像成文字很簡單，但因爲 PDF 內的格式很複雜，像是圖片、表格、雙欄文字等，不是很簡單的 Input 一張圖片就能轉換成想要的格式，會需要針對圖片做 layout 辨識，並且針對不同的區塊做不同的處理，不過這就太複雜了</p>
+</div></blockquote>
+</section>
+<section id="id6">
+<h2>重點回顧<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>簡單介紹 VLM 的概念以及可以應用在哪些場景</p></li>
+<li><p>介紹 VLM 的運作原理（透過 Vision Encoder 把圖片轉 Feature Vectors，再轉換成 Token，最後與文字一起輸入 LLM）</p></li>
+<li><p>介紹 dots.ocr 這個工具，並且實際操作把 PDF 轉換成 Markdown 格式</p></li>
+</ul>
+</section>
+<section id="id7">
+<h2>參考資料<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://youtu.be/lOD_EE96jhM">What Are Vision Language Models? How AI Sees &amp; Understands Images</a></p></li>
+<li><p><a class="reference external" href="https://dots-ocr.rednote-hilab.com/">dots.ocr</a></p></li>
+<li><p><a class="reference external" href="https://machinelearning.apple.com/research/fast-vision-language-models">FastVLM: Efficient Vision Encoding for Vision Language Models</a></p></li>
+<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/1935120171573413613">🚀重磅开源！本地部署1.7B参数超强OCR大模型dots.ocr！超越GPT-4o和olmOCR！结构化精准提取复杂PDF扫描件！完美识别中英文文档、模糊扫描件与复杂表格！文档解析准确率接近100%！</a></p></li>
 </ul>
 </section>
 </section>
@@ -509,20 +466,20 @@ W' =
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-08.html"
+       href="day-15.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day08】客製化 Ollama 模型</p>
+        <p class="prev-next-title">【Day15】介紹 MCP Gateway</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-10.html"
+       href="Llama3_2_%283B%29_Unsloth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day10】實際使用 Unsloth 來對模型微調</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -543,21 +500,18 @@ W' =
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unsloth">Unsloth 介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">模型微調的方法介紹</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#peft-unsloth">PEFT @ Unsloth</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#lora">LoRA 基本原理</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w">原始矩陣 <span class="math notranslate nohighlight">\(W\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#delta-w-ab">低秩分解 <span class="math notranslate nohighlight">\(\Delta W = AB\)</span></a></li>
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#w-w-delta-w">更新後的權重矩陣 <span class="math notranslate nohighlight">\(W' = W + \Delta W\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlm">VLM 基礎概念</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">VLM 可以用在哪些場景？</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">怎麼運作的？</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">簡單操作</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dots-ocr">實際操作 dots.ocr</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">其它相關的工具</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
 </ul>
   </nav></div>
 
