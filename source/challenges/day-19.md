@@ -1,5 +1,6 @@
 # 介紹
 
+簡單的介紹一下已經不紅 RAG，從大家開始發現 AI 幻覺的時候就一直希望可以找到一個方法讓 AI 不再亂說話，過了一些日子 RAG 是否真的如當初試想的一樣（概念很好）？現在偶爾會在網路上看到一些相關的討論，認爲 RAG 完全 useless，因爲在前期準備資料的時候可能已經把整個資料拆碎，導致後期真的在檢索資料的時候找不到完全正確的訊息，讓 AI 反而參考了一堆無意義的資料導致更容易出錯。這邊簡單回顧一下 RAG 的概念以及定義。
 
 # 基本概念
 
@@ -20,36 +21,20 @@
 
 ![@gao2023retrieval](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916221509.png)
 
-- Naive RAG（ indexing, retrieval, and generation）
-  - 缺點：retrieval quality
-- Advanced RAG
-  - 使用 preretrieval and post-retrieval methods 解決 naive RAG 的缺點
-  1. Pre-Retrieval Process：提升已索引內容的品質
-     - 增加索引資料的細粒度
-     - 最佳化索引結構
-     - 添加中繼資料（Metadata）
-     - 對齊最佳化（Alignment Optimization）
-     - 混合檢索（Mixed Retrieval）
-  2. Embedding：使用更好的 embedding 方法
-     - Fine-turning Embedding：提升檢索內容與查詢之間的相關性
-     - Dynamic Embedding：依據詞彙出現的上下文動態調整向量表示，跟靜態 embedding 一個詞彙不管在什麼上下文出現，向量表示都一樣，但動態 embedding 會根據上下文調整向量表示
-  3. Post-Retrieval Process：對檢索內容進行額外處理，例如過濾、摘要、排序或壓縮，以確保只保留與查詢高度相關的資訊，再傳給 LLM 使用
-     - ReRank
-     - Prompt Compression
-- Modular RAGPre-Retrieval Process：拆解與擴充檢索模組，結合搜尋、微調與迭代等方法，提供比傳統 Naive RAG 更靈活、多樣的流程
-  - Search Module
-  - Memory Module
-  - Extra Generation Module
-  - Alignment Module
-  - Validation Module
+- **Naive RAG（Indexing, Retrieval, Generation）**：檢索結果常常不精準或不完整
+- **Advanced RAG**：在 Naive RAG 基礎上，加入前置（Pre-Retrieval）與後置（Post-Retrieval）方法來改善檢索與生成
+  1. **Pre-Retrieval Process**：在建立索引前就優化資料，例如更細粒度分段、改善索引結構、加上中繼資料、設計對齊問題、混合不同檢索方式
+  2. **Embedding**：使用更好的向量表示，例如針對領域微調或依上下文動態調整（Dynamic Embedding）
+  3. **Post-Retrieval Process**：對檢索結果再做調整，例如重新排序（ReRank）、過濾雜訊、摘要壓縮
+- **Modular RAG**：把檢索流程拆解成更多模組，能依需求自由組合或替換，提供更靈活的架構。
+  - **Search Module**：除了語義檢索，也能用 SQL、知識圖譜或搜尋引擎
+  - **Memory Module**：利用 LLM 自身的記憶功能引導檢索
+  - **Extra Generation Module**：不只檢索，也用 LLM 生成輔助內容來補足上下文
+  - **Alignment Module**：透過適配器或強化學習，改善查詢與文件的語義對齊
+  - **Validation Module**：檢查檢索結果是否可靠，避免把錯誤資訊送進 LLM
 
 ![@gao2023retrieval](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916232357.png)
-## 名詞解釋
 
-- Indexing：
-  - Data Indexing(萃取資料)-> Chunking（切片）-> Embedding and Creating Index（向量化並建立索引）
-- Retrieve：抓取與問題相關的文件（使用相似度計算）
-- Generation：根據檢索到的文件生成答案
 
 ## 未來展望
 
@@ -58,9 +43,9 @@
 - Vertical Optimization of RAG：著重在增加檢索出來的品質
 - Horizontal expansion of RAG：著重在提供更多元的資料（圖片、程式、聲音、影片等...）
 
-# 重點回顧
-
 # 參考資料
+
+- [Retrieval-augmented generation for large language models: A survey](https://simg.baai.ac.cn/paperfile/25a43194-c74c-4cd3-b60f-0a1f27f8b8af.pdf)
 
 ```bibtex
 @article{gao2023retrieval,
