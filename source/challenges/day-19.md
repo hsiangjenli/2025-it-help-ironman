@@ -1,17 +1,20 @@
 # 介紹
 
-RAG (Retrieval-Augmented Generation) 
-
-Retrieval-Augmented Generation for Large Language Models: A Survey
-
-廣義上的 RAG：Retrieval-Augmented Generation (RAG) refers to the retrieval of relevant information from external knowledge bases before answering questions with LLMs
 
 # 基本概念
 
+何謂 RAG？
+
+- 廣義上的 RAG：生成答案之前有從外部知識庫或資料來源抓資訊來輔助
+- 狹義上的 RAG：標準的 RAG 流程，包含將問題向量化 -> 使用密集型向量查詢 -> 取出 top-k 的資料片段給 LLM 產生回答
+
 ## RAG 架構
 
-1. Retriever：檢索器（Utilizing encoding models to retrieve relevant documents based on questions）
-1. Generator：生成器
+直接從 RAG（Retrieval-Augmented Generation）的全名開始：
+
+- Retriever（檢索器）：負責把使用者問題轉換成向量，並取從資料庫找出最相關的片段
+- Augmented（增強）：將使用者提出的原始問以及檢索出來的結果合併成 Context
+- Generator（生成器）：接收到新的 Context 之後，透過 LLM 生成最終回答
 
 ## RAG 分類
 
@@ -40,7 +43,7 @@ Retrieval-Augmented Generation for Large Language Models: A Survey
   - Alignment Module
   - Validation Module
 
-![20250916232357](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916232357.png)
+![@gao2023retrieval](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916232357.png)
 ## 名詞解釋
 
 - Indexing：
@@ -48,12 +51,13 @@ Retrieval-Augmented Generation for Large Language Models: A Survey
 - Retrieve：抓取與問題相關的文件（使用相似度計算）
 - Generation：根據檢索到的文件生成答案
 
-## Future Prospects
+## 未來展望
 
-Vertical Optimization of RAG： long context in RAG is a significant
-challenge（著重品質）
-Horizontal expansion of RAG： applied to more
-modal data, such as images, code, structured knowledge, audio and video, and so on（著重多樣性）
+作者最後針對 RAG 未來的發展提出了兩個方向，分別為 Vertical Optimization of RAG 以及 Horizontal expansion of RAG
+
+- Vertical Optimization of RAG：著重在增加檢索出來的品質
+- Horizontal expansion of RAG：著重在提供更多元的資料（圖片、程式、聲音、影片等...）
+
 # 重點回顧
 
 # 參考資料
