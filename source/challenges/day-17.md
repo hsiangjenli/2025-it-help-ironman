@@ -1,18 +1,20 @@
-# 介紹
+# 【Day17】使用 langextract + LLM 進行文本分析
+
+## 介紹
 
 從 2022 年初開始，筆者就一直在做各種自然語言處理（NLP）相關的專案，主要有兩個方向：情緒分析（POS）與實體抽取（NER）。在還是學生的時候，課堂專案基本上都是使用 Hugging Face 上的預訓練模型（中研院的 CKIP Transformers 模型）。那時侯做文本分析真的是一件很痛苦的事，因為不但要處理各種前處理（斷詞、去除停用詞、標點符號等），還要面對模型準確率不佳的問題（重點是自己一個人也不可能重新訓練一個模型）。
 
 說起來也很荒謬，筆者到現在還是偶爾會遇到一些 OOO 提出想要做輿情分析的需求，筆者針對這類型的題目大概已經重做過 3、4 次了（希望不要有人再找我做了...），分析文本真的是一件很麻煩的事。因此，筆者看到 Google 推出的 [`langextract`](https://github.com/google/langextract) 套件時，真心覺得這是 NLP 領域的一大福音（LLM 萬歲！！！！）。基本上只要提供一些範例，[`langextract`](https://github.com/google/langextract) 就可以幫你把文本中的實體抽取出來（而且還可以加上方向性的屬性），減少什麼前處理、使用不同模型的麻煩。
 
-# 操作 langextract
+## 操作 langextract
 
-## 安裝套件
+### 安裝套件
 
 ```shell
 uv pip add langextract[openai]
 ```
 
-## 提供 PROMPT 與範例
+### 提供 PROMPT 與範例
 
 ```python
 import textwrap
@@ -49,45 +51,45 @@ EXAMPLES = [
     lx.data.ExampleData(
         text=EXAMPLE_TEXT,
         extractions=[
-            # 出版物（刊名）— 用可見文字，不含《》
+            ## 出版物（刊名）— 用可見文字，不含《》
             lx.data.Extraction(
                 extraction_class="出版物",
                 extraction_text="環境金融",
                 attributes={"英文名": "Environmental Finance"},
             ),
-            # 獎項— 不要帶「」；直接用可見片段
+            ## 獎項— 不要帶「」；直接用可見片段
             lx.data.Extraction(
                 extraction_class="獎項",
                 extraction_text="2025年永續投資獎",
             ),
-            # 機構
+            ## 機構
             lx.data.Extraction(
                 extraction_class="機構",
                 extraction_text="國泰金控",
                 attributes={"產業": "金融"},
             ),
-            # 出版物（報告書）— 去掉《》
+            ## 出版物（報告書）— 去掉《》
             lx.data.Extraction(
                 extraction_class="出版物",
                 extraction_text="2023年氣候暨自然報告書",
             ),
-            # 地區
+            ## 地區
             lx.data.Extraction(
                 extraction_class="地區",
                 extraction_text="亞洲",
             ),
-            # 出版物（報告書）— 去掉《》
+            ## 出版物（報告書）— 去掉《》
             lx.data.Extraction(
                 extraction_class="出版物",
                 extraction_text="2024年氣候暨自然報告書",
             ),
-            # 出版物（框架）— 去掉《》
+            ## 出版物（框架）— 去掉《》
             lx.data.Extraction(
                 extraction_class="出版物",
                 extraction_text="TPT揭露框架",
                 attributes={"英文名": "TPT Disclosure Framework"},
             ),
-            # 年份— 用「2025年/2024年」避免模糊對齊
+            ## 年份— 用「2025年/2024年」避免模糊對齊
             lx.data.Extraction(
                 extraction_class="年份",
                 extraction_text="2025年",
@@ -101,7 +103,7 @@ EXAMPLES = [
 ]
 ```
 
-## 執行抽取
+### 執行抽取
 
 ```python
 
@@ -152,10 +154,10 @@ if __name__ == "__main__":
         print(f"Attributes: {extraction.attributes}")
 ```
 
-## 輸出結果
+### 輸出結果
 
 ```shell
-# RAW_TEST_TEXT_1
+## RAW_TEST_TEXT_1
 Class: 出版物
 Text: 永續會計準則委員會指引
 Attributes: {'括號標示': 'SASB', '性質': '國際指引/準則', '用途': '作為依循之國際標準，用於界定易受氣候轉型風險影響之敏感性產業', '原文標示': '《永續會計準則委員會指引》(SASB)'}
@@ -168,7 +170,7 @@ Attributes: {'具名': '否（未指明特定事務所）', '角色': '受委託
 ```
 
 ```shell
-# RAW_TEST_TEXT_2
+## RAW_TEST_TEXT_2
 Class: 機構
 Text: 國泰金控
 Attributes: {'產業': '金融', '別名': '國泰', '相關議題': '永續供應鏈、碳盤查與減碳管理'}
@@ -198,9 +200,9 @@ Text: 綠色採購績優單位
 Attributes: {'頒發機構': '環境部', '語境': '連續14年獲肯定'}
 ```
 
-# 重點回顧
+## 重點回顧
 
-# 參考資料
+## 參考資料
 
 - [`google/langextract`](https://github.com/google/langextract)
 - [Step-by-Step Guide: Using LangExtract with OpenAI](https://www.telerik.com/blogs/step-by-step-guide-using-langextract-openai)
