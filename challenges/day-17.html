@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>【Day17】使用 langextract + LLM 進行文本分析 &#8212; 2025 iThome 鐵人賽</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=d35f5538" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-17';</script>
+    <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day16】簡單介紹視覺語言模型（VLM）" href="day-16.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">2025 iThome 鐵人賽</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-15.html">【Day15】介紹 MCP Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-16.html">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day17】使用 langextract + LLM 進行文本分析</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Llama3_2_%283B%29_Unsloth.html">Unsloth + Llama3.2:3b 微調測試</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/challenges/day-17.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>【Day17】使用 langextract + LLM 進行文本分析</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langextract">操作 langextract</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">安裝套件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">提供 PROMPT 與範例</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">執行抽取</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">輸出結果</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">參考資料</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day17-langextract-llm">
+<h1>【Day17】使用 langextract + LLM 進行文本分析<a class="headerlink" href="#day17-langextract-llm" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>從 2022 年初開始，筆者就一直在做各種自然語言處理（NLP）相關的專案，主要有兩個方向：情緒分析（POS）與實體抽取（NER）。在還是學生的時候，課堂專案基本上都是使用 Hugging Face 上的預訓練模型（中研院的 CKIP Transformers 模型）。那時侯做文本分析真的是一件很痛苦的事，因為不但要處理各種前處理（斷詞、去除停用詞、標點符號等），還要面對模型準確率不佳的問題（重點是自己一個人也不可能重新訓練一個模型）。</p>
+<p>說起來也很荒謬，筆者到現在還是偶爾會遇到一些 OOO 提出想要做輿情分析的需求，筆者針對這類型的題目大概已經重做過 3、4 次了（希望不要有人再找我做了…），分析文本真的是一件很麻煩的事。因此，筆者看到 Google 推出的 <a class="reference external" href="https://github.com/google/langextract"><code class="docutils literal notranslate"><span class="pre">langextract</span></code></a> 套件時，真心覺得這是 NLP 領域的一大福音（LLM 萬歲！！！！）。基本上只要提供一些範例，<a class="reference external" href="https://github.com/google/langextract"><code class="docutils literal notranslate"><span class="pre">langextract</span></code></a> 就可以幫你把文本中的實體抽取出來（而且還可以加上方向性的屬性），減少什麼前處理、使用不同模型的麻煩。</p>
+</section>
+<section id="langextract">
+<h2>操作 langextract<a class="headerlink" href="#langextract" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h3>安裝套件<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>pip<span class="w"> </span>add<span class="w"> </span>langextract<span class="o">[</span>openai<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="prompt">
+<h3>提供 PROMPT 與範例<a class="headerlink" href="#prompt" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">langextract</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lx</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unicodedata</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">unicodedata</span><span class="o">.</span><span class="n">normalize</span><span class="p">(</span><span class="s2">&quot;NFKC&quot;</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="n">PROMPT</span> <span class="o">=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">dedent</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">- 依出場順序抽取：機構、地區、出版物、獎項、年份</span>
+<span class="s2">- 抽取時必須使用原文，不要翻譯或重疊實體</span>
+<span class="s2">- 每個實體補充有用屬性，讓上下文更清楚</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="n">RAW_EXAMPLE_TEXT</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">全球知名永續投資新聞與數據分析機構《環境金融》（Environmental Finance）</span>
+<span class="s2">最新公布「2025年永續投資獎」（Sustainable Investment Awards 2025）獲獎名單，</span>
+<span class="s2">國泰金控以《2023年氣候暨自然報告書》</span>
+<span class="s2">再度榮獲「年度TCFD報告」（TCFD Report of the Year）大獎，</span>
+<span class="s2">成為亞洲首家連續兩年獲得此殊榮的金融機構；</span>
+<span class="s2">此外最新發表的《2024年氣候暨自然報告書》</span>
+<span class="s2">亦持續領先台灣業界導入轉型計畫工作小組（Transition Plan Taskforce, TPT）</span>
+<span class="s2">發布《TPT揭露框架》（TPT Disclosure Framework），</span>
+<span class="s2">國泰不斷以前瞻風險管理思維，</span>
+<span class="s2">落實在永續行動與揭露品質，</span>
+<span class="s2">獲得國際高度肯定</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">EXAMPLES</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">ExampleData</span><span class="p">(</span>
+        <span class="n">text</span><span class="o">=</span><span class="n">EXAMPLE_TEXT</span><span class="p">,</span>
+        <span class="n">extractions</span><span class="o">=</span><span class="p">[</span>
+            <span class="c1">## 出版物（刊名）— 用可見文字，不含《》</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;出版物&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;環境金融&quot;</span><span class="p">,</span>
+                <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;英文名&quot;</span><span class="p">:</span> <span class="s2">&quot;Environmental Finance&quot;</span><span class="p">},</span>
+            <span class="p">),</span>
+            <span class="c1">## 獎項— 不要帶「」；直接用可見片段</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;獎項&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;2025年永續投資獎&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="c1">## 機構</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;機構&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;國泰金控&quot;</span><span class="p">,</span>
+                <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;產業&quot;</span><span class="p">:</span> <span class="s2">&quot;金融&quot;</span><span class="p">},</span>
+            <span class="p">),</span>
+            <span class="c1">## 出版物（報告書）— 去掉《》</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;出版物&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;2023年氣候暨自然報告書&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="c1">## 地區</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;地區&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;亞洲&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="c1">## 出版物（報告書）— 去掉《》</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;出版物&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;2024年氣候暨自然報告書&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="c1">## 出版物（框架）— 去掉《》</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;出版物&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;TPT揭露框架&quot;</span><span class="p">,</span>
+                <span class="n">attributes</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;英文名&quot;</span><span class="p">:</span> <span class="s2">&quot;TPT Disclosure Framework&quot;</span><span class="p">},</span>
+            <span class="p">),</span>
+            <span class="c1">## 年份— 用「2025年/2024年」避免模糊對齊</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;年份&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;2025年&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+            <span class="n">lx</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Extraction</span><span class="p">(</span>
+                <span class="n">extraction_class</span><span class="o">=</span><span class="s2">&quot;年份&quot;</span><span class="p">,</span>
+                <span class="n">extraction_text</span><span class="o">=</span><span class="s2">&quot;2024年&quot;</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">],</span>
+    <span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>執行抽取<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+<span class="n">RAW_TEST_TEXT_1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">第二，依循《永續會計準則委員會指引》（SASB）</span>
+<span class="s2">與《國際財務報導準則第S2號》（IFRS S2）等國際標準，</span>
+<span class="s2">將石油與天然氣產業、</span>
+<span class="s2">化學原料相關產業、</span>
+<span class="s2">建築材料業（含水泥）、礦業、化石燃料發電及煤炭相關產業，</span>
+<span class="s2">以及航空業等六大產業，界定為易受氣候轉型風險影響的敏感性產業，</span>
+<span class="s2">並委託會計師事務所對該等部位之暴險集中度執行有限確信，</span>
+<span class="s2">提升揭露數據的可靠性與資訊可信度。</span>
+<span class="s2">此外，更以此為基礎，建立氣候轉型風險評估框架，</span>
+<span class="s2">針對轉型風險較高之產業，進行轉型速度分析，涵蓋產業平均碳排強度、</span>
+<span class="s2">減碳目標與成效、轉型計畫，以及淨零承諾等面向，掌握氣候轉型風險概況。</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">RAW_TEST_TEXT_2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">國泰金控2016年起領先同業召開永續供應商大會，</span>
+<span class="s2">今年以「推動碳盤查與減碳管理」為主軸，</span>
+<span class="s2">鼓勵供應商針對自身商品與服務進行碳盤查與減碳管理，並申請環境部減碳標籤認證，</span>
+<span class="s2">與國泰一起加入減碳行列，邁向永續淨零。</span>
+<span class="s2">國泰2018年成為全球首家遵循ISO20400永續採購指南並通過查核之金融機構，</span>
+<span class="s2">從環境、社會與治理面與供應商夥伴共好，</span>
+<span class="s2">提供教育訓練與交流機會、與廠商共構永續供應鏈、落實綠色採購，</span>
+<span class="s2">去(2023)年度綠色採購金額達5.66億元，較前(2022)年成長超過2成，</span>
+<span class="s2">且已是連續3年保持正成長，更連續14年獲環境部(前環保署)「綠色採購績優單位」肯定。</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+
+<span class="n">EXAMPLE_TEXT</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">RAW_EXAMPLE_TEXT</span><span class="p">)</span>
+<span class="n">TEST_TEXT</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">RAW_TEST_TEXT_1</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">lx</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span>
+        <span class="n">text_or_documents</span><span class="o">=</span><span class="n">TEST_TEXT</span><span class="p">,</span>
+        <span class="n">prompt_description</span><span class="o">=</span><span class="n">PROMPT</span><span class="p">,</span>
+        <span class="n">examples</span><span class="o">=</span><span class="n">EXAMPLES</span><span class="p">,</span>
+        <span class="n">api_key</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;OPENAI_API_KEY&quot;</span><span class="p">),</span>
+        <span class="n">model_id</span><span class="o">=</span><span class="s2">&quot;gpt-5-mini-2025-08-07&quot;</span><span class="p">,</span>
+        <span class="n">fence_output</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">use_schema_constraints</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">extraction</span> <span class="ow">in</span> <span class="n">result</span><span class="o">.</span><span class="n">extractions</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class: </span><span class="si">{</span><span class="n">extraction</span><span class="o">.</span><span class="n">extraction_class</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Text: </span><span class="si">{</span><span class="n">extraction</span><span class="o">.</span><span class="n">extraction_text</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Attributes: </span><span class="si">{</span><span class="n">extraction</span><span class="o">.</span><span class="n">attributes</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>輸出結果<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">## RAW_TEST_TEXT_1</span>
+Class:<span class="w"> </span>出版物
+Text:<span class="w"> </span>永續會計準則委員會指引
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;括號標示&#39;</span>:<span class="w"> </span><span class="s1">&#39;SASB&#39;</span>,<span class="w"> </span><span class="s1">&#39;性質&#39;</span>:<span class="w"> </span><span class="s1">&#39;國際指引/準則&#39;</span>,<span class="w"> </span><span class="s1">&#39;用途&#39;</span>:<span class="w"> </span><span class="s1">&#39;作為依循之國際標準，用於界定易受氣候轉型風險影響之敏感性產業&#39;</span>,<span class="w"> </span><span class="s1">&#39;原文標示&#39;</span>:<span class="w"> </span><span class="s1">&#39;《永續會計準則委員會指引》(SASB)&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>出版物
+Text:<span class="w"> </span>國際財務報導準則第S2號
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;括號標示&#39;</span>:<span class="w"> </span><span class="s1">&#39;IFRS S2&#39;</span>,<span class="w"> </span><span class="s1">&#39;性質&#39;</span>:<span class="w"> </span><span class="s1">&#39;國際準則&#39;</span>,<span class="w"> </span><span class="s1">&#39;用途&#39;</span>:<span class="w"> </span><span class="s1">&#39;作為依循之國際標準，用於揭露永續相關資訊並界定敏感性產業&#39;</span>,<span class="w"> </span><span class="s1">&#39;原文標示&#39;</span>:<span class="w"> </span><span class="s1">&#39;《國際財務報導準則第S2號》(IFRS S2)&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>機構
+Text:<span class="w"> </span>會計師事務所
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;具名&#39;</span>:<span class="w"> </span><span class="s1">&#39;否（未指明特定事務所）&#39;</span>,<span class="w"> </span><span class="s1">&#39;角色&#39;</span>:<span class="w"> </span><span class="s1">&#39;受委託執行有限確信&#39;</span>,<span class="w"> </span><span class="s1">&#39;作業項目&#39;</span>:<span class="w"> </span><span class="s1">&#39;對該等部位之暴險集中度執行有限確信，以提升揭露數據之可靠性與資訊可信度&#39;</span><span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">## RAW_TEST_TEXT_2</span>
+Class:<span class="w"> </span>機構
+Text:<span class="w"> </span>國泰金控
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;產業&#39;</span>:<span class="w"> </span><span class="s1">&#39;金融&#39;</span>,<span class="w"> </span><span class="s1">&#39;別名&#39;</span>:<span class="w"> </span><span class="s1">&#39;國泰&#39;</span>,<span class="w"> </span><span class="s1">&#39;相關議題&#39;</span>:<span class="w"> </span><span class="s1">&#39;永續供應鏈、碳盤查與減碳管理&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>年份
+Text:<span class="w"> </span>2016年
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;事件&#39;</span>:<span class="w"> </span><span class="s1">&#39;起領先同業召開永續供應商大會&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>機構
+Text:<span class="w"> </span>環境部
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;括號內說明&#39;</span>:<span class="w"> </span><span class="s1">&#39;前環保署&#39;</span>,<span class="w"> </span><span class="s1">&#39;相關認證/獎項&#39;</span>:<span class="w"> </span><span class="s1">&#39;減碳標籤認證；綠色採購績優單位&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>年份
+Text:<span class="w"> </span>2018年
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;事件&#39;</span>:<span class="w"> </span><span class="s1">&#39;國泰成為全球首家遵循ISO20400永續採購指南並通過查核之金融機構&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>地區
+Text:<span class="w"> </span>全球
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;說明&#39;</span>:<span class="w"> </span><span class="s1">&#39;全球首家&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>出版物
+Text:<span class="w"> </span>ISO20400永續採購指南
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;類型&#39;</span>:<span class="w"> </span><span class="s1">&#39;指南&#39;</span>,<span class="w"> </span><span class="s1">&#39;相關動作&#39;</span>:<span class="w"> </span><span class="s1">&#39;遵循並通過查核&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>年份
+Text:<span class="w"> </span><span class="m">2023</span>
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;語境&#39;</span>:<span class="w"> </span><span class="s1">&#39;去(2023)年度綠色採購金額達5.66億元&#39;</span>,<span class="w"> </span><span class="s1">&#39;綠色採購金額&#39;</span>:<span class="w"> </span><span class="s1">&#39;5.66億元&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>年份
+Text:<span class="w"> </span><span class="m">2022</span>
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;語境&#39;</span>:<span class="w"> </span><span class="s1">&#39;較前(2022)年成長超過2成&#39;</span>,<span class="w"> </span><span class="s1">&#39;成長&#39;</span>:<span class="w"> </span><span class="s1">&#39;超過2成&#39;</span><span class="o">}</span>
+Class:<span class="w"> </span>獎項
+Text:<span class="w"> </span>綠色採購績優單位
+Attributes:<span class="w"> </span><span class="o">{</span><span class="s1">&#39;頒發機構&#39;</span>:<span class="w"> </span><span class="s1">&#39;環境部&#39;</span>,<span class="w"> </span><span class="s1">&#39;語境&#39;</span>:<span class="w"> </span><span class="s1">&#39;連續14年獲肯定&#39;</span><span class="o">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>重點回顧<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+</section>
+<section id="id6">
+<h2>參考資料<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/google/langextract"><code class="docutils literal notranslate"><span class="pre">google/langextract</span></code></a></p></li>
+<li><p><a class="reference external" href="https://www.telerik.com/blogs/step-by-step-guide-using-langextract-openai">Step-by-Step Guide: Using LangExtract with OpenAI</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="day-16.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day16】簡單介紹視覺語言模型（VLM）</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Llama3_2_%283B%29_Unsloth.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langextract">操作 langextract</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">安裝套件</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">提供 PROMPT 與範例</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">執行抽取</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">輸出結果</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">參考資料</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hsiang-Jen Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Hsiang-Jen Li.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
