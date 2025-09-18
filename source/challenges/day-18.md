@@ -1,12 +1,14 @@
-# 介紹
+# 【Day18】實測使用 Presenton 自動產生簡報
+
+## 介紹
 
 筆者是屬於忠實的 PowerPoint 派，即使不斷有新的簡報工具出現（像是 Canva、Google Slide），但還是習慣使用 PowerPoint 來製作簡報。隨著 AI Agent 的興起，開始用有些工具可以自動從文件中產生簡報，像是 [Gamma](https://gamma.app/) 與 [Presenton](https://presenton.ai/) 等工具，這兩個工具分別是付費的服務和開源的專案，兩者都可以透過 AI 來製作簡報。
 
-# Presenton 介紹
+## Presenton 介紹
 
 [Presenton](https://presenton.ai/) 是一個開源的簡報生成工具（支援 OpenAI、Ollama、Antropic、Gemini 等多種 LLM），可以從文字或是文件中自動生成簡報（包含圖片），並且可以匯出成 PowerPoint 或 PDF 格式。
 
-## 地端安裝 Presenton
+### 地端安裝 Presenton
 
 ![20250916210442](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916210442.png)
 
@@ -27,11 +29,11 @@ docker run -it \
 
 - 在地端開啓 127.0.0.1:5000 即可進入 Presenton 的介面
 
-## 實際操作 Presenton 製作簡報 V.S. Gamma
+### 實際操作 Presenton 製作簡報 V.S. Gamma
 
 接著實際操作 Presenton 與 Gamma 來製作簡報，比較看看兩者的差異，文章使用的是「[Agent2Agent（A2A）協議深度解析：企業如何整合 AI 代理服務、打破系統孤島？](https://mile.cloud/zh/resources/blog/Agent-to-Agent-A2A-Protocol-Enterprises-Can-Integrate-AI-Agent-Services-and-Break-Down-System-Silos_894)」這篇文章來製作簡報。
 
-## 輸出截圖
+### 輸出截圖
 |Presenton|Gamma|
 |---|---|
 |![20250915230204](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250915230204.png)|![20250916203233](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916203233.png)|
@@ -47,7 +49,7 @@ docker run -it \
 |![20250916204320](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204320.png)|![20250916204707](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204707.png)|
 |![20250916204349](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204349.png)|![20250916204738](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204738.png)|
 
-## 心得比較
+### 心得比較
 
 - **排版**：Gamma 的排版比較好看整齊，Presenton 的排版比較雜亂（視覺上歪歪的）
 - **圖片**：雙方的圖片都不好看
@@ -58,13 +60,13 @@ docker run -it \
 >
 > 簡報還是自己做比較好 🤣
 
-# 重點回顧
+## 重點回顧
 
 - 介紹兩個可以自動從文件中產生簡報的工具 Gamma 與 Presenton
 - 實際操作兩個工具，並且比較兩者的差異
 - 介紹如何在地端安裝 Presenton
 
-# 參考資料
+## 參考資料
 
 - [Gamma](https://gamma.app/)
 - [Presenton](https://presenton.ai/)
