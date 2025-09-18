@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day15】介紹 MCP Gateway &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day18】實測使用 Presenton 自動產生簡報 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,12 +47,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-15';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-18';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day16】簡單介紹視覺語言模型（VLM）" href="day-16.html" />
-    <link rel="prev" title="【Day14】使用 fastmcp 進行 MCP 開發" href="day-14.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day17】使用 langextract + LLM 進行文本分析" href="day-17.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -172,10 +172,10 @@
 <li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day15】介紹 MCP Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-15.html">【Day15】介紹 MCP Gateway</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-16.html">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-17.html">【Day17】使用 langextract + LLM 進行文本分析</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-18.html">【Day18】實測使用 Presenton 自動產生簡報</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day18】實測使用 Presenton 自動產生簡報</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -234,7 +234,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-15.md" target="_blank"
+      <li><a href="../_sources/challenges/day-18.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -318,7 +318,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day15】介紹 MCP Gateway</h1>
+    <h1>【Day18】實測使用 Presenton 自動產生簡報</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -329,19 +329,15 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-mcp-context-forge">介紹 <code class="docutils literal notranslate"><span class="pre">IBM/mcp-context-forge</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">目標</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">要解決的問題</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">特色</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presenton">Presenton 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">地端安裝 Presenton</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenton-v-s-gamma">實際操作 Presenton 製作簡報 V.S. Gamma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">輸出截圖</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">心得比較</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">實際操作</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-mcp-gateway">使用 Docker 安裝 MCP Gateway</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#admin-ui">使用 Admin UI 界面</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -353,100 +349,117 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day15-mcp-gateway">
-<h1>【Day15】介紹 MCP Gateway<a class="headerlink" href="#day15-mcp-gateway" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day18-presenton">
+<h1>【Day18】實測使用 Presenton 自動產生簡報<a class="headerlink" href="#day18-presenton" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>前面從基本的 MCP 的基本概念、操作到實際開發，各位應該可以感受到 MCP 對 AI Agent 或是 Agentic AI 是一個不可或缺的一項協定。</p>
-<p>然而，各位在配置 MCP Server 的時候應該會覺得有點亂，像是 GitHub Copilot、Claude Code 跟 Codex 在配置檔的格式都不太一樣，另外也遇到像是環境變數、路徑等問題（要讓 MCP 可以存取哪些路徑等…）。目前配置的 MCP Server 數量可能也不大，偶爾麻煩點也還可以接受，但是如果是從企業的角度來看，不可能隨意的讓員工去安裝 MCP Server，讓 AI Agent 可以隨意讀取電腦上的資料。</p>
-<p>因此，今天要來介紹一個 Enterprise-Level 集中管理 MCP Server 的解決方案叫做 <a class="reference external" href="https://github.com/IBM/mcp-context-forge"><code class="docutils literal notranslate"><span class="pre">IBM/mcp-context-forge</span></code></a>。</p>
-<blockquote>
-<div><p><strong>補充說明</strong></p>
-<p>筆者認爲 MCP 目前還在發展階段，因此本次的介紹並不一定是最好的解決方案，主要著重的點在於提供各位一些 mindset，讓各位可以知道在企業環境中，可能可以怎麼管理 MCP Server 以及 MCP Server 的一些注意事項。</p>
-</div></blockquote>
+<p>筆者是屬於忠實的 PowerPoint 派，即使不斷有新的簡報工具出現（像是 Canva、Google Slide），但還是習慣使用 PowerPoint 來製作簡報。隨著 AI Agent 的興起，開始用有些工具可以自動從文件中產生簡報，像是 <a class="reference external" href="https://gamma.app/">Gamma</a> 與 <a class="reference external" href="https://presenton.ai/">Presenton</a> 等工具，這兩個工具分別是付費的服務和開源的專案，兩者都可以透過 AI 來製作簡報。</p>
 </section>
-<section id="ibm-mcp-context-forge">
-<h2>介紹 <code class="docutils literal notranslate"><span class="pre">IBM/mcp-context-forge</span></code><a class="headerlink" href="#ibm-mcp-context-forge" title="Link to this heading">#</a></h2>
+<section id="presenton">
+<h2>Presenton 介紹<a class="headerlink" href="#presenton" title="Link to this heading">#</a></h2>
+<p><a class="reference external" href="https://presenton.ai/">Presenton</a> 是一個開源的簡報生成工具（支援 OpenAI、Ollama、Antropic、Gemini 等多種 LLM），可以從文字或是文件中自動生成簡報（包含圖片），並且可以匯出成 PowerPoint 或 PDF 格式。</p>
 <section id="id2">
-<h3>目標<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>提供一個「集中管理」 MCP Gateway，可以讓多個 MCP Server 與 RESTful API 使用一個單一端點</p>
+<h3>地端安裝 Presenton<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p><img alt="20250916210442" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916210442.png" /></p>
+<ul class="simple">
+<li><p>下載 Image 需要一段時間，超級肥的 Image（約 12GB）</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--name<span class="w"> </span>presenton<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-p<span class="w"> </span><span class="m">5000</span>:80<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">LLM</span><span class="o">=</span><span class="s2">&quot;openai&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">OPENAI_API_KEY</span><span class="o">=</span><span class="s2">&quot;YOUR_API_KEY&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">OPENAI_MODEL</span><span class="o">=</span><span class="s2">&quot;gpt-5-2025-08-07&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">IMAGE_PROVIDER</span><span class="o">=</span><span class="s2">&quot;dall-e-3&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-e<span class="w"> </span><span class="nv">CAN_CHANGE_KEYS</span><span class="o">=</span><span class="s2">&quot;false&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span><span class="s2">&quot;./app_data:/app_data&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>ghcr.io/presenton/presenton:v0.5.13-beta
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>在地端開啓 127.0.0.1:5000 即可進入 Presenton 的介面</p></li>
+</ul>
+</section>
+<section id="presenton-v-s-gamma">
+<h3>實際操作 Presenton 製作簡報 V.S. Gamma<a class="headerlink" href="#presenton-v-s-gamma" title="Link to this heading">#</a></h3>
+<p>接著實際操作 Presenton 與 Gamma 來製作簡報，比較看看兩者的差異，文章使用的是「<a class="reference external" href="https://mile.cloud/zh/resources/blog/Agent-to-Agent-A2A-Protocol-Enterprises-Can-Integrate-AI-Agent-Services-and-Break-Down-System-Silos_894">Agent2Agent（A2A）協議深度解析：企業如何整合 AI 代理服務、打破系統孤島？</a>」這篇文章來製作簡報。</p>
 </section>
 <section id="id3">
-<h3>要解決的問題<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>多傳輸/協定不一致</strong>：目前 MCP Server 支援多種通訊方式（HTTP / SSE / WebSocket / stdio / streamable-HTTP 等），同時不同的 LLM Provider 的設定檔格式也不太一樣（JSON、TOML 等）</p></li>
-<li><p><strong>分散管理</strong>：目前 MCP Server 都是分散在開發者的電腦上，無法集中管理以及版本控制</p></li>
-<li><p><strong>授權機制</strong>：目前沒有統一的授權機制</p></li>
-<li><p><strong>缺乏 Observability</strong>：目前沒有辦法 observe MCP Server 的使用狀況（呼叫、延遲、錯誤率等）</p></li>
-</ol>
+<h3>輸出截圖<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Presenton</p></th>
+<th class="head"><p>Gamma</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="20250915230204" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250915230204.png" /></p></td>
+<td><p><img alt="20250916203233" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916203233.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="20250915230513" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250915230513.png" /></p></td>
+<td><p><img alt="20250916203414" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916203414.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="20250916204029" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204029.png" /></p></td>
+<td><p><img alt="20250916204437" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204437.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="20250916204053" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204053.png" /></p></td>
+<td><p><img alt="20250916204501" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204501.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="20250916204107" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204107.png" /></p></td>
+<td><p><img alt="20250916204533" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204533.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="20250916204120" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204120.png" /></p></td>
+<td><p><img alt="20250916204547" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204547.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="20250916204232" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204232.png" /></p></td>
+<td><p><img alt="20250916204601" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204601.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="20250916204243" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204243.png" /></p></td>
+<td><p><img alt="20250916204614" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204614.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="20250916204256" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204256.png" /></p></td>
+<td><p><img alt="20250916204625" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204625.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="20250916204308" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204308.png" /></p></td>
+<td><p><img alt="20250916204640" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204640.png" /></p></td>
+</tr>
+<tr class="row-even"><td><p><img alt="20250916204320" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204320.png" /></p></td>
+<td><p><img alt="20250916204707" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204707.png" /></p></td>
+</tr>
+<tr class="row-odd"><td><p><img alt="20250916204349" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204349.png" /></p></td>
+<td><p><img alt="20250916204738" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916204738.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="id4">
-<h3>特色<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>統一 Gateway</strong>：單一個端點來管理多個 MCP Server 以及 RESTful API</p></li>
-<li><p><strong>虛擬 MCP Server</strong>：可以把多個相關的 MCP Server 打包成一個虛擬的 MCP Server，讓使用者只需要配置一個 MCP Server</p></li>
-<li><p><strong>API 轉換</strong>：可以把 RESTful API 轉換成 MCP Server，省去重新開發 MCP Server 的麻煩，直接使用現有的 RESTful API</p></li>
-<li><p><strong>管理員界面</strong>：提供一個 Admin UI 來管理 MCP Server</p></li>
-<li><p><strong>認證機制</strong>：支援多種認證機制（JWT、SSO 等等）</p></li>
-<li><p><strong>Observability</strong>：搭配 OpenTelemetry 來觀察 MCP Server 的使用狀況</p></li>
-</ol>
+<h3>心得比較<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>排版</strong>：Gamma 的排版比較好看整齊，Presenton 的排版比較雜亂（視覺上歪歪的）</p></li>
+<li><p><strong>圖片</strong>：雙方的圖片都不好看</p></li>
+<li><p><strong>文字</strong>：Gamma 的文字比較 OK，Presenton 會不瞭解文章的重點</p></li>
+<li><p><strong>圖表</strong>：Gamma 產生的 Infographic 好看很，排版也不亂，稍微修改就可以直接使用</p></li>
+</ul>
+<blockquote>
+<div><p><strong>結論</strong>：</p>
+<p>簡報還是自己做比較好 🤣</p>
+</div></blockquote>
 </section>
 </section>
 <section id="id5">
-<h2>實際操作<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<section id="docker-mcp-gateway">
-<h3>使用 Docker 安裝 MCP Gateway<a class="headerlink" href="#docker-mcp-gateway" title="Link to this heading">#</a></h3>
+<h2>重點回顧<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>使用 local network</p></li>
-<li><p>Admin UI：<a class="reference external" href="http://localhost:4444/admin">http://localhost:4444/admin</a></p></li>
-<li><p>Docs Swagger：<a class="reference external" href="http://localhost:4444/docs">http://localhost:4444/docs</a></p></li>
-<li><p>user：<code class="docutils literal notranslate"><span class="pre">admin</span></code></p></li>
-<li><p>pass：<code class="docutils literal notranslate"><span class="pre">changeme</span></code></p></li>
+<li><p>介紹兩個可以自動從文件中產生簡報的工具 Gamma 與 Presenton</p></li>
+<li><p>實際操作兩個工具，並且比較兩者的差異</p></li>
+<li><p>介紹如何在地端安裝 Presenton</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data
-
-touch<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data/mcp.db
-
-sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>:docker<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data
-
-chmod<span class="w"> </span><span class="m">777</span><span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data
-
-docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>mcpgateway<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>--network<span class="o">=</span>host<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">MCPGATEWAY_UI_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">MCPGATEWAY_ADMIN_API_ENABLED</span><span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">HOST</span><span class="o">=</span><span class="m">0</span>.0.0.0<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-e<span class="w"> </span><span class="nv">PORT</span><span class="o">=</span><span class="m">4444</span><span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/data:/data<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>ghcr.io/ibm/mcp-context-forge:0.6.0
-</pre></div>
-</div>
-</section>
-<section id="admin-ui">
-<h3>使用 Admin UI 界面<a class="headerlink" href="#admin-ui" title="Link to this heading">#</a></h3>
-<p><img alt="20250914123133" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914123133.png" /></p>
-<p>本次文章比較著重跟 MCP 管理以及監測的功能分別在 NavBar 的：</p>
-<ol class="arabic simple">
-<li><p><strong>Virtual Servers Catalog</strong>：把多個工具打包成一台對外的 MCP Server</p></li>
-<li><p><strong>Gateways / MCP Servers</strong>：把需要管理的 MCP Server 加進去管理的 Registry 頁面</p></li>
-<li><p><strong>Metrics</strong>：觀察 MCP Server 的使用狀況</p></li>
-<li><p><strong>Logs</strong>：查看 MCP Server 的日誌</p></li>
-</ol>
-</section>
 </section>
 <section id="id6">
-<h2>重點回顧<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<h2>參考資料<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>簡單介紹 MCP 的 Enterprise-Level 管理解決方案 <a class="reference external" href="https://github.com/IBM/mcp-context-forge"><code class="docutils literal notranslate"><span class="pre">IBM/mcp-context-forge</span></code></a></p></li>
-<li><p>列出目前在使用 MCP Server 時，可能會遇到的問題（多傳輸/協定不一致、分散管理、授權機制、缺乏 Observability）</p></li>
-<li><p>透過 Docker 快速安裝 MCP Gateway</p></li>
-<li><p>筆者認爲 MCP 目前還在發展階段，多多觀察爲妥</p></li>
-</ul>
-</section>
-<section id="id7">
-<h2>參考資料<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/IBM/mcp-context-forge">IBM/mcp-context-forge</a></p></li>
+<li><p><a class="reference external" href="https://gamma.app/">Gamma</a></p></li>
+<li><p><a class="reference external" href="https://presenton.ai/">Presenton</a></p></li>
 </ul>
 </section>
 </section>
@@ -463,20 +476,20 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-14.html"
+       href="day-17.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day14】使用 fastmcp 進行 MCP 開發</p>
+        <p class="prev-next-title">【Day17】使用 langextract + LLM 進行文本分析</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-16.html"
+       href="Llama3_2_%283B%29_Unsloth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day16】簡單介紹視覺語言模型（VLM）</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -497,19 +510,15 @@ docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </sp
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ibm-mcp-context-forge">介紹 <code class="docutils literal notranslate"><span class="pre">IBM/mcp-context-forge</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">目標</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">要解決的問題</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">特色</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#presenton">Presenton 介紹</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">地端安裝 Presenton</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#presenton-v-s-gamma">實際操作 Presenton 製作簡報 V.S. Gamma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">輸出截圖</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">心得比較</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">實際操作</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#docker-mcp-gateway">使用 Docker 安裝 MCP Gateway</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#admin-ui">使用 Admin UI 界面</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">參考資料</a></li>
 </ul>
   </nav></div>
 
