@@ -1,12 +1,12 @@
-# 介紹
+## 介紹
 
 在現在的環境中有太多現成的工具可以使用，加上現在的模型實在是太強，幾乎不太需要向以前那樣需要花時間在資料前處理、特徵工程。
 
 但這也讓我們忽略了這些基礎的概念，Embedding 聽起來很難懂，但其實它的概念很簡單，只要能把文字轉換成數字向量就可以了（雖然這樣的向量效果不見得好），而向量資料庫的概念也很簡單，就是把這些向量存起來，然後可以用來做相似度搜尋（最簡單的方式就是暴力搜尋）。這邊就使用一個超簡單的範例來說明這些概念。
 
-# 範例程式碼
+## 範例程式碼
 
-## Tokenizer
+### Tokenizer
 
 ```python
 class SimpleTokenizer:
@@ -65,7 +65,7 @@ class SimpleTokenizer:
 >
 > 實際上的 tokenizer 會更複雜，有像是 Word-Level、Char-Level、Subword-Level、WordPiece 等等不同切法，這些切法會影響模型的效果與大小
 
-## Embedding Model
+### Embedding Model
 
 ```python
 class HashingEmbedder:
@@ -124,7 +124,7 @@ class DenseProjector:
 >
 > 這邊的 embedding 方式非常簡單，單純是爲了說明概念，實際上會使用訓練好的模型來產生更有語義的向量
 
-## Similarity & Retrieval
+### Similarity & Retrieval
 
 ```python
 class MockVectorDB:
@@ -183,7 +183,7 @@ class MockVectorDB:
 > 
 > 實際上會使用更有效率的方式來做向量搜尋，使用的指標也不一定是 cosine similarity
 
-# 完整程式碼
+## 完整程式碼
 
 ```python
 from pydantic import BaseModel
@@ -361,7 +361,7 @@ class MockVectorDB:
 
 
 if __name__ == "__main__":
-    # 測試範例
+    ## 測試範例
     test_text = "我喜歡黑色貓貓 meow!"
     tokenizer = SimpleTokenizer()
 
@@ -400,13 +400,13 @@ if __name__ == "__main__":
 
 ![20250920183620](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250920183620.png)
 
-# 重點回顧
+## 重點回顧
 
 - 提供了一個非常簡單的 RAG 的 Retriever 部分
 - 超簡單的 tokenizer、embedding、Vector DB（非訓練好的模型，僅爲說明概念）
 - 簡單提供了 embedding 的兩種大類別：稀疏表示（bag-of-tokens）與稠密表示（projected dense vector）
 
-# 參考資料
+## 參考資料
 
 - GPT-5 & GPT-5 Codex
 - [LLM大语言模型之Tokenization分词方法（WordPiece，Byte-Pair Encoding (BPE)，Byte-level BPE(BBPE)原理及其代码实现）](https://zhuanlan.zhihu.com/p/652520262)
