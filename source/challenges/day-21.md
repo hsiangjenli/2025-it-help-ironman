@@ -114,3 +114,4 @@ flowchart TB
 # 參考資料
 
 - [跟李沐学AI - 肝了6个月的AudioLLM，开源了【100亿模型计划】](https://youtu.be/0Dv4s2P65YQ)
+- [boson-ai/higgs-audio](https://github.com/boson-ai/higgs-audio)
