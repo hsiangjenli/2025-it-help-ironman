@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day12】介紹 MCP &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,6 +47,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "displayMath": [["$$", "$$"], ["\\[", "\\]"]]}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
     <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
@@ -55,12 +57,12 @@
 import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
 window.addEventListener("load", () => mermaid.run());
 </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-12';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-21';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖" href="day-13.html" />
-    <link rel="prev" title="【Day11】介紹 llms.txt" href="day-11.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="介紹" href="day-20.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -177,7 +179,7 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day12】介紹 MCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-15.html">【Day15】介紹 MCP Gateway</a></li>
@@ -189,7 +191,7 @@ window.addEventListener("load", () => mermaid.run());
 
 
 
-<li class="toctree-l1"><a class="reference internal" href="day-21.html">【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -248,7 +250,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="../_sources/challenges/day-12.md" target="_blank"
+      <li><a href="../_sources/challenges/day-21.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +334,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day12】介紹 MCP</h1>
+    <h1>【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -343,13 +345,20 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcp">MCP 基本概念</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本架構</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">傳輸方式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-llm">介紹 Audio LLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#higgs-audio">Higgs-Audio 使用到的工具</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descript-audio-codec">descript-audio-codec</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#librosa">librosa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-quantize-pytorch">vector_quantize_pytorch</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pydub">pydub</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langid">langid</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Audio LLM 背後運作邏輯概念</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -361,59 +370,144 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day12-mcp">
-<h1>【Day12】介紹 MCP<a class="headerlink" href="#day12-mcp" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day21-higgs-audio-audiollm">
+<h1>【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念<a class="headerlink" href="#day21-higgs-audio-audiollm" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>聽過 <a class="reference external" href="https://openai.com/index/function-calling-and-other-api-updates">Function Calling</a> 嗎？這個名詞是 OpenAI 在 2023 年 6 月提出的新概念，主要是讓 LLM 可以呼叫外部的 function 來取得資料或執行動作。不過這個概念並不是 OpenAI 獨有，其他的 LLM Provider 或是 AI Framework 也都有類似的功能，只是各自的實現方式不同。這也導致開發者在使用不同 LLM 或框架時，需要重新設計 Function Calling 的邏輯。因此，Antropic 就提出了一個新的標準出現，叫做 <a class="reference external" href="https://modelcontextprotocol.io/">Model Context Protocol（MCP）</a>，故名思義，MCP 的目標是要讓 LLM 可以透過一套統一的方式來呼叫外部工具，以獲取更多的上下文。</p>
-<blockquote>
-<div><p><strong>補充說明</strong></p>
-<p>在其它領域也有類似 MCP 的概念，如區塊鏈的「預言機」，目的是讓區塊鏈可以與真實世界互動（歷史總是驚人的相似）。</p>
-</div></blockquote>
+<p>筆者剛好在 YouTube 上看到 <a class="reference external" href="https://youtu.be/0Dv4s2P65YQ">跟李沐学AI - 肝了6个月的AudioLLM，开源了【100亿模型计划】</a> 的影片，裡面提到 Boson AI 開源了一個叫做 higgs-audio 的 AudioLLM 模型，筆者看了一下 GitHub 的介紹，覺得概念還不錯（不難懂），所以就寫了一篇文章來介紹這個模型背後的運作概念。</p>
 </section>
-<section id="mcp">
-<h2>MCP 基本概念<a class="headerlink" href="#mcp" title="Link to this heading">#</a></h2>
-<p>模型上下文協定（Model Context Protocol，MCP）是一種標準化的格式，用於描述 LLM 可以透過一套統一的方式來呼叫外部的 function 並取得資料或執行動作。</p>
+<section id="audio-llm">
+<h2>介紹 Audio LLM<a class="headerlink" href="#audio-llm" title="Link to this heading">#</a></h2>
+<p>在開始之前，先要有一個基本概念，對於電腦而言，不論是「聲音」或是「文字」對它都是一樣的東西（數字）。如果直接把聲音當作另一個語言來訓練是否可行？</p>
+<section id="higgs-audio">
+<h3>Higgs-Audio 使用到的工具<a class="headerlink" href="#higgs-audio" title="Link to this heading">#</a></h3>
+<p>Higgs-Audio 使用了許多現成的概念與工具（音訊編解碼、資料處理等），先逐一介紹，後續就會知道這些工具的作用</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>## requirements.txt
+descript-audio-codec
+torch
+transformers&gt;=4.45.1,&lt;4.47.0
+librosa
+dacite
+boto3==1.35.36
+s3fs
+torchvision
+torchaudio
+json_repair
+pandas
+pydantic
+vector_quantize_pytorch
+loguru
+pydub
+ruff==0.12.2
+omegaconf
+click
+langid
+jieba
+accelerate&gt;=0.26.0
+</pre></div>
+</div>
+<section id="descript-audio-codec">
+<h4>descript-audio-codec<a class="headerlink" href="#descript-audio-codec" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>將音訊壓縮成低比特率的離散 codes（如約 8 kbps 等），再由 codes 解碼重建音訊波形，輸入音訊可為 44.1/48 kHz 等取樣率</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>GitHub：<a class="github reference external" href="https://github.com/descriptinc/descript-audio-codec">descriptinc/descript-audio-codec</a></p></li>
+<li><p>Paper：<a class="reference external" href="https://arxiv.org/abs/2306.06546">https://arxiv.org/abs/2306.06546</a></p></li>
+</ul>
+</section>
+<section id="librosa">
+<h4>librosa<a class="headerlink" href="#librosa" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>音訊分析的套件，可用來做「<a class="reference external" href="https://librosa.org/doc/latest/core.html">數位訊號處理</a>」</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>GitHub：<a class="github reference external" href="https://github.com/librosa/librosa">librosa/librosa</a></p></li>
+<li><p>Documentation：<a class="reference external" href="https://librosa.org/doc/latest/index.html">https://librosa.org/doc/latest/index.html</a></p></li>
+</ul>
+</section>
+<section id="vector-quantize-pytorch">
+<h4>vector_quantize_pytorch<a class="headerlink" href="#vector-quantize-pytorch" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>跟文字的 Tokenizer 功能類似，目的是將連續的聲音轉換成離散的 ID</p>
+<ul class="simple">
+<li><p>文字 Tokenization：文字 <span class="math notranslate nohighlight">\(\rightarrow\)</span> 離散 token ID</p></li>
+<li><p>語音 Vector Quantization：連續向量 <span class="math notranslate nohighlight">\(\rightarrow\)</span> 離散 codebook ID</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>GitHub：<a class="github reference external" href="https://github.com/lucidrains/vector-quantize-pytorch">lucidrains/vector-quantize-pytorch</a></p></li>
+</ul>
+</section>
+<section id="pydub">
+<h4>pydub<a class="headerlink" href="#pydub" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>處理音訊檔案的工具，可以做切割、拼接、轉換格式、音量調整等等 …</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>GitHub：<a class="github reference external" href="https://github.com/jiaaro/pydub">jiaaro/pydub</a></p></li>
+<li><p>Documentation：<a class="github reference external" href="https://github.com/jiaaro/pydub/blob/master/API.markdown">jiaaro/pydub</a></p></li>
+</ul>
+</section>
+<section id="langid">
+<h4>langid<a class="headerlink" href="#langid" title="Link to this heading">#</a></h4>
+<blockquote>
+<div><p>文字語言辨識工具，用於判斷文字是哪種語言</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>GitHub：<a class="github reference external" href="https://github.com/saffsd/langid.py">saffsd/langid.py</a></p></li>
+</ul>
+</section>
+</section>
 <section id="id2">
-<h3>基本架構<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h3>Audio LLM 背後運作邏輯概念<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>雖然人聲是「連續訊號」，但可用 Tokenizer（像是：<code class="docutils literal notranslate"><span class="pre">vector_quantize_pytorch</span></code>）把連續的聲音轉換成有限離散的 token</p></li>
+<li><p>一旦把聲音表示成離散的 token（跟文字一樣），就能讓「聲音生成」發生在 LLM 內部</p></li>
+<li><p>最後用對應的 Decoder（像是：<code class="docutils literal notranslate"><span class="pre">descript-audio-codec</span></code>）把生成的音訊 tokens 還原成聲音，模型就能開口說話</p></li>
+</ul>
 <pre  class="mermaid">
         flowchart TB
-    subgraph Host[&quot;MCP Host&quot;]
-        C1[&quot;MCP Client &quot;]
-    end
+  subgraph Inputs[&quot;輸入條件&quot;]
+    TXT[&quot;ChatML 文字上下文（系統/使用者訊息）&quot;]
+    REF[&quot;參考語音 WAV （可選 voice cloning）&quot;]
+  end
+  subgraph Tokenizer[&quot;統一音訊 Tokenizer&quot;]
+    A_TOK[&quot;音訊 tokens（語意 + 聲學）&quot;]
+  end
+  subgraph LLM[&quot;Higgs Audio LLM&quot;]
+    GEN[&quot;自回歸生成&quot;]
+    
+    OUT_A_TOK[&quot;生成的音訊 tokens&quot;]
+  end
+  subgraph Decoder[&quot;Tokenizer 解碼&quot;]
+    WAV[&quot;重建聲音&quot;]
+  end
 
-    User --&gt; Host
-    C1 --&gt; S1[&quot;MCP Server 1&quot;]
-    C1 --&gt; S2[&quot;MCP Server 2&quot;]
-    C1 --&gt; S3[&quot;MCP Server 3&quot;]
-    </pre><ul class="simple">
-<li><p>MCP Host：AI 的應用程式，像是 GitHub Copilot、Claude 等等</p></li>
-<li><p>MCP Client：負責調解 MCP Host 與 MCP Server 之間的溝通</p></li>
-<li><p>MCP Server：提供上下文給 MCP Client 的程式</p></li>
-</ul>
+  REF -- 編碼 --&gt; A_TOK
+  TXT -- 文字 Token --&gt; GEN
+  A_TOK -- 音訊 Token --&gt; GEN
+  GEN --&gt; OUT_A_TOK
+  OUT_A_TOK --&gt; WAV
+    </pre><blockquote>
+<div><p><strong>補充說明</strong></p>
+<p>上面提到的 <code class="docutils literal notranslate"><span class="pre">vector_quantize_pytorch</span></code>、<code class="docutils literal notranslate"><span class="pre">descript-audio-codec</span></code> 只是幫助理解的工具例子，Higgs-Audio v2 實際上是 Boson AI 自己重新設計和訓練過的模型</p>
+</div></blockquote>
+</section>
 </section>
 <section id="id3">
-<h3>傳輸方式<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h2>重點回顧<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>STDIO：透過 standard input/output 來傳輸資料，適合在本機或容器中運行</p></li>
-<li><p>HTTP/SSE：透過 HTTP 或 Server-Sent Events 來傳輸資料，適合在網路環境中運行（支援常見的 HTTP 驗證，包括 Bearer Token、API Key 跟自訂 Header）</p></li>
+<li><p>聲音也能當作文字來建模，透過把音訊離散化成 token，讓聲音和文字一樣能進入 LLM 去生成</p></li>
+<li><p>介紹了幾個相關工具（如 <code class="docutils literal notranslate"><span class="pre">vector_quantize_pytorch</span></code>、<code class="docutils literal notranslate"><span class="pre">descript-audio-codec</span></code> 等），幫助理解「連續  離散 → 再生成」的流程</p></li>
+<li><p>雖然列出這些工具做說明，但 Higgs-Audio v2 的 tokenizer、encoder-decoder 與生成模組其實是 Boson AI 自家重新設計並訓練的模型</p></li>
 </ul>
-</section>
 </section>
 <section id="id4">
-<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h2>參考資料<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>介紹 MCP 短暫的歷史背景</p></li>
-<li><p>理解 MCP 所要解決的問題（透過與外部互動，獲取更多的上下文給 LLM）</p></li>
-<li><p>熟悉 MCP 的基本架構與傳輸方式</p></li>
-</ul>
-</section>
-<section id="id5">
-<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://openai.com/index/function-calling-and-other-api-updates">Open AI - Function Calling</a></p></li>
-<li><p><a class="reference external" href="https://modelcontextprotocol.io/docs/learn/architecture">MCP - Architecture overview</a></p></li>
-<li><p><a class="reference external" href="https://academy.binance.com/zh-TC/articles/blockchain-oracles-explained">區塊鏈預言機介紹</a></p></li>
+<li><p><a class="reference external" href="https://youtu.be/0Dv4s2P65YQ">跟李沐学AI - 肝了6个月的AudioLLM，开源了【100亿模型计划】</a></p></li>
+<li><p><a class="reference external" href="https://github.com/boson-ai/higgs-audio">boson-ai/higgs-audio</a></p></li>
 </ul>
 </section>
 </section>
@@ -430,20 +524,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-11.html"
+       href="day-20.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day11】介紹 llms.txt</p>
+        <p class="prev-next-title">介紹</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-13.html"
+       href="Llama3_2_%283B%29_Unsloth.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -464,13 +558,20 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mcp">MCP 基本概念</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本架構</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">傳輸方式</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#audio-llm">介紹 Audio LLM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#higgs-audio">Higgs-Audio 使用到的工具</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#descript-audio-codec">descript-audio-codec</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#librosa">librosa</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-quantize-pytorch">vector_quantize_pytorch</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pydub">pydub</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#langid">langid</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Audio LLM 背後運作邏輯概念</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">參考資料</a></li>
 </ul>
   </nav></div>
 
