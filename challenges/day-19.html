@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day16】簡單介紹視覺語言模型（VLM） &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day19】介紹 RAG &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,20 +47,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
-    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
-    <script type="module">
-import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
-window.addEventListener("load", () => mermaid.run());
-</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-16';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-19';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day17】使用 langextract + LLM 進行文本分析" href="day-17.html" />
-    <link rel="prev" title="【Day15】介紹 MCP Gateway" href="day-15.html" />
+    <link rel="next" title="【Day20】簡易 RAG 的 Retriever 部分實作" href="day-20.html" />
+    <link rel="prev" title="【Day18】實測使用 Presenton 自動產生簡報" href="day-18.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,10 +173,10 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-15.html">【Day15】介紹 MCP Gateway</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-16.html">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-17.html">【Day17】使用 langextract + LLM 進行文本分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-18.html">【Day18】實測使用 Presenton 自動產生簡報</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-19.html">【Day19】介紹 RAG</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day19】介紹 RAG</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-20.html">【Day20】簡易 RAG 的 Retriever 部分實作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-21.html">【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念</a></li>
 </ul>
@@ -245,7 +237,7 @@ window.addEventListener("load", () => mermaid.run());
       
       
       
-      <li><a href="../_sources/challenges/day-16.md" target="_blank"
+      <li><a href="../_sources/challenges/day-19.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -329,7 +321,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day16】簡單介紹視覺語言模型（VLM）</h1>
+    <h1>【Day19】介紹 RAG</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -340,18 +332,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlm">VLM 基礎概念</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">VLM 可以用在哪些場景？</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">怎麼運作的？</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本概念</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag">RAG 架構</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">RAG 分類</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">未來展望</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">簡單操作</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dots-ocr">實際操作 dots.ocr</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">其它相關的工具</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -363,99 +350,76 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day16-vlm">
-<h1>【Day16】簡單介紹視覺語言模型（VLM）<a class="headerlink" href="#day16-vlm" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day19-rag">
+<h1>【Day19】介紹 RAG<a class="headerlink" href="#day19-rag" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>今天要介紹的是透過 VLM 把 PDF 裡面的文字辨識出來後轉換成 Markdown 格式。這次使用的工具是 <a class="reference external" href="https://github.com/rednote-hilab/dots.ocr">dots.ocr</a>，是由中國的小紅書團隊開發的模型。</p>
-<blockquote>
-<div><p><strong>補充說明</strong></p>
-<p>部分公司或組織可能會禁止使用中國開發的軟體，請自行評估風險</p>
-</div></blockquote>
+<p>簡單的介紹一下已經不紅 RAG，從大家開始發現 AI 幻覺的時候就一直希望可以找到一個方法讓 AI 不再亂說話，過了一些日子 RAG 是否真的如當初試想的一樣（概念很好）？現在偶爾會在網路上看到一些相關的討論，認爲 RAG 完全 useless，因爲在前期準備資料的時候可能已經把整個資料拆碎，導致後期真的在檢索資料的時候找不到完全正確的訊息，讓 AI 反而參考了一堆無意義的資料導致更容易出錯。這邊簡單回顧一下 RAG 的概念以及定義。</p>
 </section>
-<section id="vlm">
-<h2>VLM 基礎概念<a class="headerlink" href="#vlm" title="Link to this heading">#</a></h2>
 <section id="id2">
-<h3>VLM 可以用在哪些場景？<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<h2>基本概念<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>何謂 RAG？</p>
 <ul class="simple">
-<li><p><strong>影像問答（Visual Question Answering，VQA）</strong>：給 VLM 一張圖片 + 一個問題，讓模型分析圖片內容後回答問題。例如「這張照片裡有幾隻貓？」</p></li>
-<li><p><strong>圖片描述（Captions）</strong>：自動生成圖片的文字描述，例如「這是一張有兩隻貓在草地上玩耍的照片」</p></li>
-<li><p><strong>文件理解（Document Understanding）</strong>：分析和理解文件內容（不僅是文字，還包括 Layout、標題、圖表等），並回答相關問題</p></li>
-<li><p><strong>圖形理解（Graph Understanding）</strong>：理解圖形結構（統計圖表）和內容</p></li>
+<li><p>廣義上的 RAG：生成答案之前有從外部知識庫或資料來源抓資訊來輔助</p></li>
+<li><p>狹義上的 RAG：標準的 RAG 流程，包含將問題向量化 -&gt; 使用密集型向量查詢 -&gt; 取出 top-k 的資料片段給 LLM 產生回答</p></li>
+</ul>
+<section id="rag">
+<h3>RAG 架構<a class="headerlink" href="#rag" title="Link to this heading">#</a></h3>
+<p>直接從 RAG（Retrieval-Augmented Generation）的全名開始：</p>
+<ul class="simple">
+<li><p>Retriever（檢索器）：負責把使用者問題轉換成向量，並取從資料庫找出最相關的片段</p></li>
+<li><p>Augmented（增強）：將使用者提出的原始問以及檢索出來的結果合併成 Context</p></li>
+<li><p>Generator（生成器）：接收到新的 Context 之後，透過 LLM 生成最終回答</p></li>
 </ul>
 </section>
 <section id="id3">
-<h3>怎麼運作的？<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p><img alt="20250914170816" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914170816.png" /></p>
-<pre  class="mermaid">
-        flowchart TB
-    %% 文字部分流程
-    subgraph TextPart[&quot;文字部分&quot;]
-        direction TB
-        T1[文字輸入 TextInput] --&gt; T2[Tokenizer]
-        T2 --&gt; T3[文字 Token Embedding]
-    end
-
-    %% 影像部分流程
-    subgraph VisionPart[&quot;影像部分&quot;]
-        direction TB
-        V1[Raw Image] --&gt; V2[Vision Encoder]
-        V2 --&gt; V3[Feature Vectors]
-        V3 --&gt; V4[Projector]
-        V4 --&gt; V5[視覺 Token Embedding]
-    end
-
-    T3 --&gt; Fusion[整合成 LLM 輸入]
-    V5 --&gt; Fusion
-    Fusion --&gt; Output[LLM 處理後輸出]
-    </pre><ol class="arabic simple">
-<li><p><strong>文字部分</strong>：文字先經過處理，把輸入句子拆成一串 tokens。然後這些 tokens 被 embed 成為文字向量（text embeddings）</p></li>
-<li><p><strong>影像部分</strong>：原始影像會先進入 vision encoder 提取 feature vectors，接著通過 projector 將這些特徵轉換成視覺 token 或向量</p></li>
-<li><p><strong>整合輸入</strong>：將文字向量和視覺向量整合成一個序列，作為大型語言模型（LLM）的輸入</p></li>
-<li><p><strong>輸出</strong>：LLM 處理後的輸出會包含文字和影像的相關資訊</p></li>
+<h3>RAG 分類<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p><img alt="&#64;gao2023retrieval" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916221509.png" /></p>
+<ul class="simple">
+<li><p><strong>Naive RAG（Indexing, Retrieval, Generation）</strong>：檢索結果常常不精準或不完整</p></li>
+<li><p><strong>Advanced RAG</strong>：在 Naive RAG 基礎上，加入前置（Pre-Retrieval）與後置（Post-Retrieval）方法來改善檢索與生成</p>
+<ol class="arabic simple">
+<li><p><strong>Pre-Retrieval Process</strong>：在建立索引前就優化資料，例如更細粒度分段、改善索引結構、加上中繼資料、設計對齊問題、混合不同檢索方式</p></li>
+<li><p><strong>Embedding</strong>：使用更好的向量表示，例如針對領域微調或依上下文動態調整（Dynamic Embedding）</p></li>
+<li><p><strong>Post-Retrieval Process</strong>：對檢索結果再做調整，例如重新排序（ReRank）、過濾雜訊、摘要壓縮</p></li>
 </ol>
-</section>
+</li>
+<li><p><strong>Modular RAG</strong>：把檢索流程拆解成更多模組，能依需求自由組合或替換，提供更靈活的架構。</p>
+<ul>
+<li><p><strong>Search Module</strong>：除了語義檢索，也能用 SQL、知識圖譜或搜尋引擎</p></li>
+<li><p><strong>Memory Module</strong>：利用 LLM 自身的記憶功能引導檢索</p></li>
+<li><p><strong>Extra Generation Module</strong>：不只檢索，也用 LLM 生成輔助內容來補足上下文</p></li>
+<li><p><strong>Alignment Module</strong>：透過適配器或強化學習，改善查詢與文件的語義對齊</p></li>
+<li><p><strong>Validation Module</strong>：檢查檢索結果是否可靠，避免把錯誤資訊送進 LLM</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="&#64;gao2023retrieval" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250916232357.png" /></p>
 </section>
 <section id="id4">
-<h2>簡單操作<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
-<blockquote>
-<div><p>筆電沒有 GPU，使用線上版操作就好 🤐</p>
-</div></blockquote>
-<section id="dots-ocr">
-<h3>實際操作 dots.ocr<a class="headerlink" href="#dots-ocr" title="Link to this heading">#</a></h3>
-<p>使用線上版的 <a class="reference external" href="https://dots-ocr.rednote-hilab.com/">dots.ocr</a> 來進行 PDF 轉換</p>
-<p><img alt="20250914162155" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914162155.png" /></p>
-<p><img alt="20250914165559" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250914165559.png" /></p>
+<h3>未來展望<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>作者最後針對 RAG 未來的發展提出了兩個方向，分別為 Vertical Optimization of RAG 以及 Horizontal expansion of RAG</p>
+<ul class="simple">
+<li><p>Vertical Optimization of RAG：著重在增加檢索出來的品質</p></li>
+<li><p>Horizontal expansion of RAG：著重在提供更多元的資料（圖片、程式、聲音、影片等…）</p></li>
+</ul>
 </section>
 </section>
 <section id="id5">
-<h2>其它相關的工具<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/opendatalab/MinerU"><code class="docutils literal notranslate"><span class="pre">opendatalab/MinerU</span></code></a></p></li>
-<li><p><a class="reference external" href="https://github.com/opendatalab/DocLayout-YOLO"><code class="docutils literal notranslate"><span class="pre">opendatalab/DocLayout-YOLO</span></code></a></p></li>
-<li><p><a class="reference external" href="https://github.com/pymupdf/PyMuPDF"><code class="docutils literal notranslate"><span class="pre">PyMuPDF</span></code></a></p></li>
+<li><p><a class="reference external" href="https://simg.baai.ac.cn/paperfile/25a43194-c74c-4cd3-b60f-0a1f27f8b8af.pdf">Retrieval-augmented generation for large language models: A survey</a></p></li>
 </ul>
-<blockquote>
-<div><p><strong>補充說明</strong></p>
-<p>雖然使用 dots.ocr 或是其他 pdf 轉換工具看起來轉換影像成文字很簡單，但因爲 PDF 內的格式很複雜，像是圖片、表格、雙欄文字等，不是很簡單的 Input 一張圖片就能轉換成想要的格式，會需要針對圖片做 layout 辨識，並且針對不同的區塊做不同的處理，不過這就太複雜了</p>
-</div></blockquote>
-</section>
-<section id="id6">
-<h2>重點回顧<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>簡單介紹 VLM 的概念以及可以應用在哪些場景</p></li>
-<li><p>介紹 VLM 的運作原理（透過 Vision Encoder 把圖片轉 Feature Vectors，再轉換成 Token，最後與文字一起輸入 LLM）</p></li>
-<li><p>介紹 dots.ocr 這個工具，並且實際操作把 PDF 轉換成 Markdown 格式</p></li>
-</ul>
-</section>
-<section id="id7">
-<h2>參考資料<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://youtu.be/lOD_EE96jhM">What Are Vision Language Models? How AI Sees &amp; Understands Images</a></p></li>
-<li><p><a class="reference external" href="https://dots-ocr.rednote-hilab.com/">dots.ocr</a></p></li>
-<li><p><a class="reference external" href="https://machinelearning.apple.com/research/fast-vision-language-models">FastVLM: Efficient Vision Encoding for Vision Language Models</a></p></li>
-<li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/1935120171573413613">🚀重磅开源！本地部署1.7B参数超强OCR大模型dots.ocr！超越GPT-4o和olmOCR！结构化精准提取复杂PDF扫描件！完美识别中英文文档、模糊扫描件与复杂表格！文档解析准确率接近100%！</a></p></li>
-</ul>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">gao2023retrieval</span><span class="p">,</span>
+<span class="w">  </span><span class="na">title</span><span class="p">=</span><span class="s">{Retrieval-augmented generation for large language models: A survey}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">author</span><span class="p">=</span><span class="s">{Gao, Yunfan and Xiong, Yun and Gao, Xinyu and Jia, Kangxiang and Pan, Jinliu and Bi, Yuxi and Dai, Yixin and Sun, Jiawei and Wang, Haofen and Wang, Haofen}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">journal</span><span class="p">=</span><span class="s">{arXiv preprint arXiv:2312.10997}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">volume</span><span class="p">=</span><span class="s">{2}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">number</span><span class="p">=</span><span class="s">{1}</span><span class="p">,</span>
+<span class="w">  </span><span class="na">year</span><span class="p">=</span><span class="s">{2023}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -471,20 +435,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-15.html"
+       href="day-18.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day15】介紹 MCP Gateway</p>
+        <p class="prev-next-title">【Day18】實測使用 Presenton 自動產生簡報</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-17.html"
+       href="day-20.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day17】使用 langextract + LLM 進行文本分析</p>
+        <p class="prev-next-title">【Day20】簡易 RAG 的 Retriever 部分實作</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -505,18 +469,13 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vlm">VLM 基礎概念</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">VLM 可以用在哪些場景？</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">怎麼運作的？</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">基本概念</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag">RAG 架構</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">RAG 分類</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">未來展望</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">簡單操作</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dots-ocr">實際操作 dots.ocr</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">其它相關的工具</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
   </nav></div>
 

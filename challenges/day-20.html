@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day20】簡易 RAG 的 Retriever 部分實作 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -52,7 +52,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念" href="day-21.html" />
-    <link rel="prev" title="【Day18】實測使用 Presenton 自動產生簡報" href="day-18.html" />
+    <link rel="prev" title="【Day19】介紹 RAG" href="day-19.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -176,11 +176,8 @@
 <li class="toctree-l1"><a class="reference internal" href="day-16.html">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-17.html">【Day17】使用 langextract + LLM 進行文本分析</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-18.html">【Day18】實測使用 Presenton 自動產生簡報</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
-
-
-
-
+<li class="toctree-l1"><a class="reference internal" href="day-19.html">【Day19】介紹 RAG</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day20】簡易 RAG 的 Retriever 部分實作</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-21.html">【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
@@ -324,7 +321,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>介紹</h1>
+    <h1>【Day20】簡易 RAG 的 Retriever 部分實作</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -334,18 +331,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">範例程式碼</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizer">Tokenizer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-retrieval">Similarity &amp; Retrieval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">範例程式碼</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizer">Tokenizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-retrieval">Similarity &amp; Retrieval</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完整程式碼</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完整程式碼</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -356,15 +352,17 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
-<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day20-rag-retriever">
+<h1>【Day20】簡易 RAG 的 Retriever 部分實作<a class="headerlink" href="#day20-rag-retriever" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>在現在的環境中有太多現成的工具可以使用，加上現在的模型實在是太強，幾乎不太需要向以前那樣需要花時間在資料前處理、特徵工程。</p>
 <p>但這也讓我們忽略了這些基礎的概念，Embedding 聽起來很難懂，但其實它的概念很簡單，只要能把文字轉換成數字向量就可以了（雖然這樣的向量效果不見得好），而向量資料庫的概念也很簡單，就是把這些向量存起來，然後可以用來做相似度搜尋（最簡單的方式就是暴力搜尋）。這邊就使用一個超簡單的範例來說明這些概念。</p>
 </section>
 <section id="id2">
-<h1>範例程式碼<a class="headerlink" href="#id2" title="Link to this heading">#</a></h1>
+<h2>範例程式碼<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <section id="tokenizer">
-<h2>Tokenizer<a class="headerlink" href="#tokenizer" title="Link to this heading">#</a></h2>
+<h3>Tokenizer<a class="headerlink" href="#tokenizer" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">SimpleTokenizer</span><span class="p">:</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">tokenize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
@@ -427,7 +425,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="embedding-model">
-<h2>Embedding Model<a class="headerlink" href="#embedding-model" title="Link to this heading">#</a></h2>
+<h3>Embedding Model<a class="headerlink" href="#embedding-model" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">HashingEmbedder</span><span class="p">:</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">):</span>
@@ -490,7 +488,7 @@ document.write(`
 </div></blockquote>
 </section>
 <section id="similarity-retrieval">
-<h2>Similarity &amp; Retrieval<a class="headerlink" href="#similarity-retrieval" title="Link to this heading">#</a></h2>
+<h3>Similarity &amp; Retrieval<a class="headerlink" href="#similarity-retrieval" title="Link to this heading">#</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">MockVectorDB</span><span class="p">:</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span> <span class="n">dense_k</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">):</span>
@@ -551,7 +549,7 @@ document.write(`
 </section>
 </section>
 <section id="id3">
-<h1>完整程式碼<a class="headerlink" href="#id3" title="Link to this heading">#</a></h1>
+<h2>完整程式碼<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">hashlib</span>
@@ -767,7 +765,7 @@ document.write(`
 <p><img alt="20250920183620" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250920183620.png" /></p>
 </section>
 <section id="id4">
-<h1>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h1>
+<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>提供了一個非常簡單的 RAG 的 Retriever 部分</p></li>
 <li><p>超簡單的 tokenizer、embedding、Vector DB（非訓練好的模型，僅爲說明概念）</p></li>
@@ -775,11 +773,12 @@ document.write(`
 </ul>
 </section>
 <section id="id5">
-<h1>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h1>
+<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>GPT-5 &amp; GPT-5 Codex</p></li>
 <li><p><a class="reference external" href="https://zhuanlan.zhihu.com/p/652520262">LLM大语言模型之Tokenization分词方法（WordPiece，Byte-Pair Encoding (BPE)，Byte-level BPE(BBPE)原理及其代码实现）</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -794,12 +793,12 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-18.html"
+       href="day-19.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day18】實測使用 Presenton 自動產生簡報</p>
+        <p class="prev-next-title">【Day19】介紹 RAG</p>
       </div>
     </a>
     <a class="right-next"
@@ -827,18 +826,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">範例程式碼</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizer">Tokenizer</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-retrieval">Similarity &amp; Retrieval</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">範例程式碼</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizer">Tokenizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#embedding-model">Embedding Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#similarity-retrieval">Similarity &amp; Retrieval</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完整程式碼</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">完整程式碼</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
