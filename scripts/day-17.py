@@ -3,10 +3,12 @@ import langextract as lx
 import unicodedata
 import os
 
+
 def normalize(s: str) -> str:
     s = textwrap.dedent(s)
     s = unicodedata.normalize("NFKC", s)
     return s
+
 
 PROMPT = textwrap.dedent("""
 - 依出場順序抽取：機構、地區、出版物、獎項、年份
