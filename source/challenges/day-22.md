@@ -59,10 +59,38 @@ IBM 在今年 3 月時已經推出了一個叫做 [Agent Communication Protocol�
 - [Python Quickstart Tutorial: Building an A2A Agent](https://a2a-protocol.org/latest/tutorials/python/1-introduction/)
 - [a2aproject/a2a-python](https://github.com/a2aproject/a2a-python)
 
+## A2A Specification 怎麼看？
+
+在 A2A Specification 裡面會看到幾個常見的關鍵字：
+
+- **MUST**：絕對要求
+- **MUST NOT**：絕對禁止
+- **SHOULD**：建議／推薦（在大多數情況應該做，但在某些特定情況下可以不做）
+- **SHOULD NOT**：建議不要做
+- **MAY**：可選（規格允許，但並不強制）
+
+### 章節規劃
+
+1. **Introduction**：說明 A2A 的定位與動機，定義要解決的問題（不同 provider 的 LLM 都能互相溝通）
+2. **Core Concepts**： 定義 A2A 的基本概念與術語（Client/Server、Agent Card、Message/Part 等等）
+3. **Transport/Formats**：支援的傳輸協議與資料格式（JSON-RPC/gRPC、REST 等等）
+4. **Authentication and Authorization**：認證與授權機制
+5. **Agent Discovery**：規範 Agent Card 的結構與內容
+6. **Protocol Data Objects**：資料結構
+7. **Protocol RPC Methods**：規範所有 RPC 方法的界面與行爲
+8. **Error Handling**：錯誤處理機制
+9. **Common Workflows & Examples**：常見範例（同步、多輪輸入、通知等等）
+10. **Appendices**：補充說明
+11. **A2A Compliance Requirements**：說明合規要求
+
 # 重點回顧
+
+- 快速瞭解 A2A 以及 MCP 的差異
+- 瞭解 A2A 的資源與規範的整體架構
 
 # 參考資料
 
 - [ACP Joins Forces with A2A](https://lfaidata.foundation/communityblog/2025/08/29/acp-joins-forces-with-a2a-under-the-linux-foundations-lf-ai-data/)
 - [What is A2A?](https://a2a-protocol.org/latest/topics/what-is-a2a/)
 - [A2A and MCP: Detailed Comparison](https://a2a-protocol.org/latest/topics/a2a-and-mcp/)
+- [Key words for use in RFCs to Indicate Requirement Levels](https://datatracker.ietf.org/doc/html/rfc2119)
