@@ -148,14 +148,14 @@ class AgentExecutor(ABC):
         )
     ```
 - 調整 `model_source` 爲 `ollama`
-- 調整 `TOOL_LLM_URL` 爲 `http://localhost:11434/api/chat`
+- 調整 `TOOL_LLM_URL` 爲 `http://localhost:11434`
 - 調整 `TOOL_LLM_NAME` 成 model name，例如 `llama3.2:3b`
 
 ```shell
 # .env
 model_source=ollama
 API_KEY=your_api_key_here
-TOOL_LLM_URL=http://localhost:11434/api/chat
+TOOL_LLM_URL=http://localhost:11434
 TOOL_LLM_NAME=llama3.2:3b
 ```
 
@@ -189,14 +189,12 @@ curl -X POST http://localhost:11434/api/chat \
 
 ### 使用 `test_client.py` 來測試
 
-```python
-# 設定較長的超時時間 (3分鐘)
-timeout = httpx.Timeout(180.0, connect=10.0)
-
-async with httpx.AsyncClient(timeout=timeout) as httpx_client:
+```shell
+uv run app/test_client.py
 ```
 
-- 因爲筆者的筆電沒有 GPU，使用 Ollama 來跑 LLM 會很慢，所以把 timeout 調長一點
+![20250923234020](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250923234020.png)
+
 
 # 重點回顧
 
