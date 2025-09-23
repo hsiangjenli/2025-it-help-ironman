@@ -1,7 +1,5 @@
 # 介紹
 
-昨天介紹了 Agent Card 的格式以及如何 Launch 一個 Agent Server（還沒真的接上 LLM），今天透過官方的範例來示範如何使用 Ollama 作爲 LLM backend 並且結合 `a2a-sdk` 來實作一個簡單的 Agent Server。
-
 # 使用 Ollama 以及 LangGraph 實作 Agent Server
 
 本次使用 [`a2aproject/a2a-samples`](https://github.com/a2aproject/a2a-samples) 中的 LangGraph 範例來示範來操作如和使用 Ollama 作爲 LLM backend 並且結合 `a2a-sdk` 來實作一個簡單的 Agent Server。
@@ -12,7 +10,6 @@
 git clone https://github.com/a2aproject/a2a-samples.git
 cd a2a-samples/samples/python/agents/langgraph
 uv sync
-uv add langchain-ollama
 ```
 
 ## 架構介紹
@@ -26,17 +23,12 @@ app/
 └── test_client.py 
 ```
 
+- `agent.py`：定義 Agent 的行爲，這邊使用 LangGraph 來實作
+- `agent_executor.py`：定義 Agent Executor，負責管理整個 Agent 的生命週期
+
 ### `agent.py`
 
 - 建立一個 LangGraph Agent 的實例（`CurrencyAgent`）
-- 將原本使用 ChatOpenAI 的地方改成使用 ChatOllama
-
-```python
-self.model = ChatOllama(
-    model=os.getenv('TOOL_LLM_NAME'),
-    base_url=os.getenv('TOOL_LLM_URL'),
-)
-```
 
 ### `agent_executor.py`
 
@@ -140,16 +132,9 @@ class AgentExecutor(ABC):
 
 ## 調整設定
 
-- 使用 Ollama 作爲 LLM backend，沒有要使用 Google API Key，把這段程式碼註解掉
-    ```python
-    if not os.getenv('GOOGLE_API_KEY'):
-        raise MissingAPIKeyError(
-            'GOOGLE_API_KEY environment variable not set.'
-        )
-    ```
-- 調整 `model_source` 爲 `ollama`
-- 調整 `TOOL_LLM_URL` 爲 `http://localhost:11434/api/chat`
-- 調整 `TOOL_LLM_NAME` 成 model name，例如 `llama3.2:3b`
+### 修改環境變數
+
+建立 `.env` 檔案，設定使用 Ollama：
 
 ```shell
 # .env
@@ -157,6 +142,31 @@ model_source=ollama
 API_KEY=your_api_key_here
 TOOL_LLM_URL=http://localhost:11434/api/chat
 TOOL_LLM_NAME=llama3.2:3b
+```
+
+### 程式碼調整 (可選)
+
+如果要完全移除 Google API 檢查，可以註解掉以下程式碼：
+
+```python
+# 在 __main__.py 中註解掉
+# if not os.getenv('GOOGLE_API_KEY'):
+#     raise MissingAPIKeyError(
+#         'GOOGLE_API_KEY environment variable not set.'
+#     )
+```
+
+### 確認 Ollama 設定
+
+```shell
+# 確認 Ollama 服務運行
+ollama list
+
+# 如果模型不存在，下載模型
+ollama pull llama3.2:3b
+
+# 測試模型回應
+ollama run llama3.2:3b "Hello, how are you?"
 ```
 
 ## 啓動 Agent Server
@@ -170,7 +180,12 @@ uv run app
 
 ## 測試 Agent Server
 
-### 確認 Ollama Server 有啓動
+```shell
+# 測試 Agent Server
+
+## 1. 測試 Ollama API 連線
+
+首先確認 Ollama 服務正常運作：
 
 ```shell
 # 測試 ollama API
@@ -187,22 +202,116 @@ curl -X POST http://localhost:11434/api/chat \
   }'
 ```
 
-### 使用 `test_client.py` 來測試
+![20250923200419](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250923200419.png)
 
-```python
-# 設定較長的超時時間 (3分鐘)
-timeout = httpx.Timeout(180.0, connect=10.0)
+## 2. 測試 A2A Agent Server
 
-async with httpx.AsyncClient(timeout=timeout) as httpx_client:
+### 使用內建測試客戶端
+
+```shell
+uv run app/test_client.py
 ```
 
-- 因爲筆者的筆電沒有 GPU，使用 Ollama 來跑 LLM 會很慢，所以把 timeout 調長一點
+### 使用 curl 測試同步請求
+
+```shell
+curl -X POST http://localhost:10000 \
+  -H "Content-Type: application/json" \
+  -d '{
+    "id": "12113c25-b752-473f-977e-c9ad33cf4f56",
+    "jsonrpc": "2.0",
+    "method": "message/send",
+    "params": {
+        "message": {
+            "kind": "message",
+            "messageId": "120ec73f93024993becf954d03a672bc",
+            "parts": [
+                {
+                    "kind": "text",
+                    "text": "how much is 10 USD in INR?"
+                }
+            ],
+            "role": "user"
+        }
+    }
+}'
+```
+
+## 3. 問題排除
+
+### 常見錯誤和解決方案
+
+1. **Internal error (-32603)**:
+   - 檢查 Ollama 服務是否運行：`ollama list`
+   - 確認模型已下載：`ollama pull llama3.2:3b`
+   - 檢查 `.env` 檔案設定
+
+2. **連線錯誤**:
+   - 確認 Ollama API 在 `http://localhost:11434` 運行
+   - 測試 Ollama API 連線（如上面的測試）
+
+3. **模型不存在**:
+   ```shell
+   ollama pull llama3.2:3b
+   ollama list | grep llama3.2
+   ```
+```
+
+![20250923200419](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250923200419.png)
 
 # 重點回顧
 
-- 使用 Ollama 作爲 LLM backend，並且結合 `a2a-sdk` 來實作一個簡單的 Agent Server
-- 了解 Agent Executor 的運作方式
+## 🎯 核心概念
+
+1. **A2A 協議**: Agent-to-Agent 通訊協議，標準化 AI 代理間的互動
+2. **事件驅動架構**: 使用事件佇列 (EventQueue) 而非直接回傳結果
+3. **分層設計**: 
+   - `agent.py`: 純 AI 邏輯層
+   - `agent_executor.py`: 協議適配層
+   - `__main__.py`: 伺服器啟動層
+
+## 🔧 技術要點
+
+### Agent Executor 設計模式
+- **`execute` 方法**: 不回傳值，透過事件佇列發布結果
+- **任務生命週期**: `working` → `input_required`/`completed`
+- **串流處理**: 即時更新任務狀態
+
+### Ollama 整合
+- **模型選擇**: 支援多種本地 LLM
+- **API 統一**: 使用 OpenAI 相容的 API 格式
+- **無需外部 API**: 完全本地化部署
+
+## 💡 學習收穫
+
+1. **事件驅動 vs 傳統請求回應**: 更適合長時間運行的 AI 任務
+2. **協議抽象**: 將業務邏輯與通訊協議分離
+3. **本地 LLM 部署**: 在地化 AI 服務的實務應用
+
+## 📈 擴展可能
+
+- 支援多模態輸入 (圖片、音訊)
+- 實作任務取消功能
+- 添加更多工具和 API 整合
+- 實作持久化記憶存儲
 
 # 參考資料
 
-- [a2aproject/a2a-samples](https://github.com/a2aproject/a2a-samples)
+## 🔗 官方資源
+
+- [A2A Project GitHub](https://github.com/a2aproject/a2a-samples) - A2A 協議範例專案
+- [LangGraph 官方文件](https://langchain-ai.github.io/langgraph/) - LangGraph 框架文件
+- [Ollama 官方網站](https://ollama.ai/) - 本地 LLM 運行平台
+
+## 📚 相關技術文件
+
+- [A2A Protocol Specification](https://a2aproject.org/) - A2A 協議規範
+- [Frankfurter API](https://www.frankfurter.app/) - 匯率查詢 API
+- [FastAPI Documentation](https://fastapi.tiangolo.com/) - Web API 框架
+- [Pydantic](https://pydantic-docs.helpmanual.io/) - 資料驗證庫
+
+## 🛠️ 開發工具
+
+- [uv](https://github.com/astral-sh/uv) - Python 套件管理工具
+- [Uvicorn](https://www.uvicorn.org/) - ASGI 伺服器
+- [httpx](https://www.python-httpx.org/) - HTTP 客戶端庫
