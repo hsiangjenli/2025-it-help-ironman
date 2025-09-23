@@ -1,10 +1,12 @@
-# 介紹
+# 【Day23】建立 A2A 的 Agent Card
+
+## 介紹
 
 昨天已經介紹了 Agent2Agent 協議的背景與動機，今天要開始逐步實作一個簡單的 Agent Server，先從核心概念與 Agent Card 開始。
 
-# Agent2Agent Core Concepts
+## Agent2Agent Core Concepts
 
-## 角色
+### 角色
 
 ![](https://a2a-protocol.org/latest/assets/a2a-actors.png)
 
@@ -12,7 +14,7 @@
 - **A2A Client Agent**：使用者與遠端代理溝通的橋樑
 - **A2A Server Agent**：負責處理 Client Agent 發來的請求
 
-## 互動元件
+### 互動元件
 
 - **Agent Card**：描述 Agent 能力、端點、驗證方式的文件，讓 Client Agent 知道如何與其溝通
 - **Task**：代表使用者的一個請求（工作單位），具有唯一的 ID 與明確的生命週期，方便追蹤長時間或多輪互動
@@ -20,14 +22,14 @@
 - **Part**：在 Message 或是 Artifact 中的最小內容單位，有 `TextPart`、`FilePart`、`DataPart` 等...
 - **Artifact**：由 Agent 在任務中產生的結構化輸出
 
-# 寫一個簡單的 Agent Card
+## 寫一個簡單的 Agent Card
 
-## 基本概念
+### 基本概念
 
 - Agent Card 是一個 JSON 檔案
 - 位置是在 `.well-known/agent-card`
 
-## 需要的欄位
+### 需要的欄位
 
 - **name**：Agent 的名稱
 - **description**：Agent 的描述
@@ -38,7 +40,7 @@
 - **defaultOutputModes**：預設的輸出模式
 - **skills**：Agent 支援的技能
 
-## Python 範例
+### Python 範例
 
 ```shell
 uv add a2a-sdk[all]
@@ -74,7 +76,7 @@ agent_card = AgentCard(
 )
 ```
 
-## 完整程式碼
+### 完整程式碼
 
 ```python
 # day-23.py
@@ -118,8 +120,8 @@ agent_card = AgentCard(
 # 2) 簡單 mock executor
 class BlackCatExecutor(AgentExecutor):
     async def execute(self, context, event_queue):
-        # 你可以在這裡用 event_queue 推進度 / 產物；先簡化
-        # await event_queue.add_text("meow")  # 若要串流
+        ## 你可以在這裡用 event_queue 推進度 / 產物；先簡化
+        ## await event_queue.add_text("meow")  ## 若要串流
         return
 
     async def cancel(self, context, event_queue):
@@ -154,13 +156,13 @@ uv run day-23.py
 >
 > 本次的範例的 `url` 欄位沒有設定（單純用來展示起好一個 Agent Server 可以看到的 Agent Card）
 
-# 重點回顧
+## 重點回顧
 
 - Agent2Agent 的核心概念
 - Agent Card 的結構與必要欄位
 - 如何用 Python SDK 建立一個簡單的 Agent Card（模型是 Mock 的）
 
-# 參考資料
+## 參考資料
 
 - [Core Concepts and Components in A2A](https://a2a-protocol.org/latest/topics/key-concepts/)
 - [Multi-Agent Communication with the A2A Python SDK](https://towardsdatascience.com/multi-agent-communication-with-the-a2a-python-sdk/)
