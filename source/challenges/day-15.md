@@ -54,7 +54,6 @@ sudo chown -R :docker $(pwd)/data
 chmod 777 $(pwd)/data
 
 docker run -d --name mcpgateway \
-  --network=host \
   -e MCPGATEWAY_UI_ENABLED=true \
   -e MCPGATEWAY_ADMIN_API_ENABLED=true \
   -e HOST=0.0.0.0 \
