@@ -1,12 +1,14 @@
-# 介紹
+# 【Day24】爲 Ollama 建立符合 A2A 的 Agent Server
+
+## 介紹
 
 昨天介紹了 Agent Card 的格式以及如何 Launch 一個 Agent Server（還沒真的接上 LLM），今天透過官方的範例來示範如何使用 Ollama 作爲 LLM backend 並且結合 `a2a-sdk` 來實作一個簡單的 Agent Server。
 
-# 使用 Ollama 以及 LangGraph 實作 Agent Server
+## 使用 Ollama 以及 LangGraph 實作 Agent Server
 
 本次使用 [`a2aproject/a2a-samples`](https://github.com/a2aproject/a2a-samples) 中的 LangGraph 範例來示範來操作如和使用 Ollama 作爲 LLM backend 並且結合 `a2a-sdk` 來實作一個簡單的 Agent Server。
 
-## 下載範例程式碼 + 準備環境
+### 下載範例程式碼 + 準備環境
 
 ```shell
 git clone https://github.com/a2aproject/a2a-samples.git
@@ -15,7 +17,7 @@ uv sync
 uv add langchain-ollama
 ```
 
-## 架構介紹
+### 架構介紹
 
 ```shell
 app/
@@ -26,7 +28,7 @@ app/
 └── test_client.py 
 ```
 
-### `agent.py`
+#### `agent.py`
 
 - 建立一個 LangGraph Agent 的實例（`CurrencyAgent`）
 - 將原本使用 ChatOpenAI 的地方改成使用 ChatOllama
@@ -38,7 +40,7 @@ self.model = ChatOllama(
 )
 ```
 
-### `agent_executor.py`
+#### `agent_executor.py`
 
 ```python
 class AgentExecutor(ABC):
@@ -138,7 +140,7 @@ class AgentExecutor(ABC):
             raise ServerError(error=InternalError()) from e
 ```
 
-## 調整設定
+### 調整設定
 
 - 使用 Ollama 作爲 LLM backend，沒有要使用 Google API Key，把這段程式碼註解掉
     ```python
@@ -159,7 +161,7 @@ TOOL_LLM_URL=http://localhost:11434
 TOOL_LLM_NAME=llama3.2:3b
 ```
 
-## 啓動 Agent Server
+### 啓動 Agent Server
 
 ```shell
 uv run app
@@ -168,9 +170,9 @@ uv run app
 
 ![20250923203324](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250923203324.png)
 
-## 測試 Agent Server
+### 測試 Agent Server
 
-### 確認 Ollama Server 有啓動
+#### 確認 Ollama Server 有啓動
 
 ```shell
 # 測試 ollama API
@@ -187,7 +189,7 @@ curl -X POST http://localhost:11434/api/chat \
   }'
 ```
 
-### 使用 `test_client.py` 來測試
+#### 使用 `test_client.py` 來測試
 
 ```shell
 uv run app/test_client.py
@@ -196,11 +198,11 @@ uv run app/test_client.py
 ![20250923234020](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250923234020.png)
 
 
-# 重點回顧
+## 重點回顧
 
 - 使用 Ollama 作爲 LLM backend，並且結合 `a2a-sdk` 來實作一個簡單的 Agent Server
 - 了解 Agent Executor 的運作方式
 
-# 參考資料
+## 參考資料
 
 - [a2aproject/a2a-samples](https://github.com/a2aproject/a2a-samples)
