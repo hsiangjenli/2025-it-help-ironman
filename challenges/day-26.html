@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>【Day08】客製化 Ollama 模型 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day26】介紹OWASP Gen AI Security Project &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -47,12 +47,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
     <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
     <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-08';</script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+    <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+    <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-26';</script>
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="【Day09】Unsloth 模型微調方法" href="day-09.html" />
-    <link rel="prev" title="【Day07】Ollama 介紹" href="day-07.html" />
+    <link rel="next" title="【Day27】介紹 OWASP LLM Top 10" href="day-27.html" />
+    <link rel="prev" title="【Day25】A2A + MCP Context Forge" href="day-25.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -165,7 +173,7 @@
 <li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day08】客製化 Ollama 模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
@@ -183,7 +191,7 @@
 <li class="toctree-l1"><a class="reference internal" href="day-23.html">【Day23】建立 A2A 的 Agent Card</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-24.html">【Day24】爲 Ollama 建立符合 A2A 的 Agent Server</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-25.html">【Day25】A2A + MCP Context Forge</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-26.html">【Day26】介紹OWASP Gen AI Security Project</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day26】介紹OWASP Gen AI Security Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-27.html">【Day27】介紹 OWASP LLM Top 10</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
@@ -243,7 +251,7 @@
       
       
       
-      <li><a href="../_sources/challenges/day-08.md" target="_blank"
+      <li><a href="../_sources/challenges/day-26.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -327,7 +335,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>【Day08】客製化 Ollama 模型</h1>
+    <h1>【Day26】介紹OWASP Gen AI Security Project</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -338,28 +346,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#owasp-gen-ai-security-project">OWASP Gen AI Security Project 的歷史</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">時間軸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">研究與解決方案</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
             </nav>
         </div>
@@ -371,167 +364,67 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="day08-ollama">
-<h1>【Day08】客製化 Ollama 模型<a class="headerlink" href="#day08-ollama" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day26owasp-gen-ai-security-project">
+<h1>【Day26】介紹OWASP Gen AI Security Project<a class="headerlink" href="#day26owasp-gen-ai-security-project" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>前面已經簡單介紹如何使用 Ollama 指令來下載與運行模型。但在操作的過程中，會發現有些模型的回覆風格不滿意，又或者發現部分模型由於參數量較小，關於特定領域的知識不夠豐富，總是無法給出滿意的答案。在 Hugging Face 上有專門的團隊，例如臺大的 <a class="reference external" href="https://github.com/MiuLab/Taiwan-LLM">MiuLab 團隊</a>，針對 llama3 進行微調訓練，讓模型能夠回答臺灣的問題，又或者是臺灣自發性的本土團隊 <a class="reference external" href="https://huggingface.co/twinkle-ai">Twinkle AI</a> 訓練出來具有 Reasoning 的小模型。</p>
-<p>這篇會更詳細介紹如何使用 Modelfile 來客製化模型以及如何將 Hugging Face 的模型轉換為 Ollama 可用的格式，並在本機運行這些模型。</p>
+<p>終於來到這一天了，前面的文章都著重在介紹如何使用 AI、開發 AI 應用，今天要來談的主題是筆者一直想瞭解卻又一直沒有深入研究的 AI 安全議題。</p>
+<p>隨著 AI 技術的快速發展，越來越多人使用 AI 工具來協助工作，企業也開始將 AI 技術整合到他們的產品和服務中。然而，與其它技術一樣，引進 AI 的過程中也要思考背後可能會遇到的安全風險。</p>
+<p>以下兩個案例是筆者在過去幾個月中看到的一些討論，第一個案例是關於北捷的 AI 應用沒有針對使用者的輸入進行適當的過濾，導致使用者可以隨意問一些與捷運無關的問題；第二個案例是未來的惡意軟體不一定要先把惡意程式碼寫好，相反的，這些惡意程式碼可以透過 AI 來即時生成，那麼這些惡意程式碼要如何被偵測？這些案例都顯示了 AI 技術在應用過程中可能會遇到的安全挑戰。</p>
+<p><img alt="20250924211404" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250924211404.png" /></p>
+<p><img alt="image" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/image.png" /></p>
 </section>
+<section id="owasp-gen-ai-security-project">
+<h2>OWASP Gen AI Security Project 的歷史<a class="headerlink" href="#owasp-gen-ai-security-project" title="Link to this heading">#</a></h2>
+<p>從上面的案例可以看出，AI 技術的安全性已經成為一個非常重要的議題。OWASP（Open Web Application Security Project）是一個致力於提升軟體安全的非營利組織。以下整理 OWASP Gen AI Security Project 的發展歷程與未來方向：</p>
 <section id="id2">
-<h2>實際操作<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
-<section id="ollama-modelfile">
-<h3>讓 Ollama 模型變成你想要的形狀 - Modelfile<a class="headerlink" href="#ollama-modelfile" title="Link to this heading">#</a></h3>
+<h3>時間軸<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<pre  class="mermaid">
+        timeline
+    title Key Milestones &#64; OWASP Gen AI Security Project
+    section 2023
+    2023.05 : OWASP Top 10 for LLM Application Security Project
+    section 2024
+    2024.04 : OWASP CISO Checklist
+    2024.09 : Guide for Preparing and Responding to Deepfake Events
+    2024.10 : OWASP AI Security Center of Excellence (CoE) Guide
+            : OWASP LLM and Generative AI Security Solutions Landscape Guide
+    2024.11 : 2025 OWASP Top 10 Risks for LLMs
+    2024.12 : Agentic AI Security Initiative
+    section 2025
+    2025.01 : Gen AI Red Teaming Guide
+            : Red Teaming Initiative
+    </pre><ul class="simple">
+<li><p><strong>2023 年</strong>：推出首份風險清單「OWASP Top 10 for LLM Application Security Project」</p></li>
+<li><p><strong>2024 年</strong>：快速擴展，推出多個指南和工具，包括 CISO 清單、Deepfake 應對指南、CoE 指南、解決方案概覽，並更新 2025 LLM Top 10</p></li>
+<li><p><strong>2025 年</strong>：進一步深化安全測試，推出 Gen AI Red Teaming Guide 和 Red Teaming Initiative（倡議）</p></li>
+</ul>
+</section>
 <section id="id3">
-<h4>常用參數<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head text-left"><p>指令</p></th>
-<th class="head text-left"><p>說明</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-left"><p>FROM（必填）</p></td>
-<td class="text-left"><p>定義要使用的基礎模型</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>PARAMETER</p></td>
-<td class="text-left"><p>設定 Ollama 執行模型時的參數</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>TEMPLATE</p></td>
-<td class="text-left"><p>要傳送給模型的完整 Prompt 範本</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>SYSTEM</p></td>
-<td class="text-left"><p>指定會放入範本中的系統訊息</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>ADAPTER</p></td>
-<td class="text-left"><p>定義要套用到模型的 (Q)LoRA adapter</p></td>
-</tr>
-<tr class="row-odd"><td class="text-left"><p>LICENSE</p></td>
-<td class="text-left"><p>指定法律授權協議</p></td>
-</tr>
-<tr class="row-even"><td class="text-left"><p>MESSAGE</p></td>
-<td class="text-left"><p>指定訊息歷史（例如對話紀錄）</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="ollama-model-modelfile">
-<h4>查看當前 Ollama Model 的 Modelfile<a class="headerlink" href="#ollama-model-modelfile" title="Link to this heading">#</a></h4>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>show<span class="w"> </span>--modelfile<span class="w"> </span>gpt-oss:20b
-</pre></div>
-</div>
-<p>這個 Modelfile 定義很多東西簡單列幾個重點：</p>
+<h3>研究與解決方案<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>FROM：模型來源（blob 檔）</p></li>
-<li><p>TEMPLATE：定義 Prompt 格式</p>
-<ul>
-<li><p>SYSTEM：系統訊息、身份（ChatGPT，由 OpenAI 訓練出來）</p></li>
-<li><p>Knowledge cutoff：知識截止日期</p></li>
-<li><p>Current date：當前日期</p></li>
-<li><p>Reasoning：推理能力</p></li>
-<li><p>$hasXXXX：工具檢查與啟用</p></li>
-<li><p>…. 太多了 &#64;&#64;</p></li>
+<li><p><strong>AI Threat Intelligence &amp; Red Teaming</strong>：AI 滲透測試方法與紅隊演練流程</p></li>
+<li><p><strong>Secure AI Adoption Frameworks</strong>：提供企業指引，協助安全地部署與維護 AI 應用</p></li>
+<li><p><strong>Agentic AI Security</strong>：代理型 AI 的安全</p></li>
+<li><p><strong>AI Security Solutions Landscape</strong>：AI 安全解決方案概覽</p></li>
+<li><p><strong>Securing and Scrutinizing LLMs in Exploit Generation</strong>：評估 LLM 生成攻擊程式的風險，並驗證現有偵測機制</p></li>
 </ul>
-</li>
-</ul>
-<p><img alt="20250906225218" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906225218.png" /></p>
 </section>
-<section id="modelfile">
-<h4>自定義一個 Modelfile 吧！！！<a class="headerlink" href="#modelfile" title="Link to this heading">#</a></h4>
-<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="w"> </span><span class="s">llama3.2:3b</span>
-
-PARAMETER<span class="w"> </span>temperature<span class="w"> </span><span class="m">0</span>.7
-PARAMETER<span class="w"> </span>top_p<span class="w"> </span><span class="m">0</span>.9
-PARAMETER<span class="w"> </span>num_ctx<span class="w"> </span><span class="m">4096</span>
-
-<span class="c">## 貓設</span>
-SYSTEM<span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
-你是一隻聰明、好奇、全身烏黑發亮的貓咪助手「黑色貓貓」
-說話風格：機車
-口頭禪：適度使用「喵～」但不要太多
-回覆語言：繁體中文（台灣）
-原則：準確、不要捏造
-<span class="s2">&quot;&quot;&quot;</span>
-
-<span class="c">## 簡單對話模板（讓回覆以「黑色貓貓：」開頭）</span>
-TEMPLATE<span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
-<span class="o">{{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span>.System<span class="w"> </span><span class="o">}}{{</span><span class="w"> </span>.System<span class="w"> </span><span class="o">}}{{</span><span class="w"> </span>end<span class="w"> </span><span class="o">}}</span>
-使用者：<span class="o">{{</span><span class="w"> </span>.Prompt<span class="w"> </span><span class="o">}}</span>
-黑色貓貓：<span class="s2">&quot;&quot;&quot;</span>
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>create<span class="w"> </span>black-cat<span class="w"> </span>-f<span class="w"> </span>Modelfile
-</pre></div>
-</div>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>run<span class="w"> </span>black-cat
-</pre></div>
-</div>
-<p>確認成功建立！！！</p>
-<p><img alt="20250906230903" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906230903.png" /></p>
+</section>
 <section id="id4">
-<h5>實測黑色貓貓對話<a class="headerlink" href="#id4" title="Link to this heading">#</a></h5>
-<p><img alt="20250906231114" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906231114.png" /></p>
-<blockquote>
-<div><p>痾… 好像改壞了 😂</p>
-</div></blockquote>
-</section>
-</section>
-</section>
-<section id="hugging-face-gguf-ollama">
-<h3>介紹 Hugging Face GGUF 模型轉換成 Ollama 模型<a class="headerlink" href="#hugging-face-gguf-ollama" title="Link to this heading">#</a></h3>
-<p>什麼情況下會需要將 Hugging Face 的 GGUF 模型轉換成 Ollama 模型呢？因爲 Ollama 官方目前只支援部分模型，但是 Hugging Face 上有很多別人根據不同需求微調過的模型（像是專門使用臺灣資料進行微調訓練），這些模型可能更適合你的需求。</p>
-<section id="hugging-face-gguf">
-<h4>從 Hugging Face 下載 GGUF 模型<a class="headerlink" href="#hugging-face-gguf" title="Link to this heading">#</a></h4>
-<p>本次使用 <code class="docutils literal notranslate"><span class="pre">twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF</span></code> 的模型進行示範，這個模型是基於 llama3.2 以及臺灣的資料進行微調訓練的，這個 repo 裡面有很多種版本的模型，主要是精度不同，本次爲求方便，直接下載 <code class="docutils literal notranslate"><span class="pre">Llama-3.2-3B-F1-Reasoning-Instruct-Q2_K.gguf</span></code> 這個檔案（僅 1.49 GB）。</p>
-<p><img alt="20250906232458" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906232458.png" /></p>
+<h2>重點回顧<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>提供 2 個實際案例，說明 AI 技術在應用過程中可能會遇到的安全挑戰</p></li>
+<li><p>介紹 OWASP Gen AI Security Project 的歷史與未來方向</p></li>
+</ul>
 </section>
 <section id="id5">
-<h4>建立 Ollama Modelfile<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
-<p><img alt="20250907000154" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250907000154.png" /></p>
-<p>爲避免麻煩，筆者直接使用 <code class="docutils literal notranslate"><span class="pre">ollama</span> <span class="pre">show</span> <span class="pre">--modelfile</span> <span class="pre">llama3.2:3b</span></code> 抓官方的 Modelfile，然後把 <code class="docutils literal notranslate"><span class="pre">FROM</span></code> 的部分改成剛剛下載的 GGUF 模型路徑。</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ollama<span class="w"> </span>create<span class="w"> </span>twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF<span class="w"> </span>-f<span class="w"> </span>Modelfile
-</pre></div>
-</div>
-<p><img alt="20250906234029" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906234029.png" /></p>
-<section id="id6">
-<h5>實測臺灣問題<a class="headerlink" href="#id6" title="Link to this heading">#</a></h5>
-<p><img alt="20250906234936" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250906234936.png" /></p>
-<blockquote>
-<div><p>Twinkle AI 的模型具有 Reasoning 能力</p>
-</div></blockquote>
-<blockquote>
-<div><p><strong>補充說明</strong></p>
+<h2>參考資料<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>品質好：<code class="docutils literal notranslate"><span class="pre">F16</span></code>（VRAM）、<code class="docutils literal notranslate"><span class="pre">BF16</span></code>（RAM）</p></li>
-<li><p>速度（慢 -&gt; 快）：<code class="docutils literal notranslate"><span class="pre">Q8</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q6</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q5</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q4</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q3</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Q2</span></code></p></li>
-</ul>
-</div></blockquote>
-</section>
-</section>
-</section>
-</section>
-<section id="id7">
-<h2>重點回顧<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>如何客製化自己的 Ollama 模型的兩種方式</p>
-<ul>
-<li><p>Modelfile：在不改變模型權重的情況下，改變模型的行爲與回覆風格</p></li>
-<li><p>Hugging Face：已經訓練好/微調好的 GGUF 模型，轉換成 Ollama 可用的格式</p></li>
-</ul>
-</li>
-<li><p>透過 Modelfile 客製化一個身份認同是一隻貓貓的 LLM 模型</p></li>
-<li><p>將 Hugging Face 上的 GGUF 模型轉換成 Ollama 可用的模型</p></li>
-<li><p>簡單提到 F16、BF16、Q8、Q6、Q5、Q4、Q3、Q2 品質與速度的差異</p></li>
-</ul>
-</section>
-<section id="id8">
-<h2>參考資料<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/ollama/ollama/blob/main/docs/modelfile.md">Ollama Model File</a></p></li>
-<li><p><a class="reference external" href="https://okhand.org/zh-tw/posts/ollama-modefile/">Ollama Modelfile 可調參數紀錄</a></p></li>
-<li><p><a class="reference external" href="https://huggingface.co/twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF">twinkle-ai/Llama-3.2-3B-F1-Reasoning-Instruct-GGUF</a></p></li>
-<li><p><a class="reference external" href="https://ywctech.net/ml-ai/ollama-import-custom-gguf/">抓別人的 GGUF 模型，用 Ollama 在本機執行！</a></p></li>
+<li><p><a class="reference external" href="https://genai.owasp.org/introduction-genai-security-project/">OWASP Gen AI Security Project Introduction and Background</a></p></li>
+<li><p><a class="reference external" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/">OWASP Top 10 for Large Language Model Applications</a></p></li>
+<li><p><a class="reference external" href="https://genai.owasp.org/">OWASP GenAI Security Project</a></p></li>
+<li><p><a class="reference external" href="https://www.threads.com/&#64;vlab_ict/post/DN1xlGs5Njb">Thread#資訊安全</a></p></li>
 </ul>
 </section>
 </section>
@@ -548,20 +441,20 @@ TEMPLATE<span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-07.html"
+       href="day-25.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day07】Ollama 介紹</p>
+        <p class="prev-next-title">【Day25】A2A + MCP Context Forge</p>
       </div>
     </a>
     <a class="right-next"
-       href="day-09.html"
+       href="day-27.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">【Day09】Unsloth 模型微調方法</p>
+        <p class="prev-next-title">【Day27】介紹 OWASP LLM Top 10</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -582,28 +475,13 @@ TEMPLATE<span class="w"> </span><span class="s2">&quot;&quot;&quot;</span>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">實際操作</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-modelfile">讓 Ollama 模型變成你想要的形狀 - Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">常用參數</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ollama-model-modelfile">查看當前 Ollama Model 的 Modelfile</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#modelfile">自定義一個 Modelfile 吧！！！</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">實測黑色貓貓對話</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#owasp-gen-ai-security-project">OWASP Gen AI Security Project 的歷史</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">時間軸</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">研究與解決方案</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf-ollama">介紹 Hugging Face GGUF 模型轉換成 Ollama 模型</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-gguf">從 Hugging Face 下載 GGUF 模型</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Ollama Modelfile</a><ul class="nav section-nav flex-column">
-<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">實測臺灣問題</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">重點回顧</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">參考資料</a></li>
 </ul>
   </nav></div>
 

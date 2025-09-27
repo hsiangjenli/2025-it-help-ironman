@@ -1,0 +1,786 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>【Day27】介紹 OWASP LLM Top 10 &#8212; 2025 iThome 鐵人賽</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=d35f5538" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pseudocode@latest/build/pseudocode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.js"></script>
+    <script src="../_static/katex_autorenderer_pseudocode_algorithm.js?v=28afe2fa"></script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'challenges/day-27';</script>
+    <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
+    <link rel="prev" title="【Day26】介紹OWASP Gen AI Security Project" href="day-26.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">2025 iThome 鐵人賽</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目錄:</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="day-01.html">【Day01】爲自己定一個目標吧！</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-02.html">【Day02】LLM 專有名詞整理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-03.html">【Day03】情境工程（Context Engineering）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-04.html">【Day04】情境工程工具（10xrules）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-05.html">【Day05】情境工程工具（coleam00/context-engineering-intro）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-06.html">【Day06】情境工程工具（bmad-code-org/BMAD-METHOD）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-07.html">【Day07】Ollama 介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-08.html">【Day08】客製化 Ollama 模型</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-09.html">【Day09】Unsloth 模型微調方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-10.html">【Day10】實際使用 Unsloth 來對模型微調</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-11.html">【Day11】介紹 llms.txt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-12.html">【Day12】介紹 MCP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-13.html">【Day13】實際操作 MCP Server 並透過 GitHub Copilot 繪製架構圖</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-14.html">【Day14】使用 fastmcp 進行 MCP 開發</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-15.html">【Day15】介紹 MCP Gateway</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-16.html">【Day16】簡單介紹視覺語言模型（VLM）</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-17.html">【Day17】使用 langextract + LLM 進行文本分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-18.html">【Day18】實測使用 Presenton 自動產生簡報</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-19.html">【Day19】介紹 RAG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-20.html">【Day20】簡易 RAG 的 Retriever 部分實作</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-21.html">【Day21】介紹 Higgs-Audio（AudioLLM）背後的概念</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-22.html">【Day22】Agent2Agent（A2A）介紹</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-23.html">【Day23】建立 A2A 的 Agent Card</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-24.html">【Day24】爲 Ollama 建立符合 A2A 的 Agent Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-25.html">【Day25】A2A + MCP Context Forge</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-26.html">【Day26】介紹OWASP Gen AI Security Project</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day27】介紹 OWASP LLM Top 10</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Llama3_2_%283B%29_Unsloth.html">Unsloth + Llama3.2:3b 微調測試</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/challenges/day-27.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>【Day27】介紹 OWASP LLM Top 10</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-ai">2025 年 LLM 與生成式 AI 應用的十大風險與因應措施</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm01-2025-prompt-injection">LLM01:2025 Prompt Injection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm02-2025-sensitive-information-disclosure">LLM02:2025 Sensitive Information Disclosure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm03-2025-supply-chain">LLM03:2025 Supply Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm04-2025-data-and-model-poisoning">LLM04:2025 Data and Model Poisoning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm05-2025-improper-output-handling">LLM05:2025 Improper Output Handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm06-2025-excessive-agency">LLM06:2025 Excessive Agency</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm07-2025-system-prompt-leakage">LLM07:2025 System Prompt Leakage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm08-2025-vector-and-embedding-weaknesses">LLM08:2025 Vector and Embedding Weaknesses</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm09-2025-misinformation">LLM09:2025 Misinformation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm10-2025-unbounded-consumption">LLM10:2025 Unbounded Consumption</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">防禦策略</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">參考資料</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="day27-owasp-llm-top-10">
+<h1>【Day27】介紹 OWASP LLM Top 10<a class="headerlink" href="#day27-owasp-llm-top-10" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>把 OWASP LLM Top 10 2025 的十個風險一個一個看完，目的是先了解有哪些風險以及這些風險的防禦方法，後續可以針對這些防範方法進行實作。</p>
+</section>
+<section id="llm-ai">
+<h2>2025 年 LLM 與生成式 AI 應用的十大風險與因應措施<a class="headerlink" href="#llm-ai" title="Link to this heading">#</a></h2>
+<p>共通模版：</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="k">-</span><span class="w"> </span><span class="gs">**風險描述**</span>：解釋這個風險是什麼
+<span class="k">-</span><span class="w"> </span><span class="gs">**防禦策略**</span>：可以採取哪些策略或防線，來降低此風險發生或影響的可能性
+</pre></div>
+</div>
+<section id="llm01-2025-prompt-injection">
+<h3>LLM01:2025 Prompt Injection<a class="headerlink" href="#llm01-2025-prompt-injection" title="Link to this heading">#</a></h3>
+<section id="id2">
+<h4>風險描述<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<p>攻擊者透過內容（文字、圖片等資料）修改或是覆蓋掉原本的上下文或是系統指令，導致 LLM 產生非預期輸出（錯誤、惡意）、泄露出敏感資訊、執行未授權的操作</p>
+</section>
+<section id="id3">
+<h4>防禦策略<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>限制模型行為</strong>：在 System Prompt 中規定模型角色，要求上下文一致、限制輸出、指式 AI 忽略忽略試圖修改指令的輸入</p></li>
+<li><p><strong>明確的輸出格式</strong>：針對輸出進行 Validation</p></li>
+<li><p><strong>輸入輸出過濾</strong>：建立偵測規則（類別），針對「語意」、「文字」進行檢查或是可以採用「RAG Triad」來判斷潛在惡意輸出</p></li>
+<li><p><strong>最小權限與權限控管</strong>：只給模型完成任務所需的功能（例如僅允許讀取而非新增刪除），並依操作風險分級：低風險自動執行、中風險有限制、高風險才需人工審核。</p></li>
+<li><p><strong>人機協作</strong>：在風險較高的場景需要人工審查</p></li>
+<li><p><strong>標記內容來源</strong>：將可信、不可信的資料來源進行標記，限制提示的影響力</p></li>
+<li><p><strong>進行對抗性測試跟攻擊模擬</strong>：定期測試，將模型視為不可信使用者，以檢驗信任邊界、存取控制與安全機制的有效性</p></li>
+</ul>
+</section>
+</section>
+<section id="llm02-2025-sensitive-information-disclosure">
+<h3>LLM02:2025 Sensitive Information Disclosure<a class="headerlink" href="#llm02-2025-sensitive-information-disclosure" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h4>風險描述<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>LLM 在處理或生成回應時，可能會意外洩露敏感資訊（個人、公司內部機密演算法）</p>
+</section>
+<section id="id5">
+<h4>防禦策略<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>資料清理</strong>：資料在進入訓練前，進行清洗或遮蔽敏感內容</p></li>
+<li><p><strong>輸入驗證</strong>：偵測、過濾潛在有害或敏感的輸入</p></li>
+<li><p><strong>最小權限原則</strong>：限制對敏感資料的存取，僅授權必要使用者或流程</p></li>
+<li><p><strong>限制資料來源</strong>：控制模型可存取的資料來源（外部資料，可能包含惡意、敏感內容）</p></li>
+<li><p><strong>聯邦學習</strong>：將訓練分散在多個伺服器或設備，減少集中蒐集資料的需求與風險</p></li>
+<li><p><strong>差分隱私</strong>：在資料或輸出中加入噪音，使攻擊者難以還原個別數據</p></li>
+<li><p><strong>同態加密</strong>：在加密態下進行運算的技術，讓資料在處理過程中仍保持機密性</p></li>
+<li><p><strong>標記化與遮蔽</strong>：前處理階段辨識敏感字串、進行遮蔽或標記，防止資訊被納入模型訓練過程中</p></li>
+<li><p><strong>隱藏系統提示</strong>：禁止讓使用者讀取到系統提示</p></li>
+<li><p><strong>安全錯誤處理</strong>：LLM 應用後端在處理 request 時，避免將產生的錯誤輸出給使用者</p></li>
+<li><p><strong>教育使用者</strong>：避免用戶輸入敏感資訊</p></li>
+<li><p><strong>定義明確的資料使用規則</strong>：制定清楚的資料保留、使用與刪除政策，並允許使用者選擇退出被納入訓練過程</p></li>
+</ul>
+</section>
+</section>
+<section id="llm03-2025-supply-chain">
+<h3>LLM03:2025 Supply Chain<a class="headerlink" href="#llm03-2025-supply-chain" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h4>風險描述<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>LLM 的整個供應鏈中產生的漏洞可能會損害訓練資料、模型和部署平台的完整性。進而導致偏頗的輸出、安全性漏洞。與傳統軟體漏洞類似，發生在程式的相依套件中，甚至會延伸到第三方的預訓練模型與資料</p>
+</section>
+<section id="id7">
+<h4>防禦策略<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>資料來源與供應商審查</strong>：嚴格檢查所有資料來源與供應商的可信度，包含使用條款與隱私政策，確保不會因政策變更而引入新風險</p></li>
+<li><p><strong>漏洞與過時元件管理</strong>：採用 OWASP A06:2021 – Vulnerable and Outdated Components，執行漏洞掃描、修補與套件管理，並在含有敏感資料的環境中同樣實施</p></li>
+<li><p><strong>AI 紅隊與安全評估</strong>：在選用第三方模型前進行演練與評估，例如模擬攻擊、對抗測試，確認模型在實際應用場景中的安全性</p></li>
+<li><p><strong>軟體物料清單</strong>：建立 AI BOM /ML SBOM，確保清單完整且具備簽章，能及時偵測零日漏洞與避免供應鏈被竄改</p></li>
+<li><p><strong>授權管理</strong>：建立完整的授權清單，定期稽核所有軟體、工具與資料集的授權狀況</p></li>
+<li><p><strong>異常檢測與對抗性測試</strong>：在 MLOps 與 LLM pipeline 中內建異常檢測與對抗性魯棒性測試，以便及早發現資料或模型遭到竄改與投毒</p></li>
+<li><p><strong>修補政策</strong>：定期更新過時或脆弱的元件</p></li>
+<li><p><strong>完整性檢查</strong>：僅使用來源可驗證的模型，透過簽章與檔案雜湊檢查完整性；部署時，對模型進行加密並啟用完整性檢查與供應商驗證機制，防止模型或應用被竄改或替換</p></li>
+</ul>
+</section>
+</section>
+<section id="llm04-2025-data-and-model-poisoning">
+<h3>LLM04:2025 Data and Model Poisoning<a class="headerlink" href="#llm04-2025-data-and-model-poisoning" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h4>風險描述<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p>在預訓練（pre-training）、微調（fine-tuning）或嵌入（embedding）資料階段遭到惡意操縱，進而引入弱點、後門或偏見</p>
+</section>
+<section id="id9">
+<h4>防禦策略<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>追蹤資料來源與轉換</strong>：使用 OWASP CycloneDX 或 ML-BOM 追蹤資料來源與轉換過程，確認模型在各個開發階段的資料合法性</p></li>
+<li><p><strong>嚴格審查供應商</strong>：針對模型輸出結果進行</p></li>
+<li><p><strong>實施沙箱機制</strong>：</p></li>
+<li><p><strong>基礎設施管控</strong>：避免模型存取未授權的資料來源</p></li>
+<li><p><strong>資料版本控制</strong>：追蹤資料集的變動，偵測是否被操縱</p></li>
+<li><p><strong>避免訓練模型</strong>：盡量使用向量資料庫，避免重新訓練整個模型</p></li>
+<li><p><strong>紅隊演練與對抗測試</strong>：模擬攻擊場景來測試模型韌性，降低遭受資料投毒或對抗攻擊的風險</p></li>
+<li><p><strong>監控訓練過程</strong>：持續監控訓練損失與模型行為，透過閾值檢測異常，及早發現投毒跡象</p></li>
+<li><p><strong>整合 RAG 與 Grounding</strong>：RAG 可以提供模型上下文、Grounding 是要求模型輸出時要給出參考資料</p></li>
+</ul>
+</section>
+</section>
+<section id="llm05-2025-improper-output-handling">
+<h3>LLM05:2025 Improper Output Handling<a class="headerlink" href="#llm05-2025-improper-output-handling" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h4>風險描述<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>過度信任 LLM 的輸出，若未經過適當驗證或過濾就直接使用，導致錯誤決策</p>
+</section>
+<section id="id11">
+<h4>防禦策略<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>零信任原則</strong>：將模型視為任何其他使用者，針對模型輸出進行驗證</p></li>
+<li><p><strong>OWASP ASVS</strong>：參考 OWASP ASVS 針對輸入進行清理與驗證</p></li>
+<li><p><strong>輸出編碼</strong>：回傳給使用者的模型輸出進行編碼，避免內容被當作程式碼執行</p></li>
+<li><p><strong>內容安全政策</strong>：採用嚴格的 Content Security Policies，降低 XSS 攻擊風險</p></li>
+<li><p><strong>日誌與監控</strong>：記錄模型輸出與使用情況，偵測異常行為</p></li>
+</ul>
+</section>
+</section>
+<section id="llm06-2025-excessive-agency">
+<h3>LLM06:2025 Excessive Agency<a class="headerlink" href="#llm06-2025-excessive-agency" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h4>風險描述<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>給予 LLM 過多的自主權，導致其執行未經授權的操作或做出不當決策</p>
+</section>
+<section id="id13">
+<h4>防禦策略<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>最小化原則</strong>：限制 LLM 可使用的外部工具與 API，僅允許必要的功能</p></li>
+<li><p><strong>人機協作</strong>：在執行前需要人的核准</p></li>
+</ul>
+</section>
+</section>
+<section id="llm07-2025-system-prompt-leakage">
+<h3>LLM07:2025 System Prompt Leakage<a class="headerlink" href="#llm07-2025-system-prompt-leakage" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h4>風險描述<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<p>系統提示的目的是去引導模型輸出以符合應用需求，但它同時可能不小心放入機密或敏感資料。一旦被發現，這些資訊就可能被用來促成其他攻擊</p>
+</section>
+<section id="id15">
+<h4>防禦策略<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>把敏感資料與系統提示分離</strong>：避免在系統提示中放入敏感資訊，將這類資訊外部化，存放在模型無法直接存取的安全系統</p></li>
+<li><p><strong>避免完全依賴系統提示</strong>：不要把行為控制完全依賴系統提示，像是有害內容偵測或敏感請求的阻擋，可以額外透過其它機制來進行過濾</p></li>
+<li><p><strong>外部防護機制</strong>：在系統提示之外，建立額外的防護機制來過濾或審查輸入與輸出</p></li>
+</ul>
+</section>
+</section>
+<section id="llm08-2025-vector-and-embedding-weaknesses">
+<h3>LLM08:2025 Vector and Embedding Weaknesses<a class="headerlink" href="#llm08-2025-vector-and-embedding-weaknesses" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h4>風險描述<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<p>若 Embedding 缺乏妥善的存取控制與資料管理，可能導致敏感資訊外洩、跨租戶情境下的知識洩露與衝突；同時存在嵌入反推、資料投毒等攻擊風險，不僅危及資料完整性與機密性，也可能改變模型的原始行為</p>
+</section>
+<section id="id17">
+<h4>防禦策略<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>權限與存取控制</strong>：確保不同使用者或群組之間的資料是隔離的。向量資料庫必須能針對每個人、每個群組設定清楚的權限，避免某人查詢時誤拿到不該看的嵌入或敏感資訊</p></li>
+<li><p><strong>資料驗證與來源認證</strong>：資料放進知識庫前，要先確認來源可信，並檢查內容是否有隱藏惡意資訊，同時要定期檢查資料庫，確保裡面的資料沒有被竄改</p></li>
+<li><p><strong>監控與日誌</strong>：所有檢索與查詢記錄都要有完整、不可竄改的紀錄，一旦有可疑的存取行為或攻擊，就能快速追蹤並處理</p></li>
+</ul>
+</section>
+</section>
+<section id="llm09-2025-misinformation">
+<h3>LLM09:2025 Misinformation<a class="headerlink" href="#llm09-2025-misinformation" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h4>風險描述<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<p>LLM 非常容易產生錯誤的資訊，這些輸出表面可信卻可能完全沒有根據，若使用者過度依賴而未驗證，便可能在決策、法律、醫療或軟體開發中引入嚴重風險，造成資安漏洞、聲譽受損甚至法律責任。例如：攻擊者發現 LLM 經常產出特定的「幻覺套件名稱」，攻擊者就可以利用這點上傳惡意套件至開源庫，導致開發者無意中安裝，進而被植入後門或惡意程式碼</p>
+</section>
+<section id="id19">
+<h4>防禦策略<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>檢索增強生成</strong>：在回應生成過程中，從可信的外部資料庫檢索相關資訊</p></li>
+<li><p><strong>模型微調</strong>：透過微調或嵌入向量改善模型輸出品質，降低錯誤資訊</p></li>
+<li><p><strong>交叉驗證與人工審核</strong>：將 LLM 輸出與可信來源交叉比對。對於關鍵或敏感資訊，須要有人類審核，避免過度依賴</p></li>
+<li><p><strong>自動驗證機制</strong>：建立自動化系統來驗證 LLM 的輸出</p></li>
+<li><p><strong>風險溝通</strong>：向使用者清楚說明 LLM 可能產生錯誤資訊的風險</p></li>
+<li><p><strong>安全程式開發實踐</strong>：建立安全的開發流程，確保在設計、開發、測試與部署階段都考慮到安全性</p></li>
+<li><p><strong>使用者介面設計</strong>：在使用者介面中設計防範措施，例如：內容過濾、標示為 AI 生成的內容等</p></li>
+<li><p><strong>教育與訓練</strong>：教育使用者了解 LLM 的限制與風險，以及對其輸出保持批判性思維</p></li>
+</ul>
+</section>
+</section>
+<section id="llm10-2025-unbounded-consumption">
+<h3>LLM10:2025 Unbounded Consumption<a class="headerlink" href="#llm10-2025-unbounded-consumption" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h4>風險描述<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+</section>
+<section id="id21">
+<h4>防禦策略<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>輸入驗證</strong>：嚴格限制輸入大小，避免超出合理範圍</p></li>
+<li><p><strong>限制 Logits 與 Logprobs 曝露</strong>：因為這些原始分數包含比最終輸出更細節的資訊，若完整公開可能被濫用，攻擊者可以透過大量輸入與對應的 logits 蒐集資料，進行模型抽取，近似重建或複製模型，或是攻擊者可能利用 logits 的微小差異推斷出原本不該洩露的內部資訊或機密</p></li>
+<li><p><strong>速率限制</strong>：限制與使用者配額，限制單一來源在特定時間內的請求數量</p></li>
+<li><p><strong>沙箱技術</strong>：限制 LLM 存取網路資源、內部服務與 API，以降低濫用風險</p></li>
+<li><p><strong>完整的日誌、監控與異常偵測</strong>：記錄所有請求與回應，偵測異常行為</p></li>
+<li><p><strong>浮水印</strong>：在生成的內容中加入浮水印，便於追蹤與識別濫用行為</p></li>
+<li><p><strong>集中化模型清冊</strong>：對生產中使用的模型進行集中管理，確保治理與存取受到控管</p></li>
+<li><p><strong>自動化 MLOps 部署</strong>：使用自動化的 Pipeline，結合治理、追蹤與審批流程，加強基礎設施的存取與部署控制</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id22">
+<h2>重點回顧<a class="headerlink" href="#id22" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>讀過 2025 年 LLM 與生成式 AI 應用的十大風險</p></li>
+<li><p>了解各項風險的防禦策略</p></li>
+</ul>
+</section>
+<section id="id23">
+<h2>參考資料<a class="headerlink" href="#id23" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://genai.owasp.org/llm-top-10/">2025 Top 10 Risk &amp; Mitigations for LLMs and Gen AI Apps</a></p></li>
+<li><p><a class="reference external" href="https://ihower.tw/notes/AI-Engineer/Evaluation/RAG+Evaluation">iHower - RAG Evaluation</a></p></li>
+<li><p><a class="reference external" href="https://truera.com/ai-quality-education/">TruLens - AI Quality Education</a></p></li>
+<li><p><a class="reference external" href="https://truera.com/ai-quality-education/generative-ai-rags/what-is-the-rag-triad/">TruLens - What is the RAG Triad?</a></p></li>
+<li><p><a class="reference external" href="https://www.trulens.org/getting_started/core_concepts/rag_triad/">TruLens - The RAG Triad</a></p></li>
+<li><p><a class="reference external" href="https://hackmd.io/&#64;YungHuiHsu/H16Y5cdi6">[Building and Evaluating Advanced RAG Applications。建立與評估進階RAG] -RAG Triad of metrics</a></p></li>
+<li><p><a class="reference external" href="https://nvd.nist.gov/vuln/detail/cve-2024-5184">NIST - CVE-2024-5184 Detail</a></p></li>
+<li><p><a class="reference external" href="https://www.nightfall.ai/ai-security-101/mitre-atlas">MITRE ATLAS: The Essential Guide</a></p></li>
+<li><p><a class="reference external" href="https://gist.github.com/rossja/d84a93e5c6b8dd2d4a538aa010b29163">HuggingFace SF_Convertbot Scanner</a></p></li>
+<li><p><a class="reference external" href="https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/">PoisonGPT: How We Hid a Lobotomized LLM on Hugging Face to Spread Fake News</a></p></li>
+<li><p><a class="reference external" href="https://rome.baulab.info/">Rank-One Model Editing (ROME)</a></p></li>
+<li><p><a class="reference external" href="https://www.ithome.com.tw/news/160915">GPU漏洞允許駭客自記憶體汲取資料，殃及蘋果、AMD與高通</a></p></li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="day-26.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">【Day26】介紹OWASP Gen AI Security Project</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Llama3_2_%283B%29_Unsloth.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Unsloth + Llama3.2:3b 微調測試</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-ai">2025 年 LLM 與生成式 AI 應用的十大風險與因應措施</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm01-2025-prompt-injection">LLM01:2025 Prompt Injection</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm02-2025-sensitive-information-disclosure">LLM02:2025 Sensitive Information Disclosure</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm03-2025-supply-chain">LLM03:2025 Supply Chain</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm04-2025-data-and-model-poisoning">LLM04:2025 Data and Model Poisoning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm05-2025-improper-output-handling">LLM05:2025 Improper Output Handling</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm06-2025-excessive-agency">LLM06:2025 Excessive Agency</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm07-2025-system-prompt-leakage">LLM07:2025 System Prompt Leakage</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm08-2025-vector-and-embedding-weaknesses">LLM08:2025 Vector and Embedding Weaknesses</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm09-2025-misinformation">LLM09:2025 Misinformation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">防禦策略</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm10-2025-unbounded-consumption">LLM10:2025 Unbounded Consumption</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">風險描述</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">防禦策略</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">參考資料</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Hsiang-Jen Li
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025, Hsiang-Jen Li.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
