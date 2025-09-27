@@ -6,7 +6,9 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "a2a-sdk[all]>=0.3.6",
+    "hf-transfer>=0.1.9",
     "langextract[openai]>=1.0.9",
+    "llm-guard>=0.3.16",
     "pydantic>=2.11.9",
     "uvicorn>=0.36.0",
 ]
