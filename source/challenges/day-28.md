@@ -1,30 +1,20 @@
 # 介紹
 
+昨天已經把整個 OWASP LLM Top 10 的基本概念介紹完畢，今天會實際使用 [LLM Guard](https://protectai.github.io/llm-guard/) 這個工具來實作這些防護機制。從它們的 Documentation 可以看到整個防護方向是分成 Input Scanner 和 Output Scanner，簡單來說就是在送出 Prompt 前先檢查一次，然後在取得模型回應後再檢查一次。
+
+![20250928152025](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928152025.png)
+
 # 操作
+
+## 安裝 LLM Guard
 
 ```shell
 uv add llm-guard
 ```
 
-## PII
+## PII（Personally Identifiable Information）
 
-```python
-DEFAULT_ENTITY_TYPES: Final[list[str]] = [
-    "CREDIT_CARD",
-    "CRYPTO",
-    "EMAIL_ADDRESS",
-    "IBAN_CODE",
-    "IP_ADDRESS",
-    "PERSON",
-    "PHONE_NUMBER",
-    "US_SSN",
-    "US_BANK_NUMBER",
-    "CREDIT_CARD_RE",
-    "UUID",
-    "EMAIL_ADDRESS_RE",
-    "US_SSN_RE",
-]
-```
+偵測 Prompt 內是否有個人識別資訊，使用的模型是 [dslim/bert-large-NER](https://huggingface.co/dslim/bert-large-NER)，基本的 classification 模型
 
 ```python
 class Anonymize(Scanner):
@@ -82,9 +72,6 @@ prompt = "My name is John Doe and I work at Test LLC."
 
 scanner = Anonymize(
     vault,
-    preamble="Insert before prompt",
-    allowed_names=["John Doe"],
-    hidden_names=["Test LLC"],
     recognizer_conf=BERT_LARGE_NER_CONF,
     language="en",
 )
@@ -96,9 +83,11 @@ print("Is Valid:", is_valid)
 print("Risk Score:", risk_score)
 ```
 
-![20250927175849](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250927175849.png)
+![20250928153151](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928153151.png)
 
 ## Prompt Injection
+
+偵測是否有 Prompt Injection 的攻擊行為，使用的模型是 [protectai/deberta-v3-base-prompt-injection-v2](https://huggingface.co/protectai/deberta-v3-base-prompt-injection-v2)
 
 ```python
 V2_MODEL = Model(
@@ -137,6 +126,8 @@ print("Risk Score:", risk_score)
 ![20250927180259](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250927180259.png)
 
 ## Secrets
+
+偵測 Prompt 內是否有敏感資訊，沒有使用特定的模型，而且針對不同的敏感資訊類型使用不同的偵測方法，如下 `_default_detect_secrets_config` 所示：
 
 ```python
 _default_detect_secrets_config = {
@@ -192,7 +183,11 @@ print("Risk Score:", risk_score)
 
 ![20250927181534](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250927181534.png)
 
+測試了 Fake 的 API Key 以及密碼等... 都沒有順利被偵測到
+
 ## Sentiment
+
+偵測 Prompt 的情緒傾向，使用的是 NLTK 套件內建的模型
 
 ```python
 class Sentiment(Scanner):
@@ -245,6 +240,8 @@ print("Risk Score (Positive):", risk_score_pos)
 
 ## Malicious URLs
 
+偵測模型回應中是否有惡意網址，使用的模型是 [DunnBC22/codebert-base-Malicious_URLs](https://huggingface.co/DunnBC22/codebert-base-Malicious_URLs)
+
 ```python
 DEFAULT_MODEL = Model(
     path="DunnBC22/codebert-base-Malicious_URLs",
@@ -281,6 +278,8 @@ print("Risk Score:", risk_score)
 
 ## Deanonymize
 
+前面已經做過去識別化，這邊示範如何把去識別化的內容還原回來
+
 ```python
 from llm_guard.output_scanners import Deanonymize
 from llm_guard.vault import Vault
@@ -314,6 +313,10 @@ print("Risk Score:", risk_score)
 ![20250927183336](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250927183336.png)
 
 # 重點回顧
+
+- 透過 LLM Guard 來實作 OWASP LLM Top 10 的防護機制
+- LLM Guard 分成 Input Scanner 和 Output Scanner
+- 簡單實測 PII、Prompt Injection、Secrets、Sentiment、Malicious URLs、Deanonymize 等功能
 
 # 參考資料
 - [LLM Guard](https://protectai.github.io/llm-guard/)
