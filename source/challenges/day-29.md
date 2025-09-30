@@ -1,10 +1,10 @@
-# 介紹
+## 介紹
 
 昨天介紹了使用 LLM-Gurad 來針對 LLM 的輸入與輸出進行掃描，過濾掉有風險的內容，今天要介紹另一個工具 Langfuse，它是一個開源的 LLM 監控與管理平台，可以用來追蹤、管理與評估 LLM 的使用情況。
 
-# 操作 Langfuse
+## 操作 Langfuse
 
-## 特色
+### 特色
 
 ![20250928155418](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928155418.png)
 
@@ -14,7 +14,7 @@ Langfuse 有以下幾個主要特色：
 - **Prompt Management**：集中管理與版本控制提示詞
 - **Evaluation**：評估模型的回應品質，確保符合預期
 
-## 安裝
+### 安裝
 
 透過 Docker Compose 進行安裝
 
@@ -27,7 +27,7 @@ docker compose up
 
 - http://localhost:3000
 
-## 進入頁面
+### 進入頁面
 
 ![20250928160430](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928160430.png)
 
@@ -39,7 +39,7 @@ docker compose up
 
 ![20250928161016](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928161016.png)
 
-## Tracing
+### Tracing
 
 從它們的官方文件可以看到 Tracing 的目的是為了追蹤 LLM 在收到請求後的行為（RAG 等等），但因爲目前筆者沒有相關的應用場景，所以這邊就先示範如何追蹤本地的 Ollama 模型
 
@@ -84,16 +84,16 @@ print(response.choices[0].message.content)
 
 執行後，可以在 Langfuse 的介面看到相關的紀錄，包含 Latency、Model、Temperature、回應等等
 
-## Prompt
+### Prompt
 
-### 建立 Prompt
+#### 建立 Prompt
 
 第二個特色是 Prompt Management，可以集中管理與版本控制提示詞
 
 ![20250928162537](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928162537.png)
 ![20250928162610](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928162610.png)
 
-### 使用 Prompt
+#### 使用 Prompt
 
 透過 Langfuse Python SDK 來取得 Prompt 的內容，並且可以帶入變數來編譯出最終的提示詞
 
@@ -121,11 +121,11 @@ print(
 )
 ```
 
-## LLM-as-a-Judge
+### LLM-as-a-Judge
 
 這個工具是使用 LLM 來自動評估 LLM 的回應品質
 
-### 設定 Judge
+#### 設定 Judge
 
 ![20250928170130](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170130.png)
 
@@ -133,7 +133,7 @@ print(
 
 ![20250928170459](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170459.png)
 
-### 設定 Evaluator 模版
+#### 設定 Evaluator 模版
 
 這邊要設定的是你希望 LLM 去評估的什麼樣的標準（回應的相關性、正確性、幻覺等等...）
 
@@ -149,19 +149,19 @@ print(
 
 ![20250928170710](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170710.png)
 
-### 查看評估分數
+#### 查看評估分數
 
 接著我們可以在 `Evaluation/Scores` 頁面看到相關的評估分數。因爲當初是使用 `gemma3:270m` 這個小模型來回答問題，所以回答的不是很好
 
 ![20250928171456](https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928171456.png)
 
-# 重點回顧
+## 重點回顧
 
 - 可以用來監控、管理與評估 LLM 的使用情況
 - 集中管理與版控 Prompt
 - 透過 LLM-as-a-Judge 來自動評估 LLM 的回應品質
 
-# 參考資料
+## 參考資料
 
 - [Langfuse Overview](https://langfuse.com/docs)
 - [Langfuse Self Hosting - Deployment - Local/VM (Docker Compose)](https://langfuse.com/self-hosting/deployment/docker-compose)
