@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>介紹 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day29】使用 Langfuse 來監控 LLM 的使用狀況 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -51,8 +51,8 @@
     <link rel="icon" href="https://hsiangjenli.github.io/static/image/ico.svg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="發文分類" href="day-30.html" />
-    <link rel="prev" title="【Day27】介紹 OWASP LLM Top 10" href="day-27.html" />
+    <link rel="next" title="【Day30】鐵人挑戰賽復盤 + 心得" href="day-30.html" />
+    <link rel="prev" title="【Day28】OWASP LLM Top 10 實作 - LLM Guard" href="day-28.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -185,12 +185,9 @@
 <li class="toctree-l1"><a class="reference internal" href="day-25.html">【Day25】A2A + MCP Context Forge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-26.html">【Day26】介紹OWASP Gen AI Security Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-27.html">【Day27】介紹 OWASP LLM Top 10</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">介紹</a></li>
-
-
-
-<li class="toctree-l1"><a class="reference internal" href="day-30.html">發文分類</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="day-28.html">【Day28】OWASP LLM Top 10 實作 - LLM Guard</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day29】使用 Langfuse 來監控 LLM 的使用狀況</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-30.html">【Day30】鐵人挑戰賽復盤 + 心得</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -333,7 +330,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>介紹</h1>
+    <h1>【Day29】使用 Langfuse 來監控 LLM 的使用狀況</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -343,29 +340,28 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langfuse">操作 Langfuse</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">特色</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">安裝</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">進入頁面</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracing">Tracing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">Prompt</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Prompt</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">使用 Prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langfuse">操作 Langfuse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">特色</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">安裝</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">進入頁面</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracing">Tracing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">Prompt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Prompt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">使用 Prompt</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-as-a-judge">LLM-as-a-Judge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#judge">設定 Judge</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluator">設定 Evaluator 模版</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">查看評估分數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-as-a-judge">LLM-as-a-Judge</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#judge">設定 Judge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluator">設定 Evaluator 模版</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">查看評估分數</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">參考資料</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -376,14 +372,16 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
-<h1>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day29-langfuse-llm">
+<h1>【Day29】使用 Langfuse 來監控 LLM 的使用狀況<a class="headerlink" href="#day29-langfuse-llm" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>介紹<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>昨天介紹了使用 LLM-Gurad 來針對 LLM 的輸入與輸出進行掃描，過濾掉有風險的內容，今天要介紹另一個工具 Langfuse，它是一個開源的 LLM 監控與管理平台，可以用來追蹤、管理與評估 LLM 的使用情況。</p>
 </section>
 <section id="langfuse">
-<h1>操作 Langfuse<a class="headerlink" href="#langfuse" title="Link to this heading">#</a></h1>
+<h2>操作 Langfuse<a class="headerlink" href="#langfuse" title="Link to this heading">#</a></h2>
 <section id="id2">
-<h2>特色<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h3>特色<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p><img alt="20250928155418" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928155418.png" /></p>
 <p>Langfuse 有以下幾個主要特色：</p>
 <ul class="simple">
@@ -393,7 +391,7 @@ document.write(`
 </ul>
 </section>
 <section id="id3">
-<h2>安裝<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<h3>安裝<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <p>透過 Docker Compose 進行安裝</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/langfuse/langfuse.git
 <span class="nb">cd</span><span class="w"> </span>langfuse
@@ -406,7 +404,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 </ul>
 </section>
 <section id="id4">
-<h2>進入頁面<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<h3>進入頁面<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p><img alt="20250928160430" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928160430.png" /></p>
 <p>註冊完帳號後，進入頁面</p>
 <ul class="simple">
@@ -417,7 +415,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 <p><img alt="20250928161016" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928161016.png" /></p>
 </section>
 <section id="tracing">
-<h2>Tracing<a class="headerlink" href="#tracing" title="Link to this heading">#</a></h2>
+<h3>Tracing<a class="headerlink" href="#tracing" title="Link to this heading">#</a></h3>
 <p>從它們的官方文件可以看到 Tracing 的目的是為了追蹤 LLM 在收到請求後的行為（RAG 等等），但因爲目前筆者沒有相關的應用場景，所以這邊就先示範如何追蹤本地的 Ollama 模型</p>
 <p><img alt="20250928164746" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928164746.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -459,15 +457,15 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 <p>執行後，可以在 Langfuse 的介面看到相關的紀錄，包含 Latency、Model、Temperature、回應等等</p>
 </section>
 <section id="prompt">
-<h2>Prompt<a class="headerlink" href="#prompt" title="Link to this heading">#</a></h2>
+<h3>Prompt<a class="headerlink" href="#prompt" title="Link to this heading">#</a></h3>
 <section id="id5">
-<h3>建立 Prompt<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<h4>建立 Prompt<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <p>第二個特色是 Prompt Management，可以集中管理與版本控制提示詞</p>
 <p><img alt="20250928162537" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928162537.png" />
 <img alt="20250928162610" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928162610.png" /></p>
 </section>
 <section id="id6">
-<h3>使用 Prompt<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<h4>使用 Prompt<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
 <p>透過 Langfuse Python SDK 來取得 Prompt 的內容，並且可以帶入變數來編譯出最終的提示詞</p>
 <p><img alt="20250928162917" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928162917.png" /></p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
@@ -494,16 +492,16 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 </section>
 </section>
 <section id="llm-as-a-judge">
-<h2>LLM-as-a-Judge<a class="headerlink" href="#llm-as-a-judge" title="Link to this heading">#</a></h2>
+<h3>LLM-as-a-Judge<a class="headerlink" href="#llm-as-a-judge" title="Link to this heading">#</a></h3>
 <p>這個工具是使用 LLM 來自動評估 LLM 的回應品質</p>
 <section id="judge">
-<h3>設定 Judge<a class="headerlink" href="#judge" title="Link to this heading">#</a></h3>
+<h4>設定 Judge<a class="headerlink" href="#judge" title="Link to this heading">#</a></h4>
 <p><img alt="20250928170130" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170130.png" /></p>
 <p>這邊爲求簡單，直接使用 OpenAI 的 模型來當作 Judge</p>
 <p><img alt="20250928170459" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170459.png" /></p>
 </section>
 <section id="evaluator">
-<h3>設定 Evaluator 模版<a class="headerlink" href="#evaluator" title="Link to this heading">#</a></h3>
+<h4>設定 Evaluator 模版<a class="headerlink" href="#evaluator" title="Link to this heading">#</a></h4>
 <p>這邊要設定的是你希望 LLM 去評估的什麼樣的標準（回應的相關性、正確性、幻覺等等…）</p>
 <p><img alt="20250928170611" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170611.png" /></p>
 <p>一些評估指標的參數設定</p>
@@ -513,14 +511,14 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 <p><img alt="20250928170710" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928170710.png" /></p>
 </section>
 <section id="id7">
-<h3>查看評估分數<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<h4>查看評估分數<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
 <p>接著我們可以在 <code class="docutils literal notranslate"><span class="pre">Evaluation/Scores</span></code> 頁面看到相關的評估分數。因爲當初是使用 <code class="docutils literal notranslate"><span class="pre">gemma3:270m</span></code> 這個小模型來回答問題，所以回答的不是很好</p>
 <p><img alt="20250928171456" src="https://raw.githubusercontent.com/hsiangjenli/pic-bed/main/images/20250928171456.png" /></p>
 </section>
 </section>
 </section>
 <section id="id8">
-<h1>重點回顧<a class="headerlink" href="#id8" title="Link to this heading">#</a></h1>
+<h2>重點回顧<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>可以用來監控、管理與評估 LLM 的使用情況</p></li>
 <li><p>集中管理與版控 Prompt</p></li>
@@ -528,7 +526,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 </ul>
 </section>
 <section id="id9">
-<h1>參考資料<a class="headerlink" href="#id9" title="Link to this heading">#</a></h1>
+<h2>參考資料<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://langfuse.com/docs">Langfuse Overview</a></p></li>
 <li><p><a class="reference external" href="https://langfuse.com/self-hosting/deployment/docker-compose">Langfuse Self Hosting - Deployment - Local/VM (Docker Compose)</a></p></li>
@@ -536,6 +534,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
 <li><p><a class="reference external" href="https://langfuse.com/docs/observability/sdk/python/overview">Langfuse Python SDK</a></p></li>
 <li><p><a class="reference external" href="https://langfuse.com/integrations/model-providers/ollama">Trace your local Ollama model with Langfuse</a></p></li>
 </ul>
+</section>
 </section>
 
 
@@ -550,12 +549,12 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="day-27.html"
+       href="day-28.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">【Day27】介紹 OWASP LLM Top 10</p>
+        <p class="prev-next-title">【Day28】OWASP LLM Top 10 實作 - LLM Guard</p>
       </div>
     </a>
     <a class="right-next"
@@ -563,7 +562,7 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">發文分類</p>
+        <p class="prev-next-title">【Day30】鐵人挑戰賽復盤 + 心得</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -583,29 +582,28 @@ docker<span class="w"> </span>compose<span class="w"> </span>up
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">介紹</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#langfuse">操作 Langfuse</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">特色</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">安裝</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">進入頁面</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tracing">Tracing</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">Prompt</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Prompt</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">使用 Prompt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">介紹</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#langfuse">操作 Langfuse</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">特色</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">安裝</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">進入頁面</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tracing">Tracing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt">Prompt</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">建立 Prompt</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">使用 Prompt</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-as-a-judge">LLM-as-a-Judge</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#judge">設定 Judge</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluator">設定 Evaluator 模版</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">查看評估分數</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm-as-a-judge">LLM-as-a-Judge</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#judge">設定 Judge</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluator">設定 Evaluator 模版</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">查看評估分數</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">重點回顧</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">參考資料</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">重點回顧</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">參考資料</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

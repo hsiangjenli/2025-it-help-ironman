@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>發文分類 &#8212; 2025 iThome 鐵人賽</title>
+    <title>【Day30】鐵人挑戰賽復盤 + 心得 &#8212; 2025 iThome 鐵人賽</title>
   
   
   
@@ -60,7 +60,7 @@ window.addEventListener("load", () => mermaid.run());
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Unsloth + Llama3.2:3b 微調測試" href="Llama3_2_%283B%29_Unsloth.html" />
-    <link rel="prev" title="介紹" href="day-29.html" />
+    <link rel="prev" title="【Day29】使用 Langfuse 來監控 LLM 的使用狀況" href="day-29.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -193,12 +193,9 @@ window.addEventListener("load", () => mermaid.run());
 <li class="toctree-l1"><a class="reference internal" href="day-25.html">【Day25】A2A + MCP Context Forge</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-26.html">【Day26】介紹OWASP Gen AI Security Project</a></li>
 <li class="toctree-l1"><a class="reference internal" href="day-27.html">【Day27】介紹 OWASP LLM Top 10</a></li>
-<li class="toctree-l1"><a class="reference internal" href="day-29.html">介紹</a></li>
-
-
-
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">發文分類</a></li>
-
+<li class="toctree-l1"><a class="reference internal" href="day-28.html">【Day28】OWASP LLM Top 10 實作 - LLM Guard</a></li>
+<li class="toctree-l1"><a class="reference internal" href="day-29.html">【Day29】使用 Langfuse 來監控 LLM 的使用狀況</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">【Day30】鐵人挑戰賽復盤 + 心得</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Jupyter Notebook</span></p>
 <ul class="nav bd-sidenav">
@@ -341,7 +338,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>發文分類</h1>
+    <h1>【Day30】鐵人挑戰賽復盤 + 心得</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -351,18 +348,17 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">發文分類</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">快速復盤</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">做得好的題目</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">做得不好的題目</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">好可惜的題目</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">發文分類</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">快速復盤</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">做得好的題目</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">做得不好的題目</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">好可惜的題目</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">心得</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">心得</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -373,8 +369,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="id1">
-<h1>發文分類<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="day30">
+<h1>【Day30】鐵人挑戰賽復盤 + 心得<a class="headerlink" href="#day30" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>發文分類<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>筆者在過去 29 天的挑戰中，嘗試了許多不同的題目，這些題目可以大致分成以下幾個類別：</p>
 <ol class="arabic simple">
 <li><p><strong>瞭解</strong>：介紹 LLM 相關的基本概念和工具，像是 Context Engineering、想在地端跑 LLM 的 Ollama、模型微調方法論、MCP 工具、LLM 資安議題</p></li>
@@ -424,10 +422,10 @@ document.write(`
       27 - OWASP LLM Top 10
       29 - Langfuse
     </pre><section id="id2">
-<h2>快速復盤<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<h3>快速復盤<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
 <p>最後不免俗的來個復盤，回顧一下這 30 天的挑戰有沒有哪個地方收穫最多以及看起來還需要加強的地方。</p>
 <section id="id3">
-<h3>做得好的題目<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<h4>做得好的題目<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>26 - 介紹 OWASP Gen AI Security</strong>：本來就一直很想碰 AI 資安相關的議題，藉由這次的挑戰，才有一個動力去認真研究 OWASP Gen AI Security 的內容</p></li>
 <li><p><strong>27 - OWASP LLM Top 10</strong>：更深入了解 LLM 在資安方面的風險，以及如何防範常見的攻擊手法</p></li>
@@ -435,14 +433,14 @@ document.write(`
 </ul>
 </section>
 <section id="id4">
-<h3>做得不好的題目<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<h4>做得不好的題目<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>10 - 實際使用 Unsloth 來對模型微調</strong>：基本上就是按照官方文件操作，裡面模組的原理並沒有深入研究，效果也不好</p></li>
 <li><p><strong>16 - 使用 VLM</strong>：單純操作官方的網頁，後續看到 IBM 的 Granite 模型效果好很多，可惜當初選錯模型</p></li>
 </ul>
 </section>
 <section id="id5">
-<h3>好可惜的題目<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<h4>好可惜的題目<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>情境工程系列</strong>：只能說世界走得太快，幾乎是每幾天就有新的工具出現，像是 Github 的 spec-kit、kiro 等等，各種 BDD、SDD、TDD 工具如雪片般飛來 …</p>
 <ul>
@@ -456,8 +454,9 @@ document.write(`
 </section>
 </section>
 <section id="id6">
-<h1>心得<a class="headerlink" href="#id6" title="Link to this heading">#</a></h1>
+<h2>心得<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
 <p>這 30 天的挑戰是以「廣」爲目的，幾乎把所有有關 LLM 的議題都碰過一遍（大概），也因爲每天只有一篇文章的關係，所以並不會很深入的去研究裡面的細節，這部分是比較可惜的地方</p>
+</section>
 </section>
 
 
@@ -477,7 +476,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">介紹</p>
+        <p class="prev-next-title">【Day29】使用 Langfuse 來監控 LLM 的使用狀況</p>
       </div>
     </a>
     <a class="right-next"
@@ -505,18 +504,17 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">發文分類</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">快速復盤</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">做得好的題目</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">做得不好的題目</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">好可惜的題目</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">發文分類</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">快速復盤</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">做得好的題目</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">做得不好的題目</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">好可惜的題目</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">心得</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">心得</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
